@@ -192,7 +192,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಗಂ,f=253
  word=ಕಲೆ,f=253
  word=ನಡುವೆ,f=253
- word=253,f=253
  word=ಬಿಡುಗಡೆಯಾದ,f=253
  word=ಅವನ,f=253
  word=ವನ್ನು,f=253
@@ -233,7 +232,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಸ್ಥಳೀಯ,f=253
  word=ಪುರಸ್ಕಾರಗಳು,f=253
  word=ಗಾಳಿ,f=253
- word=253,f=253
  word=ಪ್ರಥಮ,f=253
  word=ಕ್ರಿಕೆಟ್,f=253
  word=ನಿರ್ಮಾಪಕರು,f=253
@@ -282,7 +280,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಸಾಮಾಜಿಕ,f=252
  word=ದೇಶದ,f=252
  word=ಆಹಾರ,f=252
- word=252,f=252
  word=ಈರುಳ್ಳಿ,f=252
  word=ಬೇರೆ,f=252
  word=ವೈದ್ಯಕೀಯ,f=252
@@ -301,7 +298,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ತಾಂತ್ರಿಕ,f=252
  word=ಸಾರ್ವಜನಿಕ,f=252
  word=ಹಿಂದೆ,f=252
- word=252,f=252
  word=ಉಲ್ಲೇಖಗಳು,f=252
  word=ಇದೇ,f=252
  word=ಬಾಗೇವಾಡಿ,f=252
@@ -313,7 +309,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ದಾಳಿಂಬೆ,f=252
  word=ಸಂಬಂಧಿಸಿದ,f=252
  word=ಕಡಲೆಕಾಯಿ,f=252
- word=252,f=252
  word=ವಾಣಿಜ್ಯ,f=252
  word=ನ್ನು,f=252
  word=ಉಳ್ಳಾಗಡ್ಡಿ,f=252
@@ -322,7 +317,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಮೆಕ್ಕೆಜೋಳ,f=252
  word=ಗ್ರಾಮವು,f=252
  word=ಪ್ರಮಾಣ,f=252
- word=252,f=252
  word=ನಟ,f=252
  word=ಶಕ್ತಿ,f=252
  word=ರೀತಿಯಲ್ಲಿ,f=252
@@ -335,14 +329,12 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಸರಕಾರಿ,f=252
  word=ಹಿಂದಿನ,f=252
  word=ತಿಂಗಳು,f=252
- word=252,f=252
  word=ಎಂದರೆ,f=252
  word=ಅಧಿಕೃತ,f=252
  word=ಕಾಲದಲ್ಲಿ,f=252
  word=ಗಳಲ್ಲಿ,f=252
  word=ಬರುತ್ತದೆ,f=252
  word=ಮಾಡಿದರು,f=252
- word=252,f=252
  word=ಸಾಕಾಣಿಕೆ,f=252
  word=ಇವನ್ನೂ,f=252
  word=ಅಂತರರಾಷ್ಟ್ರೀಯ,f=252
@@ -367,7 +359,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ತರಬೇತಿ,f=252
  word=ಉಪ,f=252
  word=ಇದ್ದು,f=252
- word=252,f=252
  word=ಪ್ರಮುಖವಾಗಿ,f=252
  word=ಎರಡೂ,f=252
  word=ತಂದೆ,f=252
@@ -384,9 +375,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಬಿಜಾಪೂರ,f=252
  word=ಸಿಂಗ್,f=252
  word=ಯಾವ,f=252
- word=252,f=252
  word=ತೋಟಗಾರಿಕೆ,f=252
- word=252,f=252
  word=ಚಿತ್ರಗಳು,f=252
  word=ನಂತರದ,f=252
  word=ಡಿಸೆಂಬರ್,f=252
@@ -399,7 +388,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಾನೂನು,f=252
  word=ಇಲ್ಲ,f=252
  word=ಜನಪ್ರಿಯ,f=252
- word=252,f=252
  word=ಮರಾಠಿ,f=252
  word=ನೆಯ,f=252
  word=ಇಂಗ್ಲೀಷ್,f=252
@@ -464,7 +452,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ತಾಣ,f=251
  word=ಮಹಾರಾಷ್ಟ್ರ,f=251
  word=ತಾಯಿ,f=251
- word=251,f=251
  word=ಸ್ಥಳ,f=251
  word=ಆತ,f=251
  word=ನನ್ನ,f=251
@@ -501,9 +488,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆರಂಭಿಕ,f=251
  word=ಪುಸ್ತಕ,f=251
  word=ಉದ್ಯೋಗ,f=251
- word=251,f=251
  word=ಒಳಗೊಂಡಿದೆ,f=251
- word=251,f=251
  word=ದೆಹಲಿ,f=251
  word=ಖಾಸಗಿ,f=251
  word=ಹೇಗೆ,f=251
@@ -535,7 +520,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ವಿಜಾಪೂರ,f=251
  word=ಸಾಹಿತಿಗಳು,f=251
  word=ಪ್ರತಿವರ್ಷ,f=251
- word=251,f=251
  word=ಅಧಿಕ,f=251
  word=ಪ್ರಸ್ತುತ,f=251
  word=ಕಪ್ಪು,f=251
@@ -543,7 +527,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಾಲೇಜ್,f=251
  word=ನೀಡುತ್ತದೆ,f=251
  word=ದೇವರ,f=251
- word=251,f=251
  word=ಸದಸ್ಯರು,f=251
  word=ವಿಶಿಷ್ಟ,f=251
  word=ಚುನಾವಣಾ,f=251
@@ -553,11 +536,9 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಾದಂಬರಿ,f=251
  word=ಬಳಸುವ,f=251
  word=ಎರಡನೆಯ,f=251
- word=251,f=251
  word=ಇವೆ,f=251
  word=ರೀತಿ,f=251
  word=ಪ್ರತಿಶತ,f=251
- word=251,f=251
  word=ವಿನ್ಯಾಸ,f=251
  word=ಮಾಡುವುದು,f=251
  word=ಪರಿಸರ,f=251
@@ -615,10 +596,8 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಭಾಷೆಗಳು,f=251
  word=ಬಣ್ಣದ,f=251
  word=ಓರ್ವ,f=251
- word=251,f=251
  word=ಮಾರಾಟ,f=251
  word=ಬಳಸಿ,f=251
- word=251,f=251
  word=ದರ್ಗಾ,f=251
  word=ಹಾಕಿ,f=251
  word=ಬಾರಿಗೆ,f=251
@@ -637,8 +616,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಯೋಜನೆ,f=251
  word=ವೈಯಕ್ತಿಕ,f=251
  word=ಬೆಳೆಯುತ್ತಾರೆ,f=251
- word=251,f=251
- word=251,f=251
  word=ಪಡೆದರು,f=251
  word=ಪೈಕಿ,f=251
  word=ಪಂಚಮಿ,f=251
@@ -651,7 +628,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ವ್ಯಾಪ್ತಿಯಲ್ಲಿ,f=251
  word=ಹೊಂದಿರುತ್ತದೆ,f=251
  word=ರಸ್ತೆ,f=251
- word=250,f=250
  word=ಲಂಡನ್,f=250
  word=ವಸ್ತು,f=250
  word=ಮಗ,f=250
@@ -681,7 +657,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕೆಳಗೆ,f=250
  word=ಭಾಷೆಗಳನ್ನು,f=250
  word=ಆಯ್ಕೆ,f=250
- word=250,f=250
  word=ಸಂಸ್ಕೃತ,f=250
  word=ಚಲನಚಿತ್ರಗಳು,f=250
  word=ಕೈಗಾರಿಕಾ,f=250
@@ -717,9 +692,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಬೆಳೆ,f=250
  word=ಅಡಿ,f=250
  word=ನಿರ್ದೇಶಕ,f=250
- word=250,f=250
  word=ಚಿತ್ರದಲ್ಲಿ,f=250
- word=250,f=250
  word=ವರ್ಷದಲ್ಲಿ,f=250
  word=ಕೋಳಿ,f=250
  word=ಜೂನ,f=250
@@ -741,7 +714,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಸಾಮ್ರಾಜ್ಯ,f=250
  word=ಕಚೇರಿ,f=250
  word=ಎನ್ನುವ,f=250
- word=250,f=250
  word=ಹಣ,f=250
  word=ಫೆಬ್ರವರಿ,f=250
  word=ನ್ಯಾಷನಲ್,f=250
@@ -756,7 +728,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ದಿನಗಳು,f=250
  word=ದುರ್ಗಾದೇವಿ,f=250
  word=ತಾವು,f=250
- word=250,f=250
  word=ಆಧಾರಿತ,f=250
  word=ಸರಾಸರಿ,f=250
  word=ನೇರವಾಗಿ,f=250
@@ -770,7 +741,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಸ್ವತಂತ್ರ,f=250
  word=ಸಂಶೋಧನೆ,f=250
  word=ನಿಂಬೆ,f=250
- word=250,f=250
  word=ನಗರದಲ್ಲಿ,f=250
  word=ಹೊಂದಿವೆ,f=250
  word=ಪರಿಣಾಮ,f=250
@@ -787,7 +757,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಂಗ್ಲ,f=250
  word=ವಿಭಿನ್ನ,f=250
  word=ಗಳಿಗೆ,f=250
- word=250,f=250
  word=ವೆಂಕಟೇಶ್ವರ,f=250
  word=ಕುಂಬಳಕಾಯಿ,f=250
  word=ಮುಕ್ತ,f=250
@@ -801,7 +770,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಪ್ರೊ,f=250
  word=ಪ್ರವೇಶ,f=250
  word=ಕಾಣಬಹುದು,f=250
- word=250,f=250
  word=ಹೆಸರನ್ನು,f=250
  word=ಮಾವು,f=250
  word=ಜನರಿದ್ದಾರೆ,f=250
@@ -810,7 +778,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಬಗೆಯ,f=250
  word=ಸಜ್ಜೆ,f=250
  word=ಭಾಗದ,f=250
- word=250,f=250
  word=ಸಂಗ್ರಹ,f=250
  word=ಸದಸ್ಯರ,f=250
  word=ಗುಬ್ಬಿ,f=250
@@ -838,7 +805,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಲಮಟ್ಟಿ,f=250
  word=ಬಂದರು,f=250
  word=ಗಳಸ್ಟು,f=250
- word=250,f=250
  word=ಲೇಖನ,f=250
  word=ಮೆಂತೆ,f=250
  word=ಬದನೆಕಾಯಿ,f=250
@@ -846,7 +812,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ನಿರತರಾಗಿದ್ದಾರೆ,f=250
  word=250ಮಿಮಿ,f=250
  word=ಕಪ್,f=250
- word=250,f=250
  word=ಟೊಮ್ಯಾಟೊ,f=250
  word=ನೀಡಿ,f=250
  word=ಟಿಪ್ಪಣಿಗಳು,f=250
@@ -873,7 +838,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಉದ್ಯೋಗವಾಗಿದೆ,f=249
  word=ಹಿಡಿದು,f=249
  word=ಇವುಗಳ,f=249
- word=249,f=249
  word=ಮಹತ್ವದ,f=249
  word=ಕಸುಬುಗಳಾಗಿವೆ,f=249
  word=ಇದುವುದರಿಂದ,f=249
@@ -890,7 +854,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಪುರಸ್ಕೃತರು,f=249
  word=ಕೆಲ,f=249
  word=ದೂರ,f=249
- word=249,f=249
  word=ಮಾವಿನ,f=249
  word=ದೂರದರ್ಶನ,f=249
  word=ನವಿಲು,f=249
@@ -900,7 +863,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಮೆರಿಕಾದ,f=249
  word=ಮಾಜಿ,f=249
  word=ಪೂ,f=249
- word=249,f=249
  word=ಆಧಾರದ,f=249
  word=ಪಡೆದು,f=249
  word=ಕೋಗಿಲೆ,f=249
@@ -925,11 +887,8 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಸಾಮರ್ಥ್ಯ,f=249
  word=ನರಿ,f=249
  word=ಪಂದ್ಯದಲ್ಲಿ,f=249
- word=249,f=249
  word=ರಕ್ಷಣಾ,f=249
  word=ಎತ್ತರದ,f=249
- word=249,f=249
- word=249,f=249
  word=ಸ್ಥಳಗಳು,f=249
  word=ವ್ಯವಹಾರ,f=249
  word=ಬಣ್ಣ,f=249
@@ -963,7 +922,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ನಂತರದಲ್ಲಿ,f=249
  word=ನೀರನ್ನು,f=249
  word=ಪ್ರವಾಸ,f=249
- word=249,f=249
  word=ರಾಷ್ಟ್ರ,f=249
  word=ಮಾಡಬಹುದು,f=249
  word=ಒಳಗೆ,f=249
@@ -975,18 +933,15 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ನಗರವು,f=249
  word=ಕಡೆ,f=249
  word=ಜೀವ,f=249
- word=249,f=249
  word=ಪರಿಣಾಮವಾಗಿ,f=249
  word=ತೆಲುಗು,f=249
  word=ಇಬ್ಬರು,f=249
- word=249,f=249
  word=ಸಂಬಂಧ,f=249
  word=ಮೂರನೇ,f=249
  word=ಮಧ್ಯೆ,f=249
  word=ಇವುಗಳಲ್ಲಿ,f=249
  word=ಹೆಚ್ಚುವರಿ,f=249
  word=ಬೆಳ್ಳಕ್ಕಿ,f=249
- word=249,f=249
  word=ರೇಡಿಯೋ,f=249
  word=ಕಾವ್ಯ,f=249
  word=ಪಡೆಯಲು,f=249
@@ -1022,7 +977,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕೇಂದ್ರಗಳು,f=249
  word=ಭಾಷಾ,f=249
  word=ಟೆಂಪ್ಲೇಟುಗಳು,f=249
- word=249,f=249
  word=ಡೇ,f=249
  word=ಚಿನ್ನದ,f=249
  word=ಉದಾ,f=249
@@ -1053,7 +1007,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಮ್ಲ,f=249
  word=ಕ್ಲಬ್,f=249
  word=ತಂಡವು,f=249
- word=249,f=249
  word=ಸಾವಿರಾರು,f=249
  word=ರಾಜ್ಯಗಳು,f=249
  word=ರಚಿಸಿದ,f=249
@@ -1073,7 +1026,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ದರ್ಶನ,f=248
  word=ಕ್ರೀಡಾ,f=248
  word=ಅಂದಿನ,f=248
- word=248,f=248
  word=ಸೇವಾ,f=248
  word=ಸಕ್ಕರೆ,f=248
  word=ಜ್ಞಾನ,f=248
@@ -1087,7 +1039,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ನ್ಯೂಯಾರ್ಕ್,f=248
  word=ಗಳಿಂದ,f=248
  word=ಕುಟುಂಬ,f=248
- word=248,f=248
  word=ಮಾರ್ಗ,f=248
  word=ಅಂತಿಮವಾಗಿ,f=248
  word=ಸರಿಯಾದ,f=248
@@ -1144,14 +1095,10 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಎಷ್ಟು,f=248
  word=ಅಧಿಕಾರ,f=248
  word=ಯುದ್ಧದ,f=248
- word=248,f=248
- word=248,f=248
  word=ಹೊರಗೆ,f=248
  word=ಸಸ್ಯಗಳು,f=248
  word=ವೆಬ್,f=248
  word=ಆಟದ,f=248
- word=248,f=248
- word=248,f=248
  word=ಸಹಕಾರಿ,f=248
  word=ಮಂಡಳಿ,f=248
  word=ದಿನದ,f=248
@@ -1165,7 +1112,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಪಟ್ಟಣ,f=248
  word=ನನ್ನು,f=248
  word=ಚಿತ್ರಗಳಲ್ಲಿ,f=248
- word=248,f=248
  word=ಯುವ,f=248
  word=ಬದಲಾಗಿ,f=248
  word=ಪುಸ್ತಕಗಳು,f=248
@@ -1179,7 +1125,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ವಸ್ತುಗಳು,f=248
  word=ಬೇಕಾದ,f=248
  word=ಗಂಡು,f=248
- word=248,f=248
  word=ಬಳಸಿಕೊಂಡು,f=248
  word=ಪರಿಚಯ,f=248
  word=ದಿನಗಳ,f=248
@@ -1190,14 +1135,10 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ರೂಪ,f=248
  word=ಧಾರವಾಡ,f=248
  word=ಕೆನಡಾ,f=248
- word=248,f=248
  word=ಸಾಮರ್ಥ್ಯವನ್ನು,f=248
- word=248,f=248
- word=248,f=248
  word=ಸೂಚಿಸುತ್ತದೆ,f=248
  word=ಬೆಳಗಾವಿ,f=248
  word=ನಿರ್ದೇಶಕರು,f=248
- word=248,f=248
  word=ಮಂತ್ರಿ,f=248
  word=ಮಾಡಿದ್ದಾರೆ,f=248
  word=ಸ್ಥಾನವನ್ನು,f=248
@@ -1220,7 +1161,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಿರುತೆರೆ,f=248
  word=ಸುತ್ತ,f=248
  word=ತಮ್ಮನ್ನು,f=248
- word=248,f=248
  word=ಶಾಲಾ,f=248
  word=ಆಸ್ಪತ್ರೆ,f=248
  word=ಶತಮಾನ,f=248
@@ -1230,7 +1170,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಸಾಧನ,f=248
  word=ಬ್ರಹ್ಮ,f=248
  word=ಪಕ್ಷದ,f=248
- word=248,f=248
  word=ಕನ್ನಡದಲ್ಲಿ,f=248
  word=ವೆಸ್ಟ್,f=248
  word=ಮಾಧ್ಯಮ,f=248
@@ -1300,7 +1239,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಹೊರ,f=247
  word=ಮೂಲತಃ,f=247
  word=ಆಟ,f=247
- word=247,f=247
  word=ತಮ್ಮದೇ,f=247
  word=ಜಾತಿ,f=247
  word=ಹೊಂದಿತ್ತು,f=247
@@ -1313,7 +1251,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಬಂತು,f=247
  word=ಪ್ರಕ್ರಿಯೆ,f=247
  word=ನೂರಾರು,f=247
- word=247,f=247
  word=ಪರೀಕ್ಷೆ,f=247
  word=ಯವರು,f=247
  word=ಕೃಷಿಗೆ,f=247
@@ -1334,7 +1271,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ರಷ್ಯಾ,f=247
  word=ಕಂಪನಿಯು,f=247
  word=ಒಳಗೊಂಡಂತೆ,f=247
- word=247,f=247
  word=ಸಮಗ್ರ,f=247
  word=ತ್ರೆ,f=247
  word=ಇಟಲಿ,f=247
@@ -1412,14 +1348,12 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಸಿನಿಮಾ,f=247
  word=ವೇಗದ,f=247
  word=ಮಾನ್ಯತೆ,f=247
- word=247,f=247
  word=ಅಲಿ,f=247
  word=ನೀಡಿತು,f=247
  word=ಅಂಶಗಳನ್ನು,f=247
  word=ಭೌತಿಕ,f=247
  word=ನಂತಹ,f=247
  word=ಇಂಟರ್,f=247
- word=247,f=247
  word=ವಿದ್ಯಾರ್ಥಿ,f=247
  word=ಪಡೆದಿದೆ,f=247
  word=ಕರೆಯಲ್ಪಡುವ,f=247
@@ -1433,7 +1367,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಮೊದಲನೆಯ,f=247
  word=ಬರಹ,f=247
  word=ಇದನ್ನೂ,f=247
- word=247,f=247
  word=ವಿಭಾಗಗಳು,f=247
  word=ಗೂಗಲ್,f=247
  word=ಸಂಕೇತ,f=247
@@ -1456,7 +1389,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ರಾಷ್ಟ್ರಗಳು,f=247
  word=ನಿರ್ಮಿಸಿದ,f=247
  word=ಆಕೆ,f=247
- word=247,f=247
  word=ಮಹಿಳೆಯರ,f=247
  word=ಜಾತಿಯ,f=247
  word=ಔಷಧಿ,f=247
@@ -1471,7 +1403,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಬಲ,f=247
  word=ನೀತಿ,f=247
  word=ಕ್ರೀಡೆ,f=247
- word=247,f=247
  word=ವಲಯ,f=247
  word=ರಾಕ್,f=247
  word=ಮಾಡುತ್ತವೆ,f=247
@@ -1486,7 +1417,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಮಾತು,f=247
  word=ದಾರಿ,f=246
  word=ಎಕ್ಸ್,f=246
- word=246,f=246
  word=ಮಾನವನ,f=246
  word=ಪುರಸ್ಕಾರ,f=246
  word=ದಶಲಕ್ಷ,f=246
@@ -1494,7 +1424,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ವಿಜೇತ,f=246
  word=ಅವಧಿಯ,f=246
  word=ಅಥವ,f=246
- word=246,f=246
  word=ಹೊಂದಿದ್ದ,f=246
  word=ಮಿಲಿಟರಿ,f=246
  word=ಬೆಟ್ಟದ,f=246
@@ -1533,7 +1462,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ವಸತಿ,f=246
  word=ಕಾರಣವಾಯಿತು,f=246
  word=ಅಂತರ,f=246
- word=246,f=246
  word=ಸಂಗೀತಗಾರರು,f=246
  word=ಯುನಿವರ್ಸಿಟಿ,f=246
  word=ಬಹುಶಃ,f=246
@@ -1554,8 +1482,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಔಷಧ,f=246
  word=ಭೂಗೋಳ,f=246
  word=ಜಲಪಾತ,f=246
- word=246,f=246
- word=246,f=246
  word=ಹೊರತುಪಡಿಸಿ,f=246
  word=ನದಿಗಳು,f=246
  word=ಗೌರವಗಳು,f=246
@@ -1565,12 +1491,10 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ತಿಂಗಳುಗಳು,f=246
  word=ಕಾಣುವ,f=246
  word=ಇಂಧನ,f=246
- word=246,f=246
  word=ಬದುಕು,f=246
  word=ಪಂದ್ಯ,f=246
  word=ಡೇವಿಡ್,f=246
  word=ಅವಳು,f=246
- word=246,f=246
  word=ಹೇಳಲಾಗುತ್ತದೆ,f=246
  word=ವಾಯು,f=246
  word=ಥಾಮಸ್,f=246
@@ -1586,11 +1510,9 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಹ್ಯಾರಿ,f=246
  word=ಸೂರ್ಯನ,f=246
  word=ಆತ್ಮ,f=246
- word=246,f=246
  word=ನಿರಂತರ,f=246
  word=ಚಕ್ರವರ್ತಿ,f=246
  word=ಊರು,f=246
- word=246,f=246
  word=ಸದರಿ,f=246
  word=ಬಂದಿತು,f=246
  word=ಜನತಾ,f=246
@@ -1606,7 +1528,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಮಹಾಭಾರತ,f=246
  word=ಒಳಗೊಂಡ,f=246
  word=ಈತ,f=246
- word=246,f=246
  word=ಲಕ್ಷ,f=246
  word=ಮಹಾವಿದ್ಯಾಲಯಗಳು,f=246
  word=ಪ್ರಚಾರ,f=246
@@ -1692,8 +1613,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಯಾ,f=246
  word=ಪ್ರಸಾದ್,f=246
  word=ಅರಣ್ಯ,f=246
- word=245,f=245
- word=245,f=245
  word=ಚಿತ್ರವನ್ನು,f=245
  word=ಅರ್ಥಶಾಸ್ತ್ರ,f=245
  word=ವೃತ್ತಿಜೀವನ,f=245
@@ -1703,7 +1622,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ರಾಷ್ಟ್ರದ,f=245
  word=ಒಪ್ಪಂದ,f=245
  word=ಅರಮನೆ,f=245
- word=245,f=245
  word=ಮುನ್ನ,f=245
  word=ನೀಡಿದೆ,f=245
  word=ದಿಸ್,f=245
@@ -1717,7 +1635,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಧಿಕಾರಿಗಳು,f=245
  word=ಪಾತ್ರಗಳು,f=245
  word=ಪಕ್ಷಿಗಳು,f=245
- word=245,f=245
  word=​​,f=245
  word=ಹುಟ್ಟಿದ,f=245
  word=ಮೈ,f=245
@@ -1737,7 +1654,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ವಿಶ್ಲೇಷಣೆ,f=245
  word=ವಿವಾಹ,f=245
  word=ಮತ್ತೊಮ್ಮೆ,f=245
- word=245,f=245
  word=ಸೆಂಟ್ರಲ್,f=245
  word=ಒಂದಾಗಿದೆ,f=245
  word=ವಿಶಾಲ,f=245
@@ -1749,7 +1665,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಮೌಲ್ಯ,f=245
  word=ತತ್ವ,f=245
  word=ಚೆನ್ನೈ,f=245
- word=245,f=245
  word=ಹಂಸಲೇಖ,f=245
  word=ಸುತ್ತಲೂ,f=245
  word=ವಚನ,f=245
@@ -1771,7 +1686,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಸೃಷ್ಟಿ,f=245
  word=ಕಥಾ,f=245
  word=ಅಮೇರಿಕನ್,f=245
- word=245,f=245
  word=ರನ್,f=245
  word=ಭಾರತಕ್ಕೆ,f=245
  word=ಬಾಲಸುಬ್ರಹ್ಮಣ್ಯಂ,f=245
@@ -1807,7 +1721,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಿಂಗ್,f=245
  word=ಈಸ್ಟ್,f=245
  word=ಆಗ್ನೇಯ,f=245
- word=245,f=245
  word=ಗಳಿಸಿದ,f=245
  word=ಆಲ್,f=245
  word=ಲಿಮಿಟೆಡ್,f=245
@@ -1815,13 +1728,11 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಪತ್ತೆ,f=245
  word=ಡಿಸ್ನಿ,f=245
  word=ಉಡುಪಿ,f=245
- word=245,f=245
  word=ಶ್ರೀನಿವಾಸ,f=245
  word=ಮೊದಲನೇ,f=245
  word=ಮತ,f=245
  word=ಕ್ರಿಯೆ,f=245
  word=ಅದರಿಂದ,f=245
- word=245,f=245
  word=ಬೈ,f=245
  word=ಬಹುಮಾನ,f=245
  word=ತಂದೆಯ,f=245
@@ -1834,7 +1745,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಎನ್ನುವುದು,f=245
  word=ಉರ್ದು,f=245
  word=ಉದ್ಯಾನಗಳು,f=245
- word=245,f=245
  word=ಸಾಧಾರಣವಾಗಿ,f=245
  word=ರಮೇಶ್,f=245
  word=ಹಕ್ಕು,f=245
@@ -1887,7 +1797,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ವಾಸ್ತವವಾಗಿ,f=245
  word=ಯಶಸ್ವಿಯಾಗಿ,f=245
  word=ನಿಯಮಗಳು,f=245
- word=245,f=245
  word=ಸಮಯದ,f=245
  word=ಮ್ಯಾಕ್,f=245
  word=ನೊಂದಿಗೆ,f=245
@@ -1915,7 +1824,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಭಾಷೆಗಳಲ್ಲಿ,f=244
  word=ಜಾರಿಗೆ,f=244
  word=ಅಮೆರಿಕನ್‌,f=244
- word=244,f=244
  word=ಕಲ್ಲು,f=244
  word=ಅವುಗಳೆಂದರೆ,f=244
  word=ವಿವರ,f=244
@@ -1946,7 +1854,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ರಾಜಕುಮಾರ್,f=244
  word=ಭಾಗಗಳನ್ನು,f=244
  word=ನೀಡಲಾಯಿತು,f=244
- word=244,f=244
  word=ಬ್ರೆಡ್,f=244
  word=ನೀಡುತ್ತವೆ,f=244
  word=ಸಮಕಾಲೀನ,f=244
@@ -1974,11 +1881,9 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ನವ,f=244
  word=ತೆಗೆದು,f=244
  word=ತರಹದ,f=244
- word=244,f=244
  word=ಹೆಸರಾಂತ,f=244
  word=ಗುಂಪುಗಳು,f=244
  word=ಇಂಗಾಲದ,f=244
- word=244,f=244
  word=ನ್ಯಾಯ,f=244
  word=ದೂರದಲ್ಲಿ,f=244
  word=ಅನುಮತಿ,f=244
@@ -1988,7 +1893,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಜೀವನದಲ್ಲಿ,f=244
  word=ಕ್ಷೇತ್ರಗಳಲ್ಲಿ,f=244
  word=ಕಾರ್ಮಿಕ,f=244
- word=244,f=244
  word=ಸಮಸ್ಯೆ,f=244
  word=ಪಠ್ಯ,f=244
  word=ಗೆಲುವು,f=244
@@ -2034,7 +1938,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಾಣುತ್ತದೆ,f=244
  word=ಆಸ್ಟ್ರೇಲಿಯ,f=244
  word=ಆಧರಿಸಿ,f=244
- word=244,f=244
  word=ಭಾಗವಾಗಿ,f=244
  word=ಬ್ರಿಟನ್,f=244
  word=ಬರೆದಿದ್ದಾರೆ,f=244
@@ -2154,14 +2057,12 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ರಾಮಚಂದ್ರ,f=243
  word=ನ್ಯೂಯಾರ್ಕ್‌,f=243
  word=ತಾಯಿಯ,f=243
- word=243,f=243
  word=ಹುಲಿ,f=243
  word=ಶ್ರೇಣಿ,f=243
  word=ವಾತಾವರಣ,f=243
  word=ವಸ್ತುವಿನ,f=243
  word=ಪ್ರವಾಹ,f=243
  word=ಜಾತ್ರೆ,f=243
- word=243,f=243
  word=ವಿಧಾನಗಳನ್ನು,f=243
  word=ರಾಜ್ಯೋತ್ಸವ,f=243
  word=ಮಾರ್ಗದರ್ಶನ,f=243
@@ -2279,7 +2180,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಗಣನೀಯ,f=243
  word=ಕಿರು,f=243
  word=ಕಬ್ಬಿಣ,f=243
- word=243,f=243
  word=ಮುದ್ರಣ,f=243
  word=ಬಿಗ್,f=243
  word=ಪೂರ್ವದ,f=243
@@ -2288,7 +2188,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಎಡ,f=243
  word=ಆಗಿದ್ದರು,f=243
  word=ಅಪರೂಪದ,f=243
- word=243,f=243
  word=ಹೊಂದಿದ್ದರು,f=243
  word=ಹೂಡಿಕೆ,f=243
  word=ಮುಖಾಂತರ,f=243
@@ -2299,14 +2198,12 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಮಾಡಿದೆ,f=243
  word=ಪೆಸಿಫಿಕ್,f=243
  word=ಉತ್ಪನ್ನಗಳ,f=243
- word=243,f=243
  word=ಸೇರಿದರು,f=243
  word=ಲಾಭ,f=243
  word=ನೀಡಿದ್ದಾರೆ,f=243
  word=ನಗರವನ್ನು,f=243
  word=ಆರಂಭವಾಯಿತು,f=243
  word=ಆಗುವ,f=243
- word=243,f=243
  word=ಸಂಪಾದನೆ,f=243
  word=ಸಂಕ್ಷಿಪ್ತ,f=243
  word=ವಿಷಯದಲ್ಲಿ,f=243
@@ -2324,7 +2221,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಗ್ರಂಥಗಳು,f=242
  word=ಒಳಗೊಂಡಿವೆ,f=242
  word=ಅಧ್ಯಕ್ಷರು,f=242
- word=242,f=242
  word=ಹೆಂಡತಿ,f=242
  word=ಸ್ಪರ್ಧೆ,f=242
  word=ವ್ಯಾಪ್ತಿ,f=242
@@ -2429,7 +2325,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಪ್ರತಿಮೆ,f=242
  word=ಕದನ,f=242
  word=ಉದಾಹರಣೆಗಳು,f=242
- word=242,f=242
  word=ಹಿನ್ನೆಲೆಯಲ್ಲಿ,f=242
  word=ಸ್ಥಾಪಿಸಲಾಯಿತು,f=242
  word=ಸಂಗಮ,f=242
@@ -2450,7 +2345,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಗವರ್ನರ್,f=242
  word=ಐಸ್,f=242
  word=ಅತಿಥಿ,f=242
- word=242,f=242
  word=ಹೇಳುವುದಾದರೆ,f=242
  word=ವೈಟ್,f=242
  word=ವಿಶ್ವವಿದ್ಯಾನಿಲಯದ,f=242
@@ -2830,7 +2724,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಡಾಕ್ಟರೇಟ್,f=240
  word=ಉಪಕರಣ,f=240
  word=ಆಳ್ವಿಕೆ,f=240
- word=240,f=240
  word=ವಿಕ್ಟೋರಿಯಾ,f=240
  word=ರೂಪಾಯಿ,f=240
  word=ಮಾಡಿದ್ದರು,f=240
@@ -2840,7 +2733,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕೋರ್ಟ್,f=240
  word=ಕೋಡ್,f=240
  word=ಅಣ್ಣ,f=240
- word=240,f=240
  word=ಹಾಡುಗಳನ್ನು,f=240
  word=ಸಂಸ್ಥೆಯನ್ನು,f=240
  word=ಸಂಪರ್ಕವನ್ನು,f=240
@@ -2869,7 +2761,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಠಿಣ,f=240
  word=ಎನ್ನಬಹುದು,f=240
  word=ಅಟ್ಲಾಂಟಿಕ್,f=240
- word=240,f=240
  word=ಹೆಸರಾಗಿದೆ,f=240
  word=ವೇ,f=240
  word=ರಾಗ,f=240
@@ -3008,7 +2899,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಾರ್ಯದರ್ಶಿ,f=239
  word=ಅಪೂರ್ವ,f=239
  word=ಅಧ್ಯಕ್ಷರಾಗಿ,f=239
- word=239,f=239
  word=ಹೇಳಿದ,f=239
  word=ಮೂಲಧಾತು,f=239
  word=ಮಾಲಿನ್ಯ,f=239
@@ -3058,14 +2948,12 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಾರ್ಯದಲ್ಲಿ,f=239
  word=ಐರೋಪ್ಯ,f=239
  word=ಅವಶ್ಯಕತೆ,f=239
- word=239,f=239
  word=ವಿರೋಧ,f=239
  word=ರೇಸ್,f=239
  word=ರಾಜ್ಯಗಳಲ್ಲಿ,f=239
  word=ಮಾದರಿಯಲ್ಲಿ,f=239
  word=ಭಾಗವಾಗಿದೆ,f=239
  word=ಪೌರಾಣಿಕ,f=239
- word=239,f=239
  word=ಮೇಯರ್,f=239
  word=ಭಾವ,f=239
  word=ಬಗೆ,f=239
@@ -3104,7 +2992,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕೂಡಲೇ,f=239
  word=ಆಟವನ್ನು,f=239
  word=ಅಧ್ಯಯನದ,f=239
- word=239,f=239
  word=ಹೇಳಬಹುದು,f=239
  word=ವಿತರಣೆ,f=239
  word=ಲೋಹ,f=239
@@ -3119,7 +3006,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಚರ್ಮ,f=239
  word=ಗ್ರ್ಯಾಂಡ್,f=239
  word=ಅಧ್ಯಯನಗಳು,f=239
- word=239,f=239
  word=ಸುಂದರವಾದ,f=239
  word=ರಚಿಸಿದರು,f=239
  word=ಮಹಾಯುದ್ಧ,f=239
@@ -3149,7 +3035,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕೊರಿಯಾ,f=238
  word=ಆ‍ಯ್‌ಸ್ಟನ್,f=238
  word=ಅರ್ಹತೆ,f=238
- word=238,f=238
  word=ಹಾಲಿನ,f=238
  word=ಸ್ಥಳವನ್ನು,f=238
  word=ಸುಧಾರಣೆ,f=238
@@ -3203,7 +3088,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಗ್ರೀಸ್,f=238
  word=ಗೋಡೆಯ,f=238
  word=ಅವಕಾಶವನ್ನು,f=238
- word=238,f=238
  word=ಹಂಚಿಕೆ,f=238
  word=ಸುದೀರ್ಘ,f=238
  word=ವೇದಿಕೆ,f=238
@@ -3220,7 +3104,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ದೊರೆಯುತ್ತದೆ,f=238
  word=ಅವರೇ,f=238
  word=ಅಪಾಯ,f=238
- word=238,f=238
  word=ಹಿಮಾಲಯ,f=238
  word=ಶಿಲ್ಪ,f=238
  word=ಮೊತ್ತ,f=238
@@ -3285,7 +3168,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಉಪಯೋಗ,f=238
  word=ಅವರದು,f=238
  word=ಅನುಕೂಲ,f=238
- word=238,f=238
  word=ಸುಲಭ,f=238
  word=ವ್ಯಾಖ್ಯಾನ,f=238
  word=ಯೋಜನೆಗಳನ್ನು,f=238
@@ -3354,7 +3236,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ನಿಮಗೆ,f=238
  word=ಗಮನಾರ್ಹವಾಗಿ,f=237
  word=ಒಪ್ಪಂದದ,f=237
- word=237,f=237
  word=ಸ್ಪೇಸ್,f=237
  word=ಸ್ಟೋರಿ,f=237
  word=ಸಂಬಂಧಗಳು,f=237
@@ -3376,7 +3257,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಾರ್ಯಕಾರಿ,f=237
  word=ಈತನ,f=237
  word=ಅಳತೆ,f=237
- word=237,f=237
  word=ಹಣ್ಣುಗಳು,f=237
  word=ಸ್ವೀಡನ್,f=237
  word=ವಿಧಾನವು,f=237
@@ -3470,7 +3350,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಉತ್ತಮವಾದ,f=237
  word=ಆದರ್ಶ,f=237
  word=ಅಗ್ರ,f=237
- word=237,f=237
  word=ಸುಲ್ತಾನ್,f=237
  word=ಸಸ್ಯಗಳ,f=237
  word=ವೈದ್ಯರು,f=237
@@ -3480,7 +3359,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಪುರ್,f=237
  word=ಪದ್ಮ,f=237
  word=ಪತ್ರಿಕೋದ್ಯಮ,f=237
- word=237,f=237
  word=ಹೃದಯದ,f=237
  word=ರಾಯಚೂರು,f=237
  word=ಮೌಲ್ಯದ,f=237
@@ -3494,7 +3372,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಉಷ್ಣತೆ,f=237
  word=ಉತ್ತಮವಾಗಿ,f=237
  word=ಅಡುಗೆ,f=237
- word=237,f=237
  word=ಮಾಂಸ,f=237
  word=ಬಳಸಲಾಗುತ್ತಿತ್ತು,f=237
  word=ಬಳಕೆಯು,f=237
@@ -3523,8 +3400,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಐದನೇ,f=237
  word=ಉದಾಹರಣೆಗಾಗಿ,f=237
  word=ಆಲ್ಬಂ,f=237
- word=237,f=237
- word=237,f=237
  word=ಸ್ಥಾನಕ್ಕೆ,f=237
  word=ಸಂಯೋಜಿತ,f=237
  word=ಸೂತ್ರ,f=237
@@ -3662,7 +3537,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಡಳಿತಾತ್ಮಕ,f=236
  word=ಆಟಗಾರರ,f=236
  word=ಆಚಾರ್ಯ,f=236
- word=236,f=236
  word=ಹೆಚ್ಚಿಸಲು,f=236
  word=ಸಂಘಟಿತ,f=236
  word=ಸರಣಿಗಳು,f=236
@@ -3699,8 +3573,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕುಟುಂಬದಲ್ಲಿ,f=236
  word=ಕಾಲು,f=236
  word=ಅಗಾಧ,f=236
- word=236,f=236
- word=236,f=236
  word=ಸಾಫ್ಟ್,f=236
  word=ಸಾಗಣೆ,f=236
  word=ಸಮ್ಮೇಳನದ,f=236
@@ -3718,7 +3590,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕ್ರಾಸ್,f=236
  word=ಇಂಡಿಯನ್‌,f=236
  word=ಅಂತ್ಯ,f=236
- word=236,f=236
  word=ಸ್ಥಾಪಿಸಿ,f=236
  word=ಸಂಸ್ಥೆಗಳಲ್ಲಿ,f=236
  word=ಸಿಬಿಎಸ್,f=236
@@ -3741,7 +3612,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಉಂಟುಮಾಡುತ್ತದೆ,f=236
  word=ಉಪಯೋಗಿಸುವ,f=236
  word=ಆಗಸ್ಟ್‌,f=236
- word=236,f=236
  word=தமிழ்க்குரிசில்,f=236
  word=ಹೇ,f=236
  word=ಹುಟ್ಟಿ,f=236
@@ -3767,7 +3637,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಾರಣಕ್ಕಾಗಿ,f=236
  word=ಎಲೆಕ್ಟ್ರಾನಿಕ್,f=236
  word=ಇಲ್ಲವೆ,f=236
- word=236,f=236
  word=ಹಕ್ಕುಗಳು,f=236
  word=ಸಂಗ್ರಹಿಸಿ,f=235
  word=ಸಾಧಿಸಲು,f=235
@@ -3786,7 +3655,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕಾವ್ಯದ,f=235
  word=ಒಳಗೊಂಡಿರುತ್ತವೆ,f=235
  word=ಅಸ್ತಿತ್ವಕ್ಕೆ,f=235
- word=235,f=235
  word=ಹೆಚ್ಚಿಸುತ್ತದೆ,f=235
  word=ಹಾನಿ,f=235
  word=ಸ್ಥಾಪಕ,f=235
@@ -3811,8 +3679,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಗಿರುವ,f=235
  word=ಅವಿಭಾಜ್ಯ,f=235
  word=ಅವಧಿಗೆ,f=235
- word=235,f=235
- word=235,f=235
  word=ಹೆದ್ದಾರಿಗಳು,f=235
  word=ಸ್ಥಾನಗಳನ್ನು,f=235
  word=ಸಮಸ್ಯೆಯನ್ನು,f=235
@@ -3906,8 +3772,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಏಪ್ರಿಲ್‌,f=235
  word=ಉದ್ದನೆಯ,f=235
  word=ಅದ್ವೈತ,f=235
- word=235,f=235
- word=235,f=235
  word=ಸೋಲಿಸಿ,f=235
  word=ಸಮೀಕ್ಷೆ,f=235
  word=ಯುರೋಪ್‌,f=235
@@ -3969,7 +3833,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಕ್ಲಬ್‌,f=235
  word=ಕಟ್ಟಿದ,f=235
  word=ಅಗತ್ಯವಿರುವ,f=235
- word=235,f=235
  word=ಸ್ವರೂಪವನ್ನು,f=235
  word=ಸ್ವರ,f=235
  word=ಸ್ಥೂಲ,f=235
@@ -3989,7 +3852,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಪಾಪ್,f=234
  word=ದಾನ,f=234
  word=ಅಗತ್ಯವಾದ,f=234
- word=234,f=234
  word=ಹೋಲುತ್ತದೆ,f=234
  word=ರಜೆಗಳು,f=234
  word=ಮೊತ್ತವನ್ನು,f=234
@@ -4013,9 +3875,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಳ್ವಿಕೆಯ,f=234
  word=ಆದ್ಯತೆ,f=234
  word=ಅಂಗಡಿ,f=234
- word=234,f=234
- word=234,f=234
- word=234,f=234
  word=ಸುತ್ತು,f=234
  word=ಸೀರೆ,f=234
  word=ಸಮರ್ಥವಾಗಿ,f=234
@@ -4064,7 +3923,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಐಎಸ್‌ಬಿಎನ್,f=234
  word=ಉಕ್ಕು,f=234
  word=ಅದೂ,f=234
- word=234,f=234
  word=ಶರಣ,f=234
  word=ಲಾಂಛನ,f=234
  word=ರಚಿಸಲು,f=234
@@ -4075,7 +3933,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಚೀನೀ,f=234
  word=ಕೂಡಗಿ,f=234
  word=ಆರಂಭಿಸಿದ,f=234
- word=234,f=234
  word=ಹಿಲ್,f=234
  word=ಸಪ್ತಾಹ,f=234
  word=ವ್ಯವಸ್ಥೆಗಳನ್ನು,f=234
@@ -4121,8 +3978,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಂಬೇಡ್ಕರ್,f=234
  word=ಅನ್ವಯಿಕ,f=234
  word=ಅಧಿಕಾರಿಗಳ,f=234
- word=234,f=234
- word=234,f=234
  word=ಹಲಸಂಗಿ,f=234
  word=ಸ್ಥಳವಾಗಿದೆ,f=234
  word=ಸಂರಕ್ಷಣಾ,f=234
@@ -4143,8 +3998,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಜೀವಕೋಶಗಳು,f=234
  word=ಆನಂದ್,f=234
  word=ಅತಿಯಾದ,f=234
- word=234,f=234
- word=234,f=234
  word=ಹೆಲ್ತ್,f=234
  word=ಸ್ಪ್ಯಾನಿಷ್,f=234
  word=ಸ್ಥಾಪಿಸಲು,f=234
@@ -4246,8 +4099,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಇನ್‌ಸ್ಟಿಟ್ಯೂಟ್,f=233
  word=ಆಸೆ,f=233
  word=ಅಡಿಕೆ,f=233
- word=233,f=233
- word=233,f=233
  word=ಸುಖ,f=233
  word=ಸಮಯಕ್ಕೆ,f=233
  word=ವಿಶ್ವಕಪ್,f=233
@@ -4327,8 +4178,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಮದು,f=233
  word=ಆಕಾರದ,f=233
  word=ಅಲ್ಲಿಯ,f=233
- word=233,f=233
- word=233,f=233
  word=ಹಗಲು,f=233
  word=ಸ್ಫಟಿಕ,f=233
  word=ಸರ್ವೋಚ್ಚ,f=233
@@ -4354,7 +4203,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಇಂಟರ್ನ್ಯಾಷನಲ್,f=233
  word=ಆಲ್ಬಮ್,f=233
  word=ಆಡಲು,f=233
- word=233,f=233
  word=ಹೊಂದಿರುವುದಿಲ್ಲ,f=233
  word=ಹನುಮಂತ,f=233
  word=ಸುಧಾರಿತ,f=233
@@ -4492,7 +4340,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಕರ,f=232
  word=ಅಮೃತ,f=232
  word=ಅಮೂಲ್ಯ,f=232
- word=232,f=232
  word=ಹೊಂದುವ,f=232
  word=ಹೊಂದಿಲ್ಲ,f=232
  word=ಸ್ಟೇಡಿಯಂ,f=232
@@ -4628,7 +4475,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಊರಿನಲ್ಲಿ,f=231
  word=ಆಕರ್ಷಕ,f=231
  word=ಅಂತರದಲ್ಲಿ,f=231
- word=231,f=231
  word=ಹೊಂದಿದ್ದರೆ,f=231
  word=ಸ್ಕ್ರೀನ್,f=231
  word=ಸಂಸ್ಥೆಗೆ,f=231
@@ -4657,7 +4503,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಧರಿಸಿದೆ,f=231
  word=ಅನ್,f=231
  word=ಅನೇಕರು,f=231
- word=231,f=231
  word=ಹಿಟ್ಲರ್,f=231
  word=ಹಣದುಬ್ಬರ,f=231
  word=ಸ್ಪಾನಿಷ್,f=231
@@ -4694,7 +4539,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅವಲಂಬಿಸಿ,f=231
  word=ಅಧಿಕಾರದ,f=231
  word=ಅಕಾಡಮಿ,f=231
- word=231,f=231
  word=ಹೋಲುವ,f=231
  word=ಸ್ಥಾಪನೆಯಾದ,f=231
  word=ಸೌಲಭ್ಯಗಳು,f=231
@@ -4723,8 +4567,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಇನ್ನೊಬ್ಬ,f=231
  word=ಅನಂತನಾಗ್,f=231
  word=ಅಕ್ಬರ್,f=231
- word=231,f=231
- word=231,f=231
  word=ಸಂಸ್ಕರಣ,f=231
  word=ಸುಬ್ರಹ್ಮಣ್ಯ,f=231
  word=ಸಾಹಿತ್ಯವನ್ನು,f=231
@@ -4756,9 +4598,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಳ,f=231
  word=ಆರ್ಯ,f=231
  word=ಅನುಸಾರ,f=231
- word=231,f=231
- word=231,f=231
- word=231,f=231
  word=ಹಂಪಿ,f=231
  word=ಹಿಡಿದ,f=231
  word=ಹಾಂಗ್,f=231
@@ -4795,7 +4634,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಟೋ,f=231
  word=ಆಕೆಯನ್ನು,f=231
  word=ಅಂತ್ಯದ,f=231
- word=231,f=231
  word=ಹೆಚ್ಚಿಸುವ,f=231
  word=ಹರಿವಿನ,f=231
  word=ಸ್ಟೀವ್,f=231
@@ -4865,8 +4703,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಗಿದ್ದಾರೆ,f=230
  word=ಅರಸ್,f=230
  word=ಅಟ್,f=230
- word=230,f=230
- word=230,f=230
  word=ಹೀಗಿದೆ,f=230
  word=ಹಿಂದೂಗಳು,f=230
  word=ಹಿಮಾಚಲ,f=230
@@ -4896,7 +4732,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಶ್ರಮ,f=230
  word=ಅವಲಂಬಿಸಿದೆ,f=230
  word=ಅಮೆರಿಕದಲ್ಲಿ,f=230
- word=230,f=230
  word=ಹರಿಯಾಣ,f=230
  word=ಹಕ್ಕಿಗಳು,f=230
  word=ಸ್ಪಿನ್,f=230
@@ -5075,7 +4910,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಎಕ್ಸ್‌ಪ್ರೆಸ್‌,f=229
  word=ಅಹ್ಮದ್,f=229
  word=ಅರ್ಥ್,f=229
- word=229,f=229
  word=ಹೇಳುವಂತೆ,f=229
  word=ಹಾಕಲು,f=229
  word=ಹತ್ಯೆ,f=229
@@ -5117,7 +4951,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಂಕಿಅಂಶಗಳು,f=229
  word=ಅಲ್ಲಲ್ಲಿ,f=229
  word=229ನೇ,f=229
- word=229,f=229
  word=ಹೊಂದಿರುವುದು,f=229
  word=ಸಂಖ್ಯೆಗಳು,f=229
  word=ಸೇರಿದ್ದಾರೆ,f=229
@@ -5170,7 +5003,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಒಪ್ಪಂದಕ್ಕೆ,f=229
  word=ಇಲ್ಲಿಯವರೆಗೆ,f=229
  word=ಅಧ್ಯಕ್ಷೀಯ,f=229
- word=229,f=229
  word=229ರಲ್ಲಿ,f=229
  word=ಹವಾಯಿ,f=229
  word=ಸ್ವರೂಪದಲ್ಲಿ,f=229
@@ -5372,7 +5204,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಸ್ತಿತ್ವವನ್ನು,f=228
  word=ಅಸ್ತಿತ್ವ,f=228
  word=ಅವಕಾಶಗಳನ್ನು,f=228
- word=228,f=228
  word=ಹೋರಾಟಗಾರ,f=228
  word=ಹಾಡಿದ,f=228
  word=ಸಂಶೋಧನೆಗೆ,f=228
@@ -5455,7 +5286,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಂಕ,f=227
  word=ಅಫ್,f=227
  word=ಅಧ್ಯಕ್ಷರಾಗಿದ್ದರು,f=227
- word=227,f=227
  word=ಹೋರಾಟದಲ್ಲಿ,f=227
  word=ಹೆಚ್ಚಿಗೆ,f=227
  word=ಹಾಡುಗಳ,f=227
@@ -5497,8 +5327,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಉತ್ಪಾದಕ,f=227
  word=ಆಂಗ್ಲೋ,f=227
  word=ಅಂಗಡಿಗಳು,f=227
- word=227,f=227
- word=227,f=227
  word=227ನೇ,f=227
  word=ಹೆಡ್,f=227
  word=ಹಿಂದೀ,f=227
@@ -5637,7 +5465,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಭಿನಯಕ್ಕಾಗಿ,f=227
  word=ಅನುಯಾಯಿಗಳು,f=227
  word=227ರ,f=227
- word=227,f=227
  word=ಹೌಂಡ್‌,f=227
  word=ಹೋಗುತ್ತಾರೆ,f=227
  word=ಹಳ್ಳಿಯಲ್ಲಿ,f=227
@@ -5680,8 +5507,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಟಗಳಲ್ಲಿ,f=226
  word=ಅಭಿವೃದ್ದಿ,f=226
  word=ಅಪಾಯದ,f=226
- word=226,f=226
- word=226,f=226
  word=ಹೆಸರುಗಳನ್ನು,f=226
  word=ಸ್ವಾಮಿಗಳು,f=226
  word=ಸ್ಥಾನಮಾನ,f=226
@@ -5807,7 +5632,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆರ್ಯುವೇದ,f=226
  word=ಅಂಕಗಳನ್ನು,f=226
  word=ಅಕ್ಷರಗಳನ್ನು,f=226
- word=226,f=226
  word=ಹೈಡ್ರೋಜನ್,f=226
  word=ಹಿಂಭಾಗದ,f=226
  word=ಹಾಲನ್ನು,f=226
@@ -5908,7 +5732,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅದೊಂದು,f=225
  word=ಅದಕ್ಕೂ,f=225
  word=ಅತಿಹೆಚ್ಚು,f=225
- word=225,f=225
  word=ಸ್ವಿಸ್,f=225
  word=ಸ್ಥಾಪಿಸಿತು,f=225
  word=ಸೇನೆಯು,f=225
@@ -5968,7 +5791,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆನ್‌ಲೈನ್‌,f=225
  word=ಆಡಳಿತದಲ್ಲಿ,f=225
  word=ಅಲ್‌,f=225
- word=225,f=225
  word=ಸ್ಥಾನಗಳು,f=225
  word=ಸ್ಟೇಟ್ಸ್‌ನ,f=225
  word=ಸುನಿಲ್,f=225
@@ -6015,7 +5837,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅನ್ವಯಿಸುತ್ತದೆ,f=225
  word=ಅಧ್ಯಕ್ಷತೆಯಲ್ಲಿ,f=225
  word=ಅಟ್ಲಾಂಟಾ,f=225
- word=225,f=225
  word=ಹೊಂದಿರಬೇಕು,f=225
  word=ಹುಳಿ,f=225
  word=ಸ್ಟ್ರೀಟ್‌,f=225
@@ -6079,8 +5900,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಉಪನಿಷತ್,f=224
  word=ಉಕ್ಕಲಿ,f=224
  word=ಅಂತರ್ರಾಷ್ಟ್ರೀಯ,f=224
- word=224,f=224
- word=224,f=224
  word=ಹೊಣೆಗಾರಿಕೆ,f=224
  word=ಹೈದರಾಬಾದ್‌,f=224
  word=ಹೇಳಿದನು,f=224
@@ -6156,8 +5975,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅರ್ಬನ್,f=224
  word=ಅರಸರು,f=224
  word=ಅಡಿಗಳಷ್ಟು,f=224
- word=224,f=224
- word=224,f=224
  word=ಹೊಡೆತ,f=224
  word=ಹತ್ತಿಯ,f=224
  word=ಸಂಖ್ಯಾ,f=224
@@ -6209,7 +6026,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅರ್ಕಾನ್ಸಾಸ್,f=224
  word=ಅಭಿನಯಿಸಿದರು,f=224
  word=ಅಧ್ಯಕ್ಷತೆ,f=224
- word=224,f=224
  word=ಹೊಂದಿರುವುದರಿಂದ,f=224
  word=ಹಿರಿಯರು,f=224
  word=ಹಾರಾಟ,f=224
@@ -6260,9 +6076,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಕ್ರಮಣಕಾರಿ,f=224
  word=ಅಪ್ರತಿಮ,f=224
  word=ಅನುಕ್ರಮ,f=224
- word=224,f=224
  word=224ರಲ್ಲಿ,f=224
- word=224,f=224
  word=ಹೊಯ್ಸಳರ,f=224
  word=ಸ್ಟಡೀಸ್,f=224
  word=ಸಂಸ್ಥೆಗಳನ್ನು,f=224
@@ -6438,7 +6252,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅನುಭವದ,f=223
  word=ಅಧ್ಯಯನವು,f=223
  word=ಅಗತ್ಯವನ್ನು,f=223
- word=223,f=223
  word=ಹೊಡೆಯುವ,f=223
  word=ಹೆಲ್ಸಿಂಕಿ,f=223
  word=ಸ್ಪರ್ಶ,f=223
@@ -6509,7 +6322,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಪ್ಪಟ,f=222
  word=ಅನುಪಮ,f=222
  word=ಅಕ್ಷಾಂಶ,f=222
- word=222,f=222
  word=ಹೆಸರುವಾಸಿ,f=222
  word=ಹೆಚ್ಚಿದ,f=222
  word=ಹಲ್ಲು,f=222
@@ -6571,8 +6383,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅರವಿಂದ,f=222
  word=ಅತೀವ,f=222
  word=222ರಲ್ಲಿ,f=222
- word=222,f=222
- word=222,f=222
  word=ಹಂದಿ,f=222
  word=ಹೇಳುವುದು,f=222
  word=ಹಾಲಿ,f=222
@@ -6722,7 +6532,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅವಧಿಯು,f=221
  word=ಅಮರ,f=221
  word=ಅಧಿಕಾರಕ್ಕೆ,f=221
- word=221,f=221
  word=ಸಂಶೋಧನೆಯನ್ನು,f=221
  word=ಸೌಲಭ್ಯವನ್ನು,f=221
  word=ಸರಣಿಯು,f=221
@@ -6776,8 +6585,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಇರುವಂತೆ,f=221
  word=ಆಗಮನ,f=221
  word=ಅರಸರ,f=221
- word=221,f=221
- word=221,f=221
  word=221ರ,f=221
  word=ಹಂತಗಳ,f=221
  word=ಹೆಚ್ಚಾಗಿದೆ,f=221
@@ -6937,9 +6744,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅವಶೇಷಗಳು,f=220
  word=ಅಮೇರಿಕನ್‌,f=220
  word=ಅಗತ್ಯವಾಗಿರುತ್ತದೆ,f=220
- word=220,f=220
- word=220,f=220
- word=220,f=220
  word=ಹೊಣೆ,f=220
  word=ಹೆಣ್ಣಿನ,f=220
  word=ಹಾಸ್ಟೆಲ್,f=220
@@ -7011,7 +6815,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಲಿವ್‌,f=220
  word=ಆರಂಭಿಸಿ,f=220
  word=ಅಂತರ್ಜಾಲದ,f=220
- word=220,f=220
  word=ಹಿಂದುಳಿದ,f=220
  word=ಹಿ,f=220
  word=ಹಳ್ಳಿಗಳಲ್ಲಿ,f=220
@@ -7093,7 +6896,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಲ್ಲೇ,f=220
  word=ಅದರಲ್ಲಿನ,f=220
  word=ಅಕ್ಯಾಡೆಮಿ,f=220
- word=220,f=220
  word=ಹೋಮ್ಸ್‌,f=220
  word=ಹೊರಾಂಗಣ,f=220
  word=ಹುದ್ದೆಗೆ,f=220
@@ -7168,8 +6970,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಭಿಪ್ರಾಯವನ್ನು,f=219
  word=ಅದರೆ,f=219
  word=219ನೇ,f=219
- word=219,f=219
- word=219,f=219
  word=219ರಲ್ಲಿ,f=219
  word=ಹೊಂದಿತು,f=219
  word=ಹೊರಗಡೆ,f=219
@@ -7241,9 +7041,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಸ್ಟ್ರಿಯ,f=219
  word=ಆರಂಭಿಸಲಾಯಿತು,f=219
  word=ಆಕೆಯು,f=219
- word=219,f=219
- word=219,f=219
- word=219,f=219
  word=219ನೇ,f=219
  word=219ರಲ್ಲಿ,f=219
  word=ಹೋ,f=219
@@ -7409,8 +7206,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಪರೂಪ,f=218
  word=ಅನಿರೀಕ್ಷಿತ,f=218
  word=ಅಡೀಡಸ್,f=218
- word=218,f=218
- word=218,f=218
  word=ಹಂತಕ್ಕೆ,f=218
  word=ಹೆಚ್ಚಾಯಿತು,f=218
  word=ಹೆ,f=218
@@ -7481,7 +7276,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಲನ್,f=218
  word=ಅಭಿವ್ಯಕ್ತಿ,f=218
  word=ಅಪ್ಪ,f=218
- word=218,f=218
  word=ʃː,f=218
  word=ಹ್ಯಾಗನ್,f=218
  word=ಹೋಬಳಿ,f=218
@@ -7556,9 +7350,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಧೀನ,f=217
  word=ಅದಿರು,f=217
  word=ಅಕ್ಷರಗಳ,f=217
- word=217,f=217
- word=217,f=217
- word=217,f=217
  word=ಹೊಟ್ಟೆಯ,f=217
  word=ಹೆಲೆನ್,f=217
  word=ಹಾದಿಯಲ್ಲಿ,f=217
@@ -7630,7 +7421,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಆಟಗಾರರನ್ನು,f=217
  word=ಆಕಾರವನ್ನು,f=217
  word=217ರ,f=217
- word=217,f=217
  word=ಹ್ಯಾಂಡ್,f=217
  word=ಹೊರಟ,f=217
  word=ಹೆಸರಿಗೆ,f=217
@@ -7721,7 +7511,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಂತಸ್ಥ,f=217
  word=ಅಧ್ಯಯನವನ್ನು,f=217
  word=ಅಗತ್ಯವಿಲ್ಲ,f=217
- word=217,f=217
  word=217ನೇ,f=217
  word=ಹೊರಬಂದ,f=217
  word=ಹೆವಿ,f=217
@@ -7825,8 +7614,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಭಿಮಾನಿ,f=216
  word=ಅನಿಮೇಶನ್‌,f=216
  word=ಅಜಿತ್,f=216
- word=216,f=216
- word=216,f=216
  word=ಹೊತ್ತ,f=216
  word=ಹೆರಿಗೆ,f=216
  word=ಹೆಚ್ಚುಕಡಿಮೆ,f=216
@@ -7915,7 +7702,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅರ್ಧದಷ್ಟು,f=216
  word=ಅಧ್ಯಾಪಕರಾಗಿ,f=216
  word=ಅದೇನೇ,f=216
- word=216,f=216
  word=ಹೊ,f=216
  word=ಹಿಂದೂಸ್ಥಾನಿ,f=216
  word=ಹಾಡಿದ್ದಾರೆ,f=216
@@ -7998,11 +7784,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅವಿನಾಶ್,f=215
  word=ಅವಶ್ಯಕತೆಗಳನ್ನು,f=215
  word=ಅವರವರ,f=215
- word=215,f=215
- word=215,f=215
  word=215ರ,f=215
- word=215,f=215
- word=215,f=215
  word=ಹಂತವನ್ನು,f=215
  word=ಹೋಲಿಸಿ,f=215
  word=ಹೆಮ್ಮೆಯ,f=215
@@ -8096,8 +7878,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅದರೊಂದಿಗೆ,f=215
  word=ಅಕ್ಟೋಬರ,f=215
  word=215ನೇ,f=215
- word=215,f=215
- word=215,f=215
  word=ಹೊರಕ್ಕೆ,f=215
  word=ಹೂಗಳು,f=215
  word=ಹಿಟ್ಟಿನಹಳ್ಳಿ,f=215
@@ -8195,9 +7975,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಂಗಗಳು,f=214
  word=ಅಸಾಧ್ಯ,f=214
  word=ಅಶೋಕನ,f=214
- word=214,f=214
- word=214,f=214
- word=214,f=214
  word=ಹೊಂದಿರಲಿಲ್ಲ,f=214
  word=ಹೊಸದಾದ,f=214
  word=ಹೊರೆ,f=214
@@ -8301,7 +8078,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಪಘಾತ,f=214
  word=ಅನುಮಾನ,f=214
  word=ಅಜ್ಜ,f=214
- word=214,f=214
  word=ಹೆದ್ದಾರಿಯಲ್ಲಿ,f=214
  word=ಹೂಡಿಕೆದಾರರು,f=214
  word=ಹಿಂದಿರುಗಿ,f=214
@@ -8399,8 +8175,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅವರದೇ,f=213
  word=ಅಭಿಪ್ರಾಯಗಳನ್ನು,f=213
  word=ಅನುಭವಿಸಿದ,f=213
- word=213,f=213
- word=213,f=213
  word=ಸೊನ್ನೆ,f=213
  word=ಸೇರಿರುವ,f=213
  word=ಸೆರೆ,f=213
@@ -8709,7 +8483,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಡವಿ,f=212
  word=ಅಗಲವಾದ,f=212
  word=212ರಲ್ಲಿ,f=212
- word=212,f=212
  word=ಹೆಗ್ಡೆ,f=212
  word=ಹುರಿದ,f=212
  word=ಹುಣಸೂರು,f=212
@@ -8824,7 +8597,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಧ್ಯಾಪಕ,f=211
  word=ಅಥ್ಲೆಟಿಕ್,f=211
  word=ಅಡಿಗೆ,f=211
- word=211,f=211
  word=211ರ,f=211
  word=ಹೊಂದಿರದ,f=211
  word=ಹುಡುಕಿ,f=211
@@ -9287,11 +9059,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಧಿಕಾರಿಯಾಗಿ,f=209
  word=ಅಣುಗಳು,f=209
  word=ಅಕ್ಷರಶಃ,f=209
- word=209,f=209
- word=209,f=209
  word=209ರಲ್ಲಿ,f=209
- word=209,f=209
- word=209,f=209
  word=টেমপ্লেট,f=209
  word=ಹೋಗುತ್ತಾನೆ,f=209
  word=ಹೇಳುತ್ತಾ,f=209
@@ -9401,7 +9169,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಡಿಪಾಯ,f=208
  word=208ರ,f=208
  word=208ರಲ್ಲಿ,f=208
- word=208,f=208
  word=208ನೇ,f=208
  word=ಹೊತ್ತಿನಲ್ಲಿ,f=208
  word=ಹೆಸರಿದೆ,f=208
@@ -9529,11 +9296,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಧ್ಯಕ್ಷರಾದ,f=208
  word=ಅಚ್ಚುಮೆಚ್ಚಿನ,f=208
  word=ಅಖಂಡ,f=208
- word=208,f=208
- word=208,f=208
  word=208ರಲ್ಲಿ,f=208
- word=208,f=208
- word=208,f=208
  word=208ನೇ,f=208
  word=ಹೋಗುವಾಗ,f=208
  word=ಹೈದರ್,f=208
@@ -9795,9 +9558,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಭಿಮಾನಿಗಳ,f=207
  word=ಅನುಭವಗಳನ್ನು,f=207
  word=ಅಕ್ಕಮಹಾದೇವಿ,f=207
- word=207,f=207
  word=207ನೇ,f=207
- word=207,f=207
  word=° ,f=207
  word=ಹೊಳೆಯುವ,f=207
  word=ಹೊನ್ನಾವರ,f=207
@@ -10548,8 +10309,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=203ರಲ್ಲಿ,f=203
  word=203ರಲ್ಲಿ,f=203
  word=203ರಲ್ಲಿ,f=203
- word=203,f=203
- word=203,f=203
  word=ಹೊಡೆತದ,f=203
  word=ಹೇಳಿದ್ದರು,f=203
  word=ಹೆಬ್ಬಾಳ,f=203
@@ -10857,7 +10616,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅತ್ಯುತ್ತಮವಾಗಿ,f=202
  word=ಅತೀವವಾಗಿ,f=202
  word=ಅಚ್ಚುಕಟ್ಟಾಗಿ,f=202
- word=202,f=202
  word=ಹಂತದಲ್ಲಿದೆ,f=201
  word=ಹೋಲುತ್ತವೆ,f=201
  word=ಹೊರಡುವ,f=201
@@ -11028,9 +10786,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅದೃಷ್ಟ,f=201
  word=ಅಜ್ಞಾನ,f=201
  word=ಅಗತ್ಯವಿರುವುದಿಲ್ಲ,f=201
- word=201,f=201
  word=201ರಲ್ಲಿ,f=201
- word=201,f=201
  word=201ನೇ,f=201
  word=ಹಂಗರಗಿ,f=201
  word=ಹೋರಾಟವನ್ನು,f=201
@@ -11196,8 +10952,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಜ್ಜಂಪುರ,f=200
  word=ಅಕ್ಷೀಯ,f=200
  word=200ರಲ್ಲಿ,f=200
- word=200,f=200
- word=200,f=200
  word=ಹ್ಯಾರಿಯು,f=200
  word=ಹ್ಯಾಮಿಲ್ಟನ್,f=200
  word=ಹೋಮಿಯೋಪಥಿ,f=200
@@ -11376,9 +11130,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅದರಿಂದಾಗಿ,f=199
  word=199ರ,f=199
  word=199ರಲ್ಲಿ,f=199
- word=199,f=199
- word=199,f=199
- word=199,f=199
  word=ಹ್ಯಾಂಬರ್ಗ್,f=199
  word=ಹ್ಯಾಂಕ್ಸ್,f=199
  word=ಹ್ಯಾಮ್,f=199
@@ -11750,7 +11501,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಧಿಕಾರಿಗಳನ್ನು,f=197
  word=ಅಥೆನ್ಸ್,f=197
  word=ಅಜಯ್,f=197
- word=197,f=197
  word=197ನೇ,f=197
  word=ಹೋಮ,f=197
  word=ಹೊಂದಿದವರು,f=197
@@ -11961,13 +11711,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅನುಮತಿಯನ್ನು,f=196
  word=ಅಕ್ರಮ,f=196
  word=196ರಲ್ಲಿ,f=196
- word=196,f=196
- word=196,f=196
- word=196,f=196
- word=196,f=196
- word=196,f=196
  word=196ನೇ,f=196
- word=196,f=196
  word=ಹಂಚಿಕೆಯ,f=196
  word=ಹೌಂಡ್‌ಗಳು,f=196
  word=ಹೊಂದುವಂತೆ,f=196
@@ -12176,10 +11920,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅದರಲ್ಲಿರುವ,f=195
  word=ಅಗಾಸ್ಸಿ,f=195
  word=195ನೇ,f=195
- word=195,f=195
- word=195,f=195
- word=195,f=195
- word=195,f=195
  word=ಹಂಬಲ,f=195
  word=ಹೋರಾಡಿದರು,f=195
  word=ಹೋರಾಡಲು,f=195
@@ -12396,8 +12136,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಪಧಮನಿ,f=194
  word=ಅಗಸಬಾಳ,f=194
  word=194ರಲ್ಲಿ,f=194
- word=194,f=194
- word=194,f=194
  word=ಹೋಲಿ,f=194
  word=ಹೊಲ,f=194
  word=ಹೊರಸೂಸುವ,f=194
@@ -12617,8 +12355,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅನುವಾದಿತ,f=193
  word=ಅಥಣಿ,f=193
  word=ಅಣುವಿನ,f=193
- word=193,f=193
- word=193,f=193
  word=ಹೌಸಿಂಗ್,f=193
  word=ಹೋರಾಡಿದ,f=193
  word=ಹೊರಬರುವ,f=193
@@ -12816,8 +12552,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅತ್ಯುಚ್ಚ,f=192
  word=ಅಕ್ಟೋಬರ್‌ನಲ್ಲಿ,f=192
  word=192ರಲ್ಲಿ,f=192
- word=192,f=192
- word=192,f=192
  word=192ನೇ,f=192
  word=ಹ್ಯಾರಿಯ,f=192
  word=ಹೋಮ್ಸ್,f=192
@@ -13067,11 +12801,8 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಗಸ್ತ್ಯ,f=191
  word=ಅಗತ್ಯವಿತ್ತು,f=191
  word=191ನೇ,f=191
- word=191,f=191
  word=191ರಲ್ಲಿ,f=191
  word=191ರ,f=191
- word=191,f=191
- word=191,f=191
  word=መጋቢዎች,f=191
  word=ಹೋಗುವಂತೆ,f=191
  word=ಹೊರಭಾಗದ,f=191
@@ -13298,10 +13029,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಭಿನಂದನಾ,f=190
  word=ಅಪಾಯಗಳನ್ನು,f=190
  word=ಅಜೆರ್ಬೈಜಾನ್,f=190
- word=190,f=190
- word=190,f=190
- word=190,f=190
- word=190,f=190
  word=ಹೋಲ್,f=190
  word=ಹೊಂದಬಹುದು,f=190
  word=ಹೊಣೆಗಾರಿಕೆಯ,f=190
@@ -13798,10 +13525,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಪರಿಚಿತ,f=187
  word=ಅನುದಾನ,f=187
  word=ಅಚ್ಚರಿ,f=187
- word=187,f=187
- word=187,f=187
- word=187,f=187
- word=187,f=187
  word=ಹಂಜಗಿ,f=187
  word=ಹೋಟೆಲ,f=187
  word=ಹೊಸಪೇಟೆ,f=187
@@ -14085,13 +13808,10 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅತ್ಯಾಚಾರ,f=186
  word=ಅಗಾಧವಾದ,f=186
  word=سانچہ,f=186
- word=186,f=186
- word=186,f=186
  word=186ರ,f=186
  word=186ರಲ್ಲಿ,f=186
  word=186ರಲ್ಲಿ,f=186
  word=186ರಲ್ಲಿ,f=186
- word=186,f=186
  word=ಹೊಂದುತ್ತವೆ,f=186
  word=ಹೊರಟರು,f=186
  word=ಹೊಣೆಯನ್ನು,f=186
@@ -14375,7 +14095,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=185ರಲ್ಲಿ,f=185
  word=185ರಲ್ಲಿ,f=185
  word=185ರ,f=185
- word=185,f=185
  word=ಹಂದಿಗನೂರ,f=185
  word=ಹೋದರೂ,f=185
  word=ಹೇಳಿದ್ದಾನೆ,f=185
@@ -14674,16 +14393,12 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಧುನಿಕ,f=183
  word=ಅಣೆಕಟ್ಟಿನಿಂದ,f=183
  word=ಅಟ್ಲಾಂಟಿಕ್‌,f=183
- word=183,f=183
- word=183,f=183
  word=183ನೇ,f=183
- word=183,f=183
  word=183ರಲ್ಲಿ,f=183
  word=183ರಲ್ಲಿ,f=183
  word=183ರಲ್ಲಿ,f=183
  word=183ರಲ್ಲಿ,f=183
  word=183ರಲ್ಲಿ,f=183
- word=183,f=183
  word=183ಕ್ಕೂ,f=183
  word=ಹೋಲಿಕೆಯ,f=183
  word=ಹೋರಾಟಗಳು,f=183
@@ -14984,12 +14699,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=182ರ,f=182
  word=182ರಲ್ಲಿ,f=182
  word=182ರಲ್ಲಿ,f=182
- word=182,f=182
- word=182,f=182
- word=182,f=182
- word=182,f=182
- word=182,f=182
- word=182,f=182
  word=ಹೊಂದಿಕೊಂಡಿರುವ,f=182
  word=ಹೊಸಗನ್ನಡ,f=182
  word=ಹೊರಸೂಸುವಿಕೆ,f=182
@@ -15331,11 +15040,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=180ರಲ್ಲಿ,f=180
  word=180ರಲ್ಲಿ,f=180
  word=180ರ,f=180
- word=180,f=180
- word=180,f=180
- word=180,f=180
- word=180,f=180
- word=180,f=180
  word=ಹಂಚಿ,f=180
  word=ಹೋಮ್‌,f=180
  word=ಹೊಂದಿಕೊಂಡಂತೆ,f=180
@@ -15676,7 +15380,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=178ರ,f=178
  word=178ರಲ್ಲಿ,f=178
  word=178ರ,f=178
- word=178,f=178
  word=178°,f=178
  word=ಹಂತವು,f=178
  word=ಹೊ178ದಿದೆ,f=178
@@ -16011,10 +15714,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕ್ಕಿಯನ್ನು,f=177
  word=177ರಂದು,f=177
  word=177ರಲ್ಲಿ,f=177
- word=177,f=177
- word=177,f=177
- word=177,f=177
- word=177,f=177
  word=ಹ್ಯಾರಿಸನ್,f=177
  word=ಹೌಸ್‌ಮೇಟ್‌ಗಳು,f=177
  word=ಹೋಸ್ಟ್,f=177
@@ -16348,11 +16047,8 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಧ್ಯಕ್ಷರಾಗಿದ್ದಾರೆ,f=175
  word=ಅದ್ಯಯನ,f=175
  word=ಅಡ್ವೆಂಚರ್ಸ್,f=175
- word=175,f=175
  word=175ರಲ್ಲಿ,f=175
  word=175ರಲ್ಲಿ,f=175
- word=175,f=175
- word=175,f=175
  word=ಹ್ಯಾರಿಸ್,f=175
  word=ಹಂಟ್,f=175
  word=ಹೋರಾಡುವ,f=175
@@ -16744,10 +16440,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=173ರ,f=173
  word=173ರಲ್ಲಿ,f=173
  word=173ರಲ್ಲಿ,f=173
- word=173,f=173
- word=173,f=173
- word=173,f=173
- word=173,f=173
  word=ಹಂಟರ್,f=173
  word=ಹೊರೆಯನ್ನು,f=173
  word=ಹೊಡೆದಾಗ,f=173
@@ -17173,15 +16865,11 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಡಚಣೆ,f=171
  word=ಅಚ್ಚರಿಯ,f=171
  word=ಅಕ್ಷಯ,f=171
- word=171,f=171
- word=171,f=171
  word=171ರಲ್ಲಿ,f=171
  word=171ರಲ್ಲಿ,f=171
  word=171ರಲ್ಲಿ,f=171
- word=171,f=171
  word=171ರಂದು,f=171
  word=171ರಂದು,f=171
- word=171,f=171
  word=ಳು,f=171
  word=ಹ್ಯಾಪಿ,f=171
  word=ಹೊಂದಿಸಿ,f=171
@@ -17620,12 +17308,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅತ್ಯಮೂಲ್ಯ,f=169
  word=ಅಣೆಕಟ್ಟುಗಳು,f=169
  word=ಅಜಂತಾ,f=169
- word=169,f=169
- word=169,f=169
- word=169,f=169
  word=169ರಲ್ಲಿ,f=169
- word=169,f=169
- word=169,f=169
  word=ಹೊನ್ನು,f=169
  word=ಹೊನ್ನಪ್ಪ,f=169
  word=ಹೇಳಬೇಕು,f=169
@@ -18043,16 +17726,10 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಗತ್ಯಗಳು,f=167
  word=ಅಕ್ಷದ,f=167
  word=Πρότυπο,f=167
- word=167,f=167
- word=167,f=167
  word=167°,f=167
  word=167ರಲ್ಲಿ,f=167
  word=167ರಲ್ಲಿ,f=167
- word=167,f=167
- word=167,f=167
  word=167ನೆಯ,f=167
- word=167,f=167
- word=167,f=167
  word=বাংলা,f=167
  word=ಹೋದವು,f=167
  word=ಹೊಸಾ,f=167
@@ -18487,7 +18164,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕ್ಟೋಬರ್‌‌,f=165
  word=ಅಕಾಲಿಕ,f=165
  word=Կաղապար,f=165
- word=165,f=165
  word=165ರ,f=165
  word=165ರಲ್ಲಿ,f=165
  word=165ರಲ್ಲಿ,f=165
@@ -19008,20 +18684,12 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕ್ಟೋಬರ‍್,f=162
  word=ಅಕ್ಕಿಯ,f=162
  word=თარგი,f=162
- word=162,f=162
  word=162°,f=162
- word=162,f=162
  word=162°,f=162
  word=162ನೆಯ,f=162
  word=162ನೆಯ,f=162
  word=162ರಲ್ಲಿ,f=162
  word=162ರಲ್ಲಿ,f=162
- word=162,f=162
- word=162,f=162
- word=162,f=162
- word=162,f=162
- word=162,f=162
- word=162,f=162
  word=ಹಂದಿಯ,f=162
  word=ಹಂಚಿಕೊಳ್ಳಲು,f=162
  word=ಹೋಲಿಕೆಯನ್ನು,f=162
@@ -19524,11 +19192,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=160ರಲ್ಲಿ,f=160
  word=160ರಲ್ಲಿ,f=160
  word=160ರಲ್ಲಿ,f=160
- word=160,f=160
- word=160,f=160
  word=160ರ,f=160
- word=160,f=160
- word=160,f=160
  word=ডিডি,f=160
  word=ಹಂಚಿಕೊಂಡ,f=160
  word=ಹೋಳಿ,f=160
@@ -20064,22 +19728,10 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಡಿಟಿಪ್ಪಣಿಗಳು,f=157
  word=ಅಗತ್ಯತೆಗಳನ್ನು,f=157
  word=ಅಕ್ಬರ್‌,f=157
- word=157,f=157
  word=157°,f=157
  word=157°,f=157
- word=157,f=157
- word=157,f=157
- word=157,f=157
- word=157,f=157
  word=157ರ,f=157
  word=157ರಲ್ಲಿ,f=157
- word=157,f=157
- word=157,f=157
- word=157,f=157
- word=157,f=157
- word=157,f=157
- word=157,f=157
- word=157,f=157
  word=ദൂരദര്‍ശന്‍,f=157
  word=ಹಂಸ,f=157
  word=ಹಂದಿಗಳು,f=157
@@ -20690,16 +20342,10 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಚಲ,f=154
  word=ಅಗತ್ಯದ,f=154
  word=దూరదర్శన్,f=154
- word=154,f=154
- word=154,f=154
- word=154,f=154
  word=154ರಲ್ಲಿ,f=154
  word=154ರಲ್ಲಿ,f=154
  word=154ರಲ್ಲಿ,f=154
  word=154ರಲ್ಲಿ,f=154
- word=154,f=154
- word=154,f=154
- word=154,f=154
  word=154ಕ್ಕೂ,f=154
  word=ഫലകം,f=154
  word=ಹ್ಯಾವಿಶ್ಯಾಮ್,f=154
@@ -21310,19 +20956,12 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕಾಲ,f=151
  word=151ನೆಯ,f=151
  word=151°,f=151
- word=151,f=151
- word=151,f=151
  word=151ರ,f=151
  word=151ರಲ್ಲಿ,f=151
  word=151ರಲ್ಲಿ,f=151
  word=151ರಲ್ಲಿ,f=151
  word=151ರಲ್ಲಿ,f=151
  word=151ರಲ್ಲಿ,f=151
- word=151,f=151
- word=151,f=151
- word=151,f=151
- word=151,f=151
- word=151,f=151
  word=ಹ್ಯಾಲೋವೀನ್‌,f=151
  word=ಹ್ಯಾಕರ್,f=151
  word=ಹಂಚಿಕೊಳ್ಳುವ,f=151
@@ -21974,14 +21613,8 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=148ರ,f=148
  word=148ರಲ್ಲಿ,f=148
  word=148ರಲ್ಲಿ,f=148
- word=148,f=148
- word=148,f=148
- word=148,f=148
  word=148ರಂದು,f=148
  word=148ರಲ್ಲಿ,f=148
- word=148,f=148
- word=148,f=148
- word=148,f=148
  word=ಹಂತಹಂತವಾಗಿ,f=148
  word=ಹಂಚಿಕೊಂಡಿದೆ,f=148
  word=ಹೋಲಿಕೆಗಳು,f=148
@@ -22678,20 +22311,9 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಗತ್ಯಗಳ,f=145
  word=ಅಕಾಡೆಮಿಯು,f=145
  word=145ನೇ,f=145
- word=145,f=145
- word=145,f=145
  word=145ರಲ್ಲಿ,f=145
  word=145ರ,f=145
  word=145ರಲ್ಲಿ,f=145
- word=145,f=145
- word=145,f=145
- word=145,f=145
- word=145,f=145
- word=145,f=145
- word=145,f=145
- word=145,f=145
- word=145,f=145
- word=145,f=145
  word=ວິກິພີເດຍ,f=145
  word=ಹ್ಯೂಮನ್‌,f=145
  word=ಹ್ಯಾಸ್,f=145
@@ -23459,10 +23081,8 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕಾಡಮಿಯ,f=141
  word=141ನೆಯ,f=141
  word=141ಕಿ,f=141
- word=141,f=141
  word=141°,f=141
  word=141ಕ್ಕಿಂತ,f=141
- word=141,f=141
  word=141ರ,f=141
  word=141ದ,f=141
  word=141ರ,f=141
@@ -23470,11 +23090,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=141ರಲ್ಲಿ,f=141
  word=141ರಲ್ಲಿ,f=141
  word=141ರಲ್ಲಿ,f=141
- word=141,f=141
- word=141,f=141
- word=141,f=141
- word=141,f=141
- word=141,f=141
  word=ޔާއްރިހޫމްޖު,f=141
  word=ᨄᨂᨉᨙᨑᨙᨂ,f=141
  word=ಹೋಲಿಸಿದಲ್ಲಿ,f=141
@@ -24291,23 +23906,11 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಗತ್ಯವು,f=137
  word=साँचा,f=137
  word=£À½¤,f=137
- word=137,f=137
  word=137ನೆಯ,f=137
- word=137,f=137
- word=137,f=137
- word=137,f=137
  word=137°,f=137
  word=137ರಲ್ಲಿ,f=137
  word=137ರಲ್ಲಿ,f=137
- word=137,f=137
- word=137,f=137
- word=137,f=137
- word=137,f=137
- word=137,f=137
  word=137ರಲ್ಲಿ,f=137
- word=137,f=137
- word=137,f=137
- word=137,f=137
  word=ಹಂತದಿಂದ,f=137
  word=ಹೌಸ್‌ವೈವ್ಸ್‌,f=137
  word=ಹೌಸ್ಟನ್,f=137
@@ -25186,19 +24789,8 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕಾ,f=133
  word=133ರಂದು,f=133
  word=133ರಂದು,f=133
- word=133,f=133
  word=133ಕ್ಕೂ,f=133
  word=133ದಲ್ಲಿ,f=133
- word=133,f=133
- word=133,f=133
- word=133,f=133
- word=133,f=133
- word=133,f=133
- word=133,f=133
- word=133,f=133
- word=133,f=133
- word=133,f=133
- word=133,f=133
  word=ಹ್ಯಾನ್ಸ್,f=133
  word=ಹಂಸವಾಣಿದಾಸ,f=133
  word=ಹಂಚಿಕೊಂಡರು,f=133
@@ -26192,15 +25784,8 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕಸ್ಮಾತ್,f=128
  word=ಅ128ದರೆ,f=128
  word=128ರಂದು,f=128
- word=128,f=128
- word=128,f=128
- word=128,f=128
- word=128,f=128
- word=128,f=128
- word=128,f=128
  word=128ರಂದು,f=128
  word=128ರಂದು,f=128
- word=128,f=128
  word=128ರಲ್ಲಿ,f=128
  word=128ರ,f=128
  word=128ರಂದು,f=128
@@ -26211,19 +25796,10 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=128ರಲ್ಲಿ,f=128
  word=128ರ,f=128
  word=128ರಲ್ಲಿ,f=128
- word=128,f=128
- word=128,f=128
- word=128,f=128
- word=128,f=128
- word=128,f=128
- word=128,f=128
  word=128ರಲ್ಲಿ,f=128
  word=128ನೆಯ,f=128
- word=128,f=128
  word=128ನೆಯ,f=128
  word=128ನೆಯ,f=128
- word=128,f=128
- word=128,f=128
  word=ಹಂ,f=128
  word=ಹೋಲ್‌,f=128
  word=ಹೋಗಿದ್ದು,f=128
@@ -27213,23 +26789,12 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕ್ಟೋಬರ್‍ನ,f=123
  word=Шаблён,f=123
  word=123ರಂದು,f=123
- word=123,f=123
  word=123ರಂದು,f=123
  word=123ರಂದು,f=123
  word=123ರಲ್ಲಿ,f=123
  word=123ರ,f=123
  word=123ರ,f=123
  word=123ರಲ್ಲಿ,f=123
- word=123,f=123
- word=123,f=123
- word=123,f=123
- word=123,f=123
- word=123,f=123
- word=123,f=123
- word=123,f=123
- word=123,f=123
- word=123,f=123
- word=123,f=123
  word=123ರಂದು,f=123
  word=ಹ್ಯಾಂಡ್‌ಬುಕ್,f=123
  word=ಹ್ಯಾರಿಸನ್‌,f=123
@@ -28291,32 +27856,16 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಗತ್ಯತೆಯನ್ನು,f=118
  word=на,f=118
  word=118ರಂದು,f=118
- word=118,f=118
  word=118ರ,f=118
- word=118,f=118
  word=118ನೆಯ,f=118
- word=118,f=118
  word=118ರಂದು,f=118
  word=118ರಿಂದ,f=118
  word=118ರ,f=118
  word=118ರ,f=118
- word=118,f=118
- word=118,f=118
  word=118ರಲ್ಲಿ,f=118
  word=118ರಲ್ಲಿ,f=118
  word=118ರಲ್ಲಿ,f=118
  word=118ರಂದು,f=118
- word=118,f=118
- word=118,f=118
- word=118,f=118
- word=118,f=118
- word=118,f=118
- word=118,f=118
- word=118,f=118
- word=118,f=118
- word=118,f=118
- word=118,f=118
- word=118,f=118
  word=  ,f=118
  word=ಹ್ಯೂಸ್,f=118
  word=ಹ್ಯಾಮ್ಲೆಟ್,f=118
@@ -29466,27 +29015,14 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ढाँचा,f=112
  word=Ικδ,f=112
  word=112ರಂದು,f=112
- word=112,f=112
- word=112,f=112
  word=112ನೇ,f=112
  word=112ರ,f=112
  word=112ರ,f=112
  word=112ರ,f=112
  word=112ರ,f=112
- word=112,f=112
  word=112ನೆಯ,f=112
- word=112,f=112
- word=112,f=112
- word=112,f=112
- word=112,f=112
- word=112,f=112
- word=112,f=112
- word=112,f=112
  word=112ರಂದು,f=112
  word=112ರ,f=112
- word=112,f=112
- word=112,f=112
- word=112,f=112
  word=’’,f=112
  word=ಹ್ಯೂಗೋ,f=112
  word=ಹ್ಯೂ,f=112
@@ -30800,37 +30336,15 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅ106ಕಣ,f=106
  word=106ರಿಂದ,f=106
  word=106ನೆಯ,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
  word=106ರಂದು,f=106
- word=106,f=106
- word=106,f=106
  word=106ರಂದು,f=106
- word=106,f=106
  word=106ರ,f=106
  word=106ರ,f=106
  word=106ರಲ್ಲಿ,f=106
  word=106ರಲ್ಲಿ,f=106
  word=106ರಲ್ಲಿ,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
- word=106,f=106
  word=106ರಂದು,f=106
- word=106,f=106
  word=106ರಂದು,f=106
- word=106,f=106
  word=ⱱ̟,f=106
  word=資治通鑑,f=106
  word=ಹ್ಯಾಂಡ್ಲಿಂಗ್‌,f=106
@@ -32233,30 +31747,14 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕಸ್ಮಾತ್ತಾಗಿ,f=99
  word=Википедија,f=99
  word=99ರ,f=99
- word=99,f=99
- word=99,f=99
- word=99,f=99
- word=99,f=99
- word=99,f=99
- word=99,f=99
- word=99,f=99
  word=99ರಂದು,f=99
- word=99,f=99
- word=99,f=99
  word=99ರ,f=99
  word=99ರ,f=99
  word=99ರ,f=99
  word=99ರಲ್ಲಿ,f=99
  word=99ರಲ್ಲಿ,f=99
  word=99ರಲ್ಲಿ,f=99
- word=99,f=99
- word=99,f=99
- word=99,f=99
  word=99ನೆಯ,f=99
- word=99,f=99
- word=99,f=99
- word=99,f=99
- word=99,f=99
  word=99ರಂದು,f=99
  word=ಹ್ಯಾಂಡ್ಸ್,f=99
  word=ಹ್ಯಾರಿಯೆಟ್,f=99
@@ -33772,27 +33270,13 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=92ರಂದು,f=92
  word=92ರಂದು,f=92
  word=92ರಂದು,f=92
- word=92,f=92
  word=92ರಂದು,f=92
  word=92ರಕ್ಕೂ,f=92
  word=92ನೆಯ,f=92
- word=92,f=92
  word=92ರ,f=92
  word=92ರ,f=92
  word=92ರ,f=92
  word=92ರಲ್ಲಿ,f=92
- word=92,f=92
- word=92,f=92
- word=92,f=92
- word=92,f=92
- word=92,f=92
- word=92,f=92
- word=92,f=92
- word=92,f=92
- word=92,f=92
- word=92,f=92
- word=92,f=92
- word=92,f=92
  word=ಹ್ಯುಮನ್,f=92
  word=ಹ್ಯಾಮಿಲ್ಟನ್‍,f=92
  word=ಹಂಫ್ರಿ,f=92
@@ -35516,46 +35000,19 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಗತ್ಯವಾಗಿದ್ದ,f=83
  word=ಅಗಣಿತ,f=83
  word=83ರ,f=83
- word=83,f=83
  word=83ರ,f=83
  word=83ಕ್ಕೂ,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
  word=83ರಂದು,f=83
  word=83ನೇ,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
  word=83ರ,f=83
  word=83ರ,f=83
  word=83ರ,f=83
- word=83,f=83
  word=83ರ,f=83
  word=83ರ,f=83
  word=83ರಲ್ಲಿ,f=83
  word=83ರಲ್ಲಿ,f=83
  word=83ರ,f=83
  word=83ರಲ್ಲಿ,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
- word=83,f=83
  word=ผู้ดูแลระบบ,f=83
  word=ຜູ້ບໍລິຫານ,f=83
  word=வார்ப்புரு,f=83
@@ -37562,13 +37019,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕ್ಷತೆ,f=74
  word=ಅಕ್ಬರ್‍ನ,f=74
  word=ಅಕೌಂಟೆಂಟ್,f=74
- word=74,f=74
- word=74,f=74
- word=74,f=74
- word=74,f=74
  word=74ನೇ,f=74
- word=74,f=74
- word=74,f=74
  word=74ರಂದು,f=74
  word=74ರಂದು,f=74
  word=74ರ,f=74
@@ -37576,18 +37027,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=74ರಲ್ಲಿ,f=74
  word=74ರ,f=74
  word=74ರಲ್ಲಿ,f=74
- word=74,f=74
- word=74,f=74
- word=73,f=73
- word=73,f=73
- word=73,f=73
- word=73,f=73
- word=73,f=73
- word=73,f=73
- word=73,f=73
- word=73,f=73
  word=73ನೆಯ,f=73
- word=73,f=73
  word=    ,f=73
  word=ಹ್ಯಾಪಿನೆಸ್,f=73
  word=ಹಂತದಲ್ಲಿಯೇ,f=73
@@ -39824,24 +39264,10 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕೌಂಟ್ಸ್,f=63
  word=ಅಕೌಸ್ಟಿಕ್,f=63
  word=Википедия,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
  word=63ರಂದು,f=63
  word=63ನೇ,f=63
  word=63ಕ್ಕೆ,f=63
- word=63,f=63
  word=63ರಂದು,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
  word=63ನೇ,f=63
  word=63ರಂದು,f=63
  word=63ರಂದು,f=63
@@ -39853,24 +39279,13 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=63ರ,f=63
  word=63ರ,f=63
  word=63ರ,f=63
- word=63,f=63
  word=63ರಂದು,f=63
  word=63ರಲ್ಲಿ,f=63
  word=63ರಲ್ಲಿ,f=63
  word=63ರಲ್ಲಿ,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
  word=63ರಲ್ಲಿ,f=63
- word=63,f=63
- word=63,f=63
- word=63,f=63
  word=63ರ,f=63
- word=63,f=63
  word=63ರವರೆಗೆ,f=63
- word=63,f=63
  word=ಹ್ಯಾಂಡ್‌,f=63
  word=ಹ್ಯಾರಿಸ್‌,f=63
  word=ಹ್ಯಾನ್‌,f=63
@@ -42341,25 +41756,11 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕ,f=51
  word=नमः,f=51
  word=51ನೆಯ,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
  word=51ನೇ,f=51
  word=51ರ,f=51
- word=51,f=51
  word=51ರ,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
  word=51ನೇ,f=51
- word=51,f=51
  word=51ರ,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
  word=51ನೇ,f=51
  word=51ರಿಂದ,f=51
  word=−51,f=51
@@ -42368,18 +41769,7 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=51ರ,f=51
  word=51ರಲ್ಲಿ,f=51
  word=51ರ,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
- word=51,f=51
  word=51ನೆಯ,f=51
- word=51,f=51
  word=വിക്കിപീഡിയ,f=50
  word=ಹ್ಯೂಮ್,f=50
  word=ಹ್ಯಾಲೋಸ್,f=50
@@ -45297,39 +44687,9 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=ಅಕೌಂಟಿಂಗ್‌,f=37
  word=पथ,f=37
  word=का,f=37
- word=37,f=37
- word=37,f=37
- word=37,f=37
- word=37,f=37
- word=37,f=37
- word=37,f=37
- word=37,f=37
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
  word=36ಕ್ಕೂ,f=36
  word=36ರಂದು,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
  word=36ಕ್ಕೂ,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
  word=36ರಿಂದ,f=36
  word=36ರ,f=36
  word=36ರ,f=36
@@ -45337,13 +44697,6 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=36ರ,f=36
  word=36ರಲ್ಲಿ,f=36
  word=36ರಲ್ಲಿ,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
- word=36,f=36
  word=36ರ,f=36
  word=36ರ,f=36
  word=සැකිල්ල,f=36
@@ -48713,44 +48066,13 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=за,f=20
  word=תבנית,f=20
  word=ويكيبيديا,f=20
- word=20,f=20
  word=20ನೆ,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
  word=20ರಿಂದ,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
  word=20ಎಮ್‌ಎಮ್,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
  word=20ನೇ,f=20
  word=20ಕ್ಕೂ,f=20
  word=20ಜಿ,f=20
  word=20ನೇ,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
  word=20ರಂದು,f=20
  word=20ರಿಂದ,f=20
  word=।।20।।,f=20
@@ -48769,25 +48091,9 @@ dictionary=main:kn,locale=kn,description=Kannada wordlist. Author: Jishnu Mohan 
  word=20ರಲ್ಲಿ,f=20
  word=20ರ,f=20
  word=20ರಲ್ಲಿ,f=20
- word=20,f=20
  word=20ರಲ್ಲಿ,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
- word=20,f=20
  word=20ರ,f=20
- word=20,f=20
- word=20,f=20
  word=20ರ,f=20
- word=20,f=20
  word=ಳೊಂದಿಗೆ,f=20
  word=ಳಿಂದ,f=20
  word=ಹ್ಯೂಸ್ಟನ್,f=20
