@@ -12,6 +12,7 @@ AOSP keyboard ported to support more languges.
 * Hindi
 * Kannadda
 * Malayalam
+* Marathi
 * Nepali
 * Oriya/Odia
 * Punjabi
@@ -24,3 +25,7 @@ AOSP keyboard ported to support more languges.
 
 ## TODO
 
+* Word suggestion is not working in transliteration
+* Transliteration is not working when curser is moved to the middle of a word
+* Phonetic Layouts for Urdu, Oriya.
+* Dictionaries for Nepali, Oriya, Marathi, Assamese
