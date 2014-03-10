@@ -10,7 +10,7 @@ AOSP keyboard ported to support more languges.
 * Bengali
 * Gujarati
 * Hindi
-* Kannadda
+* Kannada
 * Malayalam
 * Marathi
 * Nepali
