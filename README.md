@@ -29,3 +29,5 @@ AOSP keyboard ported to support more languges.
 * Transliteration is not working when curser is moved to the middle of a word
 * Phonetic Layouts for Urdu, Oriya.
 * Dictionaries for Nepali, Oriya, Marathi, Assamese
+* Test on 10" tablet.
+* Add more popular phonetic layouts
