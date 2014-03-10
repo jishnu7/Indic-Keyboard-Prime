@@ -31,3 +31,4 @@ AOSP keyboard ported to support more languges.
 * Dictionaries for Nepali, Oriya, Marathi, Assamese
 * Test on 10" tablet.
 * Add more popular phonetic layouts
+* New logo
