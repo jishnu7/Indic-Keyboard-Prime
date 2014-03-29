@@ -1,4 +1,4 @@
-## Indic IME
+## Indic Keyboard Prime
 AOSP keyboard ported to support more languges.
 
 ## Requirements
