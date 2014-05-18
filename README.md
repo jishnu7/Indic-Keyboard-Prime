@@ -22,6 +22,7 @@ AOSP keyboard ported to support more languges.
 * Telugu
 * Urdu
 
+This project uses code from `jquery.ime` project of Wikimedia and some of the layouts are ported from there.
 
 ## TODO
 
