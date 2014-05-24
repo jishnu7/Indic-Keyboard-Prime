@@ -11,6 +11,7 @@ AOSP keyboard ported to support more languges.
 * Gujarati
 * Hindi
 * Kannada
+* Kashmiri/Kashur
 * Malayalam
 * Marathi
 * Nepali
