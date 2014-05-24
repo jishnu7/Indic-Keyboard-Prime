@@ -40,7 +40,7 @@ This project uses code from `jquery.ime` project of Wikimedia and some of the la
 - [ ] Phonetic layout - Marathi
 - [ ] Phonetic layout - Oriya
 - [ ] Phonetic layout - Urudu
-- [ ] Additional layout for Telugu
+- [ ] KaChaTaThaPa layout for Telugu
 - [ ] Inscript layout - Kashmiri
 - [ ] Inscript layout - Marathi
 - [ ] Inscript layout - Nepali
