@@ -29,9 +29,23 @@ This project uses code from `jquery.ime` project of Wikimedia and some of the la
 
 - [ ] Word suggestion is not working in transliteration
 - [ ] Transliteration is not working when curser is moved to the middle of a word
-- [ ] Phonetic Layouts for Urdu, Oriya.
-- [ ] Dictionaries for Nepali, Oriya, Marathi, Assamese
 - [ ] Test on 10" tablet.
 - [x] New logo
-- [ ] create mobile optimized phonetic layouts
+- [ ] Dictionary - Nepali
+- [ ] Dictionary - Oriya
+- [ ] Dictionary - Marathi
+- [ ] Dictionary - Assamese
+- [ ] Dictionary - Kashmiri
+- [ ] Phonetic layout - Assamesee
+- [ ] Phonetic layout - Marathi
+- [ ] Phonetic layout - Oriya
+- [ ] Phonetic layout - Urudu
+- [ ] Additional layout for Telugu
+- [ ] Inscript layout - Kashmiri
+- [ ] Inscript layout - Marathi
+- [ ] Inscript layout - Nepali
+- [ ] Inscript layout - Sanskrit
+- [ ] Inscript layout - Sindhi
+- [ ] Remove unwanted permissions
+- [ ] Remove unused options from settings
 
