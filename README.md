@@ -31,11 +31,11 @@ This project uses code from `jquery.ime` project of Wikimedia and some of the la
 - [ ] Transliteration is not working when curser is moved to the middle of a word
 - [ ] Test on 10" tablet.
 - [x] New logo
-- [ ] Dictionary - Nepali
-- [ ] Dictionary - Oriya
-- [ ] Dictionary - Marathi
 - [ ] Dictionary - Assamese
 - [ ] Dictionary - Kashmiri
+- [ ] Dictionary - Marathi
+- [ ] Dictionary - Nepali
+- [ ] Dictionary - Oriya
 - [ ] Phonetic layout - Assamesee
 - [ ] Phonetic layout - Marathi
 - [ ] Phonetic layout - Oriya
@@ -48,4 +48,6 @@ This project uses code from `jquery.ime` project of Wikimedia and some of the la
 - [ ] Inscript layout - Sindhi
 - [ ] Remove unwanted permissions
 - [ ] Remove unused options from settings
+- [ ] Konkani
+- [ ] Manipuri
 
