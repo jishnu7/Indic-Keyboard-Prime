@@ -50,4 +50,6 @@ This project uses code from `jquery.ime` project of Wikimedia and some of the la
 - [ ] Remove unused options from settings
 - [ ] Konkani
 - [ ] Manipuri
+- [ ] Try to increase width of keys in Inscript layout
+- [ ] Fix Tamil-99 (add character replacement)
 
