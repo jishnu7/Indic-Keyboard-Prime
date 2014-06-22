@@ -22,6 +22,7 @@
     <TextView
         android:id="@+id/setup_welcome_title"
         style="@style/setupTitleStyle"
+        android:text="@string/setup_welcome_title"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" />
     <TextView
