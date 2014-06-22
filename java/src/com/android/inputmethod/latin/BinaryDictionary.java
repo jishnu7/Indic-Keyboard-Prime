@@ -21,7 +21,13 @@ import android.util.SparseArray;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.keyboard.ProximityInfo;
-import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
+// additional imports since we changed the package name.
+import in.androidtweak.inputmethod.indic.Dictionary;
+import in.androidtweak.inputmethod.indic.WordComposer;
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.InputPointers;
+// -- don't delete on merge
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.settings.NativeSuggestOptions;
 import in.androidtweak.inputmethod.indic.utils.CollectionUtils;
 import in.androidtweak.inputmethod.indic.utils.JniUtils;
