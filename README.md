@@ -29,9 +29,10 @@ AOSP keyboard ported to support more languges.
 * Gujarati: Phonetic, Inscript, Transliteration
 * Hindi: Phonetic, Inscript, Transliteration
 * Kannada:  Phonetic, Inscript, Transliteration
+* Kashmiri/Kashur: Inscript
 * Malayalam: Phonetic (based on lalitha), Inscript, Transliteration
 * Marathi: Transliteration
-* Nepali: Phonetic, Traditional, Transliteration
+* Nepali: Phonetic, Traditional, Transliteration, Inscript
 * Oriya/Odia:  Inscript, Transliteration
 * Punjabi:  Phonetic, Inscript, Transliteration
 * Sanskrit: Transliteration
@@ -67,6 +68,7 @@ AOSP keyboard ported to support more languges.
 - [ ] Manipuri
 - [ ] Try to increase width of keys in Inscript layout
 - [ ] Fix Tamil-99 (add character replacement)
+- [ ] Modify welcome screen, sort and add more languages
 
 ## Credits / Thanks
 This project uses code from `jquery.ime` project of Wikimedia and some of the layouts are ported from there.
