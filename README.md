@@ -23,7 +23,22 @@ AOSP keyboard ported to support more languges.
 * Telugu
 * Urdu
 
-This project uses code from `jquery.ime` project of Wikimedia and some of the layouts are ported from there.
+## Layouts
+* Assamese: Inscript, Transliteration
+* Bengali: Probhat, Avro, Inscript
+* Gujarati: Phonetic, Inscript, Transliteration
+* Hindi: Phonetic, Inscript, Transliteration
+* Kannada:  Phonetic, Inscript, Transliteration
+* Malayalam: Phonetic (based on lalitha), Inscript, Transliteration
+* Marathi: Transliteration
+* Nepali: Phonetic, Traditional, Transliteration
+* Oriya/Odia:  Inscript, Transliteration
+* Punjabi:  Phonetic, Inscript, Transliteration
+* Sanskrit: Transliteration
+* Sinhalese: Transliteration
+* Tamil: Tamil-99 (initial support), Inscript, Phonetic
+* Telugu:  Phonetic, Inscript, Transliteration, KaChaTaThaPa
+* Urdu: Transliteration
 
 ## TODO
 
@@ -40,7 +55,7 @@ This project uses code from `jquery.ime` project of Wikimedia and some of the la
 - [ ] Phonetic layout - Marathi
 - [ ] Phonetic layout - Oriya
 - [ ] Phonetic layout - Urudu
-- [ ] KaChaTaThaPa layout for Telugu
+- [x] KaChaTaThaPa layout for Telugu
 - [ ] Inscript layout - Kashmiri
 - [ ] Inscript layout - Marathi
 - [ ] Inscript layout - Nepali
@@ -52,4 +67,9 @@ This project uses code from `jquery.ime` project of Wikimedia and some of the la
 - [ ] Manipuri
 - [ ] Try to increase width of keys in Inscript layout
 - [ ] Fix Tamil-99 (add character replacement)
+
+## Credits / Thanks
+This project uses code from `jquery.ime` project of Wikimedia and some of the layouts are ported from there.
+
+Thanks [Chakravarthy Ashok](https://plus.google.com/115394773447303504309) for the help on Telugu KaChaTaThaPa layout
 
