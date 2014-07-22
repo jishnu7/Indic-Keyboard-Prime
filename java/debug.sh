@@ -1,5 +1,5 @@
 #!/bin/bash
-rm build/apk/IndicKeyboard-debug-unaligned.apk
+rm build/outputs/apk/IndicKeyboard-debug.apk
 gradle assembleDebug
-adb install -r build/apk/IndicKeyboard-debug-unaligned.apk
+adb install -r build/outputs/apk/IndicKeyboard-debug.apk
 
