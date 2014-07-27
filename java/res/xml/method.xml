@@ -247,7 +247,7 @@
             android:label="@string/keyboard_name_te_kachatathapa"
             android:imeSubtypeLocale="te"
             android:imeSubtypeMode="keyboard"
-            android:imeSubtypeExtraValue="KeyboardLayoutSet=telugu_kachatathapa,EmojiCapable" />
+            android:imeSubtypeExtraValue="KeyboardLayoutSet=telugu_kachatathapa,EmojiCapable,TransliterationMethod=te-kachatathapa" />
     <subtype android:icon="@drawable/ic_ime_switcher_dark"
             android:label="@string/keyboard_name_te_inscript"
             android:imeSubtypeLocale="te"
