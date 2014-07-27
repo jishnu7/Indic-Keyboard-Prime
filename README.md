@@ -57,7 +57,7 @@ AOSP keyboard ported to support more languges.
 - [ ] Phonetic layout - Oriya
 - [ ] Phonetic layout - Urudu
 - [x] KaChaTaThaPa layout for Telugu
-- [ ] Inscript layout - Kashmiri
+- [ ] Inscript layout - Kashmiri - testing/validation pending
 - [ ] Inscript layout - Marathi
 - [ ] Inscript layout - Nepali
 - [ ] Inscript layout - Sanskrit
@@ -67,8 +67,9 @@ AOSP keyboard ported to support more languges.
 - [ ] Konkani
 - [ ] Manipuri
 - [ ] Try to increase width of keys in Inscript layout
-- [ ] Fix Tamil-99 (add character replacement)
+- [x] Fix Tamil-99 (add character replacement)
 - [ ] Modify welcome screen, sort and add more languages
+- [ ] Fix linting errors
 
 ## Credits / Thanks
 This project uses code from `jquery.ime` project of Wikimedia and some of the layouts are ported from there.
