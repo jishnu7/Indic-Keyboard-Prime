@@ -51,13 +51,15 @@
                 latin:keyLabel="&#x0C13;"
                 latin:keyLabelFlags="fontNormal" />
             <Key
-                latin:keyLabel="&#x0C61;"
-                latin:keyLabelFlags="fontNormal|followKeyLargeLabelRatio" />
-            <Key
                 latin:keyLabel="&#x0965;"
                 latin:keyLabelFlags="fontNormal" />
             <Key
-                latin:keyLabel="&#x0950;"
+                latin:keyLabel="&#x0C59;"
+                latin:keyLabelFlags="fontNormal" />
+            <Key
+                latin:keyLabel="&#x0C0C;"
+                latin:moreKeys="&#x0C61;"
+                latin:keyHintLabel="&#x0C61;"
                 latin:keyLabelFlags="fontNormal" />
         </case>
 
@@ -87,10 +89,10 @@
                 latin:keyLabel="&#x0C12;"
                 latin:keyLabelFlags="fontNormal" />
             <Key
-                latin:keyLabel="&#x0C0C;"
+                latin:keyLabel="&#x0964;"
                 latin:keyLabelFlags="fontNormal" />
             <Key
-                latin:keyLabel="&#x0964;"
+                latin:keyLabel="&#x0C58;"
                 latin:keyLabelFlags="fontNormal" />
             <Key
                 latin:keyLabel="&#x0950;"
