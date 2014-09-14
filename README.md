@@ -71,6 +71,13 @@ AOSP keyboard ported to support more languges.
 - [ ] Modify welcome screen, sort and add more languages
 - [ ] Fix linting errors
 
+## HOWTO Build
+1. Install gradle (1.x), Android Support Repository, SDK and other usual android stuffs.
+2. Clone the repository
+3. Initialize submodules
+4. `cd java`
+5. Use `gradle assembleDebug` to build the package.
+
 ## Credits / Thanks
 This project uses code from `jquery.ime` project of Wikimedia and some of the layouts are ported from there.
 
