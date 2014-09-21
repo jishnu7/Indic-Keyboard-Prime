@@ -139,6 +139,7 @@
         <item>en_US</item>
         <item>en_GB</item>
         <item>es_US</item>
+        <item>mnw</item>
     </string-array>
 
     <!-- Generic subtype label -->
@@ -157,6 +158,7 @@
          The string resource with "No language" also must be added to strings.xml and the resource
          name must be "subtype_no_language_<layout name>" -->
     <string name="subtype_generic_qwerty">%s (QWERTY)</string>
+    <string name="subtype_mnw">Mon</string>
 
     <!-- Description for Bulgarian (BDS) subtype. -->
     <string name="subtype_bulgarian_bds">%s (BDS)</string>
