@@ -17,7 +17,10 @@
 package com.android.inputmethod.latin;
 
 import android.test.suitebuilder.annotation.LargeTest;
+import android.text.TextUtils;
 import android.view.inputmethod.BaseInputConnection;
+
+import com.android.inputmethod.latin.settings.Settings;
 
 @LargeTest
 public class InputLogicTests extends InputTestsBase {
@@ -32,7 +35,7 @@ public class InputLogicTests extends InputTestsBase {
         final String WORD_TO_TYPE = "this";
         final String EXPECTED_RESULT = "thi";
         type(WORD_TO_TYPE);
-        pickSuggestionManually(0, WORD_TO_TYPE);
+        pickSuggestionManually(WORD_TO_TYPE);
         mLatinIME.onUpdateSelection(0, 0, WORD_TO_TYPE.length(), WORD_TO_TYPE.length(), -1, -1);
         type(Constants.CODE_DELETE);
         assertEquals("press suggestion then backspace", EXPECTED_RESULT,
@@ -44,9 +47,8 @@ public class InputLogicTests extends InputTestsBase {
         final String WORD_TO_PICK = "this";
         final String EXPECTED_RESULT = "thi";
         type(WORD_TO_TYPE);
-        // Choose the auto-correction, which is always in position 0. For "tgis", the
-        // auto-correction should be "this".
-        pickSuggestionManually(0, WORD_TO_PICK);
+        // Choose the auto-correction. For "tgis", the auto-correction should be "this".
+        pickSuggestionManually(WORD_TO_PICK);
         mLatinIME.onUpdateSelection(0, 0, WORD_TO_TYPE.length(), WORD_TO_TYPE.length(), -1, -1);
         assertEquals("pick typed word over auto-correction then backspace", WORD_TO_PICK,
                 mEditText.getText().toString());
@@ -59,9 +61,8 @@ public class InputLogicTests extends InputTestsBase {
         final String WORD_TO_TYPE = "tgis";
         final String EXPECTED_RESULT = "tgi";
         type(WORD_TO_TYPE);
-        // Choose the typed word, which should be in position 1 (because position 0 should
-        // be occupied by the "this" auto-correction, as checked by testAutoCorrect())
-        pickSuggestionManually(1, WORD_TO_TYPE);
+        // Choose the typed word.
+        pickSuggestionManually(WORD_TO_TYPE);
         mLatinIME.onUpdateSelection(0, 0, WORD_TO_TYPE.length(), WORD_TO_TYPE.length(), -1, -1);
         assertEquals("pick typed word over auto-correction then backspace", WORD_TO_TYPE,
                 mEditText.getText().toString());
@@ -75,9 +76,8 @@ public class InputLogicTests extends InputTestsBase {
         final String WORD_TO_PICK = "thus";
         final String EXPECTED_RESULT = "thu";
         type(WORD_TO_TYPE);
-        // Choose the second suggestion, which should be in position 2 and should be "thus"
-        // when "tgis is typed.
-        pickSuggestionManually(2, WORD_TO_PICK);
+        // Choose the second suggestion, which should be "thus" when "tgis" is typed.
+        pickSuggestionManually(WORD_TO_PICK);
         mLatinIME.onUpdateSelection(0, 0, WORD_TO_TYPE.length(), WORD_TO_TYPE.length(), -1, -1);
         assertEquals("pick different suggestion then backspace", WORD_TO_PICK,
                 mEditText.getText().toString());
@@ -179,6 +179,8 @@ public class InputLogicTests extends InputTestsBase {
     }
 
     public void testDoubleSpace() {
+        // Set default pref just in case
+        setBooleanPreference(Settings.PREF_KEY_USE_DOUBLE_SPACE_PERIOD, true, true);
         // U+1F607 is an emoji
         final String[] STRINGS_TO_TYPE =
                 new String[] { "this   ", "a+  ", "\u1F607  ", "..  ", ")  ", "(  ", "%  " };
@@ -198,6 +200,74 @@ public class InputLogicTests extends InputTestsBase {
         type(STRING_TO_TYPE);
         type(Constants.CODE_DELETE);
         assertEquals("double space make a period", EXPECTED_RESULT, mEditText.getText().toString());
+    }
+
+    private void testDoubleSpacePeriodWithSettings(final boolean expectsPeriod,
+            final Object... settingsKeysValues) {
+        final Object[] oldSettings = new Object[settingsKeysValues.length / 2];
+        final String STRING_WITHOUT_PERIOD = "this  ";
+        final String STRING_WITH_PERIOD = "this. ";
+        final String EXPECTED_RESULT = expectsPeriod ? STRING_WITH_PERIOD : STRING_WITHOUT_PERIOD;
+        try {
+            for (int i = 0; i < settingsKeysValues.length; i += 2) {
+                if (settingsKeysValues[i + 1] instanceof String) {
+                    oldSettings[i / 2] = setStringPreference((String)settingsKeysValues[i],
+                            (String)settingsKeysValues[i + 1], "0");
+                } else {
+                    oldSettings[i / 2] = setBooleanPreference((String)settingsKeysValues[i],
+                            (Boolean)settingsKeysValues[i + 1], false);
+                }
+            }
+            mLatinIME.loadSettings();
+            mEditText.setText("");
+            type(STRING_WITHOUT_PERIOD);
+            assertEquals("double-space-to-period with specific settings "
+                    + TextUtils.join(" ", settingsKeysValues),
+                    EXPECTED_RESULT, mEditText.getText().toString());
+        } finally {
+            // Restore old settings
+            for (int i = 0; i < settingsKeysValues.length; i += 2) {
+                if (null == oldSettings[i / 2]) {
+                    break;
+                } if (oldSettings[i / 2] instanceof String) {
+                    setStringPreference((String)settingsKeysValues[i], (String)oldSettings[i / 2],
+                            "");
+                } else {
+                    setBooleanPreference((String)settingsKeysValues[i], (Boolean)oldSettings[i / 2],
+                            false);
+                }
+            }
+        }
+    }
+
+    public void testDoubleSpacePeriod() {
+        // Reset settings to default, else these tests will go flaky.
+        setBooleanPreference(Settings.PREF_SHOW_SUGGESTIONS, true, true);
+        setStringPreference(Settings.PREF_AUTO_CORRECTION_THRESHOLD, "1", "1");
+        setBooleanPreference(Settings.PREF_KEY_USE_DOUBLE_SPACE_PERIOD, true, true);
+        testDoubleSpacePeriodWithSettings(true /* expectsPeriod */);
+        // "Suggestion visibility" to off
+        testDoubleSpacePeriodWithSettings(true, Settings.PREF_SHOW_SUGGESTIONS, false);
+        // "Suggestion visibility" to on
+        testDoubleSpacePeriodWithSettings(true, Settings.PREF_SHOW_SUGGESTIONS, true);
+
+        // "Double-space period" to "off"
+        testDoubleSpacePeriodWithSettings(false, Settings.PREF_KEY_USE_DOUBLE_SPACE_PERIOD, false);
+
+        // "Auto-correction" to "off"
+        testDoubleSpacePeriodWithSettings(true, Settings.PREF_AUTO_CORRECTION_THRESHOLD, "0");
+        // "Auto-correction" to "modest"
+        testDoubleSpacePeriodWithSettings(true, Settings.PREF_AUTO_CORRECTION_THRESHOLD, "1");
+        // "Auto-correction" to "very aggressive"
+        testDoubleSpacePeriodWithSettings(true, Settings.PREF_AUTO_CORRECTION_THRESHOLD, "3");
+
+        // "Suggestion visibility" to "always hide" and "Auto-correction" to "off"
+        testDoubleSpacePeriodWithSettings(true, Settings.PREF_SHOW_SUGGESTIONS, false,
+                Settings.PREF_AUTO_CORRECTION_THRESHOLD, "0");
+        // "Suggestion visibility" to "always hide" and "Auto-correction" to "off"
+        testDoubleSpacePeriodWithSettings(false, Settings.PREF_SHOW_SUGGESTIONS, false,
+                Settings.PREF_AUTO_CORRECTION_THRESHOLD, "0",
+                Settings.PREF_KEY_USE_DOUBLE_SPACE_PERIOD, false);
     }
 
     public void testBackspaceAtStartAfterAutocorrect() {
@@ -234,7 +304,7 @@ public class InputLogicTests extends InputTestsBase {
         final String WORD_TO_TYPE = "this";
         final String EXPECTED_RESULT = WORD_TO_TYPE;
         type(WORD_TO_TYPE);
-        pickSuggestionManually(0, WORD_TO_TYPE);
+        pickSuggestionManually(WORD_TO_TYPE);
         assertEquals("no space after manual pick", EXPECTED_RESULT,
                 mEditText.getText().toString());
     }
@@ -244,7 +314,7 @@ public class InputLogicTests extends InputTestsBase {
         final String WORD2_TO_TYPE = "is";
         final String EXPECTED_RESULT = "this is";
         type(WORD1_TO_TYPE);
-        pickSuggestionManually(0, WORD1_TO_TYPE);
+        pickSuggestionManually(WORD1_TO_TYPE);
         type(WORD2_TO_TYPE);
         assertEquals("manual pick then type", EXPECTED_RESULT, mEditText.getText().toString());
     }
@@ -254,9 +324,21 @@ public class InputLogicTests extends InputTestsBase {
         final String WORD2_TO_TYPE = "!";
         final String EXPECTED_RESULT = "this!";
         type(WORD1_TO_TYPE);
-        pickSuggestionManually(0, WORD1_TO_TYPE);
+        pickSuggestionManually(WORD1_TO_TYPE);
         type(WORD2_TO_TYPE);
         assertEquals("manual pick then separator", EXPECTED_RESULT, mEditText.getText().toString());
+    }
+
+    // This test matches the one in InputLogicTestsNonEnglish. In some non-English languages,
+    // ! and ? are clustering punctuation signs.
+    public void testClusteringPunctuation() {
+        final String WORD1_TO_TYPE = "test";
+        final String WORD2_TO_TYPE = "!!?!:!";
+        final String EXPECTED_RESULT = "test!!?!:!";
+        type(WORD1_TO_TYPE);
+        pickSuggestionManually(WORD1_TO_TYPE);
+        type(WORD2_TO_TYPE);
+        assertEquals("clustering punctuation", EXPECTED_RESULT, mEditText.getText().toString());
     }
 
     public void testManualPickThenStripperThenPick() {
@@ -264,10 +346,10 @@ public class InputLogicTests extends InputTestsBase {
         final String STRIPPER = "\n";
         final String EXPECTED_RESULT = "this\nthis";
         type(WORD_TO_TYPE);
-        pickSuggestionManually(0, WORD_TO_TYPE);
+        pickSuggestionManually(WORD_TO_TYPE);
         type(STRIPPER);
         type(WORD_TO_TYPE);
-        pickSuggestionManually(0, WORD_TO_TYPE);
+        pickSuggestionManually(WORD_TO_TYPE);
         assertEquals("manual pick then \\n then manual pick", EXPECTED_RESULT,
                 mEditText.getText().toString());
     }
@@ -277,7 +359,7 @@ public class InputLogicTests extends InputTestsBase {
         final String WORD2_TO_TYPE = " is";
         final String EXPECTED_RESULT = "this is";
         type(WORD1_TO_TYPE);
-        pickSuggestionManually(0, WORD1_TO_TYPE);
+        pickSuggestionManually(WORD1_TO_TYPE);
         type(WORD2_TO_TYPE);
         assertEquals("manual pick then space then type", EXPECTED_RESULT,
                 mEditText.getText().toString());
@@ -288,11 +370,9 @@ public class InputLogicTests extends InputTestsBase {
         final String WORD2_TO_PICK = "is";
         final String EXPECTED_RESULT = "this is";
         type(WORD1_TO_TYPE);
-        pickSuggestionManually(0, WORD1_TO_TYPE);
-        // Here we fake picking a word through bigram prediction. This test is taking
-        // advantage of the fact that Latin IME blindly trusts the caller of #pickSuggestionManually
-        // to actually pass the right string.
-        pickSuggestionManually(1, WORD2_TO_PICK);
+        pickSuggestionManually(WORD1_TO_TYPE);
+        // Here we fake picking a word through bigram prediction.
+        pickSuggestionManually(WORD2_TO_PICK);
         assertEquals("manual pick then manual pick", EXPECTED_RESULT,
                 mEditText.getText().toString());
     }
@@ -307,12 +387,14 @@ public class InputLogicTests extends InputTestsBase {
     }
 
     public void testResumeSuggestionOnBackspace() {
-        final String WORD_TO_TYPE = "and this ";
-        type(WORD_TO_TYPE);
+        final String STRING_TO_TYPE = "and this ";
+        final int typedLength = STRING_TO_TYPE.length();
+        type(STRING_TO_TYPE);
         assertEquals("resume suggestion on backspace", -1,
                 BaseInputConnection.getComposingSpanStart(mEditText.getText()));
         assertEquals("resume suggestion on backspace", -1,
                 BaseInputConnection.getComposingSpanEnd(mEditText.getText()));
+        mLatinIME.onUpdateSelection(0, 0, typedLength, typedLength, -1, -1);
         type(Constants.CODE_DELETE);
         assertEquals("resume suggestion on backspace", 4,
                 BaseInputConnection.getComposingSpanStart(mEditText.getText()));
@@ -348,4 +430,211 @@ public class InputLogicTests extends InputTestsBase {
         helperTestComposing("a'", true);
     }
     // TODO: Add some tests for non-BMP characters
+
+    public void testAutoCorrectByUserHistory() {
+        final String WORD_TO_BE_CORRECTED = "qpmx";
+        final String NOT_CORRECTED_RESULT = "qpmx ";
+        final String DESIRED_WORD = "qpmz";
+        final String CORRECTED_RESULT = "qpmz ";
+        final int typeCountNotToAutocorrect = 1;
+        final int typeCountToAutoCorrect = 16;
+        int startIndex = 0;
+        int endIndex = 0;
+
+        for (int i = 0; i < typeCountNotToAutocorrect; i++) {
+            type(DESIRED_WORD);
+            type(Constants.CODE_SPACE);
+        }
+        startIndex = mEditText.getText().length();
+        type(WORD_TO_BE_CORRECTED);
+        type(Constants.CODE_SPACE);
+        endIndex = mEditText.getText().length();
+        assertEquals("not auto-corrected by user history", NOT_CORRECTED_RESULT,
+                mEditText.getText().subSequence(startIndex, endIndex).toString());
+        for (int i = typeCountNotToAutocorrect; i < typeCountToAutoCorrect; i++) {
+            type(DESIRED_WORD);
+            type(Constants.CODE_SPACE);
+        }
+        startIndex = mEditText.getText().length();
+        type(WORD_TO_BE_CORRECTED);
+        type(Constants.CODE_SPACE);
+        endIndex = mEditText.getText().length();
+        assertEquals("auto-corrected by user history",
+                CORRECTED_RESULT, mEditText.getText().subSequence(startIndex, endIndex).toString());
+    }
+
+    public void testPredictionsAfterSpace() {
+        final String WORD_TO_TYPE = "Barack ";
+        type(WORD_TO_TYPE);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+        // Test the first prediction is displayed
+        final SuggestedWords suggestedWords = mLatinIME.getSuggestedWordsForTest();
+        assertEquals("predictions after space", "Obama",
+                suggestedWords.size() > 0 ? suggestedWords.getWord(0) : null);
+    }
+
+    public void testPredictionsWithDoubleSpaceToPeriod() {
+        mLatinIME.clearPersonalizedDictionariesForTest();
+        final String WORD_TO_TYPE = "Barack ";
+        type(WORD_TO_TYPE);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+        // No need to test here, testPredictionsAfterSpace is testing it already
+        type(" ");
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+        // Test the predictions have been cleared
+        SuggestedWords suggestedWords = mLatinIME.getSuggestedWordsForTest();
+        assertEquals("predictions cleared after double-space-to-period", suggestedWords.size(), 0);
+        type(Constants.CODE_DELETE);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+        // Test the first prediction is displayed
+        suggestedWords = mLatinIME.getSuggestedWordsForTest();
+        assertEquals("predictions after cancel double-space-to-period", "Obama",
+                suggestedWords.size() > 0 ? suggestedWords.getWord(0) : null);
+    }
+
+    public void testPredictionsAfterManualPick() {
+        final String WORD_TO_TYPE = "Barack";
+        type(WORD_TO_TYPE);
+        // Choose the auto-correction. For "Barack", the auto-correction should be "Barack".
+        pickSuggestionManually(WORD_TO_TYPE);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+        // Test the first prediction is displayed
+        final SuggestedWords suggestedWords = mLatinIME.getSuggestedWordsForTest();
+        assertEquals("predictions after manual pick", "Obama",
+                suggestedWords.size() > 0 ? suggestedWords.getWord(0) : null);
+    }
+
+    public void testPredictionsAfterPeriod() {
+        mLatinIME.clearPersonalizedDictionariesForTest();
+        final String WORD_TO_TYPE = "Barack. ";
+        type(WORD_TO_TYPE);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+        SuggestedWords suggestedWords = mLatinIME.getSuggestedWordsForTest();
+        assertEquals("No prediction after period after inputting once.", 0, suggestedWords.size());
+
+        type(WORD_TO_TYPE);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+        suggestedWords = mLatinIME.getSuggestedWordsForTest();
+        assertEquals("Beginning-of-Sentence prediction after inputting 2 times.", "Barack",
+                suggestedWords.size() > 0 ? suggestedWords.getWord(0) : null);
+    }
+
+    public void testPredictionsAfterRecorrection() {
+        final String PREFIX = "A ";
+        final String WORD_TO_TYPE = "Barack";
+        final String FIRST_NON_TYPED_SUGGESTION = "Barrack";
+        final int endOfPrefix = PREFIX.length();
+        final int endOfWord = endOfPrefix + WORD_TO_TYPE.length();
+        final int endOfSuggestion = endOfPrefix + FIRST_NON_TYPED_SUGGESTION.length();
+        final int indexForManualCursor = endOfPrefix + 3; // +3 because it's after "Bar" in "Barack"
+        type(PREFIX);
+        mLatinIME.onUpdateSelection(0, 0, endOfPrefix, endOfPrefix, -1, -1);
+        type(WORD_TO_TYPE);
+        pickSuggestionManually(FIRST_NON_TYPED_SUGGESTION);
+        mLatinIME.onUpdateSelection(endOfPrefix, endOfPrefix, endOfSuggestion, endOfSuggestion,
+                -1, -1);
+        runMessages();
+        type(" ");
+        mLatinIME.onUpdateSelection(endOfSuggestion, endOfSuggestion,
+                endOfSuggestion + 1, endOfSuggestion + 1, -1, -1);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+        // Simulate a manual cursor move
+        mInputConnection.setSelection(indexForManualCursor, indexForManualCursor);
+        mLatinIME.onUpdateSelection(endOfSuggestion + 1, endOfSuggestion + 1,
+                indexForManualCursor, indexForManualCursor, -1, -1);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+        pickSuggestionManually(WORD_TO_TYPE);
+        mLatinIME.onUpdateSelection(indexForManualCursor, indexForManualCursor,
+                endOfWord, endOfWord, -1, -1);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+        // Test the first prediction is displayed
+        final SuggestedWords suggestedWords = mLatinIME.getSuggestedWordsForTest();
+        assertEquals("predictions after recorrection", "Obama",
+                suggestedWords.size() > 0 ? suggestedWords.getWord(0) : null);
+    }
+
+    public void testComposingMultipleBackspace() {
+        final String WORD_TO_TYPE = "radklro";
+        final int TIMES_TO_TYPE = 3;
+        final int TIMES_TO_BACKSPACE = 8;
+        type(WORD_TO_TYPE);
+        type(Constants.CODE_DELETE);
+        type(Constants.CODE_DELETE);
+        type(Constants.CODE_DELETE);
+        type(WORD_TO_TYPE);
+        type(Constants.CODE_DELETE);
+        type(Constants.CODE_DELETE);
+        type(WORD_TO_TYPE);
+        type(Constants.CODE_DELETE);
+        type(Constants.CODE_DELETE);
+        type(Constants.CODE_DELETE);
+        assertEquals("composing with multiple backspace",
+                WORD_TO_TYPE.length() * TIMES_TO_TYPE - TIMES_TO_BACKSPACE,
+                mEditText.getText().length());
+    }
+
+    public void testManySingleQuotes() {
+        final String WORD_TO_AUTOCORRECT = "i";
+        final String WORD_AUTOCORRECTED = "I";
+        final String QUOTES = "''''''''''''''''''''";
+        final String WORD_TO_TYPE = WORD_TO_AUTOCORRECT + QUOTES + " ";
+        final String EXPECTED_RESULT = WORD_AUTOCORRECTED + QUOTES + " ";
+        type(WORD_TO_TYPE);
+        assertEquals("auto-correct with many trailing single quotes", EXPECTED_RESULT,
+                mEditText.getText().toString());
+    }
+
+    public void testManySingleQuotesOneByOne() {
+        final String WORD_TO_AUTOCORRECT = "i";
+        final String WORD_AUTOCORRECTED = "I";
+        final String QUOTES = "''''''''''''''''''''";
+        final String WORD_TO_TYPE = WORD_TO_AUTOCORRECT + QUOTES + " ";
+        final String EXPECTED_RESULT = WORD_AUTOCORRECTED + QUOTES + " ";
+
+        for (int i = 0; i < WORD_TO_TYPE.length(); ++i) {
+            type(WORD_TO_TYPE.substring(i, i+1));
+            sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+            runMessages();
+        }
+        assertEquals("type many trailing single quotes one by one", EXPECTED_RESULT,
+                mEditText.getText().toString());
+    }
+
+    public void testTypingSingleQuotesOneByOne() {
+        final String WORD_TO_TYPE = "it's ";
+        final String EXPECTED_RESULT = WORD_TO_TYPE;
+        for (int i = 0; i < WORD_TO_TYPE.length(); ++i) {
+            type(WORD_TO_TYPE.substring(i, i+1));
+            sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+            runMessages();
+        }
+        assertEquals("type words letter by letter", EXPECTED_RESULT,
+                mEditText.getText().toString());
+    }
+
+    public void testSwitchLanguages() {
+        final String WORD_TO_TYPE_FIRST_PART = "com";
+        final String WORD_TO_TYPE_SECOND_PART = "md";
+        final String EXPECTED_RESULT = "comme";
+        changeLanguage("en");
+        type(WORD_TO_TYPE_FIRST_PART);
+        changeLanguage("fr");
+        runMessages();
+        type(WORD_TO_TYPE_SECOND_PART);
+        sleep(DELAY_TO_WAIT_FOR_UNDERLINE);
+        runMessages();
+        final SuggestedWords suggestedWords = mLatinIME.getSuggestedWordsForTest();
+        assertEquals("Suggestions updated after switching languages",
+                    EXPECTED_RESULT, suggestedWords.size() > 0 ? suggestedWords.getWord(1) : null);
+    }
 }

@@ -25,35 +25,48 @@ import android.text.InputType;
 import android.text.SpannableStringBuilder;
 import android.text.style.CharacterStyle;
 import android.text.style.SuggestionSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputMethodSubtype;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
+import com.android.inputmethod.compat.InputMethodSubtypeCompatUtils;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
+import com.android.inputmethod.latin.settings.DebugSettings;
+import com.android.inputmethod.latin.settings.Settings;
 import com.android.inputmethod.latin.utils.LocaleUtils;
+import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
 
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
+    private static final String TAG = InputTestsBase.class.getSimpleName();
 
-    private static final String PREF_DEBUG_MODE = "debug_mode";
+    // Default value for auto-correction threshold. This is the string representation of the
+    // index in the resources array of auto-correction threshold settings.
+    private static final String DEFAULT_AUTO_CORRECTION_THRESHOLD = "1";
 
-    // The message that sets the underline is posted with a 200 ms delay
-    protected static final int DELAY_TO_WAIT_FOR_UNDERLINE = 200;
+    // The message that sets the underline is posted with a 500 ms delay
+    protected static final int DELAY_TO_WAIT_FOR_UNDERLINE = 500;
     // The message that sets predictions is posted with a 200 ms delay
     protected static final int DELAY_TO_WAIT_FOR_PREDICTIONS = 200;
+    private final int TIMEOUT_TO_WAIT_FOR_LOADING_MAIN_DICTIONARY_IN_SECONDS = 60;
 
     protected LatinIME mLatinIME;
     protected Keyboard mKeyboard;
     protected MyEditText mEditText;
     protected View mInputView;
     protected InputConnection mInputConnection;
+    private boolean mPreviousBigramPredictionSettings;
+    private String mPreviousAutoCorrectSetting;
 
     // A helper class to ease span tests
     public static class SpanGetter {
@@ -135,13 +148,30 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         final boolean previousSetting = prefs.getBoolean(key, defaultValue);
         final SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(key, value);
-        editor.commit();
+        editor.apply();
         return previousSetting;
     }
 
-    // returns the previous setting value
-    protected boolean setDebugMode(final boolean value) {
-        return setBooleanPreference(PREF_DEBUG_MODE, value, false);
+    protected String setStringPreference(final String key, final String value,
+            final String defaultValue) {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mLatinIME);
+        final String previousSetting = prefs.getString(key, defaultValue);
+        final SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(key, value);
+        editor.apply();
+        return previousSetting;
+    }
+
+    protected void setDebugMode(final boolean value) {
+        setBooleanPreference(DebugSettings.PREF_DEBUG_MODE, value, false);
+        setBooleanPreference(Settings.PREF_KEY_IS_INTERNAL, value, false);
+    }
+
+    protected EditorInfo enrichEditorInfo(final EditorInfo ei) {
+        // Some tests that inherit from us need to add some data in the EditorInfo (see
+        // AppWorkaroundsTests#enrichEditorInfo() for a concrete example of this). Since we
+        // control the EditorInfo, we supply a hook here for children to override.
+        return ei;
     }
 
     @Override
@@ -154,15 +184,19 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         mEditText.setEnabled(true);
         setupService();
         mLatinIME = getService();
-        final boolean previousDebugSetting = setDebugMode(true);
+        setDebugMode(true);
+        mPreviousBigramPredictionSettings = setBooleanPreference(Settings.PREF_BIGRAM_PREDICTIONS,
+                true, true /* defaultValue */);
+        mPreviousAutoCorrectSetting = setStringPreference(Settings.PREF_AUTO_CORRECTION_THRESHOLD,
+                DEFAULT_AUTO_CORRECTION_THRESHOLD, DEFAULT_AUTO_CORRECTION_THRESHOLD);
         mLatinIME.onCreate();
-        setDebugMode(previousDebugSetting);
-        final EditorInfo ei = new EditorInfo();
+        EditorInfo ei = new EditorInfo();
         final InputConnection ic = mEditText.onCreateInputConnection(ei);
         final LayoutInflater inflater =
                 (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final ViewGroup vg = new FrameLayout(getContext());
         mInputView = inflater.inflate(R.layout.input_view, vg);
+        ei = enrichEditorInfo(ei);
         mLatinIME.onCreateInputMethodInterface().startInput(ic, ei);
         mLatinIME.setInputView(mInputView);
         mLatinIME.onBindInput();
@@ -170,6 +204,27 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         mLatinIME.onStartInputView(ei, false);
         mInputConnection = ic;
         changeLanguage("en_US");
+        // Run messages to avoid the messages enqueued by startInputView() and its friends
+        // to run on a later call and ruin things. We need to wait first because some of them
+        // can be posted with a delay (notably,  MSG_RESUME_SUGGESTIONS)
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        runMessages();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        mLatinIME.onFinishInputView(true);
+        mLatinIME.onFinishInput();
+        runMessages();
+        mLatinIME.mHandler.removeAllMessages();
+        setBooleanPreference(Settings.PREF_BIGRAM_PREDICTIONS, mPreviousBigramPredictionSettings,
+                true /* defaultValue */);
+        setStringPreference(Settings.PREF_AUTO_CORRECTION_THRESHOLD, mPreviousAutoCorrectSetting,
+                DEFAULT_AUTO_CORRECTION_THRESHOLD);
+        setDebugMode(false);
+        mLatinIME.recycle();
+        super.tearDown();
+        mLatinIME = null;
     }
 
     // We need to run the messages added to the handler from LatinIME. The only way to do
@@ -199,7 +254,7 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
     }
 
     // type(int) and type(String): helper methods to send a code point resp. a string to LatinIME.
-    protected void type(final int codePoint) {
+    protected void typeInternal(final int codePoint, final boolean isKeyRepeat) {
         // onPressKey and onReleaseKey are explicitly deactivated here, but they do happen in the
         // code (although multitouch/slide input and other factors make the sequencing complicated).
         // They are supposed to be entirely deconnected from the input logic from LatinIME point of
@@ -208,14 +263,24 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         // but keep them in mind if something breaks. Commenting them out as is should work.
         //mLatinIME.onPressKey(codePoint, 0 /* repeatCount */, true /* isSinglePointer */);
         final Key key = mKeyboard.getKey(codePoint);
-        if (key != null) {
+        if (key == null) {
+            mLatinIME.onCodeInput(codePoint, Constants.NOT_A_COORDINATE, Constants.NOT_A_COORDINATE,
+                    isKeyRepeat);
+        } else {
             final int x = key.getX() + key.getWidth() / 2;
             final int y = key.getY() + key.getHeight() / 2;
-            mLatinIME.onCodeInput(codePoint, x, y);
-            return;
+            mLatinIME.onCodeInput(codePoint, x, y, isKeyRepeat);
         }
-        mLatinIME.onCodeInput(codePoint, Constants.NOT_A_COORDINATE, Constants.NOT_A_COORDINATE);
+        // Also see the comment at the top of this function about onReleaseKey
         //mLatinIME.onReleaseKey(codePoint, false /* withSliding */);
+    }
+
+    protected void type(final int codePoint) {
+        typeInternal(codePoint, false /* isKeyRepeat */);
+    }
+
+    protected void repeatKey(final int codePoint) {
+        typeInternal(codePoint, true /* isKeyRepeat */);
     }
 
     protected void type(final String stringToType) {
@@ -224,44 +289,64 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         }
     }
 
-    protected void waitForDictionaryToBeLoaded() {
-        int remainingAttempts = 300;
-        while (remainingAttempts > 0 && mLatinIME.isCurrentlyWaitingForMainDictionary()) {
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                // Don't do much
-            } finally {
-                --remainingAttempts;
-            }
+    protected void waitForDictionariesToBeLoaded() {
+        try {
+            mLatinIME.waitForLoadingDictionaries(
+                    TIMEOUT_TO_WAIT_FOR_LOADING_MAIN_DICTIONARY_IN_SECONDS, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            Log.e(TAG, "Interrupted during waiting for loading main dictionary.", e);
         }
     }
 
     protected void changeLanguage(final String locale) {
-        changeLanguageWithoutWait(locale);
-        waitForDictionaryToBeLoaded();
+        changeLanguage(locale, null);
     }
 
-    protected void changeLanguageWithoutWait(final String locale) {
+    protected void changeLanguage(final String locale, final String combiningSpec) {
+        changeLanguageWithoutWait(locale, combiningSpec);
+        waitForDictionariesToBeLoaded();
+    }
+
+    protected void changeLanguageWithoutWait(final String locale, final String combiningSpec) {
         mEditText.mCurrentLocale = LocaleUtils.constructLocaleFromString(locale);
-        SubtypeSwitcher.getInstance().forceLocale(mEditText.mCurrentLocale);
-        mLatinIME.loadKeyboard();
+        // TODO: this is forcing a QWERTY keyboard for all locales, which is wrong.
+        // It's still better than using whatever keyboard is the current one, but we
+        // should actually use the default keyboard for this locale.
+        // TODO: Use {@link InputMethodSubtype.InputMethodSubtypeBuilder} directly or indirectly so
+        // that {@link InputMethodSubtype#isAsciiCapable} can return the correct value.
+        final String EXTRA_VALUE_FOR_TEST =
+                "KeyboardLayoutSet=" + SubtypeLocaleUtils.QWERTY
+                + "," + Constants.Subtype.ExtraValue.ASCII_CAPABLE
+                + "," + Constants.Subtype.ExtraValue.ENABLED_WHEN_DEFAULT_IS_NOT_ASCII_CAPABLE
+                + "," + Constants.Subtype.ExtraValue.EMOJI_CAPABLE
+                + null == combiningSpec ? "" : ("," + combiningSpec);
+        final InputMethodSubtype subtype = InputMethodSubtypeCompatUtils.newInputMethodSubtype(
+                R.string.subtype_no_language_qwerty,
+                R.drawable.ic_ime_switcher_dark,
+                locale,
+                Constants.Subtype.KEYBOARD_MODE,
+                EXTRA_VALUE_FOR_TEST,
+                false /* isAuxiliary */,
+                false /* overridesImplicitlyEnabledSubtype */,
+                0 /* id */);
+        SubtypeSwitcher.getInstance().forceSubtype(subtype);
+        mLatinIME.onCurrentInputMethodSubtypeChanged(subtype);
         runMessages();
         mKeyboard = mLatinIME.mKeyboardSwitcher.getKeyboard();
+        mLatinIME.clearPersonalizedDictionariesForTest();
     }
 
     protected void changeKeyboardLocaleAndDictLocale(final String keyboardLocale,
             final String dictLocale) {
         changeLanguage(keyboardLocale);
         if (!keyboardLocale.equals(dictLocale)) {
-            mLatinIME.replaceMainDictionaryForTest(
-                    LocaleUtils.constructLocaleFromString(dictLocale));
+            mLatinIME.replaceDictionariesForTest(LocaleUtils.constructLocaleFromString(dictLocale));
         }
-        waitForDictionaryToBeLoaded();
+        waitForDictionariesToBeLoaded();
     }
 
-    protected void pickSuggestionManually(final int index, final String suggestion) {
-        mLatinIME.pickSuggestionManually(index, new SuggestedWordInfo(suggestion, 1,
+    protected void pickSuggestionManually(final String suggestion) {
+        mLatinIME.pickSuggestionManually(new SuggestedWordInfo(suggestion, 1,
                 SuggestedWordInfo.KIND_CORRECTION, null /* sourceDict */,
                 SuggestedWordInfo.NOT_AN_INDEX /* indexOfTouchPointOfSecondWord */,
                 SuggestedWordInfo.NOT_A_CONFIDENCE /* autoCommitFirstWordConfidence */));

@@ -37,12 +37,12 @@ public class RecapitalizeStatus {
         CAPS_MODE_ALL_UPPER
     };
 
-    private static final int getStringMode(final String string, final String separators) {
+    private static final int getStringMode(final String string, final int[] sortedSeparators) {
         if (StringUtils.isIdenticalAfterUpcase(string)) {
             return CAPS_MODE_ALL_UPPER;
         } else if (StringUtils.isIdenticalAfterDowncase(string)) {
             return CAPS_MODE_ALL_LOWER;
-        } else if (StringUtils.isIdenticalAfterCapitalizeEachWord(string, separators)) {
+        } else if (StringUtils.isIdenticalAfterCapitalizeEachWord(string, sortedSeparators)) {
             return CAPS_MODE_FIRST_WORD_UPPER;
         } else {
             return CAPS_MODE_ORIGINAL_MIXED_CASE;
@@ -60,26 +60,32 @@ public class RecapitalizeStatus {
     private int mRotationStyleCurrentIndex;
     private boolean mSkipOriginalMixedCaseMode;
     private Locale mLocale;
-    private String mSeparators;
+    private int[] mSortedSeparators;
     private String mStringAfter;
-    private boolean mIsActive;
+    private boolean mIsStarted;
+    private boolean mIsEnabled = true;
+
+    private static final int[] EMPTY_STORTED_SEPARATORS = {};
 
     public RecapitalizeStatus() {
         // By default, initialize with dummy values that won't match any real recapitalize.
-        initialize(-1, -1, "", Locale.getDefault(), "");
-        deactivate();
+        start(-1, -1, "", Locale.getDefault(), EMPTY_STORTED_SEPARATORS);
+        stop();
     }
 
-    public void initialize(final int cursorStart, final int cursorEnd, final String string,
-            final Locale locale, final String separators) {
+    public void start(final int cursorStart, final int cursorEnd, final String string,
+            final Locale locale, final int[] sortedSeparators) {
+        if (!mIsEnabled) {
+            return;
+        }
         mCursorStartBefore = cursorStart;
         mStringBefore = string;
         mCursorStartAfter = cursorStart;
         mCursorEndAfter = cursorEnd;
         mStringAfter = string;
-        final int initialMode = getStringMode(mStringBefore, separators);
+        final int initialMode = getStringMode(mStringBefore, sortedSeparators);
         mLocale = locale;
-        mSeparators = separators;
+        mSortedSeparators = sortedSeparators;
         if (CAPS_MODE_ORIGINAL_MIXED_CASE == initialMode) {
             mRotationStyleCurrentIndex = 0;
             mSkipOriginalMixedCaseMode = false;
@@ -94,15 +100,27 @@ public class RecapitalizeStatus {
             mRotationStyleCurrentIndex = currentMode;
             mSkipOriginalMixedCaseMode = true;
         }
-        mIsActive = true;
+        mIsStarted = true;
     }
 
-    public void deactivate() {
-        mIsActive = false;
+    public void stop() {
+        mIsStarted = false;
     }
 
-    public boolean isActive() {
-        return mIsActive;
+    public boolean isStarted() {
+        return mIsStarted;
+    }
+
+    public void enable() {
+        mIsEnabled = true;
+    }
+
+    public void disable() {
+        mIsEnabled = false;
+    }
+
+    public boolean mIsEnabled() {
+        return mIsEnabled;
     }
 
     public boolean isSetAt(final int cursorStart, final int cursorEnd) {
@@ -131,7 +149,7 @@ public class RecapitalizeStatus {
                 mStringAfter = mStringBefore.toLowerCase(mLocale);
                 break;
             case CAPS_MODE_FIRST_WORD_UPPER:
-                mStringAfter = StringUtils.capitalizeEachWord(mStringBefore, mSeparators,
+                mStringAfter = StringUtils.capitalizeEachWord(mStringBefore, mSortedSeparators,
                         mLocale);
                 break;
             case CAPS_MODE_ALL_UPPER:

@@ -34,7 +34,7 @@ public final class ResizableIntArray {
         throw new ArrayIndexOutOfBoundsException("length=" + mLength + "; index=" + index);
     }
 
-    public void add(final int index, final int val) {
+    public void addAt(final int index, final int val) {
         if (index < mLength) {
             mArray[index] = val;
         } else {

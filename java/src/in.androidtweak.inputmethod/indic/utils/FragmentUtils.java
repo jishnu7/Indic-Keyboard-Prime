@@ -18,32 +18,44 @@ package in.androidtweak.inputmethod.indic.utils;
 
 import in.androidtweak.inputmethod.dictionarypack.DictionarySettingsFragment;
 import in.androidtweak.inputmethod.indic.about.AboutPreferences;
-import in.androidtweak.inputmethod.indic.settings.AdditionalSubtypeSettings;
-import in.androidtweak.inputmethod.indic.settings.DebugSettings;
+import in.androidtweak.inputmethod.indic.settings.AdvancedSettingsFragment;
+import in.androidtweak.inputmethod.indic.settings.AppearanceSettingsFragment;
+import in.androidtweak.inputmethod.indic.settings.CorrectionSettingsFragment;
+import in.androidtweak.inputmethod.indic.settings.CustomInputStyleSettingsFragment;
+import in.androidtweak.inputmethod.indic.settings.DebugSettingsFragment;
+import in.androidtweak.inputmethod.indic.settings.GestureSettingsFragment;
+import in.androidtweak.inputmethod.indic.settings.MultiLingualSettingsFragment;
+import in.androidtweak.inputmethod.indic.settings.PreferencesSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.SettingsFragment;
+import in.androidtweak.inputmethod.indic.settings.ThemeSettingsFragment;
 import in.androidtweak.inputmethod.indic.spellcheck.SpellCheckerSettingsFragment;
 import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryAddWordFragment;
 import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryList;
 import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryLocalePicker;
 import in.androidtweak.inputmethod.indic.userdictionary.UserDictionarySettings;
-import in.androidtweak.inputmethod.research.FeedbackFragment;
 
 import java.util.HashSet;
 
 public class FragmentUtils {
-    private static final HashSet<String> sLatinImeFragments = new HashSet<String>();
+    private static final HashSet<String> sLatinImeFragments = new HashSet<>();
     static {
         sLatinImeFragments.add(DictionarySettingsFragment.class.getName());
         sLatinImeFragments.add(AboutPreferences.class.getName());
-        sLatinImeFragments.add(AdditionalSubtypeSettings.class.getName());
-        sLatinImeFragments.add(DebugSettings.class.getName());
+        sLatinImeFragments.add(PreferencesSettingsFragment.class.getName());
+        sLatinImeFragments.add(AppearanceSettingsFragment.class.getName());
+        sLatinImeFragments.add(ThemeSettingsFragment.class.getName());
+        sLatinImeFragments.add(MultiLingualSettingsFragment.class.getName());
+        sLatinImeFragments.add(CustomInputStyleSettingsFragment.class.getName());
+        sLatinImeFragments.add(GestureSettingsFragment.class.getName());
+        sLatinImeFragments.add(CorrectionSettingsFragment.class.getName());
+        sLatinImeFragments.add(AdvancedSettingsFragment.class.getName());
+        sLatinImeFragments.add(DebugSettingsFragment.class.getName());
         sLatinImeFragments.add(SettingsFragment.class.getName());
         sLatinImeFragments.add(SpellCheckerSettingsFragment.class.getName());
         sLatinImeFragments.add(UserDictionaryAddWordFragment.class.getName());
         sLatinImeFragments.add(UserDictionaryList.class.getName());
         sLatinImeFragments.add(UserDictionaryLocalePicker.class.getName());
         sLatinImeFragments.add(UserDictionarySettings.class.getName());
-        sLatinImeFragments.add(FeedbackFragment.class.getName());
     }
 
     public static boolean isValidFragment(String fragmentName) {

@@ -18,14 +18,14 @@ package in.androidtweak.inputmethod.indic.utils;
 
 import android.util.Log;
 
-import in.androidtweak.inputmethod.indic.LatinImeLogger;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
 
 /**
  * A class for logging and debugging utility methods.
  */
 public final class DebugLogUtils {
     private final static String TAG = DebugLogUtils.class.getSimpleName();
-    private final static boolean sDBG = LatinImeLogger.sDBG;
+    private final static boolean sDBG = DebugFlags.DEBUG_ENABLED;
 
     /**
      * Calls .toString() on its non-null argument or returns "null"

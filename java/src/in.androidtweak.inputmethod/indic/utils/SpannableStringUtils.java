@@ -22,6 +22,7 @@ import android.text.Spanned;
 import android.text.SpannedString;
 import android.text.TextUtils;
 import android.text.style.SuggestionSpan;
+import android.text.style.URLSpan;
 
 public final class SpannableStringUtils {
     /**
@@ -40,12 +41,17 @@ public final class SpannableStringUtils {
      * are out of range in <code>dest</code>.
      */
     public static void copyNonParagraphSuggestionSpansFrom(Spanned source, int start, int end,
-                                     Spannable dest, int destoff) {
+            Spannable dest, int destoff) {
         Object[] spans = source.getSpans(start, end, SuggestionSpan.class);
 
         for (int i = 0; i < spans.length; i++) {
             int fl = source.getSpanFlags(spans[i]);
-            if (0 != (fl & Spannable.SPAN_PARAGRAPH)) continue;
+            // We don't care about the PARAGRAPH flag in LatinIME code. However, if this flag
+            // is set, Spannable#setSpan will throw an exception unless the span is on the edge
+            // of a word. But the spans have been split into two by the getText{Before,After}Cursor
+            // methods, so after concatenation they may end in the middle of a word.
+            // Since we don't use them, we can just remove them and avoid crashing.
+            fl &= ~Spannable.SPAN_PARAGRAPH;
 
             int st = source.getSpanStart(spans[i]);
             int en = source.getSpanEnd(spans[i]);
@@ -106,5 +112,17 @@ public final class SpannableStringUtils {
         }
 
         return new SpannedString(ss);
+    }
+
+    public static boolean hasUrlSpans(final CharSequence text,
+            final int startIndex, final int endIndex) {
+        if (!(text instanceof Spanned)) {
+            return false; // Not spanned, so no link
+        }
+        final Spanned spanned = (Spanned)text;
+        // getSpans(x, y) does not return spans that start on x or end on y. x-1, y+1 does the
+        // trick, and works in all cases even if startIndex <= 0 or endIndex >= text.length().
+        final URLSpan[] spans = spanned.getSpans(startIndex - 1, endIndex + 1, URLSpan.class);
+        return null != spans && spans.length > 0;
     }
 }

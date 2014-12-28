@@ -20,15 +20,19 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.text.TextUtils;
 import android.util.Log;
 
 import in.androidtweak.inputmethod.indic.AssetFileAddress;
 import in.androidtweak.inputmethod.indic.BinaryDictionaryGetter;
+import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
-import com.android.inputmethod.latin.makedict.BinaryDictIOUtils;
-import com.android.inputmethod.latin.makedict.FormatSpec.FileHeader;
+import in.androidtweak.inputmethod.indic.makedict.DictionaryHeader;
+import in.androidtweak.inputmethod.indic.makedict.UnsupportedFormatException;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
@@ -278,14 +282,36 @@ public class DictionaryInfoUtils {
                 BinaryDictionaryGetter.ID_CATEGORY_SEPARATOR + locale.getLanguage().toString();
     }
 
-    public static FileHeader getDictionaryFileHeaderOrNull(final File file) {
-        return BinaryDictIOUtils.getDictionaryFileHeaderOrNull(file, 0, file.length());
+    public static DictionaryHeader getDictionaryFileHeaderOrNull(final File file) {
+        return getDictionaryFileHeaderOrNull(file, 0, file.length());
     }
 
+    private static DictionaryHeader getDictionaryFileHeaderOrNull(final File file,
+            final long offset, final long length) {
+        try {
+            final DictionaryHeader header =
+                    BinaryDictionaryUtils.getHeaderWithOffsetAndLength(file, offset, length);
+            return header;
+        } catch (UnsupportedFormatException e) {
+            return null;
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Returns information of the dictionary.
+     *
+     * @param fileAddress the asset dictionary file address.
+     * @return information of the specified dictionary.
+     */
     private static DictionaryInfo createDictionaryInfoFromFileAddress(
             final AssetFileAddress fileAddress) {
-        final FileHeader header = BinaryDictIOUtils.getDictionaryFileHeaderOrNull(
+        final DictionaryHeader header = getDictionaryFileHeaderOrNull(
                 new File(fileAddress.mFilename), fileAddress.mOffset, fileAddress.mLength);
+        if (header == null) {
+            return null;
+        }
         final String id = header.getId();
         final Locale locale = LocaleUtils.constructLocaleFromString(header.getLocaleString());
         final String description = header.getDescription();
@@ -310,7 +336,7 @@ public class DictionaryInfoUtils {
 
     public static ArrayList<DictionaryInfo> getCurrentDictionaryFileNameAndVersionInfo(
             final Context context) {
-        final ArrayList<DictionaryInfo> dictList = CollectionUtils.newArrayList();
+        final ArrayList<DictionaryInfo> dictList = new ArrayList<>();
 
         // Retrieve downloaded dictionaries
         final File[] directoryList = getCachedDirectoryList(context);
@@ -328,7 +354,7 @@ public class DictionaryInfoUtils {
                     // Protect against cases of a less-specific dictionary being found, like an
                     // en dictionary being used for an en_US locale. In this case, the en dictionary
                     // should be used for en_US but discounted for listing purposes.
-                    if (!dictionaryInfo.mLocale.equals(locale)) continue;
+                    if (dictionaryInfo == null || !dictionaryInfo.mLocale.equals(locale)) continue;
                     addOrUpdateDictInfo(dictList, dictionaryInfo);
                 }
             }
@@ -354,5 +380,32 @@ public class DictionaryInfoUtils {
         }
 
         return dictList;
+    }
+
+    public static boolean looksValidForDictionaryInsertion(final CharSequence text,
+            final SpacingAndPunctuations spacingAndPunctuations) {
+        if (TextUtils.isEmpty(text)) return false;
+        final int length = text.length();
+        if (length > Constants.DICTIONARY_MAX_WORD_LENGTH) {
+            return false;
+        }
+        int i = 0;
+        int digitCount = 0;
+        while (i < length) {
+            final int codePoint = Character.codePointAt(text, i);
+            final int charCount = Character.charCount(codePoint);
+            i += charCount;
+            if (Character.isDigit(codePoint)) {
+                // Count digits: see below
+                digitCount += charCount;
+                continue;
+            }
+            if (!spacingAndPunctuations.isWordCodePoint(codePoint)) return false;
+        }
+        // We reject strings entirely comprised of digits to avoid using PIN codes or credit
+        // card numbers. It would come in handy for word prediction though; a good example is
+        // when writing one's address where the street number is usually quite discriminative,
+        // as well as the postal code.
+        return digitCount < length;
     }
 }
