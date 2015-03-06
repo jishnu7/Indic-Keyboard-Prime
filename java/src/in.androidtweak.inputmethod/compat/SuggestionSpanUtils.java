@@ -23,17 +23,11 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.SuggestionSpan;
 
-<<<<<<< HEAD:java/src/in.androidtweak.inputmethod/compat/SuggestionSpanUtils.java
-import in.androidtweak.inputmethod.indic.LatinImeLogger;
 import in.androidtweak.inputmethod.indic.SuggestedWords;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import com.android.inputmethod.latin.define.DebugFlags;
 import in.androidtweak.inputmethod.indic.SuggestionSpanPickedNotificationReceiver;
 import in.androidtweak.inputmethod.indic.utils.CollectionUtils;
-=======
-import com.android.inputmethod.latin.SuggestedWords;
-import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
-import com.android.inputmethod.latin.define.DebugFlags;
-import com.android.inputmethod.latin.SuggestionSpanPickedNotificationReceiver;
->>>>>>> aosp/lollipop-release:java/src/com/android/inputmethod/compat/SuggestionSpanUtils.java
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

@@ -62,31 +62,6 @@ public final class KeyboardIconsSet {
     private static final HashMap<String, Integer> sNameToIdsMap = new HashMap<>();
 
     private static final Object[] NAMES_AND_ATTR_IDS = {
-<<<<<<< HEAD
-        "undefined",                    ATTR_UNDEFINED,
-        "shift_key",                    R.styleable.Keyboard_iconShiftKey,
-        "delete_key",                   R.styleable.Keyboard_iconDeleteKey,
-        "settings_key",                 R.styleable.Keyboard_iconSettingsKey,
-        "space_key",                    R.styleable.Keyboard_iconSpaceKey,
-        "enter_key",                    R.styleable.Keyboard_iconEnterKey,
-        "search_key",                   R.styleable.Keyboard_iconSearchKey,
-        "go_key",                       R.styleable.Keyboard_iconGoKey,
-        "next_key",                     R.styleable.Keyboard_iconNextKey,
-        "previous_key",                 R.styleable.Keyboard_iconPreviousKey,
-        "done_key",                     R.styleable.Keyboard_iconDoneKey,
-        "send_key",                     R.styleable.Keyboard_iconSendKey,
-        "tab_key",                      R.styleable.Keyboard_iconTabKey,
-        "shortcut_key",                 R.styleable.Keyboard_iconShortcutKey,
-        "shortcut_for_label",           R.styleable.Keyboard_iconShortcutForLabel,
-        "space_key_for_number_layout",  R.styleable.Keyboard_iconSpaceKeyForNumberLayout,
-        "shift_key_shifted",            R.styleable.Keyboard_iconShiftKeyShifted,
-        "shortcut_key_disabled",        R.styleable.Keyboard_iconShortcutKeyDisabled,
-        "tab_key_preview",              R.styleable.Keyboard_iconTabKeyPreview,
-        "language_switch_key",          R.styleable.Keyboard_iconLanguageSwitchKey,
-        "zwnj_key",                     R.styleable.Keyboard_iconZwnjKey,
-        "zwj_key",                      R.styleable.Keyboard_iconZwjKey,
-        "emoji_key",                    R.styleable.Keyboard_iconEmojiKey,
-=======
         NAME_UNDEFINED,                   ATTR_UNDEFINED,
         NAME_SHIFT_KEY,                   R.styleable.Keyboard_iconShiftKey,
         NAME_DELETE_KEY,                  R.styleable.Keyboard_iconDeleteKey,
@@ -109,7 +84,6 @@ public final class KeyboardIconsSet {
         NAME_ZWJ_KEY,                     R.styleable.Keyboard_iconZwjKey,
         NAME_EMOJI_ACTION_KEY,            R.styleable.Keyboard_iconEmojiActionKey,
         NAME_EMOJI_NORMAL_KEY,            R.styleable.Keyboard_iconEmojiNormalKey,
->>>>>>> aosp/lollipop-release
     };
 
     private static int NUM_ICONS = NAMES_AND_ATTR_IDS.length / 2;
