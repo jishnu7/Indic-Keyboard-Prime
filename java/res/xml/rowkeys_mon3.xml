@@ -24,84 +24,84 @@
     <switch>
         <case latin:keyboardLayoutSetElement="alphabetManualShifted|alphabetShiftLocked|alphabetShiftLockShifted" >
             <Key
-                latin:keyLabel="&#x103F;"
-                latin:keyLabelFlags="fontNormal|followKeyLargeLabelRatio" />
+                latin:keySpec="&#x103F;"
+                latin:keyLabelFlags="fontNormal|followKeyLetterRatio" />
 
             <Key
-                latin:keyLabel="&#x1023;"
-                latin:keyLabelFlags="fontNormal|followKeyLargeLabelRatio" />
+                latin:keySpec="&#x1023;"
+                latin:keyLabelFlags="fontNormal|followKeyLetterRatio" />
 
             <Key
-                latin:keyLabel="&#x1020;"
-                latin:keyLabelFlags="fontNormal|followKeyLargeLabelRatio" />
+                latin:keySpec="&#x1020;"
+                latin:keyLabelFlags="fontNormal|followKeyLetterRatio" />
 
             <Key
-                latin:keyLabel="&#x1003;"
-                latin:keyLabelFlags="fontNormal|followKeyLargeLabelRatio" />
+                latin:keySpec="&#x1003;"
+                latin:keyLabelFlags="fontNormal|followKeyLetterRatio" />
 
             <Key
-                latin:keyLabel="&#x1028;"
-                latin:keyLabelFlags="fontNormal|followKeyLargeLabelRatio" />
+                latin:keySpec="&#x1028;"
+                latin:keyLabelFlags="fontNormal|followKeyLetterRatio" />
 
             <Key
-                latin:keyLabel="&#x105D;"
-                latin:keyLabelFlags="fontNormal|followKeyLargeLabelRatio" />
+                latin:keySpec="&#x105D;"
+                latin:keyLabelFlags="fontNormal|followKeyLetterRatio" />
 
             <Key
-                latin:keyLabel="&#x100E;"
+                latin:keySpec="&#x100E;"
                 latin:keyLabelFlags="fontNormal" />
 
             <Key
-                latin:keyLabel="&#x1027;"
+                latin:keySpec="&#x1027;"
                 latin:keyLabelFlags="fontNormal" />
 
             <Key
-                latin:keyLabel="&#x1007;"
+                latin:keySpec="&#x1007;"
                 latin:keyLabelFlags="fontNormal" />
 
             <Key
-                latin:keyLabel="\?"
+                latin:keySpec="\?"
                 latin:keyLabelFlags="fontNormal" />
         </case>
         <default>
             <Key
-                latin:keyLabel="&#x1012;"
+                latin:keySpec="&#x1012;"
                 latin:keyLabelFlags="fontNormal" />
 
             <Key
-                latin:keyLabel="&#x1001;"
+                latin:keySpec="&#x1001;"
                 latin:keyLabelFlags="fontNormal" />
 
             <Key
-                latin:keyLabel="&#x1005;"
+                latin:keySpec="&#x1005;"
                 latin:keyLabelFlags="fontNormal" />
 
             <Key
-                latin:keyLabel="&#x100D;"
-                latin:keyLabelFlags="fontNormal|followKeyLargeLabelRatio" />
+                latin:keySpec="&#x100D;"
+                latin:keyLabelFlags="fontNormal|followKeyLetterRatio" />
 
             <Key
-                latin:keyLabel="&#x101F;"
-                latin:keyLabelFlags="fontNormal|followKeyLargeLabelRatio" />
+                latin:keySpec="&#x101F;"
+                latin:keyLabelFlags="fontNormal|followKeyLetterRatio" />
 
             <Key
-                latin:keyLabel="&#x101D;"
+                latin:keySpec="&#x101D;"
                 latin:keyLabelFlags="fontNormal" />
 
             <Key
-                latin:keyLabel="&#x1017;"
+                latin:keySpec="&#x1017;"
                 latin:keyLabelFlags="fontNormal" />
 
             <Key
-                latin:keyLabel="&#x100F;"
+                latin:keySpec="&#x100F;"
                 latin:keyLabelFlags="fontNormal" />
 
             <Key
-                latin:keyLabel="&#x104A;"
+                latin:keySpec="&#x104A;"
                 latin:keyLabelFlags="fontNormal" />
 
             <Key
-                latin:keyLabel="&#x104B;"
+                latin:keySpec="&#x104B;"
                 latin:keyLabelFlags="fontNormal" />
         </default>
     </switch>
