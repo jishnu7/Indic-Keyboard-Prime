@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
 import android.graphics.Matrix;
 import android.graphics.Rect;

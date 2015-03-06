@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.personalization;
+package in.androidtweak.inputmethod.indic.personalization;
 
 import android.content.Context;
 
-import com.android.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.Dictionary;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Dictionary;
 import com.android.inputmethod.latin.ExpandableBinaryDictionary;
 
 import java.io.File;

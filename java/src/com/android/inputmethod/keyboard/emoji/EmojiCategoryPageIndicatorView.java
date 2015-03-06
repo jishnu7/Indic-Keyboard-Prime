@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+package com.android.inputmethod.keyboard.emoji;
 import in.androidtweak.inputmethod.indic.R;
 
 import android.content.Context;

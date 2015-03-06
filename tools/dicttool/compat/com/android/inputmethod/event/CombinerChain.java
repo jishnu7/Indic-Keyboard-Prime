@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.event;
+package in.androidtweak.inputmethod.event;
 
 import java.util.ArrayList;
 

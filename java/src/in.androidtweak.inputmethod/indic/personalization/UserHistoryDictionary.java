@@ -19,11 +19,11 @@ package in.androidtweak.inputmethod.indic.personalization;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.android.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.Dictionary;
 import in.androidtweak.inputmethod.indic.ExpandableBinaryDictionary;
-import in.androidtweak.inputmethod.indic.PrevWordsInfo;
+import com.android.inputmethod.latin.PrevWordsInfo;
 import in.androidtweak.inputmethod.indic.utils.DistracterFilter;
 
 import java.io.File;

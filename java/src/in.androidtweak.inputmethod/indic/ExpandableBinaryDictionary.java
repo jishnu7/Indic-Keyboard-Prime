@@ -21,10 +21,12 @@ import android.util.Log;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.keyboard.ProximityInfo;
+import com.android.inputmethod.latin.PrevWordsInfo;
+import com.android.inputmethod.latin.BinaryDictionary;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
 import com.android.inputmethod.latin.makedict.FormatSpec;
-import in.androidtweak.inputmethod.indic.makedict.UnsupportedFormatException;
-import in.androidtweak.inputmethod.indic.makedict.WordProperty;
+import com.android.inputmethod.latin.makedict.UnsupportedFormatException;
+import com.android.inputmethod.latin.makedict.WordProperty;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
 import in.androidtweak.inputmethod.indic.utils.CombinedFormatUtils;

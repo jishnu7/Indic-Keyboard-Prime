@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
 import android.content.Context;
-import com.android.inputmethod.latin.settings.SettingsValues;
+import in.androidtweak.inputmethod.indic.settings.SettingsValues;
 
 public final class StatsUtils {
     public static void init(final Context context) {

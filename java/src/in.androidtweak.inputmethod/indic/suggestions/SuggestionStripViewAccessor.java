@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.suggestions;
+package in.androidtweak.inputmethod.indic.suggestions;
 
-import com.android.inputmethod.latin.SuggestedWords;
+import in.androidtweak.inputmethod.indic.SuggestedWords;
 
 /**
  * An object that gives basic control of a suggestion strip and some info on it.

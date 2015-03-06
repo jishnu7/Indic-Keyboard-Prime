@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.settings;
+package in.androidtweak.inputmethod.indic.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,9 +25,9 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.TwoStatePreference;
 
-import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.define.ProductionFlags;
+import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.define.ProductionFlags;
 import com.android.inputmethod.latin.setup.LauncherIconVisibilityManager;
 
 /**

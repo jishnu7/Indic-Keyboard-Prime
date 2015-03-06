@@ -19,8 +19,8 @@ package in.androidtweak.inputmethod.compat;
 import android.os.Build;
 import android.view.inputmethod.InputMethodSubtype;
 
-import com.android.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Constants;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

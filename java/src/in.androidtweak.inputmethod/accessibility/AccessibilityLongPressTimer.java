@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.accessibility;
+package in.androidtweak.inputmethod.accessibility;
 
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
 import com.android.inputmethod.keyboard.Key;
-import com.android.inputmethod.latin.R;
+import in.androidtweak.inputmethod.indic.R;
 
 // Handling long press timer to show a more keys keyboard.
 final class AccessibilityLongPressTimer extends Handler {

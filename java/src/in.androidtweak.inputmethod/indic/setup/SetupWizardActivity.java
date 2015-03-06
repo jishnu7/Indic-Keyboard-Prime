@@ -30,10 +30,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.inputmethod.compat.TextViewCompatUtils;
-import com.android.inputmethod.compat.ViewCompatUtils;
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.settings.SettingsActivity;
+import in.androidtweak.inputmethod.compat.TextViewCompatUtils;
+import in.androidtweak.inputmethod.compat.ViewCompatUtils;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.settings.SettingsActivity;
 
 import java.util.ArrayList;
 

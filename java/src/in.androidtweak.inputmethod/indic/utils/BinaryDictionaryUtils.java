@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
-import com.android.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.latin.BinaryDictionary;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
 import com.android.inputmethod.latin.makedict.UnsupportedFormatException;
-import com.android.inputmethod.latin.personalization.PersonalizationHelper;
+import in.androidtweak.inputmethod.indic.personalization.PersonalizationHelper;
 
 import java.io.File;
 import java.io.IOException;

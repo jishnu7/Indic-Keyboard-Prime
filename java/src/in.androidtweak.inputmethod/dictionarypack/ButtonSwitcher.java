@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package in.androidtweak.inputmethod.dictionarypack;
+package com.android.inputmethod.dictionarypack;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

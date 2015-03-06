@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.accessibility;
+package in.androidtweak.inputmethod.accessibility;
 
 import android.graphics.Rect;
 import android.util.Log;

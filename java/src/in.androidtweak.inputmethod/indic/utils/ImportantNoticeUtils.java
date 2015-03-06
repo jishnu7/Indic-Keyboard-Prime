@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -23,8 +23,8 @@ import android.provider.Settings.SettingNotFoundException;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.R;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.R;
 
 import java.util.concurrent.TimeUnit;
 

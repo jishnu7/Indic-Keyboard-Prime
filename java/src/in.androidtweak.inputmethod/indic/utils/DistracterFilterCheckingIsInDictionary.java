@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
 import java.util.List;
 import java.util.Locale;
 
 import android.view.inputmethod.InputMethodSubtype;
 
-import com.android.inputmethod.latin.Dictionary;
+import in.androidtweak.inputmethod.indic.Dictionary;
 import com.android.inputmethod.latin.PrevWordsInfo;
 
 public class DistracterFilterCheckingIsInDictionary implements DistracterFilter {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.settings;
+package in.androidtweak.inputmethod.indic.settings;
 
 import android.content.Context;
 import android.content.Intent;
@@ -29,10 +29,10 @@ import android.preference.TwoStatePreference;
 
 import com.android.inputmethod.latin.DictionaryDumpBroadcastReceiver;
 import com.android.inputmethod.latin.DictionaryFacilitator;
-import com.android.inputmethod.latin.R;
+import in.androidtweak.inputmethod.indic.R;
 import com.android.inputmethod.latin.debug.ExternalDictionaryGetterForDebug;
-import com.android.inputmethod.latin.utils.ApplicationUtils;
-import com.android.inputmethod.latin.utils.ResourceUtils;
+import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
+import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
 
 import java.util.Locale;
 

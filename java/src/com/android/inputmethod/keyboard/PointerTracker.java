@@ -31,13 +31,13 @@ import com.android.inputmethod.keyboard.internal.GestureStrokeDrawingPoints;
 import com.android.inputmethod.keyboard.internal.GestureStrokeRecognitionParams;
 import com.android.inputmethod.keyboard.internal.PointerTrackerQueue;
 import com.android.inputmethod.keyboard.internal.TypingTimeRecorder;
-import com.android.inputmethod.latin.Constants;
-import com.android.inputmethod.latin.InputPointers;
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.define.DebugFlags;
-import com.android.inputmethod.latin.settings.Settings;
-import com.android.inputmethod.latin.utils.CoordinateUtils;
-import com.android.inputmethod.latin.utils.ResourceUtils;
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.InputPointers;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
+import in.androidtweak.inputmethod.indic.settings.Settings;
+import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
+import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
 
 import java.util.ArrayList;
 

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
-import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
-import com.android.inputmethod.latin.define.ProductionFlags;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.define.ProductionFlags;
 
 import java.util.ArrayList;
 import java.util.Collection;

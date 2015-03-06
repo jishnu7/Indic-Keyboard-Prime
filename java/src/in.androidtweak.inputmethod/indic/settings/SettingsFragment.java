@@ -26,7 +26,7 @@ import android.view.MenuItem;
 
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
-import com.android.inputmethod.latin.utils.ApplicationUtils;
+import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
 import in.androidtweak.inputmethod.indic.utils.FeedbackUtils;
 import com.android.inputmethodcommon.InputMethodSettingsFragment;
 

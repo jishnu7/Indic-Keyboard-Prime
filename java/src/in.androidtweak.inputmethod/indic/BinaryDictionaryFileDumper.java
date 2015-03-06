@@ -27,8 +27,8 @@ import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 
-import in.androidtweak.inputmethod.dictionarypack.DictionaryPackConstants;
-import in.androidtweak.inputmethod.dictionarypack.MD5Calculator;
+import com.android.inputmethod.dictionarypack.DictionaryPackConstants;
+import com.android.inputmethod.dictionarypack.MD5Calculator;
 import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
 import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils.DictionaryInfo;
 import in.androidtweak.inputmethod.indic.utils.FileTransforms;

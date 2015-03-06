@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
 import java.util.regex.Pattern;
 
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.indic.Constants;
 import com.android.inputmethod.latin.PrevWordsInfo;
 import com.android.inputmethod.latin.PrevWordsInfo.WordInfo;
-import com.android.inputmethod.latin.settings.SpacingAndPunctuations;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 public final class PrevWordsInfoUtils {
     private PrevWordsInfoUtils() {

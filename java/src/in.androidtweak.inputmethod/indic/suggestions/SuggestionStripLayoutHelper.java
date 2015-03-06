@@ -46,7 +46,7 @@ import android.widget.TextView;
 
 import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.PunctuationSuggestions;
+import com.android.inputmethod.latin.PunctuationSuggestions;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SuggestedWords;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;

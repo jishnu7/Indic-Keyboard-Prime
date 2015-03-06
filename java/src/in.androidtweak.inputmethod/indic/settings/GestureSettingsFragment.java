@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.settings;
+package in.androidtweak.inputmethod.indic.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.android.inputmethod.latin.R;
+import in.androidtweak.inputmethod.indic.R;
 
 /**
  * "Gesture typing preferences" settings sub screen.

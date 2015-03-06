@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.suggestions;
+package in.androidtweak.inputmethod.indic.suggestions;
 
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.inputmethod.latin.SuggestedWords;
+import in.androidtweak.inputmethod.indic.SuggestedWords;
 
 @SmallTest
 public class SuggestionStripLayoutHelperTests extends AndroidTestCase {

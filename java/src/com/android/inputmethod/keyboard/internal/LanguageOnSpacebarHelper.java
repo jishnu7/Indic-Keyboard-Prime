@@ -18,7 +18,7 @@ package com.android.inputmethod.keyboard.internal;
 
 import android.view.inputmethod.InputMethodSubtype;
 
-import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
+import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
 import java.util.Collections;
 import java.util.List;

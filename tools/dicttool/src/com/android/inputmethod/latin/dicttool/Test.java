@@ -19,7 +19,7 @@ package com.android.inputmethod.latin.dicttool;
 import com.android.inputmethod.latin.makedict.BinaryDictDecoderEncoderTests;
 import com.android.inputmethod.latin.makedict.BinaryDictEncoderFlattenTreeTests;
 import com.android.inputmethod.latin.makedict.FusionDictionaryTest;
-import com.android.inputmethod.latin.utils.FileUtils;
+import in.androidtweak.inputmethod.indic.utils.FileUtils;
 
 import java.io.File;
 import java.io.IOException;

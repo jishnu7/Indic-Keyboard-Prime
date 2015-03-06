@@ -35,14 +35,14 @@ import android.view.inputmethod.InputMethodSubtype;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
-import com.android.inputmethod.compat.InputMethodSubtypeCompatUtils;
+import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
-import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
-import com.android.inputmethod.latin.settings.DebugSettings;
-import com.android.inputmethod.latin.settings.Settings;
-import com.android.inputmethod.latin.utils.LocaleUtils;
-import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.settings.DebugSettings;
+import in.androidtweak.inputmethod.indic.settings.Settings;
+import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
+import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;

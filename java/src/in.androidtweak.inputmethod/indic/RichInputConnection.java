@@ -32,6 +32,7 @@ import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 
+import com.android.inputmethod.latin.PrevWordsInfo;
 import in.androidtweak.inputmethod.compat.InputConnectionCompatUtils;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 import in.androidtweak.inputmethod.indic.utils.CapsModeUtils;

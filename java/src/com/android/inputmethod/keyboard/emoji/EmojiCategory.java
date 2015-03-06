@@ -24,14 +24,14 @@ import android.os.Build;
 import android.util.Log;
 import android.util.Pair;
 
-import com.android.inputmethod.compat.BuildCompatUtils;
+import in.androidtweak.inputmethod.compat.BuildCompatUtils;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
-import com.android.inputmethod.latin.Constants;
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.settings.Settings;
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.settings.Settings;
 
 import java.util.ArrayList;
 import java.util.Collections;

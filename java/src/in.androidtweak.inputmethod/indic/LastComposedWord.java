@@ -18,7 +18,8 @@ package in.androidtweak.inputmethod.indic;
 
 import android.text.TextUtils;
 
-import com.android.inputmethod.event.Event;
+import com.android.inputmethod.latin.PrevWordsInfo;
+import in.androidtweak.inputmethod.event.Event;
 
 import java.util.ArrayList;
 

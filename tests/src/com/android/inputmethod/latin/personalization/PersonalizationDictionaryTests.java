@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.personalization;
+package in.androidtweak.inputmethod.indic.personalization;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,12 +26,12 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import com.android.inputmethod.latin.BinaryDictionary;
-import com.android.inputmethod.latin.Dictionary;
+import in.androidtweak.inputmethod.indic.Dictionary;
 import com.android.inputmethod.latin.DictionaryFacilitator;
 import com.android.inputmethod.latin.ExpandableBinaryDictionary;
 import com.android.inputmethod.latin.ExpandableBinaryDictionary.AddMultipleDictionaryEntriesCallback;
 import com.android.inputmethod.latin.makedict.CodePointUtils;
-import com.android.inputmethod.latin.settings.SpacingAndPunctuations;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;

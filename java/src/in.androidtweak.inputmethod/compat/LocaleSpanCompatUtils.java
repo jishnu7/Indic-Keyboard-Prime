@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.compat;
+package in.androidtweak.inputmethod.compat;
 
 import android.text.Spannable;
 import android.text.style.LocaleSpan;
 import android.util.Log;
 
-import com.android.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

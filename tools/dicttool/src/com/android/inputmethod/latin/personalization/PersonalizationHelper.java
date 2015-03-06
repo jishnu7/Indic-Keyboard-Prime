@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.personalization;
+package in.androidtweak.inputmethod.indic.personalization;
 
 public class PersonalizationHelper {
     public static void currentTimeChangedForTesting(final int currentTimestamp) {

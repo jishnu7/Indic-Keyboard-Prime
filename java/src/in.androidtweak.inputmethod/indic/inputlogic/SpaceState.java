@@ -18,7 +18,7 @@ package in.androidtweak.inputmethod.indic.inputlogic;
 
 /**
  * Class for managing space states.
- * <p/>
+ *
  * At any given time, the input logic is in one of five possible space states. Depending on the
  * current space state, some behavior will change; the prime example of this is the PHANTOM state,
  * in which any subsequent letter input will input a space before the letter. Read on the

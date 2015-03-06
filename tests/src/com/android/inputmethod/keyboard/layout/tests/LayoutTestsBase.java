@@ -31,7 +31,7 @@ import com.android.inputmethod.keyboard.layout.expected.ActualKeyboardBuilder;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey.ExpectedAdditionalMoreKey;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKeyboardBuilder;
-import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
+import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
 import java.util.Arrays;
 

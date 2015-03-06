@@ -19,7 +19,7 @@ package com.android.inputmethod.latin;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 
 import java.util.ArrayList;
 import java.util.Locale;

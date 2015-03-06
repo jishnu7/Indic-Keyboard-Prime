@@ -20,9 +20,9 @@ import android.content.SharedPreferences;
 import android.os.Build.VERSION_CODES;
 import android.util.Log;
 
-import com.android.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.compat.BuildCompatUtils;
-import com.android.inputmethod.latin.R;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.compat.BuildCompatUtils;
+import in.androidtweak.inputmethod.indic.R;
 
 import java.util.Arrays;
 

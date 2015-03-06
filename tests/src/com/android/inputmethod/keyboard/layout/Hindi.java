@@ -21,7 +21,7 @@ import static com.android.inputmethod.keyboard.layout.DevanagariLetterConstants.
 import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKeyboardBuilder;
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.indic.Constants;
 
 import java.util.Locale;
 

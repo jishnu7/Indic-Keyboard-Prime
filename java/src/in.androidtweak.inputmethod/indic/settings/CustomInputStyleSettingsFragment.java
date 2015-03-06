@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.settings;
+package in.androidtweak.inputmethod.indic.settings;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -46,14 +46,14 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
-import com.android.inputmethod.compat.InputMethodSubtypeCompatUtils;
-import com.android.inputmethod.compat.ViewCompatUtils;
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.RichInputMethodManager;
-import com.android.inputmethod.latin.utils.AdditionalSubtypeUtils;
-import com.android.inputmethod.latin.utils.DialogUtils;
-import com.android.inputmethod.latin.utils.IntentUtils;
-import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
+import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
+import in.androidtweak.inputmethod.compat.ViewCompatUtils;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.RichInputMethodManager;
+import in.androidtweak.inputmethod.indic.utils.AdditionalSubtypeUtils;
+import in.androidtweak.inputmethod.indic.utils.DialogUtils;
+import in.androidtweak.inputmethod.indic.utils.IntentUtils;
+import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
 import java.util.ArrayList;
 import java.util.TreeSet;

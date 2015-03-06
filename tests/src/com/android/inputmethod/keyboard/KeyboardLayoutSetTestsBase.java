@@ -24,14 +24,14 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodSubtype;
 
-import com.android.inputmethod.compat.InputMethodSubtypeCompatUtils;
+import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet.Builder;
-import com.android.inputmethod.latin.Constants;
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.RichInputMethodManager;
-import com.android.inputmethod.latin.utils.AdditionalSubtypeUtils;
-import com.android.inputmethod.latin.utils.ResourceUtils;
-import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.RichInputMethodManager;
+import in.androidtweak.inputmethod.indic.utils.AdditionalSubtypeUtils;
+import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
+import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
 import java.util.ArrayList;
 import java.util.Locale;

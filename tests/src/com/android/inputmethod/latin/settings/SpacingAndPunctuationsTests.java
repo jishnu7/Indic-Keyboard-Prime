@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.settings;
+package in.androidtweak.inputmethod.indic.settings;
 
 import android.content.res.Resources;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.inputmethod.latin.Constants;
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.SuggestedWords;
-import com.android.inputmethod.latin.utils.RunInLocale;
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.SuggestedWords;
+import in.androidtweak.inputmethod.indic.utils.RunInLocale;
 
 import junit.framework.AssertionFailedError;
 

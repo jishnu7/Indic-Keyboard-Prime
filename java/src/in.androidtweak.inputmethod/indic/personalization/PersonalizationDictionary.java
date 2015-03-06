@@ -18,8 +18,8 @@ package in.androidtweak.inputmethod.indic.personalization;
 
 import android.content.Context;
 
-import com.android.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.Dictionary;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Dictionary;
 
 import java.io.File;
 import java.util.Locale;

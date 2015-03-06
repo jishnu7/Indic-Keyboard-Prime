@@ -21,7 +21,7 @@ import com.android.inputmethod.keyboard.internal.KeyboardIconsSet;
 import com.android.inputmethod.keyboard.layout.expected.AbstractLayoutBase;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKeyboardBuilder;
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.indic.Constants;
 
 import java.util.Locale;
 

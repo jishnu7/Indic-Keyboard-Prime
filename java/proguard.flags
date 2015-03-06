@@ -21,4 +21,4 @@
 -keep class com.android.inputmethod.latin.Dictionary
 -keep class com.android.inputmethod.latin.PrevWordsInfo
 -keep class com.android.inputmethod.latin.makedict.ProbabilityInfo
--keep class com.android.inputmethod.latin.utils.LanguageModelParam
+-keep class in.androidtweak.inputmethod.indic.utils.LanguageModelParam

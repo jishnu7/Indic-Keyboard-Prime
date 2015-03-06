@@ -21,8 +21,8 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.utils.ResourceUtils;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
 
 final class EmojiLayoutParams {
     private static final int DEFAULT_KEYBOARD_ROWS = 4;

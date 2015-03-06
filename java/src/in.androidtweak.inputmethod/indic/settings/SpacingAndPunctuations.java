@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.settings;
+package in.androidtweak.inputmethod.indic.settings;
 
 import android.content.res.Resources;
 
-import com.android.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.keyboard.internal.MoreKeySpec;
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.indic.Constants;
 import com.android.inputmethod.latin.PunctuationSuggestions;
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.utils.StringUtils;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 import java.util.Arrays;
 import java.util.Locale;

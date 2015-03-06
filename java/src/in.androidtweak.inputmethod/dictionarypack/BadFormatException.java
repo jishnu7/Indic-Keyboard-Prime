@@ -14,7 +14,7 @@
  * the License.
  */
 
-package in.androidtweak.inputmethod.dictionarypack;
+package com.android.inputmethod.dictionarypack;
 
 /**
  * Exception thrown when the metadata for the dictionary does not comply to a known format.

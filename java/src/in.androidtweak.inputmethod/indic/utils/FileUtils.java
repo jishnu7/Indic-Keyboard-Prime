@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
 import java.io.File;
 import java.io.FilenameFilter;

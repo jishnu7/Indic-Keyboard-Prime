@@ -19,6 +19,7 @@ package in.androidtweak.inputmethod.indic;
 import in.androidtweak.inputmethod.event.CombinerChain;
 import in.androidtweak.inputmethod.event.Event;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
+import com.android.inputmethod.latin.PrevWordsInfo;
 import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
 

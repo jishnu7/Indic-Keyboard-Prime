@@ -16,8 +16,8 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import static com.android.inputmethod.latin.Constants.ImeOption.NO_MICROPHONE;
-import static com.android.inputmethod.latin.Constants.ImeOption.NO_MICROPHONE_COMPAT;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE_COMPAT;
 
 import android.text.InputType;
 import android.util.Log;

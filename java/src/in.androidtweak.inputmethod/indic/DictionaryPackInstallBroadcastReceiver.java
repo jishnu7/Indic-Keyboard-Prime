@@ -16,7 +16,7 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import in.androidtweak.inputmethod.dictionarypack.DictionaryPackConstants;
+import com.android.inputmethod.dictionarypack.DictionaryPackConstants;
 import in.androidtweak.inputmethod.indic.utils.TargetPackageInfoGetterTask;
 
 import android.content.BroadcastReceiver;

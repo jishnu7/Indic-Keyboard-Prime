@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.compat;
+package in.androidtweak.inputmethod.compat;
 
 import android.graphics.Matrix;
 import android.graphics.RectF;
 
-import com.android.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 
 @UsedForTesting
 public final class CursorAnchorInfoCompatWrapper {

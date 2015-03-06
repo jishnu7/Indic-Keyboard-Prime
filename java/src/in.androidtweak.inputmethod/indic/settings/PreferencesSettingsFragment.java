@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.settings;
+package in.androidtweak.inputmethod.indic.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,9 +22,9 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.Preference;
 
-import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.SubtypeSwitcher;
+import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.SubtypeSwitcher;
 
 /**
  * "Preferences" settings sub screen.

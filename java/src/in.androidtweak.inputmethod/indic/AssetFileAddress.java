@@ -16,7 +16,7 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import com.android.inputmethod.latin.utils.FileUtils;
+import in.androidtweak.inputmethod.indic.utils.FileUtils;
 
 import java.io.File;
 

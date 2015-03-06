@@ -868,14 +868,4 @@ public class KeyboardBuilder<KP extends KeyboardParams> {
         return a.hasValue(index)
                 ? String.format(" %s=%s", name, a.getBoolean(index, false)) : "";
     }
-
-    private static boolean isIconDefined(TypedArray a, int index, KeyboardIconsSet iconsSet) {
-        if (!a.hasValue(index)) {
-            return true;
-        }
-        while (iconsSet.getIconDrawable(KeyboardIconsSet.getIconId(a.getString(index))) != null) {
-            return true;
-        }
-        return false;
-    }
 }

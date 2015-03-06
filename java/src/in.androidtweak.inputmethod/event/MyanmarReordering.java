@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.event;
+package in.androidtweak.inputmethod.event;
 
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.indic.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.accessibility;
+package in.androidtweak.inputmethod.accessibility;
 
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -31,9 +31,9 @@ import android.view.inputmethod.EditorInfo;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardView;
-import com.android.inputmethod.latin.settings.Settings;
-import com.android.inputmethod.latin.settings.SettingsValues;
-import com.android.inputmethod.latin.utils.CoordinateUtils;
+import in.androidtweak.inputmethod.indic.settings.Settings;
+import in.androidtweak.inputmethod.indic.settings.SettingsValues;
+import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
 
 import java.util.List;
 

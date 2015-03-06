@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,9 +35,9 @@ import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
 import com.android.inputmethod.latin.DictionaryFacilitator;
 import com.android.inputmethod.latin.PrevWordsInfo;
-import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import com.android.inputmethod.latin.WordComposer;
-import com.android.inputmethod.latin.settings.SettingsValuesForSuggestion;
+import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
 
 /**
  * This class is used to prevent distracters being added to personalization

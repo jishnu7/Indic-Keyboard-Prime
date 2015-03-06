@@ -20,8 +20,8 @@ import android.os.Message;
 
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.internal.DrawingHandler.Callbacks;
-import com.android.inputmethod.latin.SuggestedWords;
-import com.android.inputmethod.latin.utils.LeakGuardHandlerWrapper;
+import in.androidtweak.inputmethod.indic.SuggestedWords;
+import in.androidtweak.inputmethod.indic.utils.LeakGuardHandlerWrapper;
 
 // TODO: Separate this class into KeyPreviewHandler and BatchInputPreviewHandler or so.
 public class DrawingHandler extends LeakGuardHandlerWrapper<Callbacks> {

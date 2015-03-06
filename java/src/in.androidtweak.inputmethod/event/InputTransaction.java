@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.event;
+package in.androidtweak.inputmethod.event;
 
-import com.android.inputmethod.latin.settings.SettingsValues;
+import in.androidtweak.inputmethod.indic.settings.SettingsValues;
 
 /**
  * An object encapsulating a single transaction for input.

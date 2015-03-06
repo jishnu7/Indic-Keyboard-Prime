@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.personalization;
+package in.androidtweak.inputmethod.indic.personalization;
 
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -23,9 +23,9 @@ import android.util.Log;
 import com.android.inputmethod.latin.ExpandableBinaryDictionary;
 import com.android.inputmethod.latin.PrevWordsInfo;
 import com.android.inputmethod.latin.PrevWordsInfo.WordInfo;
-import com.android.inputmethod.latin.utils.BinaryDictionaryUtils;
-import com.android.inputmethod.latin.utils.DistracterFilter;
-import com.android.inputmethod.latin.utils.FileUtils;
+import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
+import in.androidtweak.inputmethod.indic.utils.DistracterFilter;
+import in.androidtweak.inputmethod.indic.utils.FileUtils;
 
 import java.io.File;
 import java.util.ArrayList;

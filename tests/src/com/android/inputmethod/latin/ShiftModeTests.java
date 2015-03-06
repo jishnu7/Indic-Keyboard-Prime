@@ -21,7 +21,7 @@ import android.test.suitebuilder.annotation.LargeTest;
 import android.text.TextUtils;
 import android.view.inputmethod.EditorInfo;
 
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.indic.Constants;
 import com.android.inputmethod.latin.WordComposer;
 
 @LargeTest

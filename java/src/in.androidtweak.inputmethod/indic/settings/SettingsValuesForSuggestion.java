@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.settings;
+package in.androidtweak.inputmethod.indic.settings;
 
 public class SettingsValuesForSuggestion {
     public final boolean mBlockPotentiallyOffensive;

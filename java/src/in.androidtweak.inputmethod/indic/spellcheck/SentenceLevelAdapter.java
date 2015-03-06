@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.spellcheck;
+package in.androidtweak.inputmethod.indic.spellcheck;
 
 import android.content.res.Resources;
 import android.view.textservice.SentenceSuggestionsInfo;
 import android.view.textservice.SuggestionsInfo;
 import android.view.textservice.TextInfo;
 
-import com.android.inputmethod.compat.TextInfoCompatUtils;
-import com.android.inputmethod.latin.Constants;
-import com.android.inputmethod.latin.settings.SpacingAndPunctuations;
-import com.android.inputmethod.latin.utils.RunInLocale;
+import in.androidtweak.inputmethod.compat.TextInfoCompatUtils;
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
+import in.androidtweak.inputmethod.indic.utils.RunInLocale;
 
 import java.util.ArrayList;
 import java.util.Locale;

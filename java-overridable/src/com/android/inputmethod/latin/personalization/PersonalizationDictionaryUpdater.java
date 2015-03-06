@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.personalization;
+package in.androidtweak.inputmethod.indic.personalization;
 
 import java.util.Locale;
 

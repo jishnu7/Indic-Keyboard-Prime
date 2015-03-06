@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
-import com.android.inputmethod.latin.R;
+import in.androidtweak.inputmethod.indic.R;
 
 import android.content.Context;
 

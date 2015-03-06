@@ -27,8 +27,8 @@ import in.androidtweak.inputmethod.indic.AssetFileAddress;
 import in.androidtweak.inputmethod.indic.BinaryDictionaryGetter;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.makedict.DictionaryHeader;
-import in.androidtweak.inputmethod.indic.makedict.UnsupportedFormatException;
+import com.android.inputmethod.latin.makedict.DictionaryHeader;
+import com.android.inputmethod.latin.makedict.UnsupportedFormatException;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 import java.io.File;

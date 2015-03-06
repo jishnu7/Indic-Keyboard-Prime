@@ -19,7 +19,7 @@ package in.androidtweak.inputmethod.indic.personalization;
 import android.content.Context;
 import android.util.Log;
 
-import com.android.inputmethod.latin.utils.FileUtils;
+import in.androidtweak.inputmethod.indic.utils.FileUtils;
 
 import java.io.File;
 import java.io.FilenameFilter;

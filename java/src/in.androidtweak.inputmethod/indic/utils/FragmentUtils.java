@@ -16,7 +16,7 @@
 
 package in.androidtweak.inputmethod.indic.utils;
 
-import in.androidtweak.inputmethod.dictionarypack.DictionarySettingsFragment;
+import com.android.inputmethod.dictionarypack.DictionarySettingsFragment;
 import in.androidtweak.inputmethod.indic.about.AboutPreferences;
 import in.androidtweak.inputmethod.indic.settings.AdvancedSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.AppearanceSettingsFragment;

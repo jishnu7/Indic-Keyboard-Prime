@@ -28,10 +28,10 @@ import android.view.textservice.SuggestionsInfo;
 import android.view.textservice.TextInfo;
 
 import in.androidtweak.inputmethod.compat.SuggestionsInfoCompatUtils;
-import in.androidtweak.inputmethod.keyboard.Keyboard;
-import in.androidtweak.inputmethod.keyboard.ProximityInfo;
+import com.android.inputmethod.keyboard.Keyboard;
+import com.android.inputmethod.keyboard.ProximityInfo;
 import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.PrevWordsInfo;
+import com.android.inputmethod.latin.PrevWordsInfo;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.WordComposer;
 import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;

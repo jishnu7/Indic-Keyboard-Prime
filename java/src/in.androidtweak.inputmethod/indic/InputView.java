@@ -23,10 +23,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.android.inputmethod.accessibility.AccessibilityUtils;
+import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
 import com.android.inputmethod.keyboard.MainKeyboardView;
-import com.android.inputmethod.latin.suggestions.MoreSuggestionsView;
-import com.android.inputmethod.latin.suggestions.SuggestionStripView;
+import in.androidtweak.inputmethod.indic.suggestions.MoreSuggestionsView;
+import in.androidtweak.inputmethod.indic.suggestions.SuggestionStripView;
 
 public final class InputView extends FrameLayout {
     private final Rect mInputViewRect = new Rect();

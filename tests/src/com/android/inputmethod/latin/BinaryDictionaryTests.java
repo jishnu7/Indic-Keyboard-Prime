@@ -26,9 +26,9 @@ import com.android.inputmethod.latin.makedict.CodePointUtils;
 import com.android.inputmethod.latin.makedict.FormatSpec;
 import com.android.inputmethod.latin.makedict.WeightedString;
 import com.android.inputmethod.latin.makedict.WordProperty;
-import com.android.inputmethod.latin.utils.BinaryDictionaryUtils;
-import com.android.inputmethod.latin.utils.FileUtils;
-import com.android.inputmethod.latin.utils.LanguageModelParam;
+import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
+import in.androidtweak.inputmethod.indic.utils.FileUtils;
+import in.androidtweak.inputmethod.indic.utils.LanguageModelParam;
 
 import java.io.File;
 import java.io.IOException;

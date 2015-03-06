@@ -21,9 +21,9 @@ import android.content.res.Resources;
 import android.text.TextUtils;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.android.inputmethod.indic.Constants;
-import in.android.inputmethod.indic.utils.RunInLocale;
-import in.android.inputmethod.indic.utils.SubtypeLocaleUtils;
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.utils.RunInLocale;
+import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
 import java.util.HashMap;
 import java.util.Locale;

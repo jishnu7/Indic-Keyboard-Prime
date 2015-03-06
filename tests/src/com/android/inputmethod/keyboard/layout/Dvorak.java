@@ -20,7 +20,7 @@ import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKeyboardBuilder;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey.ExpectedAdditionalMoreKey;
-import com.android.inputmethod.latin.settings.CustomInputStyleSettingsFragment;
+import in.androidtweak.inputmethod.indic.settings.CustomInputStyleSettingsFragment;
 
 import java.util.Locale;
 

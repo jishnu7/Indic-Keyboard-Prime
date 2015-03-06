@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -23,7 +23,7 @@ import android.test.suitebuilder.annotation.SmallTest;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodSubtype;
 
-import com.android.inputmethod.latin.RichInputMethodManager;
+import in.androidtweak.inputmethod.indic.RichInputMethodManager;
 
 import java.util.ArrayList;
 import java.util.Locale;

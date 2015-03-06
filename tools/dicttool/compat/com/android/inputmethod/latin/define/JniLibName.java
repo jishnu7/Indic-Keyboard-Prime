@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.define;
+package in.androidtweak.inputmethod.indic.define;
 
 public final class JniLibName {
     private JniLibName() {

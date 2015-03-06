@@ -25,9 +25,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.CursorAnchorInfo;
 
-import com.android.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.compat.CursorAnchorInfoCompatWrapper;
-import com.android.inputmethod.latin.utils.LeakGuardHandlerWrapper;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.compat.CursorAnchorInfoCompatWrapper;
+import in.androidtweak.inputmethod.indic.utils.LeakGuardHandlerWrapper;
 
 import javax.annotation.Nonnull;
 

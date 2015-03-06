@@ -33,8 +33,8 @@ import android.view.inputmethod.InputMethodSubtype;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
-import in.androidtweak.inputmethod.keyboard.KeyboardSwitcher;
-import in.androidtweak.inputmethod.keyboard.internal.LanguageOnSpacebarHelper;
+import com.android.inputmethod.keyboard.KeyboardSwitcher;
+import com.android.inputmethod.keyboard.internal.LanguageOnSpacebarHelper;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
 import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
 import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;

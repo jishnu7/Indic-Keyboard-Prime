@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.personalization;
+package in.androidtweak.inputmethod.indic.personalization;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import com.android.inputmethod.latin.Dictionary;
+import in.androidtweak.inputmethod.indic.Dictionary;
 import com.android.inputmethod.latin.DictionaryFacilitator;
 import com.android.inputmethod.latin.ExpandableBinaryDictionary;
 

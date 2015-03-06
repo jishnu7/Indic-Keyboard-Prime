@@ -18,7 +18,9 @@ package in.androidtweak.inputmethod.indic;
 
 import android.text.TextUtils;
 
-import in.androidtweak.inputmethod.keyboard.ProximityInfo;
+import com.android.inputmethod.keyboard.ProximityInfo;
+import com.android.inputmethod.latin.PrevWordsInfo;
+import com.android.inputmethod.latin.DictionaryFacilitator;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
 import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;

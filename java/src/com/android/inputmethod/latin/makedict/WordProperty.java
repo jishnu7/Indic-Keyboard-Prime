@@ -16,10 +16,10 @@
 
 package com.android.inputmethod.latin.makedict;
 
-import com.android.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.latin.BinaryDictionary;
-import com.android.inputmethod.latin.utils.CombinedFormatUtils;
-import com.android.inputmethod.latin.utils.StringUtils;
+import in.androidtweak.inputmethod.indic.utils.CombinedFormatUtils;
+import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

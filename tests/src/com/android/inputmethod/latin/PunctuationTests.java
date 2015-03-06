@@ -19,7 +19,7 @@ package com.android.inputmethod.latin;
 import android.provider.Settings.Secure;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.android.inputmethod.latin.R;
+import in.androidtweak.inputmethod.indic.R;
 
 @LargeTest
 public class PunctuationTests extends InputTestsBase {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.settings;
+package in.androidtweak.inputmethod.indic.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,8 +24,8 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 
 import com.android.inputmethod.keyboard.KeyboardTheme;
-import com.android.inputmethod.latin.R;
-import com.android.inputmethod.latin.settings.RadioButtonPreference.OnRadioButtonClickedListener;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.settings.RadioButtonPreference.OnRadioButtonClickedListener;
 
 /**
  * "Keyboard theme" settings sub screen.

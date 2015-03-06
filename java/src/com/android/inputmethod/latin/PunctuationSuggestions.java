@@ -17,7 +17,9 @@
 package com.android.inputmethod.latin;
 
 import com.android.inputmethod.keyboard.internal.KeySpecParser;
-import com.android.inputmethod.latin.utils.StringUtils;
+import in.androidtweak.inputmethod.indic.SuggestedWords;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

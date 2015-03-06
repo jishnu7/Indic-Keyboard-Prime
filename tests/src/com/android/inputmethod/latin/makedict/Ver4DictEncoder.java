@@ -16,14 +16,14 @@
 
 package com.android.inputmethod.latin.makedict;
 
-import com.android.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.latin.BinaryDictionary;
-import com.android.inputmethod.latin.Dictionary;
+import in.androidtweak.inputmethod.indic.Dictionary;
 import com.android.inputmethod.latin.PrevWordsInfo;
 import com.android.inputmethod.latin.makedict.FormatSpec.FormatOptions;
 import com.android.inputmethod.latin.makedict.FusionDictionary.PtNode;
-import com.android.inputmethod.latin.utils.BinaryDictionaryUtils;
-import com.android.inputmethod.latin.utils.LocaleUtils;
+import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
+import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
 
 import java.io.File;
 import java.io.IOException;

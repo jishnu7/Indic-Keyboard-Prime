@@ -22,6 +22,7 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
 import android.util.Log;
 
+import com.android.inputmethod.latin.ReadOnlyBinaryDictionary;
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
 

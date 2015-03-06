@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
 import android.content.res.Resources;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.text.TextUtils;
 
-import com.android.inputmethod.latin.settings.SpacingAndPunctuations;
-import com.android.inputmethod.latin.utils.LocaleUtils;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
+import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
 
 import java.util.Locale;
 

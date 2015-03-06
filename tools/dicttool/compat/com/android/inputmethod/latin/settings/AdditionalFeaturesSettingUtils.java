@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.settings;
+package in.androidtweak.inputmethod.indic.settings;
 
 public class AdditionalFeaturesSettingUtils {
     public static final int ADDITIONAL_FEATURES_SETTINGS_SIZE = 0;

@@ -22,7 +22,7 @@ import android.content.Intent;
 import android.text.style.SuggestionSpan;
 import android.util.Log;
 
-import com.android.inputmethod.latin.define.DebugFlags;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
 
 public final class SuggestionSpanPickedNotificationReceiver extends BroadcastReceiver {
     private static final boolean DBG = DebugFlags.DEBUG_ENABLED;

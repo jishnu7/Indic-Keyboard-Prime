@@ -14,7 +14,7 @@
  * the License.
  */
 
-package in.androidtweak.inputmethod.dictionarypack;
+package com.android.inputmethod.dictionarypack;
 
 /**
  * A simple interface to report problems.

@@ -25,7 +25,7 @@ import android.view.textservice.SuggestionsInfo;
 import android.view.textservice.TextInfo;
 
 import in.androidtweak.inputmethod.compat.TextInfoCompatUtils;
-import in.androidtweak.inputmethod.indic.PrevWordsInfo;
+import com.android.inputmethod.latin.PrevWordsInfo;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 import java.util.ArrayList;

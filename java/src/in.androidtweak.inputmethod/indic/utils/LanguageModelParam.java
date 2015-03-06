@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.utils;
+package in.androidtweak.inputmethod.indic.utils;
 
 import android.util.Log;
 
-import com.android.inputmethod.latin.Dictionary;
+import in.androidtweak.inputmethod.indic.Dictionary;
 import com.android.inputmethod.latin.DictionaryFacilitator;
 import com.android.inputmethod.latin.PrevWordsInfo;
-import com.android.inputmethod.latin.settings.SpacingAndPunctuations;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -38,7 +38,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.inputmethod.accessibility.AccessibilityUtils;
+import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.MainKeyboardView;
 import com.android.inputmethod.keyboard.MoreKeysPanel;

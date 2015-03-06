@@ -16,7 +16,7 @@
 
 package com.android.inputmethod.keyboard;
 
-import static com.android.inputmethod.compat.BuildCompatUtils.VERSION_CODES_LXX;
+import static in.androidtweak.inputmethod.compat.BuildCompatUtils.VERSION_CODES_LXX;
 import static com.android.inputmethod.keyboard.KeyboardTheme.THEME_ID_ICS;
 import static com.android.inputmethod.keyboard.KeyboardTheme.THEME_ID_KLP;
 import static com.android.inputmethod.keyboard.KeyboardTheme.THEME_ID_LXX_DARK;

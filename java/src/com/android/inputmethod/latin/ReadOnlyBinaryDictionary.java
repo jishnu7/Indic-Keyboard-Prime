@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package in.androidtweak.inputmethod.indic;
+package com.android.inputmethod.latin;
 
 import com.android.inputmethod.keyboard.ProximityInfo;
+import in.androidtweak.inputmethod.indic.Dictionary;
+import in.androidtweak.inputmethod.indic.WordComposer;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
 

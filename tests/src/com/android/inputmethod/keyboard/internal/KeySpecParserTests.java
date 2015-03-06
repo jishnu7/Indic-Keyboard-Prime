@@ -17,11 +17,11 @@
 package com.android.inputmethod.keyboard.internal;
 
 import static com.android.inputmethod.keyboard.internal.KeyboardIconsSet.ICON_UNDEFINED;
-import static com.android.inputmethod.latin.Constants.CODE_UNSPECIFIED;
+import static in.androidtweak.inputmethod.indic.Constants.CODE_UNSPECIFIED;
 
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.indic.Constants;
 
 @SmallTest
 public final class KeySpecParserTests extends KeySpecParserTestsBase {

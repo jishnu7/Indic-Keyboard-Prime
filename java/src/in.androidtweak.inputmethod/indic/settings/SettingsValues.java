@@ -24,8 +24,8 @@ import android.content.res.Resources;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
-import com.android.inputmethod.compat.AppWorkaroundsUtils;
-import com.android.inputmethod.latin.InputAttributes;
+import in.androidtweak.inputmethod.compat.AppWorkaroundsUtils;
+import in.androidtweak.inputmethod.indic.InputAttributes;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.RichInputMethodManager;
 import in.androidtweak.inputmethod.indic.SubtypeSwitcher;

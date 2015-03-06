@@ -21,8 +21,8 @@ import static in.androidtweak.inputmethod.indic.Constants.CODE_UNSPECIFIED;
 import android.text.Spanned;
 import android.text.TextUtils;
 
-import com.android.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;

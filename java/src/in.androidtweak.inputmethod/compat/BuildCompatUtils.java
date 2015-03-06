@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.compat;
+package in.androidtweak.inputmethod.compat;
 
 import android.os.Build;
 

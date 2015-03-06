@@ -16,8 +16,8 @@
 
 package com.android.inputmethod.latin.makedict;
 
-import com.android.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.Constants;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Constants;
 import com.android.inputmethod.latin.makedict.DictDecoder.DictionaryBufferFactory;
 
 import java.io.File;

@@ -24,10 +24,10 @@ import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 
-import com.android.inputmethod.compat.IntentCompatUtils;
+import in.androidtweak.inputmethod.compat.IntentCompatUtils;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
 import com.android.inputmethod.latin.setup.LauncherIconVisibilityManager;
-import com.android.inputmethod.latin.utils.UncachedInputMethodManagerUtils;
+import in.androidtweak.inputmethod.indic.utils.UncachedInputMethodManagerUtils;
 
 /**
  * This class detects the {@link Intent#ACTION_MY_PACKAGE_REPLACED} broadcast intent when this IME

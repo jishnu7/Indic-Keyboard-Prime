@@ -25,7 +25,7 @@ import android.text.style.SuggestionSpan;
 
 import in.androidtweak.inputmethod.indic.SuggestedWords;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import com.android.inputmethod.latin.define.DebugFlags;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
 import in.androidtweak.inputmethod.indic.SuggestionSpanPickedNotificationReceiver;
 import in.androidtweak.inputmethod.indic.utils.CollectionUtils;
 

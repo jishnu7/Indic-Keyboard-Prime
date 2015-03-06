@@ -16,7 +16,7 @@
 
 package com.android.inputmethod.latin;
 
-import com.android.inputmethod.latin.settings.Settings;
+import in.androidtweak.inputmethod.indic.settings.Settings;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;

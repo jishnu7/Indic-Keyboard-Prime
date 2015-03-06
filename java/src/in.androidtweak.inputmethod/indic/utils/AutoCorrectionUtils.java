@@ -18,8 +18,8 @@ package in.androidtweak.inputmethod.indic.utils;
 
 import android.util.Log;
 
-import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
-import com.android.inputmethod.latin.define.DebugFlags;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
 
 public final class AutoCorrectionUtils {
     private static final boolean DBG = DebugFlags.DEBUG_ENABLED;
