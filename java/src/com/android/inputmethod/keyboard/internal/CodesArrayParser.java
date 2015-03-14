@@ -16,10 +16,10 @@
 
 package com.android.inputmethod.keyboard.internal;
 
+import android.text.TextUtils;
+
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
-
-import android.text.TextUtils;
 
 /**
  * The string parser of codesArray specification for <GridRows />. The attribute codesArray is an

@@ -19,14 +19,14 @@ package in.androidtweak.inputmethod.indic.personalization;
 import android.content.Context;
 import android.util.Log;
 
-import in.androidtweak.inputmethod.indic.utils.FileUtils;
-
 import java.io.File;
 import java.io.FilenameFilter;
 import java.lang.ref.SoftReference;
 import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+
+import in.androidtweak.inputmethod.indic.utils.FileUtils;
 
 public class PersonalizationHelper {
     private static final String TAG = PersonalizationHelper.class.getSimpleName();

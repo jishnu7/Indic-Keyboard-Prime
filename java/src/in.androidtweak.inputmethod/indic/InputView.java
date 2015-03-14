@@ -23,8 +23,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
 import com.android.inputmethod.keyboard.MainKeyboardView;
+
+import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
 import in.androidtweak.inputmethod.indic.suggestions.MoreSuggestionsView;
 import in.androidtweak.inputmethod.indic.suggestions.SuggestionStripView;
 

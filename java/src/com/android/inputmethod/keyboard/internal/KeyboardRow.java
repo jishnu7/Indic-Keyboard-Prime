@@ -22,12 +22,13 @@ import android.util.Xml;
 
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 
 import java.util.ArrayDeque;
+
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
 
 /**
  * Container for keys in the keyboard. All keys in a row are at the same Y-coordinate.

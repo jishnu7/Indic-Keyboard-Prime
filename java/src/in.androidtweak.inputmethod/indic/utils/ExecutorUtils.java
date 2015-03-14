@@ -16,12 +16,12 @@
 
 package in.androidtweak.inputmethod.indic.utils;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 
 /**
  * Utilities to manage executors.

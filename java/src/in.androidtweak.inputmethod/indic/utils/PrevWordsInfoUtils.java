@@ -16,11 +16,12 @@
 
 package in.androidtweak.inputmethod.indic.utils;
 
+import com.android.inputmethod.latin.PrevWordsInfo;
+import com.android.inputmethod.latin.PrevWordsInfo.WordInfo;
+
 import java.util.regex.Pattern;
 
 import in.androidtweak.inputmethod.indic.Constants;
-import com.android.inputmethod.latin.PrevWordsInfo;
-import com.android.inputmethod.latin.PrevWordsInfo.WordInfo;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 public final class PrevWordsInfoUtils {

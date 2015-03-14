@@ -16,8 +16,6 @@
 
 package com.android.inputmethod.keyboard.emoji;
 
-import static in.androidtweak.inputmethod.indic.Constants.NOT_A_COORDINATE;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -46,13 +44,16 @@ import com.android.inputmethod.keyboard.KeyboardView;
 import com.android.inputmethod.keyboard.internal.KeyDrawParams;
 import com.android.inputmethod.keyboard.internal.KeyVisualAttributes;
 import com.android.inputmethod.keyboard.internal.KeyboardIconsSet;
+
+import java.util.concurrent.TimeUnit;
+
 import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SubtypeSwitcher;
 import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
 
-import java.util.concurrent.TimeUnit;
+import static in.androidtweak.inputmethod.indic.Constants.NOT_A_COORDINATE;
 
 /**
  * View class to implement Emoji palettes.

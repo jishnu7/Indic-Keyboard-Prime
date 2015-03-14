@@ -16,19 +16,20 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import in.androidtweak.inputmethod.event.CombinerChain;
-import in.androidtweak.inputmethod.event.Event;
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
 import com.android.inputmethod.latin.PrevWordsInfo;
-import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+
+import org.wikimedia.morelangs.InputMethod;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.annotation.Nonnull;
 
-import org.wikimedia.morelangs.InputMethod;
+import in.androidtweak.inputmethod.event.CombinerChain;
+import in.androidtweak.inputmethod.event.Event;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
+import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
+import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 /**
  * A place to store the currently composing word with information such as adjacent key codes as well
@@ -226,22 +227,22 @@ public final class WordComposer {
         final int newIndex = size();
 
         /* if we've a transliteration method set, use that. Else just append the code and get on with life */
-        if(mTransliterationMethod != null) {
-            String c = new String(Character.toChars(primaryCode));
-            int startPos = mTypedWord.length() > mTransliterationMethod.getMaxKeyLength() ? mTypedWord.length() - mTransliterationMethod.getMaxKeyLength() : 0;
-            String input = mTypedWord.substring(startPos) + c;
-            String replacement = mTransliterationMethod.transliterate(input, context, false);
-            int divIndex = firstDivergence(input, replacement);
-            replacement = replacement.substring(divIndex);
-            mTypedWord.replace(startPos + divIndex, startPos + divIndex + replacement.length() + 2, replacement);
+        //if(mTransliterationMethod != null) {
+            //String c = new String(Character.toChars(primaryCode));
+            //int startPos = mTypedWord.length() > mTransliterationMethod.getMaxKeyLength() ? mTypedWord.length() - mTransliterationMethod.getMaxKeyLength() : 0;
+            //String input = mTypedWord.substring(startPos) + c;
+            //String replacement = mTransliterationMethod.transliterate(input, context, false);
+            //int divIndex = firstDivergence(input, replacement);
+            //replacement = replacement.substring(divIndex);
+            //mTypedWord.replace(startPos + divIndex, startPos + divIndex + replacement.length() + 2, replacement);
 
-            context += c;
-            if(context.length() > mTransliterationMethod.getContextLength()) {
-                context = context.substring(context.length() - mTransliterationMethod.getContextLength());
-            }
-        } else {
-            mTypedWord.appendCodePoint(primaryCode);
-        }
+            //context += c;
+            //if(context.length() > mTransliterationMethod.getContextLength()) {
+                //context = context.substring(context.length() - mTransliterationMethod.getContextLength());
+            //}
+        //} else {
+            //mTypedWord.appendCodePoint(primaryCode);
+        //}
 
         refreshTypedWordCache();
         mCursorPositionWithinWord = mCodePointSize;

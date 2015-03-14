@@ -23,7 +23,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import in.androidtweak.inputmethod.indic.Dictionary;
-import com.android.inputmethod.latin.DictionaryFacilitator;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
 import com.android.inputmethod.latin.ExpandableBinaryDictionary;
 
 import android.test.AndroidTestCase;

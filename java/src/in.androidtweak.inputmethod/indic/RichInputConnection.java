@@ -33,6 +33,9 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 
 import com.android.inputmethod.latin.PrevWordsInfo;
+
+import java.util.Arrays;
+
 import in.androidtweak.inputmethod.compat.InputConnectionCompatUtils;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 import in.androidtweak.inputmethod.indic.utils.CapsModeUtils;
@@ -42,8 +45,6 @@ import in.androidtweak.inputmethod.indic.utils.ScriptUtils;
 import in.androidtweak.inputmethod.indic.utils.SpannableStringUtils;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
 import in.androidtweak.inputmethod.indic.utils.TextRange;
-
-import java.util.Arrays;
 
 /**
  * Enrichment class for InputConnection to simplify interaction and add functionality.

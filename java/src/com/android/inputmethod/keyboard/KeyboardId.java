@@ -16,19 +16,19 @@
 
 package com.android.inputmethod.keyboard;
 
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET;
-
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodSubtype;
 
+import java.util.Arrays;
+import java.util.Locale;
+
 import in.androidtweak.inputmethod.compat.EditorInfoCompatUtils;
 import in.androidtweak.inputmethod.indic.utils.InputTypeUtils;
 import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
-import java.util.Arrays;
-import java.util.Locale;
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET;
 
 /**
  * Unique identifier for each keyboard type.

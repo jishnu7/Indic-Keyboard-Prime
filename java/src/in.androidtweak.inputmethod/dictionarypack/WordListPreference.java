@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -26,9 +26,9 @@ import android.view.ViewParent;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import in.androidtweak.inputmethod.indic.R;
-
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.R;
 
 /**
  * A preference for one word list.

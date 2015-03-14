@@ -44,9 +44,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import in.androidtweak.inputmethod.indic.PunctuationSuggestions;
+
+import java.util.ArrayList;
+
 import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.PunctuationSuggestions;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SuggestedWords;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
@@ -57,8 +60,6 @@ import in.androidtweak.inputmethod.indic.utils.AutoCorrectionUtils;
 import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
 import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 import in.androidtweak.inputmethod.indic.utils.ViewLayoutUtils;
-
-import java.util.ArrayList;
 
 final class SuggestionStripLayoutHelper {
     private static final int DEFAULT_SUGGESTIONS_COUNT_IN_STRIP = 3;

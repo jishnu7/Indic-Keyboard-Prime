@@ -26,18 +26,22 @@ import android.os.SystemClock;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
-import android.text.TextUtils;
 import android.util.Log;
-
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.personalization.AccountUtils;
-import in.androidtweak.inputmethod.indic.utils.ExecutorUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+// Package name change //
+import com.android.inputmethod.latin.BinaryDictionary;
+import com.android.inputmethod.latin.PrevWordsInfo;
+// Package name change //
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.personalization.AccountUtils;
+import in.androidtweak.inputmethod.indic.utils.ExecutorUtils;
+import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 public class ContactsBinaryDictionary extends ExpandableBinaryDictionary {
 

@@ -24,9 +24,9 @@ import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-import in.androidtweak.inputmethod.indic.utils.CollectionUtils;
-
 import java.util.ArrayList;
+
+import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
 
 public final class DrawingPreviewPlacerView extends RelativeLayout {
     private final int[] mKeyboardViewOrigin = CoordinateUtils.newInstance();

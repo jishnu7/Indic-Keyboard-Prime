@@ -17,12 +17,8 @@
 package in.androidtweak.inputmethod.indic.setup;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.view.inputmethod.InputMethodInfo;
-import android.view.inputmethod.InputMethodManager;
 
 public final class SetupActivity extends Activity {
     @Override

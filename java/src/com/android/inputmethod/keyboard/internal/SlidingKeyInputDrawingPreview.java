@@ -22,6 +22,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 
 import com.android.inputmethod.keyboard.PointerTracker;
+
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
 

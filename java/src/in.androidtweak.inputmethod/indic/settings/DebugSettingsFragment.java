@@ -27,14 +27,15 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceGroup;
 import android.preference.TwoStatePreference;
 
-import com.android.inputmethod.latin.DictionaryDumpBroadcastReceiver;
-import com.android.inputmethod.latin.DictionaryFacilitator;
-import in.androidtweak.inputmethod.indic.R;
-import com.android.inputmethod.latin.debug.ExternalDictionaryGetterForDebug;
-import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
-import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
+import in.androidtweak.inputmethod.indic.DictionaryDumpBroadcastReceiver;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
+import in.androidtweak.inputmethod.indic.debug.ExternalDictionaryGetterForDebug;
 
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
+import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
 
 /**
  * "Debug mode" settings sub screen.

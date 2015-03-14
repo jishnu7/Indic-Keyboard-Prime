@@ -18,11 +18,11 @@ package in.androidtweak.inputmethod.indic.personalization;
 
 import android.content.Context;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.Dictionary;
-
 import java.io.File;
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Dictionary;
 
 public class PersonalizationDictionary extends DecayingExpandableBinaryDictionaryBase {
     /* package */ static final String NAME = PersonalizationDictionary.class.getSimpleName();

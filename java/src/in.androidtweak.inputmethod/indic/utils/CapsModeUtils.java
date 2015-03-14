@@ -19,11 +19,11 @@ package in.androidtweak.inputmethod.indic.utils;
 import android.text.InputType;
 import android.text.TextUtils;
 
+import java.util.Locale;
+
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.WordComposer;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
-
-import java.util.Locale;
 
 public final class CapsModeUtils {
     private CapsModeUtils() {

@@ -22,9 +22,9 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.util.SparseIntArray;
 
-import in.androidtweak.inputmethod.indic.R;
-
 import java.util.HashMap;
+
+import in.androidtweak.inputmethod.indic.R;
 
 public final class KeyboardIconsSet {
     private static final String TAG = KeyboardIconsSet.class.getSimpleName();

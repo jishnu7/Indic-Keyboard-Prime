@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -25,14 +25,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 import android.util.Log;
 
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
+
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
 
 /**
  * Various helper functions for the state database

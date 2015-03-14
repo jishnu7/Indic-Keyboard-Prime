@@ -16,14 +16,9 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.REQ_NETWORK_CONNECTIVITY;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.inputmethodservice.InputMethodService;
-//import android.net.ConnectivityManager;
-//import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.util.Log;
@@ -31,19 +26,24 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
-import com.android.inputmethod.keyboard.KeyboardSwitcher;
 import com.android.inputmethod.keyboard.internal.LanguageOnSpacebarHelper;
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
+import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
+import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
+
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.REQ_NETWORK_CONNECTIVITY;
+
+//import android.net.ConnectivityManager;
+//import android.net.NetworkInfo;
 
 public final class SubtypeSwitcher {
     private static boolean DBG = DebugFlags.DEBUG_ENABLED;
@@ -111,11 +111,11 @@ public final class SubtypeSwitcher {
         }
         mResources = context.getResources();
         mRichImm = RichInputMethodManager.getInstance();
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(
-                Context.CONNECTIVITY_SERVICE);
+        //ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(
+                //Context.CONNECTIVITY_SERVICE);
 
-        final NetworkInfo info = connectivityManager.getActiveNetworkInfo();
-        mIsNetworkConnected = (info != null && info.isConnected());
+        //final NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+        //mIsNetworkConnected = (info != null && info.isConnected());
 
         onSubtypeChanged(getCurrentSubtype());
         updateParametersOnStartInputView();

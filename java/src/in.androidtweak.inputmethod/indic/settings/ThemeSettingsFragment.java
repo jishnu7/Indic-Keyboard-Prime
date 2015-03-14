@@ -24,6 +24,7 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 
 import com.android.inputmethod.keyboard.KeyboardTheme;
+
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.settings.RadioButtonPreference.OnRadioButtonClickedListener;
 

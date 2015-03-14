@@ -16,7 +16,6 @@
 
 package in.androidtweak.inputmethod.indic.settings;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import in.androidtweak.inputmethod.indic.R;

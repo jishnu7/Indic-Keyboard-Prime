@@ -22,7 +22,7 @@ import android.view.MotionEvent;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.KeyDetector;
 import com.android.inputmethod.keyboard.PointerTracker;
-import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
+
 import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
 
 public final class NonDistinctMultitouchHelper {

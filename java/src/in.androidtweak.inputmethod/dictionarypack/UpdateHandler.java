@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
@@ -31,17 +31,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 import android.util.Log;
-
-import in.androidtweak.inputmethod.compat.ConnectivityManagerCompatUtils;
-import in.androidtweak.inputmethod.compat.DownloadManagerCompatUtils;
-import in.androidtweak.inputmethod.compat.NotificationCompatUtils;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
-import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -59,6 +51,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
+
+import in.androidtweak.inputmethod.compat.ConnectivityManagerCompatUtils;
+import in.androidtweak.inputmethod.compat.DownloadManagerCompatUtils;
+import in.androidtweak.inputmethod.compat.NotificationCompatUtils;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
+import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
 
 /**
  * Handler for the update process.

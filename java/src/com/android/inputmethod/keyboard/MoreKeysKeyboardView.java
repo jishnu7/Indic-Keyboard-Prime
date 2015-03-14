@@ -26,9 +26,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.inputmethod.keyboard.internal.KeyDrawParams;
+
 import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
 import in.androidtweak.inputmethod.accessibility.MoreKeysKeyboardAccessibilityDelegate;
-import com.android.inputmethod.keyboard.internal.KeyDrawParams;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;

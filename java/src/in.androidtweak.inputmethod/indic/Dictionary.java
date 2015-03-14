@@ -16,13 +16,13 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.PrevWordsInfo;
 import com.android.inputmethod.keyboard.ProximityInfo;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
+import com.android.inputmethod.latin.PrevWordsInfo;
 
 import java.util.ArrayList;
+
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
 
 /**
  * Abstract base class for a dictionary that can do a fuzzy search for words based on a set of key

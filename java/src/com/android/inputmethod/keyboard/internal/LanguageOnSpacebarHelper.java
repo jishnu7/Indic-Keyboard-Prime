@@ -18,10 +18,10 @@ package com.android.inputmethod.keyboard.internal;
 
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
-
 import java.util.Collections;
 import java.util.List;
+
+import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
 /**
  * This class determines that the language name on the spacebar should be displayed in what format.

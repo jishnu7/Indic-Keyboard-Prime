@@ -19,12 +19,12 @@ package in.androidtweak.inputmethod.event;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
-import in.androidtweak.inputmethod.indic.Constants;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.annotation.Nonnull;
+
+import in.androidtweak.inputmethod.indic.Constants;
 
 /**
  * This class implements the logic chain between receiving events and generating code points.

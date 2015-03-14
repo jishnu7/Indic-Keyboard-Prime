@@ -19,9 +19,10 @@ package in.androidtweak.inputmethod.indic;
 import android.text.TextUtils;
 
 import com.android.inputmethod.latin.PrevWordsInfo;
-import in.androidtweak.inputmethod.event.Event;
 
 import java.util.ArrayList;
+
+import in.androidtweak.inputmethod.event.Event;
 
 /**
  * This class encapsulates data about a word previously composed, but that has been

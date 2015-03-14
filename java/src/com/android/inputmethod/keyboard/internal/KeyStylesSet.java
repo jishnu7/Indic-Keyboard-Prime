@@ -20,14 +20,14 @@ import android.content.res.TypedArray;
 import android.util.Log;
 import android.util.SparseArray;
 
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.XmlParseUtils;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.util.Arrays;
 import java.util.HashMap;
+
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.XmlParseUtils;
 
 public final class KeyStylesSet {
     private static final String TAG = KeyStylesSet.class.getSimpleName();

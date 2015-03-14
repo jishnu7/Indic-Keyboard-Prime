@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.app.DownloadManager.Request;
 import android.content.ContentValues;
@@ -25,13 +25,13 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import in.androidtweak.inputmethod.compat.DownloadManagerCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
 import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
-
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * Object representing an upgrade from one state to another.

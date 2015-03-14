@@ -16,21 +16,21 @@
 
 package in.androidtweak.inputmethod.indic.utils;
 
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET;
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.UNTRANSLATABLE_STRING_IN_SUBTYPE_NAME;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
 import android.util.Log;
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.R;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.R;
+
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET;
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.UNTRANSLATABLE_STRING_IN_SUBTYPE_NAME;
 
 public final class SubtypeLocaleUtils {
     private static final String TAG = SubtypeLocaleUtils.class.getSimpleName();

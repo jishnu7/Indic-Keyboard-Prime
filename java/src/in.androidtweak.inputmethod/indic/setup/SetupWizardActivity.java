@@ -17,25 +17,24 @@
 package in.androidtweak.inputmethod.indic.setup;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Message;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import in.androidtweak.inputmethod.compat.TextViewCompatUtils;
 import in.androidtweak.inputmethod.compat.ViewCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.settings.SettingsActivity;
-
-import java.util.ArrayList;
+import in.androidtweak.inputmethod.indic.utils.LeakGuardHandlerWrapper;
+import in.androidtweak.inputmethod.indic.utils.UncachedInputMethodManagerUtils;
 
 // TODO: Use Fragment to implement welcome screen and setup steps.
 public final class SetupWizardActivity extends Activity implements View.OnClickListener {

@@ -23,7 +23,6 @@ import android.os.Message;
 import in.androidtweak.inputmethod.compat.LooperCompatUtils;
 import in.androidtweak.inputmethod.indic.InputPointers;
 import in.androidtweak.inputmethod.indic.LatinIME;
-import in.androidtweak.inputmethod.indic.Suggest;
 import in.androidtweak.inputmethod.indic.Suggest.OnGetSuggestedWordsCallback;
 import in.androidtweak.inputmethod.indic.SuggestedWords;
 

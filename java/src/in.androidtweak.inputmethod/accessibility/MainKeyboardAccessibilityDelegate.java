@@ -29,6 +29,7 @@ import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.MainKeyboardView;
 import com.android.inputmethod.keyboard.PointerTracker;
+
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 

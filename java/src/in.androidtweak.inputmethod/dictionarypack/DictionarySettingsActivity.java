@@ -14,13 +14,13 @@
  * under the License.
  */
 
-package com.android.inputmethod.dictionarypack;
-
-import in.androidtweak.inputmethod.indic.utils.FragmentUtils;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+
+import in.androidtweak.inputmethod.indic.utils.FragmentUtils;
 
 /**
  * Preference screen.

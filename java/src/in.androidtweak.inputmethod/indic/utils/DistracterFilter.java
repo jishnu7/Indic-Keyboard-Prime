@@ -16,12 +16,12 @@
 
 package in.androidtweak.inputmethod.indic.utils;
 
-import java.util.List;
-import java.util.Locale;
-
 import android.view.inputmethod.InputMethodSubtype;
 
 import com.android.inputmethod.latin.PrevWordsInfo;
+
+import java.util.List;
+import java.util.Locale;
 
 public interface DistracterFilter {
     /**

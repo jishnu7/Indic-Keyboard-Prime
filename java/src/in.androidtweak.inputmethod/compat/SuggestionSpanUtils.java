@@ -23,14 +23,13 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.SuggestionSpan;
 
-import in.androidtweak.inputmethod.indic.SuggestedWords;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import in.androidtweak.inputmethod.indic.SuggestionSpanPickedNotificationReceiver;
-import in.androidtweak.inputmethod.indic.utils.CollectionUtils;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+
+import in.androidtweak.inputmethod.indic.SuggestedWords;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.SuggestionSpanPickedNotificationReceiver;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
 
 public final class SuggestionSpanUtils {
     // Note that SuggestionSpan.FLAG_AUTO_CORRECTION has been introduced

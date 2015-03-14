@@ -24,12 +24,12 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.R;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.PatternSyntaxException;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.R;
 
 public final class ResourceUtils {
     private static final String TAG = ResourceUtils.class.getSimpleName();

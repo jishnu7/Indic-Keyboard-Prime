@@ -22,14 +22,15 @@ import android.util.Log;
 
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
-import in.androidtweak.inputmethod.indic.settings.Settings;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import in.androidtweak.inputmethod.indic.settings.Settings;
+import in.androidtweak.inputmethod.indic.utils.JsonUtils;
 
 /**
  * This is a Keyboard class where you can add keys dynamically shown in a grid layout

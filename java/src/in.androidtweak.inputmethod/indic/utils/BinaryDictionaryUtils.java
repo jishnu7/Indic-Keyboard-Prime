@@ -16,11 +16,9 @@
 
 package in.androidtweak.inputmethod.indic.utils;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.latin.BinaryDictionary;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
 import com.android.inputmethod.latin.makedict.UnsupportedFormatException;
-import in.androidtweak.inputmethod.indic.personalization.PersonalizationHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +26,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.personalization.PersonalizationHelper;
 
 public final class BinaryDictionaryUtils {
     private static final String TAG = BinaryDictionaryUtils.class.getSimpleName();

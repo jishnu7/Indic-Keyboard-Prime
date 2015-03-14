@@ -28,13 +28,17 @@ import android.provider.UserDictionary.Words;
 import android.text.TextUtils;
 import android.util.Log;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.compat.UserDictionaryCompatUtils;
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
-
 import java.io.File;
 import java.util.Arrays;
 import java.util.Locale;
+
+// Package name change //
+import com.android.inputmethod.latin.BinaryDictionary;
+// Package name change //
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.compat.UserDictionaryCompatUtils;
+import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
 /**
  * An expandable dictionary that stores the words in the user dictionary provider into a binary

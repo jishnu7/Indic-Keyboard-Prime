@@ -46,6 +46,9 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.TreeSet;
+
 import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
 import in.androidtweak.inputmethod.compat.ViewCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
@@ -54,9 +57,6 @@ import in.androidtweak.inputmethod.indic.utils.AdditionalSubtypeUtils;
 import in.androidtweak.inputmethod.indic.utils.DialogUtils;
 import in.androidtweak.inputmethod.indic.utils.IntentUtils;
 import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
-
-import java.util.ArrayList;
-import java.util.TreeSet;
 
 public final class CustomInputStyleSettingsFragment extends PreferenceFragment {
     private RichInputMethodManager mRichImm;

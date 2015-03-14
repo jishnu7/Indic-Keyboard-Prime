@@ -14,31 +14,16 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin;
+package in.androidtweak.inputmethod.indic;
 
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.keyboard.ProximityInfo;
+import com.android.inputmethod.latin.PrevWordsInfo;
 import com.android.inputmethod.latin.PrevWordsInfo.WordInfo;
-import in.androidtweak.inputmethod.indic.WordComposer;
-import in.androidtweak.inputmethod.indic.Dictionary;
-import in.androidtweak.inputmethod.indic.ExpandableBinaryDictionary;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.personalization.ContextualDictionary;
-import in.androidtweak.inputmethod.indic.personalization.PersonalizationDataChunk;
-import in.androidtweak.inputmethod.indic.personalization.PersonalizationDictionary;
-import in.androidtweak.inputmethod.indic.personalization.UserHistoryDictionary;
-import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
-import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
-import in.androidtweak.inputmethod.indic.utils.DistracterFilter;
-import in.androidtweak.inputmethod.indic.utils.DistracterFilterCheckingIsInDictionary;
-import in.androidtweak.inputmethod.indic.utils.ExecutorUtils;
-import in.androidtweak.inputmethod.indic.utils.LanguageModelParam;
-import in.androidtweak.inputmethod.indic.utils.SuggestionResults;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -53,6 +38,24 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+
+import com.android.inputmethod.latin.BinaryDictionary;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Dictionary;
+import in.androidtweak.inputmethod.indic.ExpandableBinaryDictionary;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.WordComposer;
+import in.androidtweak.inputmethod.indic.personalization.ContextualDictionary;
+import in.androidtweak.inputmethod.indic.personalization.PersonalizationDataChunk;
+import in.androidtweak.inputmethod.indic.personalization.PersonalizationDictionary;
+import in.androidtweak.inputmethod.indic.personalization.UserHistoryDictionary;
+import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
+import in.androidtweak.inputmethod.indic.utils.DistracterFilter;
+import in.androidtweak.inputmethod.indic.utils.DistracterFilterCheckingIsInDictionary;
+import in.androidtweak.inputmethod.indic.utils.ExecutorUtils;
+import in.androidtweak.inputmethod.indic.utils.LanguageModelParam;
+import in.androidtweak.inputmethod.indic.utils.SuggestionResults;
 
 // TODO: Consolidate dictionaries in native code.
 public class DictionaryFacilitator {

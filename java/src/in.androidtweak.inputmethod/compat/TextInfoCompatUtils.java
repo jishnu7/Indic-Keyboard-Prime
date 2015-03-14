@@ -18,10 +18,10 @@ package in.androidtweak.inputmethod.compat;
 
 import android.view.textservice.TextInfo;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 
 @UsedForTesting
 public final class TextInfoCompatUtils {

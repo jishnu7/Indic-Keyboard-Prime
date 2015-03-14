@@ -16,12 +16,6 @@
 
 package com.android.inputmethod.keyboard;
 
-import static com.android.inputmethod.keyboard.internal.KeyboardIconsSet.ICON_UNDEFINED;
-import static in.androidtweak.inputmethod.indic.Constants.CODE_OUTPUT_TEXT;
-import static in.androidtweak.inputmethod.indic.Constants.CODE_SHIFT;
-import static in.androidtweak.inputmethod.indic.Constants.CODE_SWITCH_ALPHA_SYMBOL;
-import static in.androidtweak.inputmethod.indic.Constants.CODE_UNSPECIFIED;
-
 import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -36,12 +30,19 @@ import com.android.inputmethod.keyboard.internal.KeyboardIconsSet;
 import com.android.inputmethod.keyboard.internal.KeyboardParams;
 import com.android.inputmethod.keyboard.internal.KeyboardRow;
 import com.android.inputmethod.keyboard.internal.MoreKeySpec;
+
+import java.util.Arrays;
+import java.util.Locale;
+
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
-import java.util.Arrays;
-import java.util.Locale;
+import static com.android.inputmethod.keyboard.internal.KeyboardIconsSet.ICON_UNDEFINED;
+import static in.androidtweak.inputmethod.indic.Constants.CODE_OUTPUT_TEXT;
+import static in.androidtweak.inputmethod.indic.Constants.CODE_SHIFT;
+import static in.androidtweak.inputmethod.indic.Constants.CODE_SWITCH_ALPHA_SYMBOL;
+import static in.androidtweak.inputmethod.indic.Constants.CODE_UNSPECIFIED;
 
 /**
  * Class for describing the position and characteristics of a single key in the keyboard.

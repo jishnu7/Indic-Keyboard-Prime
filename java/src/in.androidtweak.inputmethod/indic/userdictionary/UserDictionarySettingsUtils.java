@@ -16,13 +16,13 @@
 
 package in.androidtweak.inputmethod.indic.userdictionary;
 
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
-
 import android.content.Context;
 import android.text.TextUtils;
 
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
 
 /**
  * Utilities of the user dictionary settings

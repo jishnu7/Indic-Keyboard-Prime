@@ -16,11 +16,11 @@
 
 package com.android.inputmethod.latin.makedict;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.Constants;
-
 import java.util.Date;
 import java.util.HashMap;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Constants;
 
 /**
  * Dictionary File Format Specification.

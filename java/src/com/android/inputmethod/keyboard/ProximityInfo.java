@@ -21,13 +21,14 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.inputmethod.keyboard.internal.TouchPositionCorrection;
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.utils.JniUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.utils.JniUtils;
 
 public class ProximityInfo {
     private static final String TAG = ProximityInfo.class.getSimpleName();

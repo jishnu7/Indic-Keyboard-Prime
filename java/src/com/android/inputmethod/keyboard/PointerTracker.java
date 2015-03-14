@@ -31,6 +31,9 @@ import com.android.inputmethod.keyboard.internal.GestureStrokeDrawingPoints;
 import com.android.inputmethod.keyboard.internal.GestureStrokeRecognitionParams;
 import com.android.inputmethod.keyboard.internal.PointerTrackerQueue;
 import com.android.inputmethod.keyboard.internal.TypingTimeRecorder;
+
+import java.util.ArrayList;
+
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.InputPointers;
 import in.androidtweak.inputmethod.indic.R;
@@ -38,8 +41,6 @@ import in.androidtweak.inputmethod.indic.define.DebugFlags;
 import in.androidtweak.inputmethod.indic.settings.Settings;
 import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
 import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
-
-import java.util.ArrayList;
 
 public final class PointerTracker implements PointerTrackerQueue.Element,
         BatchInputArbiterListener {

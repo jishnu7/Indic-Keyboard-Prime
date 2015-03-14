@@ -27,9 +27,10 @@ import android.view.Gravity;
 import android.widget.TextView;
 
 import com.android.inputmethod.keyboard.Key;
-import in.androidtweak.inputmethod.indic.R;
 
 import java.util.HashSet;
+
+import in.androidtweak.inputmethod.indic.R;
 
 /**
  * The pop up key preview view.

@@ -19,10 +19,11 @@ package com.android.inputmethod.keyboard;
 import android.content.Context;
 import android.graphics.Paint;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.keyboard.internal.KeyboardBuilder;
 import com.android.inputmethod.keyboard.internal.KeyboardParams;
 import com.android.inputmethod.keyboard.internal.MoreKeySpec;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
 import in.androidtweak.inputmethod.indic.utils.TypefaceUtils;

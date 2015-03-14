@@ -16,11 +16,11 @@
 
 package in.androidtweak.inputmethod.indic.spellcheck;
 
-import in.androidtweak.inputmethod.indic.utils.FragmentUtils;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+
+import in.androidtweak.inputmethod.indic.utils.FragmentUtils;
 
 /**
  * Spell checker preference screen.

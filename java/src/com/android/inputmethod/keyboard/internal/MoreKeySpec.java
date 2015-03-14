@@ -19,14 +19,15 @@ package com.android.inputmethod.keyboard.internal;
 import android.text.TextUtils;
 
 import com.android.inputmethod.keyboard.Key;
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import in.androidtweak.inputmethod.indic.utils.CollectionUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
+import in.androidtweak.inputmethod.indic.utils.CollectionUtils;
+import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 /**
  * The more key specification object. The more keys are an array of {@link MoreKeySpec}.

@@ -16,9 +16,9 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import in.androidtweak.inputmethod.indic.utils.JniUtils;
-
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.utils.JniUtils;
 
 public final class DicTraverseSession {
     static {

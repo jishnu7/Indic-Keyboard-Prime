@@ -16,11 +16,11 @@
 
 package com.android.inputmethod.keyboard.internal;
 
-import static in.androidtweak.inputmethod.indic.Constants.CODE_OUTPUT_TEXT;
-import static in.androidtweak.inputmethod.indic.Constants.CODE_UNSPECIFIED;
-
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
+
+import static in.androidtweak.inputmethod.indic.Constants.CODE_OUTPUT_TEXT;
+import static in.androidtweak.inputmethod.indic.Constants.CODE_UNSPECIFIED;
 
 /**
  * The string parser of the key specification.

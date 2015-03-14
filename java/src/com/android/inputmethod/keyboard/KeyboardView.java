@@ -35,11 +35,12 @@ import android.view.View;
 
 import com.android.inputmethod.keyboard.internal.KeyDrawParams;
 import com.android.inputmethod.keyboard.internal.KeyVisualAttributes;
+
+import java.util.HashSet;
+
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.utils.TypefaceUtils;
-
-import java.util.HashSet;
 
 /**
  * A view that renders a virtual {@link Keyboard}.

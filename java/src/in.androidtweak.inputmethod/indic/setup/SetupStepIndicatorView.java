@@ -24,7 +24,6 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-import in.androidtweak.inputmethod.compat.ViewCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
 
 public final class SetupStepIndicatorView extends View {

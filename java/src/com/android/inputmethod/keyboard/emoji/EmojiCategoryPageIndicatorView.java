@@ -15,7 +15,6 @@
  */
 
 package com.android.inputmethod.keyboard.emoji;
-import in.androidtweak.inputmethod.indic.R;
 
 import android.content.Context;
 import android.graphics.Canvas;

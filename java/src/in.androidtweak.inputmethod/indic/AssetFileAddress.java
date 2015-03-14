@@ -16,9 +16,9 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import in.androidtweak.inputmethod.indic.utils.FileUtils;
-
 import java.io.File;
+
+import in.androidtweak.inputmethod.indic.utils.FileUtils;
 
 /**
  * Immutable class to hold the address of an asset.

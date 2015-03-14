@@ -27,12 +27,13 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 
-import com.android.inputmethod.dictionarypack.DictionarySettingsActivity;
-import in.androidtweak.inputmethod.indic.R;
-import com.android.inputmethod.latin.userdictionary.UserDictionaryList;
-import com.android.inputmethod.latin.userdictionary.UserDictionarySettings;
+import in.androidtweak.inputmethod.dictionarypack.DictionarySettingsActivity;
+import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryList;
+import in.androidtweak.inputmethod.indic.userdictionary.UserDictionarySettings;
 
 import java.util.TreeSet;
+
+import in.androidtweak.inputmethod.indic.R;
 
 /**
  * "Text correction" settings sub screen.

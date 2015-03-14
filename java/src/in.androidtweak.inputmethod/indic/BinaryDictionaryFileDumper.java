@@ -27,12 +27,8 @@ import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.inputmethod.dictionarypack.DictionaryPackConstants;
-import com.android.inputmethod.dictionarypack.MD5Calculator;
-import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
-import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils.DictionaryInfo;
-import in.androidtweak.inputmethod.indic.utils.FileTransforms;
-import in.androidtweak.inputmethod.indic.utils.MetadataFileUriGetter;
+import in.androidtweak.inputmethod.dictionarypack.DictionaryPackConstants;
+import in.androidtweak.inputmethod.dictionarypack.MD5Calculator;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -48,6 +44,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
+import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils.DictionaryInfo;
+import in.androidtweak.inputmethod.indic.utils.FileTransforms;
+import in.androidtweak.inputmethod.indic.utils.MetadataFileUriGetter;
 
 /**
  * Group class for static methods to help with creation and getting of the binary dictionary

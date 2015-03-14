@@ -26,11 +26,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 
-import in.androidtweak.inputmethod.compat.InputMethodServiceCompatUtils;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet.KeyboardLayoutSetException;
 import com.android.inputmethod.keyboard.emoji.EmojiPalettesView;
 import com.android.inputmethod.keyboard.internal.KeyboardState;
 import com.android.inputmethod.keyboard.internal.KeyboardTextsSet;
+
+import in.androidtweak.inputmethod.compat.InputMethodServiceCompatUtils;
 import in.androidtweak.inputmethod.indic.InputView;
 import in.androidtweak.inputmethod.indic.LatinIME;
 import in.androidtweak.inputmethod.indic.R;

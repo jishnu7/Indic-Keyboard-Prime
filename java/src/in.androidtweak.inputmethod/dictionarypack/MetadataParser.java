@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.text.TextUtils;
 import android.util.JsonReader;

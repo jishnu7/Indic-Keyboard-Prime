@@ -16,8 +16,6 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.KEYBOARD_MODE;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -28,14 +26,16 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 import in.androidtweak.inputmethod.compat.InputMethodManagerCompatWrapper;
 import in.androidtweak.inputmethod.indic.settings.Settings;
 import in.androidtweak.inputmethod.indic.utils.AdditionalSubtypeUtils;
 import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.KEYBOARD_MODE;
 
 /**
  * Enrichment class for InputMethodManager to simplify interaction and add functionality.

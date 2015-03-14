@@ -16,24 +16,24 @@
 
 package in.androidtweak.inputmethod.indic.utils;
 
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.KEYBOARD_MODE;
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.ASCII_CAPABLE;
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.EMOJI_CAPABLE;
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.IS_ADDITIONAL_SUBTYPE;
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET;
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.UNTRANSLATABLE_STRING_IN_SUBTYPE_NAME;
-
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.inputmethod.InputMethodSubtype;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.ASCII_CAPABLE;
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.EMOJI_CAPABLE;
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.IS_ADDITIONAL_SUBTYPE;
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET;
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.UNTRANSLATABLE_STRING_IN_SUBTYPE_NAME;
+import static in.androidtweak.inputmethod.indic.Constants.Subtype.KEYBOARD_MODE;
 
 public final class AdditionalSubtypeUtils {
     private static final String TAG = AdditionalSubtypeUtils.class.getSimpleName();

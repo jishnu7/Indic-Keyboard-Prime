@@ -23,13 +23,7 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Environment;
 
-import in.androidtweak.inputmethod.indic.BinaryDictionaryFileDumper;
-import in.androidtweak.inputmethod.indic.BinaryDictionaryGetter;
-import in.androidtweak.inputmethod.indic.R;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
-import in.androidtweak.inputmethod.indic.utils.DialogUtils;
-import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -39,6 +33,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.BinaryDictionaryFileDumper;
+import in.androidtweak.inputmethod.indic.BinaryDictionaryGetter;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.DialogUtils;
+import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
+import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
 
 /**
  * A class to read a local file as a dictionary for debugging purposes.

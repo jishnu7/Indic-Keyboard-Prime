@@ -16,9 +16,9 @@
 
 package com.android.inputmethod.latin.makedict;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-
 import java.util.Arrays;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 
 /**
  * A string with a probability.

@@ -23,13 +23,14 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import com.android.inputmethod.latin.ReadOnlyBinaryDictionary;
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
 
 /**
  * Factory for dictionary instances.

@@ -32,39 +32,22 @@ import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
 import com.android.inputmethod.keyboard.ProximityInfo;
-import in.androidtweak.inputmethod.indic.ContactsBinaryDictionary;
-import in.androidtweak.inputmethod.indic.Dictionary;
-import in.androidtweak.inputmethod.indic.DictionaryCollection;
-import com.android.inputmethod.latin.DictionaryFacilitator;
-import in.androidtweak.inputmethod.indic.DictionaryFactory;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
 import com.android.inputmethod.latin.PrevWordsInfo;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
-import in.androidtweak.inputmethod.indic.UserBinaryDictionary;
-import in.androidtweak.inputmethod.indic.utils.AdditionalSubtypeUtils;
-import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
-import in.androidtweak.inputmethod.indic.utils.CollectionUtils;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
-import in.androidtweak.inputmethod.indic.utils.ScriptUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
-import in.androidtweak.inputmethod.indic.utils.SuggestionResults;
-import in.androidtweak.inputmethod.indic.WordComposer;
 
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Locale;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.WordComposer;
+import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
+import in.androidtweak.inputmethod.indic.utils.AdditionalSubtypeUtils;
+import in.androidtweak.inputmethod.indic.utils.ScriptUtils;
+import in.androidtweak.inputmethod.indic.utils.SuggestionResults;
 
 /**
  * Service for spell checking, using LatinIME's dictionaries and mechanisms.

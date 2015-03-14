@@ -26,13 +26,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
-import in.androidtweak.inputmethod.compat.UserDictionaryCompatUtils;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
-
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.TreeSet;
+
+import in.androidtweak.inputmethod.compat.UserDictionaryCompatUtils;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
 
 // Caveat: This class is basically taken from
 // packages/apps/Settings/src/com/android/settings/inputmethod/UserDictionaryAddWordContents.java

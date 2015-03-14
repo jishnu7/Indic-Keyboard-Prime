@@ -24,14 +24,10 @@ import android.os.Build;
 import android.util.Log;
 import android.util.Pair;
 
-import in.androidtweak.inputmethod.compat.BuildCompatUtils;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.settings.Settings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,6 +35,11 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+
+import in.androidtweak.inputmethod.compat.BuildCompatUtils;
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.settings.Settings;
 
 final class EmojiCategory {
     private final String TAG = EmojiCategory.class.getSimpleName();

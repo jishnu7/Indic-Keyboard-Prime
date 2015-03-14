@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.android.inputmethod.latin.BinaryDictionary;
 import in.androidtweak.inputmethod.indic.Dictionary;
-import com.android.inputmethod.latin.DictionaryFacilitator;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
 import com.android.inputmethod.latin.ExpandableBinaryDictionary;
 import com.android.inputmethod.latin.ExpandableBinaryDictionary.AddMultipleDictionaryEntriesCallback;
 import com.android.inputmethod.latin.makedict.CodePointUtils;

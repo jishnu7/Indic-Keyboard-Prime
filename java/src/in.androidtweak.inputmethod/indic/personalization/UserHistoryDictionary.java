@@ -19,15 +19,16 @@ package in.androidtweak.inputmethod.indic.personalization;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.android.inputmethod.latin.PrevWordsInfo;
+
+import java.io.File;
+import java.util.Locale;
+
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.Dictionary;
 import in.androidtweak.inputmethod.indic.ExpandableBinaryDictionary;
-import com.android.inputmethod.latin.PrevWordsInfo;
 import in.androidtweak.inputmethod.indic.utils.DistracterFilter;
-
-import java.io.File;
-import java.util.Locale;
 
 /**
  * Locally gathers stats about the words user types and various other signals like auto-correction

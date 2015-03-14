@@ -23,10 +23,10 @@ import android.provider.Settings.SettingNotFoundException;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.concurrent.TimeUnit;
+
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.indic.R;
-
-import java.util.concurrent.TimeUnit;
 
 public final class ImportantNoticeUtils {
     private static final String TAG = ImportantNoticeUtils.class.getSimpleName();

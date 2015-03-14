@@ -19,11 +19,11 @@ package in.androidtweak.inputmethod.event;
 import android.text.TextUtils;
 import android.view.KeyCharacterMap;
 
-import in.androidtweak.inputmethod.indic.Constants;
-
 import java.util.ArrayList;
 
 import javax.annotation.Nonnull;
+
+import in.androidtweak.inputmethod.indic.Constants;
 
 /**
  * A combiner that handles dead keys.

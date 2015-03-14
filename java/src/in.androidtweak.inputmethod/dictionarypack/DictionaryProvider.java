@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.content.ContentProvider;
 import android.content.ContentResolver;
@@ -30,14 +30,14 @@ import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 import android.util.Log;
 
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
 
 /**
  * Provider for dictionaries.

@@ -25,10 +25,11 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.TwoStatePreference;
 
+import in.androidtweak.inputmethod.indic.setup.LauncherIconVisibilityManager;
+
 import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.define.ProductionFlags;
-import com.android.inputmethod.latin.setup.LauncherIconVisibilityManager;
 
 /**
  * "Advanced" settings sub screen.

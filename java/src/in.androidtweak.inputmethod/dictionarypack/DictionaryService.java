@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -24,13 +24,13 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
 
-import in.androidtweak.inputmethod.indic.R;
-
 import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import in.androidtweak.inputmethod.indic.R;
 
 /**
  * Service that handles background tasks for the dictionary provider.

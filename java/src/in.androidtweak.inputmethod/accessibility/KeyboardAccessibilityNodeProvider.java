@@ -31,11 +31,12 @@ import android.view.inputmethod.EditorInfo;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardView;
+
+import java.util.List;
+
 import in.androidtweak.inputmethod.indic.settings.Settings;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
 import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
-
-import java.util.List;
 
 /**
  * Exposes a virtual view sub-tree for {@link KeyboardView} and generates

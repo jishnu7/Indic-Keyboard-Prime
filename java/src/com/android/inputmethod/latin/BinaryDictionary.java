@@ -20,26 +20,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.keyboard.ProximityInfo;
-// additional imports since we changed the package name.
-import in.androidtweak.inputmethod.indic.Dictionary;
-import in.androidtweak.inputmethod.indic.WordComposer;
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.InputPointers;
-// -- don't delete on merge
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
 import com.android.inputmethod.latin.makedict.FormatSpec;
 import com.android.inputmethod.latin.makedict.FormatSpec.DictionaryOptions;
 import com.android.inputmethod.latin.makedict.UnsupportedFormatException;
 import com.android.inputmethod.latin.makedict.WordProperty;
-import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
-import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
-import in.androidtweak.inputmethod.indic.utils.FileUtils;
-import in.androidtweak.inputmethod.indic.utils.JniUtils;
-import in.androidtweak.inputmethod.indic.utils.LanguageModelParam;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -47,6 +33,22 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.Dictionary;
+import in.androidtweak.inputmethod.indic.InputPointers;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.WordComposer;
+import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
+import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
+import in.androidtweak.inputmethod.indic.utils.FileUtils;
+import in.androidtweak.inputmethod.indic.utils.JniUtils;
+import in.androidtweak.inputmethod.indic.utils.LanguageModelParam;
+import in.androidtweak.inputmethod.indic.utils.StringUtils;
+
+// additional imports since we changed the package name.
+// -- don't delete on merge
 
 /**
  * Implements a static, compacted, binary dictionary of standard words.

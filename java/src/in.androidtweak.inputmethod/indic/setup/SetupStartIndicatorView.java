@@ -29,7 +29,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.R;
 
 public final class SetupStartIndicatorView extends LinearLayout {
     public SetupStartIndicatorView(final Context context, final AttributeSet attrs) {

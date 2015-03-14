@@ -21,6 +21,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.android.inputmethod.keyboard.Key;
+
 import in.androidtweak.inputmethod.indic.R;
 
 // Handling long press timer to show a more keys keyboard.

@@ -20,12 +20,13 @@ import android.util.SparseIntArray;
 
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.KeyboardId;
-import in.androidtweak.inputmethod.indic.Constants;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import in.androidtweak.inputmethod.indic.Constants;
 
 public class KeyboardParams {
     public KeyboardId mId;

@@ -24,11 +24,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.android.inputmethodcommon.InputMethodSettingsFragment;
+
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
-import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
 import in.androidtweak.inputmethod.indic.utils.FeedbackUtils;
-import com.android.inputmethodcommon.InputMethodSettingsFragment;
 
 public final class SettingsFragment extends InputMethodSettingsFragment {
     // We don't care about menu grouping.

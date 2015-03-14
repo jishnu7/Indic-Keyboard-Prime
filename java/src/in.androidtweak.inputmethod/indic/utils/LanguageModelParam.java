@@ -18,14 +18,15 @@ package in.androidtweak.inputmethod.indic.utils;
 
 import android.util.Log;
 
-import in.androidtweak.inputmethod.indic.Dictionary;
-import com.android.inputmethod.latin.DictionaryFacilitator;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
 import com.android.inputmethod.latin.PrevWordsInfo;
-import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.Dictionary;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 // Note: this class is used as a parameter type of a native method. You should be careful when you
 // rename this class or field name. See BinaryDictionary#addMultipleDictionaryEntriesNative().

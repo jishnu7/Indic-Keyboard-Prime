@@ -26,11 +26,12 @@ import android.view.inputmethod.EditorInfo;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardId;
+
+import java.util.Locale;
+
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
-
-import java.util.Locale;
 
 final class KeyCodeDescriptionMapper {
     private static final String TAG = KeyCodeDescriptionMapper.class.getSimpleName();

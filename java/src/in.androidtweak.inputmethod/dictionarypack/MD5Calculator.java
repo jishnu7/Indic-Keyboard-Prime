@@ -14,10 +14,10 @@
  * the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.MessageDigest;
 
 public final class MD5Calculator {

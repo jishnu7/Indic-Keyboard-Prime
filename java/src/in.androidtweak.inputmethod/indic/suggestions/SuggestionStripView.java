@@ -38,10 +38,13 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.MainKeyboardView;
 import com.android.inputmethod.keyboard.MoreKeysPanel;
+
+import java.util.ArrayList;
+
+import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
 import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
@@ -52,8 +55,6 @@ import in.androidtweak.inputmethod.indic.settings.Settings;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
 import in.androidtweak.inputmethod.indic.suggestions.MoreSuggestionsView.MoreSuggestionsListener;
 import in.androidtweak.inputmethod.indic.utils.ImportantNoticeUtils;
-
-import java.util.ArrayList;
 
 public final class SuggestionStripView extends RelativeLayout implements OnClickListener,
         OnLongClickListener {

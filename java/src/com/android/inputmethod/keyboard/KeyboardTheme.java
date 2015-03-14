@@ -20,11 +20,11 @@ import android.content.SharedPreferences;
 import android.os.Build.VERSION_CODES;
 import android.util.Log;
 
+import java.util.Arrays;
+
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.compat.BuildCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
-
-import java.util.Arrays;
 
 public final class KeyboardTheme implements Comparable<KeyboardTheme> {
     private static final String TAG = KeyboardTheme.class.getSimpleName();

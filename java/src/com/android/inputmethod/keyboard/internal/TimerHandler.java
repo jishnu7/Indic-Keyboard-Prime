@@ -24,6 +24,7 @@ import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.PointerTracker;
 import com.android.inputmethod.keyboard.PointerTracker.TimerProxy;
 import com.android.inputmethod.keyboard.internal.TimerHandler.Callbacks;
+
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.utils.LeakGuardHandlerWrapper;
 

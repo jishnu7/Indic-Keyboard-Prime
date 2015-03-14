@@ -16,9 +16,6 @@
 
 package com.android.inputmethod.keyboard;
 
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.FORCE_ASCII;
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_SETTINGS_KEY;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -30,12 +27,19 @@ import android.util.Xml;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.compat.EditorInfoCompatUtils;
-import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
 import com.android.inputmethod.keyboard.internal.KeyboardBuilder;
 import com.android.inputmethod.keyboard.internal.KeyboardParams;
 import com.android.inputmethod.keyboard.internal.KeysCache;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.lang.ref.SoftReference;
+import java.util.HashMap;
+
+import in.androidtweak.inputmethod.compat.EditorInfoCompatUtils;
+import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
 import in.androidtweak.inputmethod.indic.InputAttributes;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SubtypeSwitcher;
@@ -45,12 +49,8 @@ import in.androidtweak.inputmethod.indic.utils.ScriptUtils;
 import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 import in.androidtweak.inputmethod.indic.utils.XmlParseUtils;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
-import java.lang.ref.SoftReference;
-import java.util.HashMap;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.FORCE_ASCII;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_SETTINGS_KEY;
 
 /**
  * This class represents a set of keyboard layouts. Each of them represents a different keyboard

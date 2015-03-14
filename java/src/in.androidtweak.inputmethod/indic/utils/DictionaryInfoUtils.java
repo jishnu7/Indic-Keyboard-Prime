@@ -23,13 +23,8 @@ import android.content.res.Resources;
 import android.text.TextUtils;
 import android.util.Log;
 
-import in.androidtweak.inputmethod.indic.AssetFileAddress;
-import in.androidtweak.inputmethod.indic.BinaryDictionaryGetter;
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.R;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
 import com.android.inputmethod.latin.makedict.UnsupportedFormatException;
-import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +32,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import in.androidtweak.inputmethod.indic.AssetFileAddress;
+import in.androidtweak.inputmethod.indic.BinaryDictionaryGetter;
+import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 /**
  * This class encapsulates the logic for the Latin-IME side of dictionary information management.

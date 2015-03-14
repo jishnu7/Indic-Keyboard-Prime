@@ -16,12 +16,6 @@
 
 package in.androidtweak.inputmethod.indic.utils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.InputType;
@@ -33,10 +27,17 @@ import android.view.inputmethod.InputMethodSubtype;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
-import com.android.inputmethod.latin.DictionaryFacilitator;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
 import com.android.inputmethod.latin.PrevWordsInfo;
+import in.androidtweak.inputmethod.indic.WordComposer;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import com.android.inputmethod.latin.WordComposer;
 import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
 
 /**

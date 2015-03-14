@@ -18,7 +18,7 @@ package in.androidtweak.inputmethod.indic.personalization;
 
 import android.content.Context;
 
-import com.android.inputmethod.latin.DictionaryFacilitator;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
 
 public class ContextualDictionaryUpdater {
     public ContextualDictionaryUpdater(final Context context,

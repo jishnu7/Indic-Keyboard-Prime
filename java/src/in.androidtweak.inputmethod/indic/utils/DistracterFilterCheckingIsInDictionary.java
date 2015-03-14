@@ -16,13 +16,14 @@
 
 package in.androidtweak.inputmethod.indic.utils;
 
+import android.view.inputmethod.InputMethodSubtype;
+
+import com.android.inputmethod.latin.PrevWordsInfo;
+
 import java.util.List;
 import java.util.Locale;
 
-import android.view.inputmethod.InputMethodSubtype;
-
 import in.androidtweak.inputmethod.indic.Dictionary;
-import com.android.inputmethod.latin.PrevWordsInfo;
 
 public class DistracterFilterCheckingIsInDictionary implements DistracterFilter {
     private final DistracterFilter mDistracterFilter;

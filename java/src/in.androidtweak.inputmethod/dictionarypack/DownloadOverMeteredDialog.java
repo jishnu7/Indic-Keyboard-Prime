@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,9 +24,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import in.androidtweak.inputmethod.indic.R;
-
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.R;
 
 /**
  * This implements the dialog for asking the user whether it's okay to download dictionaries over

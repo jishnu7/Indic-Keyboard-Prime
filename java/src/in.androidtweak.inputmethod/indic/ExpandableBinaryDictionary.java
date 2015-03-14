@@ -19,21 +19,13 @@ package in.androidtweak.inputmethod.indic;
 import android.content.Context;
 import android.util.Log;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.keyboard.ProximityInfo;
-import com.android.inputmethod.latin.PrevWordsInfo;
 import com.android.inputmethod.latin.BinaryDictionary;
+import com.android.inputmethod.latin.PrevWordsInfo;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
 import com.android.inputmethod.latin.makedict.FormatSpec;
 import com.android.inputmethod.latin.makedict.UnsupportedFormatException;
 import com.android.inputmethod.latin.makedict.WordProperty;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
-import in.androidtweak.inputmethod.indic.utils.CombinedFormatUtils;
-import in.androidtweak.inputmethod.indic.utils.DistracterFilter;
-import in.androidtweak.inputmethod.indic.utils.ExecutorUtils;
-import in.androidtweak.inputmethod.indic.utils.FileUtils;
-import in.androidtweak.inputmethod.indic.utils.LanguageModelParam;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,6 +38,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
+import in.androidtweak.inputmethod.indic.utils.CombinedFormatUtils;
+import in.androidtweak.inputmethod.indic.utils.DistracterFilter;
+import in.androidtweak.inputmethod.indic.utils.ExecutorUtils;
+import in.androidtweak.inputmethod.indic.utils.FileUtils;
+import in.androidtweak.inputmethod.indic.utils.LanguageModelParam;
 
 /**
  * Abstract base class for an expandable dictionary that can be created and updated dynamically

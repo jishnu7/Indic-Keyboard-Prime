@@ -23,9 +23,6 @@ import android.util.Log;
 
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
 import com.android.inputmethod.latin.makedict.UnsupportedFormatException;
-import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
-import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +30,10 @@ import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
+import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
+import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
 
 /**
  * Helper class to get the address of a mmap'able dictionary file.

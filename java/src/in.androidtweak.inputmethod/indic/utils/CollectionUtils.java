@@ -17,9 +17,6 @@
 package in.androidtweak.inputmethod.indic.utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
-import java.util.TreeMap;
 
 public final class CollectionUtils {
     private CollectionUtils() {

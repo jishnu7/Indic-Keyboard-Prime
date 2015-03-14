@@ -19,13 +19,13 @@ package in.androidtweak.inputmethod.indic;
 import android.text.TextUtils;
 import android.view.inputmethod.CompletionInfo;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
+import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 public class SuggestedWords {
     public static final int INDEX_OF_TYPED_WORD = 0;

@@ -17,14 +17,15 @@
 package com.android.inputmethod.latin;
 
 import com.android.inputmethod.keyboard.ProximityInfo;
-import in.androidtweak.inputmethod.indic.Dictionary;
-import in.androidtweak.inputmethod.indic.WordComposer;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
 
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import in.androidtweak.inputmethod.indic.Dictionary;
+import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import in.androidtweak.inputmethod.indic.WordComposer;
+import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
 
 /**
  * This class provides binary dictionary reading operations with locking. An instance of this class

@@ -16,10 +16,6 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.FORCE_ASCII;
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE;
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE_COMPAT;
-
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -31,7 +27,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.inputmethodservice.InputMethodService;
 import android.media.AudioManager;
-//import android.net.ConnectivityManager;
 import android.os.Debug;
 import android.os.IBinder;
 import android.os.Message;
@@ -55,22 +50,32 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodSubtype;
 import android.widget.TextView;
 
-import com.android.inputmethod.latin.DictionaryFacilitator;
-import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.compat.CursorAnchorInfoCompatWrapper;
-import in.androidtweak.inputmethod.compat.InputMethodServiceCompatUtils;
-import com.android.inputmethod.dictionarypack.DictionaryPackConstants;
-import in.androidtweak.inputmethod.event.Event;
-import in.androidtweak.inputmethod.event.HardwareEventDecoder;
-import in.androidtweak.inputmethod.event.HardwareKeyboardEventDecoder;
-import in.androidtweak.inputmethod.event.InputTransaction;
+import in.androidtweak.inputmethod.dictionarypack.DictionaryPackConstants;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardActionListener;
 import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.KeyboardSwitcher;
 import com.android.inputmethod.keyboard.MainKeyboardView;
 import com.android.inputmethod.keyboard.TextDecoratorUi;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
+
+import org.wikimedia.morelangs.InputMethod;
+
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
+import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.compat.CursorAnchorInfoCompatWrapper;
+import in.androidtweak.inputmethod.compat.InputMethodServiceCompatUtils;
+import in.androidtweak.inputmethod.event.Event;
+import in.androidtweak.inputmethod.event.HardwareEventDecoder;
+import in.androidtweak.inputmethod.event.HardwareKeyboardEventDecoder;
+import in.androidtweak.inputmethod.event.InputTransaction;
 import in.androidtweak.inputmethod.indic.Suggest.OnGetSuggestedWordsCallback;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
@@ -99,14 +104,11 @@ import in.androidtweak.inputmethod.indic.utils.StatsUtils;
 import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
 import in.androidtweak.inputmethod.indic.utils.ViewLayoutUtils;
 
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.FORCE_ASCII;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE_COMPAT;
 
-import org.wikimedia.morelangs.InputMethod;
+//import android.net.ConnectivityManager;
 
 /**
  * Input method implementation for Qwerty'ish keyboard.
@@ -598,7 +600,6 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         InputMethod im;
         try {
             im = InputMethod.fromName(transliterationMethod);
-            mWordComposer.setTransliterationMethod(im);
             mTransliterationOn = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -607,7 +608,6 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
     }
 
     void disableTransliteration() {
-        mWordComposer.setTransliterationMethod(null);
         mTransliterationOn = false;
     }
 

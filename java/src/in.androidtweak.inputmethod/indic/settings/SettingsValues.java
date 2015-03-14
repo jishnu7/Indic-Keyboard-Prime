@@ -24,6 +24,9 @@ import android.content.res.Resources;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
+import java.util.Arrays;
+import java.util.Locale;
+
 import in.androidtweak.inputmethod.compat.AppWorkaroundsUtils;
 import in.androidtweak.inputmethod.indic.InputAttributes;
 import in.androidtweak.inputmethod.indic.R;
@@ -32,9 +35,6 @@ import in.androidtweak.inputmethod.indic.SubtypeSwitcher;
 import in.androidtweak.inputmethod.indic.utils.AsyncResultHolder;
 import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
 import in.androidtweak.inputmethod.indic.utils.TargetPackageInfoGetterTask;
-
-import java.util.Arrays;
-import java.util.Locale;
 
 /**
  * When you call the constructor of this class, you may want to change the current system locale by

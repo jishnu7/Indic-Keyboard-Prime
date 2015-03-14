@@ -16,12 +16,12 @@
 
 package in.androidtweak.inputmethod.event;
 
-import in.androidtweak.inputmethod.indic.Constants;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.annotation.Nonnull;
+
+import in.androidtweak.inputmethod.indic.Constants;
 
 /**
  * A combiner that reorders input for Myanmar.

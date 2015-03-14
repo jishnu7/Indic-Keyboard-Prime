@@ -20,7 +20,7 @@ import java.util.Locale;
 
 import android.content.Context;
 
-import com.android.inputmethod.latin.DictionaryFacilitator;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
 
 public class PersonalizationDictionaryUpdater {
     final Context mContext;

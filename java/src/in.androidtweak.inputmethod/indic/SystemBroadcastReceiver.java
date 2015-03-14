@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin;
+package in.androidtweak.inputmethod.indic;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,9 +24,10 @@ import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.compat.IntentCompatUtils;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
-import com.android.inputmethod.latin.setup.LauncherIconVisibilityManager;
+import in.androidtweak.inputmethod.indic.setup.LauncherIconVisibilityManager;
+
+import in.androidtweak.inputmethod.compat.IntentCompatUtils;
 import in.androidtweak.inputmethod.indic.utils.UncachedInputMethodManagerUtils;
 
 /**

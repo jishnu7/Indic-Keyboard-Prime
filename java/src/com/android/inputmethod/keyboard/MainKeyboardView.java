@@ -36,9 +36,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
-import in.androidtweak.inputmethod.accessibility.MainKeyboardAccessibilityDelegate;
-import in.androidtweak.inputmethod.annotations.ExternallyReferenced;
 import com.android.inputmethod.keyboard.internal.DrawingHandler;
 import com.android.inputmethod.keyboard.internal.DrawingPreviewPlacerView;
 import com.android.inputmethod.keyboard.internal.GestureFloatingTextDrawingPreview;
@@ -52,6 +49,12 @@ import com.android.inputmethod.keyboard.internal.MoreKeySpec;
 import com.android.inputmethod.keyboard.internal.NonDistinctMultitouchHelper;
 import com.android.inputmethod.keyboard.internal.SlidingKeyInputDrawingPreview;
 import com.android.inputmethod.keyboard.internal.TimerHandler;
+
+import java.util.WeakHashMap;
+
+import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
+import in.androidtweak.inputmethod.accessibility.MainKeyboardAccessibilityDelegate;
+import in.androidtweak.inputmethod.annotations.ExternallyReferenced;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SuggestedWords;
@@ -59,8 +62,6 @@ import in.androidtweak.inputmethod.indic.settings.DebugSettings;
 import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
 import in.androidtweak.inputmethod.indic.utils.SpacebarLanguageUtils;
 import in.androidtweak.inputmethod.indic.utils.TypefaceUtils;
-
-import java.util.WeakHashMap;
 
 /**
  * A view that is responsible for detecting key presses and touch movements.

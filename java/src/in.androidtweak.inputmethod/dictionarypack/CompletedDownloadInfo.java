@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.app.DownloadManager;
 

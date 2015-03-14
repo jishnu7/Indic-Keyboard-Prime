@@ -20,12 +20,12 @@ import android.text.Spannable;
 import android.text.style.LocaleSpan;
 import android.util.Log;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
 
 @UsedForTesting
 public final class LocaleSpanCompatUtils {

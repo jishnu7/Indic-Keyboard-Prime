@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin;
+package in.androidtweak.inputmethod.indic;
 
 import com.android.inputmethod.keyboard.internal.KeySpecParser;
-import in.androidtweak.inputmethod.indic.SuggestedWords;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import in.androidtweak.inputmethod.indic.SuggestedWords;
+import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
 /**
  * The extended {@link SuggestedWords} class to represent punctuation suggestions.

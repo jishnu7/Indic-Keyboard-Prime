@@ -16,19 +16,19 @@
 
 package in.androidtweak.inputmethod.indic.utils;
 
-import static in.androidtweak.inputmethod.indic.Constants.CODE_UNSPECIFIED;
-
 import android.text.Spanned;
 import android.text.TextUtils;
-
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Constants;
+
+import static in.androidtweak.inputmethod.indic.Constants.CODE_UNSPECIFIED;
 
 public final class StringUtils {
     public static final int CAPITALIZE_NONE = 0;  // No caps, or mixed case

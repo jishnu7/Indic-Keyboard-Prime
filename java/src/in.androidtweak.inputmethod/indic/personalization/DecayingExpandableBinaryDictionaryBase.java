@@ -18,13 +18,14 @@ package in.androidtweak.inputmethod.indic.personalization;
 
 import android.content.Context;
 
-import in.androidtweak.inputmethod.indic.Dictionary;
-import in.androidtweak.inputmethod.indic.ExpandableBinaryDictionary;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
 
 import java.io.File;
 import java.util.Locale;
 import java.util.Map;
+
+import in.androidtweak.inputmethod.indic.Dictionary;
+import in.androidtweak.inputmethod.indic.ExpandableBinaryDictionary;
 
 /**
  * This class is a base class of a dictionary that supports decaying for the personalized language

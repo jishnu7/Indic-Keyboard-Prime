@@ -16,18 +16,18 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE;
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE_COMPAT;
-
 import android.text.InputType;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import in.androidtweak.inputmethod.indic.utils.InputTypeUtils;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE_COMPAT;
 
 /**
  * Class to hold attributes of the input field.

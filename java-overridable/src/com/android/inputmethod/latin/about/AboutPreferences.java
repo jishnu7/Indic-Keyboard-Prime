@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.latin.about;
+package in.androidtweak.inputmethod.indic.about;
 
 import android.app.Fragment;
 

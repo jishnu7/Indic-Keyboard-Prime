@@ -25,6 +25,7 @@ import android.graphics.RectF;
 import android.text.TextUtils;
 
 import com.android.inputmethod.keyboard.PointerTracker;
+
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SuggestedWords;
 import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;

@@ -25,11 +25,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.CursorAnchorInfo;
 
+import javax.annotation.Nonnull;
+
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.compat.CursorAnchorInfoCompatWrapper;
 import in.androidtweak.inputmethod.indic.utils.LeakGuardHandlerWrapper;
-
-import javax.annotation.Nonnull;
 
 /**
  * A controller class of the add-to-dictionary indicator (a.k.a. TextDecorator). This class

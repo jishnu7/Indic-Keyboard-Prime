@@ -20,6 +20,7 @@ import android.os.Message;
 
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.internal.DrawingHandler.Callbacks;
+
 import in.androidtweak.inputmethod.indic.SuggestedWords;
 import in.androidtweak.inputmethod.indic.utils.LeakGuardHandlerWrapper;
 

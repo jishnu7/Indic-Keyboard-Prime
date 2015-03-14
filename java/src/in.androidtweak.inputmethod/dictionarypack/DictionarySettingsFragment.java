@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package com.android.inputmethod.dictionarypack;
+package in.androidtweak.inputmethod.dictionarypack;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -41,12 +41,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
-import in.androidtweak.inputmethod.indic.R;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.TreeMap;
+
+import in.androidtweak.inputmethod.indic.R;
 
 /**
  * Preference screen.

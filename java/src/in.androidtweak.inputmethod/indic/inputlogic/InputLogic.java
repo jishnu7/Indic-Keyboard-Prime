@@ -31,23 +31,26 @@ import android.view.inputmethod.CorrectionInfo;
 import android.view.inputmethod.CursorAnchorInfo;
 import android.view.inputmethod.EditorInfo;
 
-import in.androidtweak.inputmethod.compat.CursorAnchorInfoCompatWrapper;
-import in.androidtweak.inputmethod.compat.SuggestionSpanUtils;
-import in.androidtweak.inputmethod.event.Event;
-import in.androidtweak.inputmethod.event.InputTransaction;
 import com.android.inputmethod.keyboard.KeyboardSwitcher;
 import com.android.inputmethod.keyboard.ProximityInfo;
 import com.android.inputmethod.keyboard.TextDecorator;
 import com.android.inputmethod.keyboard.TextDecoratorUiOperator;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
+import com.android.inputmethod.latin.PrevWordsInfo;
+
+import java.util.ArrayList;
+import java.util.TreeSet;
+import java.util.concurrent.TimeUnit;
+
+import in.androidtweak.inputmethod.compat.CursorAnchorInfoCompatWrapper;
+import in.androidtweak.inputmethod.compat.SuggestionSpanUtils;
+import in.androidtweak.inputmethod.event.Event;
+import in.androidtweak.inputmethod.event.InputTransaction;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.Dictionary;
-
-import com.android.inputmethod.latin.DictionaryFacilitator;
 import in.androidtweak.inputmethod.indic.InputPointers;
 import in.androidtweak.inputmethod.indic.LastComposedWord;
 import in.androidtweak.inputmethod.indic.LatinIME;
-
-import com.android.inputmethod.latin.PrevWordsInfo;
 import in.androidtweak.inputmethod.indic.RichInputConnection;
 import in.androidtweak.inputmethod.indic.Suggest;
 import in.androidtweak.inputmethod.indic.Suggest.OnGetSuggestedWordsCallback;
@@ -65,10 +68,6 @@ import in.androidtweak.inputmethod.indic.utils.InputTypeUtils;
 import in.androidtweak.inputmethod.indic.utils.RecapitalizeStatus;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
 import in.androidtweak.inputmethod.indic.utils.TextRange;
-
-import java.util.ArrayList;
-import java.util.TreeSet;
-import java.util.concurrent.TimeUnit;
 
 /**
  * This class manages the input logic.

@@ -19,8 +19,12 @@ package in.androidtweak.inputmethod.indic;
 import android.text.TextUtils;
 
 import com.android.inputmethod.keyboard.ProximityInfo;
+import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
 import com.android.inputmethod.latin.PrevWordsInfo;
-import com.android.inputmethod.latin.DictionaryFacilitator;
+
+import java.util.ArrayList;
+import java.util.Locale;
+
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
 import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
@@ -28,9 +32,6 @@ import in.androidtweak.inputmethod.indic.utils.AutoCorrectionUtils;
 import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
 import in.androidtweak.inputmethod.indic.utils.StringUtils;
 import in.androidtweak.inputmethod.indic.utils.SuggestionResults;
-
-import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * This class loads a dictionary and provides a list of suggestions for a given sequence of
