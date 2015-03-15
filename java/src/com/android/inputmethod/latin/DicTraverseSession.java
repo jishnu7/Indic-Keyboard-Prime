@@ -20,7 +20,7 @@ import java.util.Locale;
 
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.settings.NativeSuggestOptions;
-import in.androidtweak.inputmethod.indic.utils.JniUtils;
+import com.android.inputmethod.latin.utils.JniUtils;
 
 public final class DicTraverseSession {
     static {

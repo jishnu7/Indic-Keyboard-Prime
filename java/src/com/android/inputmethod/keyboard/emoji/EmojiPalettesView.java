@@ -51,7 +51,7 @@ import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SubtypeSwitcher;
-import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
+import com.android.inputmethod.latin.utils.ResourceUtils;
 
 import static in.androidtweak.inputmethod.indic.Constants.NOT_A_COORDINATE;
 

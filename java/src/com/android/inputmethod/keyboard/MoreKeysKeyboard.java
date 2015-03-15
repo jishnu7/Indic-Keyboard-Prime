@@ -25,8 +25,8 @@ import com.android.inputmethod.keyboard.internal.MoreKeySpec;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
-import in.androidtweak.inputmethod.indic.utils.TypefaceUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
+import com.android.inputmethod.latin.utils.TypefaceUtils;
 
 public final class MoreKeysKeyboard extends Keyboard {
     private final int mDefaultKeyCoordX;

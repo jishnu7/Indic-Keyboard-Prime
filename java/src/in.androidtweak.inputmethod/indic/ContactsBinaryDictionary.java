@@ -40,8 +40,8 @@ import com.android.inputmethod.latin.PrevWordsInfo;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.indic.personalization.AccountUtils;
-import in.androidtweak.inputmethod.indic.utils.ExecutorUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.ExecutorUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 public class ContactsBinaryDictionary extends ExpandableBinaryDictionary {
 

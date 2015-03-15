@@ -41,11 +41,11 @@ import in.androidtweak.inputmethod.indic.InputPointers;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.WordComposer;
 import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
-import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
-import in.androidtweak.inputmethod.indic.utils.FileUtils;
-import in.androidtweak.inputmethod.indic.utils.JniUtils;
-import in.androidtweak.inputmethod.indic.utils.LanguageModelParam;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.BinaryDictionaryUtils;
+import com.android.inputmethod.latin.utils.FileUtils;
+import com.android.inputmethod.latin.utils.JniUtils;
+import com.android.inputmethod.latin.utils.LanguageModelParam;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 // additional imports since we changed the package name.
 // -- don't delete on merge

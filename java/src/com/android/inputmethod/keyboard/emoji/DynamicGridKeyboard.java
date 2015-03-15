@@ -30,7 +30,7 @@ import java.util.Collections;
 import java.util.List;
 
 import in.androidtweak.inputmethod.indic.settings.Settings;
-import in.androidtweak.inputmethod.indic.utils.JsonUtils;
+import com.android.inputmethod.latin.utils.JsonUtils;
 
 /**
  * This is a Keyboard class where you can add keys dynamically shown in a grid layout

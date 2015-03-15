@@ -27,7 +27,7 @@ import java.util.Locale;
 import in.androidtweak.inputmethod.compat.TextInfoCompatUtils;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
-import in.androidtweak.inputmethod.indic.utils.RunInLocale;
+import com.android.inputmethod.latin.utils.RunInLocale;
 
 /**
  * This code is mostly lifted directly from android.service.textservice.SpellCheckerService in

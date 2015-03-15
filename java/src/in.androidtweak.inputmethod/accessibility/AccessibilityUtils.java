@@ -35,7 +35,7 @@ import android.view.inputmethod.EditorInfo;
 import in.androidtweak.inputmethod.compat.SettingsSecureCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SuggestedWords;
-import in.androidtweak.inputmethod.indic.utils.InputTypeUtils;
+import com.android.inputmethod.latin.utils.InputTypeUtils;
 
 public final class AccessibilityUtils {
     private static final String TAG = AccessibilityUtils.class.getSimpleName();

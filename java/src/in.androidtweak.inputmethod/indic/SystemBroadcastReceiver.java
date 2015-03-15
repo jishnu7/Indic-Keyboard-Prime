@@ -28,7 +28,7 @@ import com.android.inputmethod.keyboard.KeyboardLayoutSet;
 import in.androidtweak.inputmethod.indic.setup.LauncherIconVisibilityManager;
 
 import in.androidtweak.inputmethod.compat.IntentCompatUtils;
-import in.androidtweak.inputmethod.indic.utils.UncachedInputMethodManagerUtils;
+import com.android.inputmethod.latin.utils.UncachedInputMethodManagerUtils;
 
 /**
  * This class detects the {@link Intent#ACTION_MY_PACKAGE_REPLACED} broadcast intent when this IME

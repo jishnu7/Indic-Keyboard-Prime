@@ -38,7 +38,7 @@ import com.android.inputmethod.latin.BinaryDictionary;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.compat.UserDictionaryCompatUtils;
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
+import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
 
 /**
  * An expandable dictionary that stores the words in the user dictionary provider into a binary

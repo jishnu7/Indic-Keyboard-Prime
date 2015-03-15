@@ -32,11 +32,11 @@ import android.view.inputmethod.InputConnectionWrapper;
 
 import com.android.inputmethod.latin.PrevWordsInfo.WordInfo;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
-import in.androidtweak.inputmethod.indic.utils.PrevWordsInfoUtils;
-import in.androidtweak.inputmethod.indic.utils.RunInLocale;
-import in.androidtweak.inputmethod.indic.utils.ScriptUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
-import in.androidtweak.inputmethod.indic.utils.TextRange;
+import com.android.inputmethod.latin.utils.PrevWordsInfoUtils;
+import com.android.inputmethod.latin.utils.RunInLocale;
+import com.android.inputmethod.latin.utils.ScriptUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
+import com.android.inputmethod.latin.utils.TextRange;
 
 import java.util.Locale;
 

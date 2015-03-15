@@ -40,8 +40,8 @@ import in.androidtweak.inputmethod.indic.SubtypeSwitcher;
 import in.androidtweak.inputmethod.indic.WordComposer;
 import in.androidtweak.inputmethod.indic.settings.Settings;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
-import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
-import in.androidtweak.inputmethod.indic.utils.ScriptUtils;
+import com.android.inputmethod.latin.utils.ResourceUtils;
+import com.android.inputmethod.latin.utils.ScriptUtils;
 
 public final class KeyboardSwitcher implements KeyboardState.SwitchActions {
     private static final String TAG = KeyboardSwitcher.class.getSimpleName();

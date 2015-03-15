@@ -56,8 +56,8 @@ import in.androidtweak.inputmethod.compat.ConnectivityManagerCompatUtils;
 import in.androidtweak.inputmethod.compat.DownloadManagerCompatUtils;
 import in.androidtweak.inputmethod.compat.NotificationCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
-import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
+import com.android.inputmethod.latin.utils.ApplicationUtils;
+import com.android.inputmethod.latin.utils.DebugLogUtils;
 
 /**
  * Handler for the update process.

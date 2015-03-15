@@ -17,7 +17,7 @@
 package com.android.inputmethod.keyboard.internal;
 
 import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 import static in.androidtweak.inputmethod.indic.Constants.CODE_OUTPUT_TEXT;
 import static in.androidtweak.inputmethod.indic.Constants.CODE_UNSPECIFIED;

@@ -16,9 +16,14 @@
 
 package in.androidtweak.inputmethod.indic;
 
+//import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.REQ_NETWORK_CONNECTIVITY;
+
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.inputmethodservice.InputMethodService;
+//import android.net.ConnectivityManager;
+//import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.util.Log;
@@ -26,24 +31,19 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
+import com.android.inputmethod.keyboard.KeyboardSwitcher;
 import com.android.inputmethod.keyboard.internal.LanguageOnSpacebarHelper;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
+import com.android.inputmethod.latin.utils.LocaleUtils;
+import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
-
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.REQ_NETWORK_CONNECTIVITY;
-
-//import android.net.ConnectivityManager;
-//import android.net.NetworkInfo;
 
 public final class SubtypeSwitcher {
     private static boolean DBG = DebugFlags.DEBUG_ENABLED;
@@ -60,7 +60,7 @@ public final class SubtypeSwitcher {
     private InputMethodSubtype mShortcutSubtype;
     private InputMethodSubtype mNoLanguageSubtype;
     private InputMethodSubtype mEmojiSubtype;
-    //private boolean mIsNetworkConnected = false;
+    private boolean mIsNetworkConnected;
 
     private static final String KEYBOARD_MODE = "keyboard";
     // Dummy no language QWERTY subtype. See {@link R.xml.method}.
@@ -183,7 +183,6 @@ public final class SubtypeSwitcher {
         updateShortcutIME();
     }
 
-
     ////////////////////////////
     // Shortcut IME functions //
     ////////////////////////////
@@ -233,20 +232,19 @@ public final class SubtypeSwitcher {
         if (mShortcutSubtype == null) {
             return true;
         }
-        if (mShortcutSubtype.containsExtraValueKey(REQ_NETWORK_CONNECTIVITY)) {
+        //if (mShortcutSubtype.containsExtraValueKey(REQ_NETWORK_CONNECTIVITY)) {
             //return mIsNetworkConnected;
-            return false;
-        }
+        //}
         return true;
     }
 
-    //public void onNetworkStateChanged(final Intent intent) {
+    public void onNetworkStateChanged(final Intent intent) {
         //final boolean noConnection = intent.getBooleanExtra(
                 //ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
         //mIsNetworkConnected = !noConnection;
 
         //KeyboardSwitcher.getInstance().onNetworkStateChanged();
-    //}
+    }
 
     //////////////////////////////////
     // Subtype Switching functions //

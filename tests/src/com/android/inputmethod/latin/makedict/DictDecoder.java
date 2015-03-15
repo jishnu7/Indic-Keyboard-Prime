@@ -18,7 +18,7 @@ package com.android.inputmethod.latin.makedict;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.latin.makedict.BinaryDictDecoderUtils.DictBuffer;
-import in.androidtweak.inputmethod.indic.utils.ByteArrayDictBuffer;
+import com.android.inputmethod.latin.utils.ByteArrayDictBuffer;
 
 import java.io.File;
 import java.io.FileInputStream;

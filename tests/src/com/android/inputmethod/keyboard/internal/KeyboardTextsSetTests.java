@@ -23,7 +23,7 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodSubtype;
 
 import in.androidtweak.inputmethod.indic.RichInputMethodManager;
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
+import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;

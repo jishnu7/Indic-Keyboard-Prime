@@ -26,7 +26,7 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
-import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
+import com.android.inputmethod.latin.utils.CoordinateUtils;
 
 public final class DrawingPreviewPlacerView extends RelativeLayout {
     private final int[] mKeyboardViewOrigin = CoordinateUtils.newInstance();

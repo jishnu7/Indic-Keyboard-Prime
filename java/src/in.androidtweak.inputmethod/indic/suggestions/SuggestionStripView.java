@@ -54,7 +54,7 @@ import in.androidtweak.inputmethod.indic.define.DebugFlags;
 import in.androidtweak.inputmethod.indic.settings.Settings;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
 import in.androidtweak.inputmethod.indic.suggestions.MoreSuggestionsView.MoreSuggestionsListener;
-import in.androidtweak.inputmethod.indic.utils.ImportantNoticeUtils;
+import com.android.inputmethod.latin.utils.ImportantNoticeUtils;
 
 public final class SuggestionStripView extends RelativeLayout implements OnClickListener,
         OnLongClickListener {

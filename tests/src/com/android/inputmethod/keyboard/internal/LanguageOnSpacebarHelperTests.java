@@ -26,8 +26,8 @@ import android.test.suitebuilder.annotation.SmallTest;
 import android.view.inputmethod.InputMethodSubtype;
 
 import in.androidtweak.inputmethod.indic.RichInputMethodManager;
-import in.androidtweak.inputmethod.indic.utils.AdditionalSubtypeUtils;
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
+import com.android.inputmethod.latin.utils.AdditionalSubtypeUtils;
+import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
 
 import java.util.Arrays;
 import java.util.List;

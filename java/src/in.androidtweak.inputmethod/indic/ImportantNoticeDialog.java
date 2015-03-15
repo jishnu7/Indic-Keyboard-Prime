@@ -21,8 +21,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
-import in.androidtweak.inputmethod.indic.utils.DialogUtils;
-import in.androidtweak.inputmethod.indic.utils.ImportantNoticeUtils;
+import com.android.inputmethod.latin.utils.DialogUtils;
+import com.android.inputmethod.latin.utils.ImportantNoticeUtils;
 
 /**
  * The dialog box that shows the important notice contents.

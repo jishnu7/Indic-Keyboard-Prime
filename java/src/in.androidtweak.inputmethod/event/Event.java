@@ -18,7 +18,7 @@ package in.androidtweak.inputmethod.event;
 
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 /**
  * Class representing a generic input event as handled by Latin IME.

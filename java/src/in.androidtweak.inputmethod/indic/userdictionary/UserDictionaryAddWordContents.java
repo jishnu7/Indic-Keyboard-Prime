@@ -32,7 +32,7 @@ import java.util.TreeSet;
 
 import in.androidtweak.inputmethod.compat.UserDictionaryCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
+import com.android.inputmethod.latin.utils.LocaleUtils;
 
 // Caveat: This class is basically taken from
 // packages/apps/Settings/src/com/android/settings/inputmethod/UserDictionaryAddWordContents.java

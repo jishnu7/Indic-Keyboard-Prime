@@ -42,11 +42,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
-import in.androidtweak.inputmethod.indic.utils.CombinedFormatUtils;
-import in.androidtweak.inputmethod.indic.utils.DistracterFilter;
-import in.androidtweak.inputmethod.indic.utils.ExecutorUtils;
-import in.androidtweak.inputmethod.indic.utils.FileUtils;
-import in.androidtweak.inputmethod.indic.utils.LanguageModelParam;
+import com.android.inputmethod.latin.utils.CombinedFormatUtils;
+import com.android.inputmethod.latin.utils.DistracterFilter;
+import com.android.inputmethod.latin.utils.ExecutorUtils;
+import com.android.inputmethod.latin.utils.FileUtils;
+import com.android.inputmethod.latin.utils.LanguageModelParam;
 
 /**
  * Abstract base class for an expandable dictionary that can be created and updated dynamically

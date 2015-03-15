@@ -36,7 +36,7 @@ import java.util.List;
 
 import in.androidtweak.inputmethod.indic.settings.Settings;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
-import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
+import com.android.inputmethod.latin.utils.CoordinateUtils;
 
 /**
  * Exposes a virtual view sub-tree for {@link KeyboardView} and generates

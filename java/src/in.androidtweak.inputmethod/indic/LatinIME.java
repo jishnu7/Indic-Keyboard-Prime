@@ -16,6 +16,10 @@
 
 package in.androidtweak.inputmethod.indic;
 
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.FORCE_ASCII;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE;
+import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE_COMPAT;
+
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -27,6 +31,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.inputmethodservice.InputMethodService;
 import android.media.AudioManager;
+//import android.net.ConnectivityManager;
 import android.os.Debug;
 import android.os.IBinder;
 import android.os.Message;
@@ -50,7 +55,15 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodSubtype;
 import android.widget.TextView;
 
+import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.compat.CursorAnchorInfoCompatWrapper;
+import in.androidtweak.inputmethod.compat.InputMethodServiceCompatUtils;
 import in.androidtweak.inputmethod.dictionarypack.DictionaryPackConstants;
+import in.androidtweak.inputmethod.event.Event;
+import in.androidtweak.inputmethod.event.HardwareEventDecoder;
+import in.androidtweak.inputmethod.event.HardwareKeyboardEventDecoder;
+import in.androidtweak.inputmethod.event.InputTransaction;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardActionListener;
 import com.android.inputmethod.keyboard.KeyboardId;
@@ -58,24 +71,6 @@ import com.android.inputmethod.keyboard.KeyboardSwitcher;
 import com.android.inputmethod.keyboard.MainKeyboardView;
 import com.android.inputmethod.keyboard.TextDecoratorUi;
 import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
-
-import org.wikimedia.morelangs.InputMethod;
-
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
-
-import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.compat.CursorAnchorInfoCompatWrapper;
-import in.androidtweak.inputmethod.compat.InputMethodServiceCompatUtils;
-import in.androidtweak.inputmethod.event.Event;
-import in.androidtweak.inputmethod.event.HardwareEventDecoder;
-import in.androidtweak.inputmethod.event.HardwareKeyboardEventDecoder;
-import in.androidtweak.inputmethod.event.InputTransaction;
 import in.androidtweak.inputmethod.indic.Suggest.OnGetSuggestedWordsCallback;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
@@ -90,25 +85,28 @@ import in.androidtweak.inputmethod.indic.settings.SettingsActivity;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
 import in.androidtweak.inputmethod.indic.suggestions.SuggestionStripView;
 import in.androidtweak.inputmethod.indic.suggestions.SuggestionStripViewAccessor;
-import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
-import in.androidtweak.inputmethod.indic.utils.CapsModeUtils;
-import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
-import in.androidtweak.inputmethod.indic.utils.CursorAnchorInfoUtils;
-import in.androidtweak.inputmethod.indic.utils.DialogUtils;
-import in.androidtweak.inputmethod.indic.utils.DistracterFilterCheckingExactMatchesAndSuggestions;
-import in.androidtweak.inputmethod.indic.utils.ImportantNoticeUtils;
-import in.androidtweak.inputmethod.indic.utils.IntentUtils;
-import in.androidtweak.inputmethod.indic.utils.JniUtils;
-import in.androidtweak.inputmethod.indic.utils.LeakGuardHandlerWrapper;
-import in.androidtweak.inputmethod.indic.utils.StatsUtils;
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
-import in.androidtweak.inputmethod.indic.utils.ViewLayoutUtils;
+import com.android.inputmethod.latin.utils.ApplicationUtils;
+import com.android.inputmethod.latin.utils.CapsModeUtils;
+import com.android.inputmethod.latin.utils.CoordinateUtils;
+import com.android.inputmethod.latin.utils.CursorAnchorInfoUtils;
+import com.android.inputmethod.latin.utils.DialogUtils;
+import com.android.inputmethod.latin.utils.DistracterFilterCheckingExactMatchesAndSuggestions;
+import com.android.inputmethod.latin.utils.ImportantNoticeUtils;
+import com.android.inputmethod.latin.utils.IntentUtils;
+import com.android.inputmethod.latin.utils.JniUtils;
+import com.android.inputmethod.latin.utils.LeakGuardHandlerWrapper;
+import com.android.inputmethod.latin.utils.StatsUtils;
+import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
+import com.android.inputmethod.latin.utils.ViewLayoutUtils;
 
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.FORCE_ASCII;
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE;
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE_COMPAT;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
-//import android.net.ConnectivityManager;
+import org.wikimedia.morelangs.InputMethod;
 
 /**
  * Input method implementation for Qwerty'ish keyboard.
@@ -537,7 +535,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         DebugFlags.init(PreferenceManager.getDefaultSharedPreferences(this));
         RichInputMethodManager.init(this);
         mRichImm = RichInputMethodManager.getInstance();
-        checkForTransliteration();
+        //checkForTransliteration();
         SubtypeSwitcher.init(this);
         KeyboardSwitcher.init(this);
         AudioAndHapticFeedbackManager.init(this);
@@ -852,7 +850,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         // Note that the calling sequence of onCreate() and onCurrentInputMethodSubtypeChanged()
         // is not guaranteed. It may even be called at the same time on a different thread.
         mSubtypeSwitcher.onSubtypeChanged(subtype);
-        checkForTransliteration();
+        //checkForTransliteration();
         mInputLogic.onSubtypeChanged(SubtypeLocaleUtils.getCombiningRulesExtraValue(subtype),
                 mSettings.getCurrent());
         loadKeyboard();

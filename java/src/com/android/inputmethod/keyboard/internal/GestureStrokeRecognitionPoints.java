@@ -20,7 +20,7 @@ import android.util.Log;
 
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.InputPointers;
-import in.androidtweak.inputmethod.indic.utils.ResizableIntArray;
+import com.android.inputmethod.latin.utils.ResizableIntArray;
 
 /**
  * This class holds event points to recognize a gesture stroke.

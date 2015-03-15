@@ -51,11 +51,11 @@ import in.androidtweak.inputmethod.indic.personalization.PersonalizationDictiona
 import in.androidtweak.inputmethod.indic.personalization.UserHistoryDictionary;
 import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
-import in.androidtweak.inputmethod.indic.utils.DistracterFilter;
-import in.androidtweak.inputmethod.indic.utils.DistracterFilterCheckingIsInDictionary;
-import in.androidtweak.inputmethod.indic.utils.ExecutorUtils;
-import in.androidtweak.inputmethod.indic.utils.LanguageModelParam;
-import in.androidtweak.inputmethod.indic.utils.SuggestionResults;
+import com.android.inputmethod.latin.utils.DistracterFilter;
+import com.android.inputmethod.latin.utils.DistracterFilterCheckingIsInDictionary;
+import com.android.inputmethod.latin.utils.ExecutorUtils;
+import com.android.inputmethod.latin.utils.LanguageModelParam;
+import com.android.inputmethod.latin.utils.SuggestionResults;
 
 // TODO: Consolidate dictionaries in native code.
 public class DictionaryFacilitator {

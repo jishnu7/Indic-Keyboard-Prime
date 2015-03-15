@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package in.androidtweak.inputmethod.indic.utils;
+package com.android.inputmethod.latin.utils;
 
-import static in.androidtweak.inputmethod.indic.utils.ImportantNoticeUtils.KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE;
-import static in.androidtweak.inputmethod.indic.utils.ImportantNoticeUtils.KEY_IMPORTANT_NOTICE_VERSION;
+import static com.android.inputmethod.latin.utils.ImportantNoticeUtils.KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE;
+import static com.android.inputmethod.latin.utils.ImportantNoticeUtils.KEY_IMPORTANT_NOTICE_VERSION;
 
 import android.content.Context;
 import android.content.SharedPreferences;

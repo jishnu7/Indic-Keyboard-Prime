@@ -30,7 +30,7 @@ import java.util.LinkedList;
 import java.util.Locale;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
+import com.android.inputmethod.latin.utils.DictionaryInfoUtils;
 
 /**
  * Factory for dictionary instances.

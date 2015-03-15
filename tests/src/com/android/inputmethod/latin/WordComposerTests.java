@@ -19,8 +19,8 @@ package com.android.inputmethod.latin;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.CoordinateUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 /**
  * Unit tests for WordComposer.

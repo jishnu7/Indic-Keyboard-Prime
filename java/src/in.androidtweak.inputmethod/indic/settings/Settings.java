@@ -34,10 +34,10 @@ import in.androidtweak.inputmethod.compat.BuildCompatUtils;
 import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
 import in.androidtweak.inputmethod.indic.InputAttributes;
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.AdditionalSubtypeUtils;
-import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
-import in.androidtweak.inputmethod.indic.utils.RunInLocale;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.AdditionalSubtypeUtils;
+import com.android.inputmethod.latin.utils.ResourceUtils;
+import com.android.inputmethod.latin.utils.RunInLocale;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 public final class Settings implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = Settings.class.getSimpleName();

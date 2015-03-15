@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.List;
 
 import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.utils.JniUtils;
+import com.android.inputmethod.latin.utils.JniUtils;
 
 public class ProximityInfo {
     private static final String TAG = ProximityInfo.class.getSimpleName();

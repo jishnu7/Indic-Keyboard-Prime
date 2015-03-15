@@ -22,7 +22,7 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
-import in.androidtweak.inputmethod.indic.utils.FragmentUtils;
+import com.android.inputmethod.latin.utils.FragmentUtils;
 
 public final class SettingsActivity extends PreferenceActivity {
     public static final String EXTRA_SHOW_HOME_AS_UP = "show_home_as_up";

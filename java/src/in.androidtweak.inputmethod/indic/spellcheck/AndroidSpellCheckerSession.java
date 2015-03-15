@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import in.androidtweak.inputmethod.compat.TextInfoCompatUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 public final class AndroidSpellCheckerSession extends AndroidWordLevelSpellCheckerSession {
     private static final String TAG = AndroidSpellCheckerSession.class.getSimpleName();

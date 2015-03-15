@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package in.androidtweak.inputmethod.indic.utils;
+package com.android.inputmethod.latin.utils;
 
 import com.android.inputmethod.latin.makedict.BinaryDictDecoderUtils.DictBuffer;
 

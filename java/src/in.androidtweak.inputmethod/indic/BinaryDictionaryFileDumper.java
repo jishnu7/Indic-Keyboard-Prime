@@ -45,10 +45,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
-import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils.DictionaryInfo;
-import in.androidtweak.inputmethod.indic.utils.FileTransforms;
-import in.androidtweak.inputmethod.indic.utils.MetadataFileUriGetter;
+import com.android.inputmethod.latin.utils.DictionaryInfoUtils;
+import com.android.inputmethod.latin.utils.DictionaryInfoUtils.DictionaryInfo;
+import com.android.inputmethod.latin.utils.FileTransforms;
+import com.android.inputmethod.latin.utils.MetadataFileUriGetter;
 
 /**
  * Group class for static methods to help with creation and getting of the binary dictionary

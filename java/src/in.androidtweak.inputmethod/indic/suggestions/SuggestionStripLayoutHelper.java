@@ -56,10 +56,10 @@ import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
 import in.androidtweak.inputmethod.indic.settings.Settings;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
-import in.androidtweak.inputmethod.indic.utils.AutoCorrectionUtils;
-import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
-import in.androidtweak.inputmethod.indic.utils.ViewLayoutUtils;
+import com.android.inputmethod.latin.utils.AutoCorrectionUtils;
+import com.android.inputmethod.latin.utils.ResourceUtils;
+import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
+import com.android.inputmethod.latin.utils.ViewLayoutUtils;
 
 final class SuggestionStripLayoutHelper {
     private static final int DEFAULT_SUGGESTIONS_COUNT_IN_STRIP = 3;

@@ -37,9 +37,9 @@ import java.util.Locale;
 import in.androidtweak.inputmethod.indic.BinaryDictionaryFileDumper;
 import in.androidtweak.inputmethod.indic.BinaryDictionaryGetter;
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.DialogUtils;
-import in.androidtweak.inputmethod.indic.utils.DictionaryInfoUtils;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
+import com.android.inputmethod.latin.utils.DialogUtils;
+import com.android.inputmethod.latin.utils.DictionaryInfoUtils;
+import com.android.inputmethod.latin.utils.LocaleUtils;
 
 /**
  * A class to read a local file as a dictionary for debugging purposes.

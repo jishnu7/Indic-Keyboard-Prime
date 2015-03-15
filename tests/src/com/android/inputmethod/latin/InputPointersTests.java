@@ -19,7 +19,7 @@ package com.android.inputmethod.latin;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import in.androidtweak.inputmethod.indic.utils.ResizableIntArray;
+import com.android.inputmethod.latin.utils.ResizableIntArray;
 
 import java.util.Arrays;
 

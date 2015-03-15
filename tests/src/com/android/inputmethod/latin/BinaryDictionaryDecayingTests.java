@@ -29,9 +29,9 @@ import com.android.inputmethod.latin.makedict.FormatSpec;
 import com.android.inputmethod.latin.makedict.FusionDictionary;
 import com.android.inputmethod.latin.makedict.FusionDictionary.PtNode;
 import com.android.inputmethod.latin.makedict.UnsupportedFormatException;
-import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
-import in.androidtweak.inputmethod.indic.utils.FileUtils;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
+import com.android.inputmethod.latin.utils.BinaryDictionaryUtils;
+import com.android.inputmethod.latin.utils.FileUtils;
+import com.android.inputmethod.latin.utils.LocaleUtils;
 
 import java.io.File;
 import java.io.IOException;

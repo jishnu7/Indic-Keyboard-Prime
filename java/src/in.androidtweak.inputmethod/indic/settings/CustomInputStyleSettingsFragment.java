@@ -53,10 +53,10 @@ import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
 import in.androidtweak.inputmethod.compat.ViewCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.RichInputMethodManager;
-import in.androidtweak.inputmethod.indic.utils.AdditionalSubtypeUtils;
-import in.androidtweak.inputmethod.indic.utils.DialogUtils;
-import in.androidtweak.inputmethod.indic.utils.IntentUtils;
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
+import com.android.inputmethod.latin.utils.AdditionalSubtypeUtils;
+import com.android.inputmethod.latin.utils.DialogUtils;
+import com.android.inputmethod.latin.utils.IntentUtils;
+import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
 
 public final class CustomInputStyleSettingsFragment extends PreferenceFragment {
     private RichInputMethodManager mRichImm;

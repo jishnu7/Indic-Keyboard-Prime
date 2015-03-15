@@ -34,8 +34,8 @@ import in.androidtweak.inputmethod.indic.debug.ExternalDictionaryGetterForDebug;
 import java.util.Locale;
 
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
-import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
+import com.android.inputmethod.latin.utils.ApplicationUtils;
+import com.android.inputmethod.latin.utils.ResourceUtils;
 
 /**
  * "Debug mode" settings sub screen.

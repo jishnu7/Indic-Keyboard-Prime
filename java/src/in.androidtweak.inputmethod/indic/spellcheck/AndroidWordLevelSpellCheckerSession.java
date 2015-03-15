@@ -38,12 +38,12 @@ import in.androidtweak.inputmethod.compat.SuggestionsInfoCompatUtils;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.WordComposer;
-import in.androidtweak.inputmethod.indic.utils.BinaryDictionaryUtils;
-import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
-import in.androidtweak.inputmethod.indic.utils.LocaleUtils;
-import in.androidtweak.inputmethod.indic.utils.ScriptUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
-import in.androidtweak.inputmethod.indic.utils.SuggestionResults;
+import com.android.inputmethod.latin.utils.BinaryDictionaryUtils;
+import com.android.inputmethod.latin.utils.CoordinateUtils;
+import com.android.inputmethod.latin.utils.LocaleUtils;
+import com.android.inputmethod.latin.utils.ScriptUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
+import com.android.inputmethod.latin.utils.SuggestionResults;
 
 public abstract class AndroidWordLevelSpellCheckerSession extends Session {
     private static final String TAG = AndroidWordLevelSpellCheckerSession.class.getSimpleName();

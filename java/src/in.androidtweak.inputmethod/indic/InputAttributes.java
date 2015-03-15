@@ -23,8 +23,8 @@ import android.view.inputmethod.EditorInfo;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import in.androidtweak.inputmethod.indic.utils.InputTypeUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.InputTypeUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE;
 import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE_COMPAT;

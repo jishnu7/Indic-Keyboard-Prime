@@ -28,8 +28,8 @@ import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
-import in.androidtweak.inputmethod.indic.utils.ViewLayoutUtils;
+import com.android.inputmethod.latin.utils.CoordinateUtils;
+import com.android.inputmethod.latin.utils.ViewLayoutUtils;
 
 /**
  * This class controls pop up key previews. This class decides:

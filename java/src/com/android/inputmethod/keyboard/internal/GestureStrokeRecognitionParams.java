@@ -19,7 +19,7 @@ package com.android.inputmethod.keyboard.internal;
 import android.content.res.TypedArray;
 
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
+import com.android.inputmethod.latin.utils.ResourceUtils;
 
 /**
  * This class holds parameters to control how a gesture stroke is sampled and recognized.

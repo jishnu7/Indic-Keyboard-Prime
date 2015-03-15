@@ -20,7 +20,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
-import in.androidtweak.inputmethod.indic.utils.FragmentUtils;
+import com.android.inputmethod.latin.utils.FragmentUtils;
 
 /**
  * Preference screen.

@@ -21,7 +21,7 @@ import android.text.TextUtils;
 import java.util.Arrays;
 
 import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 /**
  * Class to represent information of previous words. This class is used to add n-gram entries

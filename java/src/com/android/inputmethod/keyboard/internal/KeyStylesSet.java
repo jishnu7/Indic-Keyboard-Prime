@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.XmlParseUtils;
+import com.android.inputmethod.latin.utils.XmlParseUtils;
 
 public final class KeyStylesSet {
     private static final String TAG = KeyStylesSet.class.getSimpleName();

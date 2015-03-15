@@ -30,8 +30,8 @@ import java.util.Queue;
 
 import in.androidtweak.inputmethod.compat.DownloadManagerCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
-import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
+import com.android.inputmethod.latin.utils.ApplicationUtils;
+import com.android.inputmethod.latin.utils.DebugLogUtils;
 
 /**
  * Object representing an upgrade from one state to another.

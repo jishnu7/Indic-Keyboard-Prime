@@ -19,7 +19,7 @@ package com.android.inputmethod.keyboard.internal;
 import android.text.TextUtils;
 
 import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.utils.RecapitalizeStatus;
+import com.android.inputmethod.latin.utils.RecapitalizeStatus;
 
 public class MockKeyboardSwitcher implements KeyboardState.SwitchActions {
     public interface MockConstants {

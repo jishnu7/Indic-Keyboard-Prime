@@ -27,7 +27,7 @@ import android.util.Log;
 
 import in.androidtweak.inputmethod.dictionarypack.DictionaryPackConstants;
 
-import in.androidtweak.inputmethod.indic.utils.TargetPackageInfoGetterTask;
+import com.android.inputmethod.latin.utils.TargetPackageInfoGetterTask;
 
 /**
  * Receives broadcasts pertaining to dictionary management and takes the appropriate action.

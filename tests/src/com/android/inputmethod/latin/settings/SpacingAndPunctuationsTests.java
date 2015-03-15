@@ -23,7 +23,7 @@ import android.test.suitebuilder.annotation.SmallTest;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SuggestedWords;
-import in.androidtweak.inputmethod.indic.utils.RunInLocale;
+import com.android.inputmethod.latin.utils.RunInLocale;
 
 import junit.framework.AssertionFailedError;
 

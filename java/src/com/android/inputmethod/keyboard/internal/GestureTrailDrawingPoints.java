@@ -24,7 +24,7 @@ import android.graphics.Rect;
 import android.os.SystemClock;
 
 import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.utils.ResizableIntArray;
+import com.android.inputmethod.latin.utils.ResizableIntArray;
 
 /**
  * This class holds drawing points to represent a gesture trail. The gesture trail may contain

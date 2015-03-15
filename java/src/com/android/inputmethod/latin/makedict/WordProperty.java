@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.utils.CombinedFormatUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.CombinedFormatUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 /**
  * Utility class for a word with a probability.

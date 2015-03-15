@@ -22,7 +22,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
+import com.android.inputmethod.latin.utils.ResourceUtils;
 
 final class EmojiLayoutParams {
     private static final int DEFAULT_KEYBOARD_ROWS = 4;

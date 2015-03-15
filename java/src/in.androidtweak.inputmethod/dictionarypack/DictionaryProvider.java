@@ -37,7 +37,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
+import com.android.inputmethod.latin.utils.DebugLogUtils;
 
 /**
  * Provider for dictionaries.

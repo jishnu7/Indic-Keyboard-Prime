@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.utils.DebugLogUtils;
+import com.android.inputmethod.latin.utils.DebugLogUtils;
 
 /**
  * Various helper functions for the state database

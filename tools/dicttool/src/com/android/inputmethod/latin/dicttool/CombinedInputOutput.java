@@ -23,7 +23,7 @@ import com.android.inputmethod.latin.makedict.FusionDictionary.PtNodeArray;
 import com.android.inputmethod.latin.makedict.ProbabilityInfo;
 import com.android.inputmethod.latin.makedict.WeightedString;
 import com.android.inputmethod.latin.makedict.WordProperty;
-import in.androidtweak.inputmethod.indic.utils.CombinedFormatUtils;
+import com.android.inputmethod.latin.utils.CombinedFormatUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

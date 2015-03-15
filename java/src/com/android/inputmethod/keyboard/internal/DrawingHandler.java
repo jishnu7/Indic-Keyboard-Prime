@@ -22,7 +22,7 @@ import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.internal.DrawingHandler.Callbacks;
 
 import in.androidtweak.inputmethod.indic.SuggestedWords;
-import in.androidtweak.inputmethod.indic.utils.LeakGuardHandlerWrapper;
+import com.android.inputmethod.latin.utils.LeakGuardHandlerWrapper;
 
 // TODO: Separate this class into KeyPreviewHandler and BatchInputPreviewHandler or so.
 public class DrawingHandler extends LeakGuardHandlerWrapper<Callbacks> {

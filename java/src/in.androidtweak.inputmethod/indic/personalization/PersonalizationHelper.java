@@ -26,7 +26,7 @@ import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
-import in.androidtweak.inputmethod.indic.utils.FileUtils;
+import com.android.inputmethod.latin.utils.FileUtils;
 
 public class PersonalizationHelper {
     private static final String TAG = PersonalizationHelper.class.getSimpleName();

@@ -21,7 +21,7 @@ import com.android.inputmethod.latin.BinaryDictionary;
 import java.util.Arrays;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.utils.CombinedFormatUtils;
+import com.android.inputmethod.latin.utils.CombinedFormatUtils;
 
 public final class ProbabilityInfo {
     public final int mProbability;

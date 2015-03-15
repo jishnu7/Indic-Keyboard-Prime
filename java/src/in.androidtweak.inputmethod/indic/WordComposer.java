@@ -28,8 +28,8 @@ import javax.annotation.Nonnull;
 import in.androidtweak.inputmethod.event.CombinerChain;
 import in.androidtweak.inputmethod.event.Event;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import in.androidtweak.inputmethod.indic.utils.CoordinateUtils;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.CoordinateUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 /**
  * A place to store the currently composing word with information such as adjacent key codes as well

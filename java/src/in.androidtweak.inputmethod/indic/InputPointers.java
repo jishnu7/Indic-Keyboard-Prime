@@ -21,7 +21,7 @@ import android.util.SparseIntArray;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import in.androidtweak.inputmethod.indic.utils.ResizableIntArray;
+import com.android.inputmethod.latin.utils.ResizableIntArray;
 
 // TODO: This class is not thread-safe.
 public final class InputPointers {

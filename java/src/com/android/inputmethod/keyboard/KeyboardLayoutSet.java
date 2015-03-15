@@ -44,10 +44,10 @@ import in.androidtweak.inputmethod.indic.InputAttributes;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SubtypeSwitcher;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import in.androidtweak.inputmethod.indic.utils.InputTypeUtils;
-import in.androidtweak.inputmethod.indic.utils.ScriptUtils;
-import in.androidtweak.inputmethod.indic.utils.SubtypeLocaleUtils;
-import in.androidtweak.inputmethod.indic.utils.XmlParseUtils;
+import com.android.inputmethod.latin.utils.InputTypeUtils;
+import com.android.inputmethod.latin.utils.ScriptUtils;
+import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
+import com.android.inputmethod.latin.utils.XmlParseUtils;
 
 import static in.androidtweak.inputmethod.indic.Constants.ImeOption.FORCE_ASCII;
 import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_SETTINGS_KEY;

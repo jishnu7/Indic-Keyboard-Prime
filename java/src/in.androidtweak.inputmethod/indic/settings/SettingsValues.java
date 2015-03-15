@@ -32,13 +32,13 @@ import in.androidtweak.inputmethod.indic.InputAttributes;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.RichInputMethodManager;
 import in.androidtweak.inputmethod.indic.SubtypeSwitcher;
-import in.androidtweak.inputmethod.indic.utils.AsyncResultHolder;
-import in.androidtweak.inputmethod.indic.utils.ResourceUtils;
-import in.androidtweak.inputmethod.indic.utils.TargetPackageInfoGetterTask;
+import com.android.inputmethod.latin.utils.AsyncResultHolder;
+import com.android.inputmethod.latin.utils.ResourceUtils;
+import com.android.inputmethod.latin.utils.TargetPackageInfoGetterTask;
 
 /**
  * When you call the constructor of this class, you may want to change the current system locale by
- * using {@link in.androidtweak.inputmethod.indic.utils.RunInLocale}.
+ * using {@link com.android.inputmethod.latin.utils.RunInLocale}.
  */
 public final class SettingsValues {
     private static final String TAG = SettingsValues.class.getSimpleName();

@@ -28,7 +28,7 @@ import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.Dictionary;
 import in.androidtweak.inputmethod.indic.ExpandableBinaryDictionary;
-import in.androidtweak.inputmethod.indic.utils.DistracterFilter;
+import com.android.inputmethod.latin.utils.DistracterFilter;
 
 /**
  * Locally gathers stats about the words user types and various other signals like auto-correction

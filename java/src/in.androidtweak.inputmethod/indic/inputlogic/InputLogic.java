@@ -63,11 +63,11 @@ import in.androidtweak.inputmethod.indic.settings.SettingsValues;
 import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 import in.androidtweak.inputmethod.indic.suggestions.SuggestionStripViewAccessor;
-import in.androidtweak.inputmethod.indic.utils.AsyncResultHolder;
-import in.androidtweak.inputmethod.indic.utils.InputTypeUtils;
-import in.androidtweak.inputmethod.indic.utils.RecapitalizeStatus;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
-import in.androidtweak.inputmethod.indic.utils.TextRange;
+import com.android.inputmethod.latin.utils.AsyncResultHolder;
+import com.android.inputmethod.latin.utils.InputTypeUtils;
+import com.android.inputmethod.latin.utils.RecapitalizeStatus;
+import com.android.inputmethod.latin.utils.StringUtils;
+import com.android.inputmethod.latin.utils.TextRange;
 
 /**
  * This class manages the input logic.

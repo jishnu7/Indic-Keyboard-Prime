@@ -20,7 +20,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.utils.RecapitalizeStatus;
+import com.android.inputmethod.latin.utils.RecapitalizeStatus;
 
 /**
  * Keyboard state machine.

@@ -25,7 +25,7 @@ import java.util.HashSet;
 
 import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 public class SuggestedWords {
     public static final int INDEX_OF_TYPED_WORD = 0;

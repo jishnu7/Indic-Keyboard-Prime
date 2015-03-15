@@ -45,9 +45,9 @@ import java.util.concurrent.TimeUnit;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.WordComposer;
 import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
-import in.androidtweak.inputmethod.indic.utils.AdditionalSubtypeUtils;
-import in.androidtweak.inputmethod.indic.utils.ScriptUtils;
-import in.androidtweak.inputmethod.indic.utils.SuggestionResults;
+import com.android.inputmethod.latin.utils.AdditionalSubtypeUtils;
+import com.android.inputmethod.latin.utils.ScriptUtils;
+import com.android.inputmethod.latin.utils.SuggestionResults;
 
 /**
  * Service for spell checking, using LatinIME's dictionaries and mechanisms.

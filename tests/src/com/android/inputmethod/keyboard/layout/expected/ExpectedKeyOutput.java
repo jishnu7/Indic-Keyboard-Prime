@@ -19,7 +19,7 @@ package com.android.inputmethod.keyboard.layout.expected;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.internal.MoreKeySpec;
 import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.utils.StringUtils;
+import com.android.inputmethod.latin.utils.StringUtils;
 
 import java.util.Locale;
 

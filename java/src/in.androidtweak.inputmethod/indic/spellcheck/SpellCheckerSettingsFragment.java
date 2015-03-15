@@ -22,7 +22,7 @@ import android.preference.PreferenceScreen;
 
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.settings.TwoStatePreferenceHelper;
-import in.androidtweak.inputmethod.indic.utils.ApplicationUtils;
+import com.android.inputmethod.latin.utils.ApplicationUtils;
 
 /**
  * Preference screen.

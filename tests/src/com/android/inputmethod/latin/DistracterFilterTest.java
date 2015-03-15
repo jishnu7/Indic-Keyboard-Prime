@@ -24,7 +24,7 @@ import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.indic.utils.DistracterFilterCheckingExactMatchesAndSuggestions;
+import com.android.inputmethod.latin.utils.DistracterFilterCheckingExactMatchesAndSuggestions;
 
 /**
  * Unit test for DistracterFilter

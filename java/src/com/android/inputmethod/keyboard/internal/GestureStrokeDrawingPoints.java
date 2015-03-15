@@ -16,7 +16,7 @@
 
 package com.android.inputmethod.keyboard.internal;
 
-import in.androidtweak.inputmethod.indic.utils.ResizableIntArray;
+import com.android.inputmethod.latin.utils.ResizableIntArray;
 
 /**
  * This class holds drawing points to represent a gesture stroke on the screen.
