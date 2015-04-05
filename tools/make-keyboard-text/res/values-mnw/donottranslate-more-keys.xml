@@ -18,7 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="label_to_alpha_key">&#x1000;</string>
+    <string name="keylabel_to_alpha">&#x1000;</string>
     <string name="keylabel_for_symbols_1">&#x1041;</string>
     <string name="keylabel_for_symbols_2">&#x1042;</string>
     <string name="keylabel_for_symbols_3">&#x1043;</string>
