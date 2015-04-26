@@ -18,8 +18,6 @@ package com.android.inputmethod.latin;
 
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.android.inputmethod.latin.suggestions.SuggestionStripView;
-
 @LargeTest
 public class InputLogicTestsNonEnglish extends InputTestsBase {
     final String NEXT_WORD_PREDICTION_OPTION = "next_word_prediction";
@@ -39,9 +37,22 @@ public class InputLogicTestsNonEnglish extends InputTestsBase {
         final String EXPECTED_RESULT = "test !";
         changeLanguage("fr");
         type(WORD1_TO_TYPE);
-        pickSuggestionManually(0, WORD1_TO_TYPE);
+        pickSuggestionManually(WORD1_TO_TYPE);
         type(WORD2_TO_TYPE);
         assertEquals("manual pick then separator for French", EXPECTED_RESULT,
+                mEditText.getText().toString());
+    }
+
+    public void testClusteringPunctuationForFrench() {
+        final String WORD1_TO_TYPE = "test";
+        final String WORD2_TO_TYPE = "!!?!:!";
+        // In English, the expected result would be "test!!?!:!"
+        final String EXPECTED_RESULT = "test !!?! : !";
+        changeLanguage("fr");
+        type(WORD1_TO_TYPE);
+        pickSuggestionManually(WORD1_TO_TYPE);
+        type(WORD2_TO_TYPE);
+        assertEquals("clustering punctuation for French", EXPECTED_RESULT,
                 mEditText.getText().toString());
     }
 
@@ -60,9 +71,9 @@ public class InputLogicTestsNonEnglish extends InputTestsBase {
             sleep(DELAY_TO_WAIT_FOR_UNDERLINE);
             runMessages();
             assertTrue("type word then type space should display punctuation strip",
-                    mLatinIME.isShowingPunctuationList());
-            pickSuggestionManually(0, PUNCTUATION_FROM_STRIP);
-            pickSuggestionManually(0, PUNCTUATION_FROM_STRIP);
+                    mLatinIME.getSuggestedWordsForTest().isPunctuationSuggestions());
+            pickSuggestionManually(PUNCTUATION_FROM_STRIP);
+            pickSuggestionManually(PUNCTUATION_FROM_STRIP);
             assertEquals("type word then type space then punctuation from strip twice for French",
                     EXPECTED_RESULT, mEditText.getText().toString());
         } finally {
@@ -84,8 +95,9 @@ public class InputLogicTestsNonEnglish extends InputTestsBase {
             type(WORD_TO_TYPE);
             sleep(DELAY_TO_WAIT_FOR_UNDERLINE);
             runMessages();
+            final SuggestedWords suggestedWords = mLatinIME.getSuggestedWordsForTest();
             assertEquals("type word then type space yields predictions for French",
-                    EXPECTED_RESULT, mLatinIME.getFirstSuggestedWord());
+                    EXPECTED_RESULT, suggestedWords.size() > 0 ? suggestedWords.getWord(0) : null);
         } finally {
             setBooleanPreference(NEXT_WORD_PREDICTION_OPTION, previousNextWordPredictionOption,
                     defaultNextWordPredictionOption);

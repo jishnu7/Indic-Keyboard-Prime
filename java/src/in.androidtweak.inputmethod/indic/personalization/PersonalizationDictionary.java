@@ -16,58 +16,26 @@
 
 package in.androidtweak.inputmethod.indic.personalization;
 
-import in.androidtweak.inputmethod.indic.Dictionary;
-import in.androidtweak.inputmethod.indic.ExpandableBinaryDictionary;
-import in.androidtweak.inputmethod.indic.utils.CollectionUtils;
-
 import android.content.Context;
-import android.content.SharedPreferences;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.util.Locale;
 
-/**
- * This class is a dictionary for the personalized language model that uses binary dictionary.
- */
-public class PersonalizationDictionary extends ExpandableBinaryDictionary {
-    private static final String NAME = "personalization";
-    private final ArrayList<PersonalizationDictionaryUpdateSession> mSessions =
-            CollectionUtils.newArrayList();
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import in.androidtweak.inputmethod.indic.Dictionary;
 
-    /** Locale for which this user history dictionary is storing words */
-    private final String mLocale;
+public class PersonalizationDictionary extends DecayingExpandableBinaryDictionaryBase {
+    /* package */ static final String NAME = PersonalizationDictionary.class.getSimpleName();
 
-    public PersonalizationDictionary(final Context context, final String locale,
-            final SharedPreferences prefs) {
-        // TODO: Make isUpdatable true.
-        super(context, getFilenameWithLocale(NAME, locale), Dictionary.TYPE_PERSONALIZATION,
-                false /* isUpdatable */);
-        mLocale = locale;
-        // TODO: Restore last updated time
-        loadDictionary();
+    // TODO: Make this constructor private
+    /* package */ PersonalizationDictionary(final Context context, final Locale locale) {
+        super(context, getDictName(NAME, locale, null /* dictFile */), locale,
+                Dictionary.TYPE_PERSONALIZATION, null /* dictFile */);
     }
 
-    @Override
-    protected void loadDictionaryAsync() {
-        // TODO: Implement
-    }
-
-    @Override
-    protected boolean hasContentChanged() {
-        return false;
-    }
-
-    @Override
-    protected boolean needsToReloadBeforeWriting() {
-        return false;
-    }
-
-    public void registerUpdateSession(PersonalizationDictionaryUpdateSession session) {
-        session.setDictionary(this);
-        mSessions.add(session);
-        session.onDictionaryReady();
-    }
-
-    public void unRegisterUpdateSession(PersonalizationDictionaryUpdateSession session) {
-        mSessions.remove(session);
+    @UsedForTesting
+    public static PersonalizationDictionary getDictionary(final Context context,
+            final Locale locale, final File dictFile, final String dictNamePrefix) {
+        return PersonalizationHelper.getPersonalizationDictionary(context, locale);
     }
 }

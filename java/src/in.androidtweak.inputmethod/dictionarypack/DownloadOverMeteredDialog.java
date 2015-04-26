@@ -24,9 +24,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import in.androidtweak.inputmethod.indic.R;
-
 import java.util.Locale;
+
+import in.androidtweak.inputmethod.indic.R;
 
 /**
  * This implements the dialog for asking the user whether it's okay to download dictionaries over

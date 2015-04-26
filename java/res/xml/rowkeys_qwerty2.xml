@@ -21,30 +21,44 @@
 <merge
     xmlns:latin="http://schemas.android.com/apk/res-auto"
 >
+    <switch>
+        <case
+            latin:languageCode="ml"
+            latin:keyboardLayoutSet="qwerty">
+            <Key
+                latin:keySpec="a"
+                latin:keyHintLabel="~"
+                latin:additionalMoreKeys="~"
+                latin:moreKeys="!text/morekeys_a" />
+        </case>
+        <default>
+            <Key
+                latin:keySpec="a"
+                latin:moreKeys="!text/morekeys_a" />
+        </default>
+    </switch>
+
     <Key
-        latin:keyLabel="a"
-        latin:moreKeys="!text/more_keys_for_a" />
+        latin:keySpec="s"
+        latin:moreKeys="!text/morekeys_s" />
     <Key
-        latin:keyLabel="s"
-        latin:moreKeys="!text/more_keys_for_s" />
+        latin:keySpec="d"
+        latin:moreKeys="!text/morekeys_d" />
     <Key
-        latin:keyLabel="d"
-        latin:moreKeys="!text/more_keys_for_d" />
+        latin:keySpec="f" />
     <Key
-        latin:keyLabel="f" />
+        latin:keySpec="g"
+        latin:moreKeys="!text/morekeys_g" />
     <Key
-        latin:keyLabel="g"
-        latin:moreKeys="!text/more_keys_for_g" />
+        latin:keySpec="h"
+        latin:moreKeys="!text/morekeys_h" />
     <Key
-        latin:keyLabel="h"
-        latin:moreKeys="!text/more_keys_for_h" />
+        latin:keySpec="j"
+        latin:moreKeys="!text/morekeys_j" />
     <Key
-        latin:keyLabel="j"
-        latin:moreKeys="!text/more_keys_for_j" />
+        latin:keySpec="k"
+        latin:moreKeys="!text/morekeys_k" />
     <Key
-        latin:keyLabel="k"
-        latin:moreKeys="!text/more_keys_for_k" />
-    <Key
-        latin:keyLabel="l"
-        latin:moreKeys="!text/more_keys_for_l" />
+        latin:keySpec="l"
+        latin:moreKeys="!text/morekeys_l" />
 </merge>
