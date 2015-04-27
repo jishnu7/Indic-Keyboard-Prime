@@ -43,8 +43,8 @@ AOSP keyboard ported to support more languges.
 
 ## TODO
 
-- [ ] Word suggestion is not working in transliteration
-- [ ] Transliteration is not working when curser is moved to the middle of a word
+- [x] Word suggestion is not working in transliteration
+- [x] Transliteration is not working when curser is moved to the middle of a word
 - [ ] Test on 10" tablet.
 - [x] New logo
 - [ ] Dictionary - Assamese
@@ -62,8 +62,8 @@ AOSP keyboard ported to support more languges.
 - [ ] Inscript layout - Nepali
 - [ ] Inscript layout - Sanskrit
 - [ ] Inscript layout - Sindhi
-- [ ] Remove unwanted permissions
-- [ ] Remove unused options from settings
+- [x] Remove unwanted permissions
+- [x] Remove unused options from settings
 - [ ] Konkani
 - [ ] Manipuri
 - [ ] Try to increase width of keys in Inscript layout
