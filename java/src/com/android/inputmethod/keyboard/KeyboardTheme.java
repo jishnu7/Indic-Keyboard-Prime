@@ -38,7 +38,7 @@ public final class KeyboardTheme implements Comparable<KeyboardTheme> {
     public static final int THEME_ID_KLP = 2;
     public static final int THEME_ID_LXX_LIGHT = 3;
     public static final int THEME_ID_LXX_DARK = 4;
-    public static final int DEFAULT_THEME_ID = THEME_ID_KLP;
+    public static final int DEFAULT_THEME_ID = THEME_ID_LXX_LIGHT;
 
     private static final KeyboardTheme[] KEYBOARD_THEMES = {
         new KeyboardTheme(THEME_ID_ICS, "ICS", R.style.KeyboardTheme_ICS,
@@ -108,6 +108,7 @@ public final class KeyboardTheme implements Comparable<KeyboardTheme> {
             final int sdkVersion) {
         final String klpThemeIdString = prefs.getString(KLP_KEYBOARD_THEME_KEY, null);
         if (klpThemeIdString != null) {
+            /*
             if (sdkVersion <= VERSION_CODES.KITKAT) {
                 try {
                     final int themeId = Integer.parseInt(klpThemeIdString);
@@ -120,16 +121,19 @@ public final class KeyboardTheme implements Comparable<KeyboardTheme> {
                     Log.w(TAG, "Illegal keyboard theme in KLP preference: " + klpThemeIdString, e);
                 }
             }
+            */
             // Remove old preference.
             Log.i(TAG, "Remove KLP keyboard theme preference: " + klpThemeIdString);
             prefs.edit().remove(KLP_KEYBOARD_THEME_KEY).apply();
         }
+        /*
         // TODO: This search algorithm isn't optimal if there are many themes.
         for (final KeyboardTheme theme : KEYBOARD_THEMES) {
             if (sdkVersion >= theme.mMinApiVersion) {
                 return theme;
             }
         }
+        */
         return searchKeyboardThemeById(DEFAULT_THEME_ID);
     }
 
