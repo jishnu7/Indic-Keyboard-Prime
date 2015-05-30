@@ -1,45 +1,41 @@
 ## Indic Keyboard Prime
 AOSP keyboard ported to support more languges.
 
+You can [get it from Google Play.](https://play.google.com/store/apps/details?id=org.smc.inputmethod.indic)
+
 ## Requirements
 
 * Android 4.1 and above.
 
 ## Supported Languages
-* Assamese
-* Bengali
-* Gujarati
-* Hindi
-* Kannada
-* Kashmiri/Kashur
-* Malayalam
-* Marathi
-* Nepali
-* Oriya/Odia
-* Punjabi
-* Sanskrit
-* Sinhalese
-* Tamil
-* Telugu
-* Urdu
 
-## Layouts
-* Assamese: Inscript, Transliteration
-* Bengali: Probhat, Avro, Inscript
-* Gujarati: Phonetic, Inscript, Transliteration
-* Hindi: Phonetic, Inscript, Transliteration
-* Kannada:  Phonetic, Inscript, Transliteration
-* Kashmiri/Kashur: Inscript
-* Malayalam: Phonetic (based on lalitha), Inscript, Transliteration
-* Marathi: Transliteration
-* Nepali: Phonetic, Traditional, Transliteration, Inscript
-* Oriya/Odia:  Inscript, Transliteration
-* Punjabi:  Phonetic, Inscript, Transliteration
-* Sanskrit: Transliteration
-* Sinhalese: Transliteration
-* Tamil: Tamil-99 (initial support), Inscript, Phonetic
-* Telugu:  Phonetic, Inscript, Transliteration, KaChaTaThaPa
-* Urdu: Transliteration
+- Assamese Keyboard (অসমীয়া) - Inscript, Transliteration
+- Arabic Keyboard (العَرَبِيةُ‎‎)
+- Bengali Keyboard (বাংলা)- (Probhat, Avro, Inscript, Compact
+- Burmese Keyboard (ဗမာ) xkb
+- English
+- Gujarati Keyboard (ગુજરાતી) - Phonetic, Inscript, Transliteration
+- Hindi Keyboard (हिन्दी)- Inscript, Transliteration
+- Kannada Keyboard (ಕನ್ನಡ) - Phonetic, Inscript, Transliteration (Baraha), Compact, Anysoft)
+- Kashmiri Keyboard (کأشُر) - Inscript, Transliteration
+- Malayalam Keyboard (മലയാളം) - Phonetic, Inscript, Transliteration (Mozhi), Swanalekha(beta)
+- Manipuri Keyboard / Methei Keyboard (মৈতৈলোন্) - Inscript
+- Maithili Keyboard (मैथिली)  - Inscript
+- Marathi Keyboard (मराठी) - Transliteration
+- Mon Keyboard (ဘာသာ မန်;)
+- Nepali Keyboard (नेपाली)  Phonetic, Traditional, Transliteration, Inscript
+- Oriya Keyboard (ଓଡ଼ିଆ) - Inscript, Transliteration, Lekhani
+- Punjabi Keyboard (ਪੰਜਾਬੀ) Phonetic, Inscript, Transliteration
+- Sanskrit Keyboard (संस्कृत) Transliteration
+- Santali Keyboard (Devanagari script)-(संताली) Inscript
+- Sinhala Keyboard / Sinhalese (සිංහල) Transliteration
+- Tamil Keyboard (தமிழ்) - Tamil-99, Inscript, Phonetic, Compact, Transliteration
+- Telugu Keyboard (తెలుగు) - Phonetic, Inscript, Transliteration, KaChaTaThaPa, Compact
+- Urdu Keyboard (اردو) - Transliteration
+
+## License
+
+Apache License, Version 2.0
 
 ## TODO
 
@@ -57,29 +53,33 @@ AOSP keyboard ported to support more languges.
 - [ ] Phonetic layout - Oriya
 - [ ] Phonetic layout - Urudu
 - [x] KaChaTaThaPa layout for Telugu
-- [ ] Inscript layout - Kashmiri - testing/validation pending
+- [x] Inscript layout - Kashmiri
 - [ ] Inscript layout - Marathi
-- [ ] Inscript layout - Nepali
+- [x] Inscript layout - Nepali
 - [ ] Inscript layout - Sanskrit
 - [ ] Inscript layout - Sindhi
 - [x] Remove unwanted permissions
 - [x] Remove unused options from settings
 - [ ] Konkani
-- [ ] Manipuri
+- [x] Manipuri
 - [ ] Try to increase width of keys in Inscript layout
 - [x] Fix Tamil-99 (add character replacement)
-- [ ] Modify welcome screen, sort and add more languages
+- [x] Modify welcome screen, sort and add more languages
 - [ ] Fix linting errors
 
+
 ## HOWTO Build
-1. Install gradle (1.x), Android Support Repository, SDK and other usual android stuffs.
-2. Clone the repository
-3. Initialize submodules
+1. Install gradle, Android Support Repository, SDK and other usual android stuffs.
+2. `git clone --recursive git@github.com:smc/Indic-Keyboard.git`
 4. `cd java`
 5. Use `gradle assembleDebug` to build the package.
 
-## Credits / Thanks
-This project uses code from `jquery.ime` project of Wikimedia and some of the layouts are ported from there.
+## Supporters
+
+Government of India's Department of IT R & D project undertaken by ICFOSS funded the implementation of Mobile Compact Layout and Lollipop AOSP support. Another small aid from <a href=http://icfoss.in>ICFOSS</a> via Kerala Govt Sources enabled  addition of Swanalekha Layout (beta) and maintenance and updates on existing Malayalam Layouts.
+
+Kannada Anysoft keyboard layout was funded via [Bounty Source](https://www.bountysource.com/issues/3406116-anysoft-like-kannada-inscript-keyboard-15) by Thejesh GN
 
 Thanks [Chakravarthy Ashok](https://plus.google.com/115394773447303504309) for the help on Telugu KaChaTaThaPa layout
 
+Many keyboard layouts were adapted from the jquery.ime project of Wikimedia Foundation. They were contributed by volunteers.
