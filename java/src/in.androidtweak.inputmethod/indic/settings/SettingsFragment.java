@@ -18,6 +18,7 @@ package in.androidtweak.inputmethod.indic.settings;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -26,9 +27,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.android.inputmethodcommon.InputMethodSettingsFragment;
-
 import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.define.ProductionFlags;
 import com.android.inputmethod.latin.utils.ApplicationUtils;
 import com.android.inputmethod.latin.utils.FeedbackUtils;
 
@@ -50,9 +50,9 @@ public final class SettingsFragment extends InputMethodSettingsFragment {
         final PreferenceScreen preferenceScreen = getPreferenceScreen();
         preferenceScreen.setTitle(
                 ApplicationUtils.getActivityTitleResId(getActivity(), SettingsActivity.class));
-        if (!Settings.SHOW_MULTILINGUAL_SETTINGS) {
-            final Preference multilingualOptions = findPreference(Settings.SCREEN_MULTILINGUAL);
-            preferenceScreen.removePreference(multilingualOptions);
+        if (!ProductionFlags.ENABLE_ACCOUNT_SIGN_IN) {
+            final Preference accountsPreference = findPreference(Settings.SCREEN_ACCOUNTS);
+            preferenceScreen.removePreference(accountsPreference);
         }
     }
 
@@ -71,11 +71,7 @@ public final class SettingsFragment extends InputMethodSettingsFragment {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         final Activity activity = getActivity();
-        final int setupStatus = Secure.getInt(
-                activity.getContentResolver(),
-                "user_setup_complete",
-                0 /* default */);
-        if (setupStatus == 0) {
+        if (!isUserSetupComplete(activity)) {
             // If setup is not complete, it's not safe to launch Help or other activities
             // because they might go to the Play Store.  See b/19866981.
             return true;
@@ -93,5 +89,12 @@ public final class SettingsFragment extends InputMethodSettingsFragment {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private static boolean isUserSetupComplete(final Activity activity) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return true;
+        }
+        return Secure.getInt(activity.getContentResolver(), "user_setup_complete", 0) != 0;
     }
 }

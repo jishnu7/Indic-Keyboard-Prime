@@ -30,12 +30,12 @@ import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
 
-import com.android.inputmethod.latin.PrevWordsInfo.WordInfo;
-import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
-import com.android.inputmethod.latin.utils.PrevWordsInfoUtils;
+import com.android.inputmethod.latin.common.Constants;
+import com.android.inputmethod.latin.common.StringUtils;
+import com.android.inputmethod.latin.settings.SpacingAndPunctuations;
+import com.android.inputmethod.latin.utils.NgramContextUtils;
 import com.android.inputmethod.latin.utils.RunInLocale;
 import com.android.inputmethod.latin.utils.ScriptUtils;
-import com.android.inputmethod.latin.utils.StringUtils;
 import com.android.inputmethod.latin.utils.TextRange;
 
 import java.util.Locale;
@@ -137,7 +137,7 @@ public class RichInputConnectionAndTextRangeTests extends AndroidTestCase {
         }
     }
 
-    private class MockInputMethodService extends InputMethodService {
+    static class MockInputMethodService extends InputMethodService {
         private MockConnection mMockConnection;
         public void setInputConnection(final MockConnection mockConnection) {
             mMockConnection = mockConnection;
@@ -158,26 +158,25 @@ public class RichInputConnectionAndTextRangeTests extends AndroidTestCase {
      */
     public void testGetPreviousWord() {
         // If one of the following cases breaks, the bigram suggestions won't work.
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def", mSpacingAndPunctuations, 2).mPrevWordsInfo[0].mWord, "abc");
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc", mSpacingAndPunctuations, 2), PrevWordsInfo.BEGINNING_OF_SENTENCE);
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc. def", mSpacingAndPunctuations, 2), PrevWordsInfo.BEGINNING_OF_SENTENCE);
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def", mSpacingAndPunctuations, 2).getNthPrevWord(1), "abc");
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc", mSpacingAndPunctuations, 2), NgramContext.BEGINNING_OF_SENTENCE);
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc. def", mSpacingAndPunctuations, 2), NgramContext.BEGINNING_OF_SENTENCE);
 
-        assertFalse(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def", mSpacingAndPunctuations, 2).mPrevWordsInfo[0].mIsBeginningOfSentence);
-        assertTrue(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc", mSpacingAndPunctuations, 2).mPrevWordsInfo[0].mIsBeginningOfSentence);
+        assertFalse(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def", mSpacingAndPunctuations, 2).isBeginningOfSentenceContext());
+        assertTrue(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc", mSpacingAndPunctuations, 2).isBeginningOfSentenceContext());
 
         // For n-gram
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def", mSpacingAndPunctuations, 1).mPrevWordsInfo[0].mWord, "def");
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def", mSpacingAndPunctuations, 1).mPrevWordsInfo[1].mWord, "abc");
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def", mSpacingAndPunctuations, 2).mPrevWordsInfo[1],
-                WordInfo.BEGINNING_OF_SENTENCE);
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def", mSpacingAndPunctuations, 1).getNthPrevWord(1), "def");
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def", mSpacingAndPunctuations, 1).getNthPrevWord(2), "abc");
+        assertTrue(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def", mSpacingAndPunctuations, 2).isNthPrevWordBeginningOfSentence(2));
 
         // The following tests reflect the current behavior of the function
         // RichInputConnection#getNthPreviousWord.
@@ -186,33 +185,37 @@ public class RichInputConnectionAndTextRangeTests extends AndroidTestCase {
         // this function if needed - especially since it does not seem very
         // logical. These tests are just there to catch any unintentional
         // changes in the behavior of the RichInputConnection#getPreviousWord method.
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def ", mSpacingAndPunctuations, 2).mPrevWordsInfo[0].mWord, "abc");
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def.", mSpacingAndPunctuations, 2).mPrevWordsInfo[0].mWord, "abc");
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def .", mSpacingAndPunctuations, 2).mPrevWordsInfo[0].mWord, "def");
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc ", mSpacingAndPunctuations, 2), PrevWordsInfo.BEGINNING_OF_SENTENCE);
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def ", mSpacingAndPunctuations, 2).getNthPrevWord(1), "abc");
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def.", mSpacingAndPunctuations, 2).getNthPrevWord(1), "abc");
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def .", mSpacingAndPunctuations, 2).getNthPrevWord(1), "def");
+        assertTrue(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc ", mSpacingAndPunctuations, 2).isBeginningOfSentenceContext());
 
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def", mSpacingAndPunctuations, 1).mPrevWordsInfo[0].mWord, "def");
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def ", mSpacingAndPunctuations, 1).mPrevWordsInfo[0].mWord, "def");
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc 'def", mSpacingAndPunctuations, 1).mPrevWordsInfo[0].mWord, "'def");
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def.", mSpacingAndPunctuations, 1), PrevWordsInfo.BEGINNING_OF_SENTENCE);
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc def .", mSpacingAndPunctuations, 1), PrevWordsInfo.BEGINNING_OF_SENTENCE);
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc, def", mSpacingAndPunctuations, 2), PrevWordsInfo.EMPTY_PREV_WORDS_INFO);
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc? def", mSpacingAndPunctuations, 2), PrevWordsInfo.EMPTY_PREV_WORDS_INFO);
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc! def", mSpacingAndPunctuations, 2), PrevWordsInfo.EMPTY_PREV_WORDS_INFO);
-        assertEquals(PrevWordsInfoUtils.getPrevWordsInfoFromNthPreviousWord(
-                "abc 'def", mSpacingAndPunctuations, 2), PrevWordsInfo.EMPTY_PREV_WORDS_INFO);
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def", mSpacingAndPunctuations, 1).getNthPrevWord(1), "def");
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def ", mSpacingAndPunctuations, 1).getNthPrevWord(1), "def");
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc 'def", mSpacingAndPunctuations, 1).getNthPrevWord(1), "'def");
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def.", mSpacingAndPunctuations, 1), NgramContext.BEGINNING_OF_SENTENCE);
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc def .", mSpacingAndPunctuations, 1), NgramContext.BEGINNING_OF_SENTENCE);
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc, def", mSpacingAndPunctuations, 2), NgramContext.EMPTY_PREV_WORDS_INFO);
+        // question mark is treated as the end of the sentence. Hence, beginning of the
+        // sentence is expected.
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc? def", mSpacingAndPunctuations, 2), NgramContext.BEGINNING_OF_SENTENCE);
+        // Exclamation mark is treated as the end of the sentence. Hence, beginning of the
+        // sentence is expected.
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc! def", mSpacingAndPunctuations, 2), NgramContext.BEGINNING_OF_SENTENCE);
+        assertEquals(NgramContextUtils.getNgramContextFromNthPreviousWord(
+                "abc 'def", mSpacingAndPunctuations, 2), NgramContext.EMPTY_PREV_WORDS_INFO);
     }
 
     public void testGetWordRangeAtCursor() {
@@ -223,7 +226,6 @@ public class RichInputConnectionAndTextRangeTests extends AndroidTestCase {
                 mSpacingAndPunctuations, new int[] { Constants.CODE_SPACE });
         final SpacingAndPunctuations TAB = new SpacingAndPunctuations(
                 mSpacingAndPunctuations, new int[] { Constants.CODE_TAB });
-        final int[] SPACE_TAB = StringUtils.toSortedCodePointArray(" \t");
         // A character that needs surrogate pair to represent its code point (U+2008A).
         final String SUPPLEMENTARY_CHAR_STRING = "\uD840\uDC8A";
         final SpacingAndPunctuations SUPPLEMENTARY_CHAR = new SpacingAndPunctuations(
@@ -377,74 +379,74 @@ public class RichInputConnectionAndTextRangeTests extends AndroidTestCase {
 
         ims.setInputConnection(new MockConnection("users", 5));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertTrue(ic.isCursorTouchingWord(sap));
+        assertTrue(ic.isCursorTouchingWord(sap, true /* checkTextAfter */));
 
         ims.setInputConnection(new MockConnection("users'", 5));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertTrue(ic.isCursorTouchingWord(sap));
+        assertTrue(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection("users'", 6));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertTrue(ic.isCursorTouchingWord(sap));
+        assertTrue(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection("'users'", 6));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertTrue(ic.isCursorTouchingWord(sap));
+        assertTrue(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection("'users'", 7));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertTrue(ic.isCursorTouchingWord(sap));
+        assertTrue(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection("users '", 6));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertFalse(ic.isCursorTouchingWord(sap));
+        assertFalse(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection("users '", 7));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertFalse(ic.isCursorTouchingWord(sap));
+        assertFalse(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection("re-", 3));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertTrue(ic.isCursorTouchingWord(sap));
+        assertTrue(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection("re--", 4));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertFalse(ic.isCursorTouchingWord(sap));
+        assertFalse(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection("-", 1));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertFalse(ic.isCursorTouchingWord(sap));
+        assertFalse(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection("--", 2));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertFalse(ic.isCursorTouchingWord(sap));
+        assertFalse(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection(" -", 2));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertFalse(ic.isCursorTouchingWord(sap));
+        assertFalse(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection(" --", 3));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertFalse(ic.isCursorTouchingWord(sap));
+        assertFalse(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection(" users '", 1));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertTrue(ic.isCursorTouchingWord(sap));
+        assertTrue(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection(" users '", 3));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertTrue(ic.isCursorTouchingWord(sap));
+        assertTrue(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection(" users '", 7));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertFalse(ic.isCursorTouchingWord(sap));
+        assertFalse(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection(" users are", 7));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertTrue(ic.isCursorTouchingWord(sap));
+        assertTrue(ic.isCursorTouchingWord(sap, true));
 
         ims.setInputConnection(new MockConnection(" users 'are", 7));
         ic.resetCachesUponCursorMoveAndReturnSuccess(ims.cursorPos(), ims.cursorPos(), true);
-        assertFalse(ic.isCursorTouchingWord(sap));
+        assertFalse(ic.isCursorTouchingWord(sap, true));
     }
 }

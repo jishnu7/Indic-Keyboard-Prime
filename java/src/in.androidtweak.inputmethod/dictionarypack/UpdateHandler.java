@@ -48,16 +48,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.annotation.Nullable;
+
 import in.androidtweak.inputmethod.compat.ConnectivityManagerCompatUtils;
-import in.androidtweak.inputmethod.compat.DownloadManagerCompatUtils;
 import in.androidtweak.inputmethod.compat.NotificationCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.common.LocaleUtils;
 import com.android.inputmethod.latin.utils.ApplicationUtils;
 import com.android.inputmethod.latin.utils.DebugLogUtils;
+import com.android.inputmethod.latin.makedict.FormatSpec;
 
 /**
  * Handler for the update process.
@@ -76,7 +78,8 @@ public final class UpdateHandler {
     // DownloadManager uses as an ID numbers returned out of an AUTOINCREMENT column
     // in SQLite, so it should never return anything < 0.
     public static final int NOT_AN_ID = -1;
-    public static final int MAXIMUM_SUPPORTED_FORMAT_VERSION = 2;
+    public static final int MAXIMUM_SUPPORTED_FORMAT_VERSION =
+            FormatSpec.MAXIMUM_SUPPORTED_STATIC_VERSION;
 
     // Arbitrary. Probably good if it's a power of 2, and a couple thousand bytes long.
     private static final int FILE_COPY_BUFFER_SIZE = 8192;
@@ -91,6 +94,8 @@ public final class UpdateHandler {
     // Name of the category for the main dictionary
     public static final String MAIN_DICTIONARY_CATEGORY = "main";
 
+    public static final String TEMP_DICT_FILE_SUB = "___";
+
     // The id for the "dictionary available" notification.
     static final int DICT_AVAILABLE_NOTIFICATION_ID = 1;
 
@@ -100,9 +105,9 @@ public final class UpdateHandler {
      * This is chiefly used by the dictionary manager UI.
      */
     public interface UpdateEventListener {
-        public void downloadedMetadata(boolean succeeded);
-        public void wordListDownloadFinished(String wordListId, boolean succeeded);
-        public void updateCycleCompleted();
+        void downloadedMetadata(boolean succeeded);
+        void wordListDownloadFinished(String wordListId, boolean succeeded);
+        void updateCycleCompleted();
     }
 
     /**
@@ -173,10 +178,9 @@ public final class UpdateHandler {
     /**
      * Download latest metadata from the server through DownloadManager for all known clients
      * @param context The context for retrieving resources
-     * @param updateNow Whether we should update NOW, or respect bandwidth policies
      * @return true if an update successfully started, false otherwise.
      */
-    public static boolean tryUpdate(final Context context, final boolean updateNow) {
+    public static boolean tryUpdate(final Context context) {
         // TODO: loop through all clients instead of only doing the default one.
         final TreeSet<String> uris = new TreeSet<>();
         final Cursor cursor = MetadataDbHelper.queryClientIds(context);
@@ -202,7 +206,7 @@ public final class UpdateHandler {
                 // it should have been rejected at the time of client registration; if there
                 // is a bug and it happens anyway, doing nothing is the right thing to do.
                 // For more information, {@see DictionaryProvider#insert(Uri, ContentValues)}.
-                updateClientsWithMetadataUri(context, updateNow, metadataUri);
+                updateClientsWithMetadataUri(context, metadataUri);
                 started = true;
             }
         }
@@ -213,12 +217,11 @@ public final class UpdateHandler {
      * Download latest metadata from the server through DownloadManager for all relevant clients
      *
      * @param context The context for retrieving resources
-     * @param updateNow Whether we should update NOW, or respect bandwidth policies
      * @param metadataUri The client to update
      */
-    private static void updateClientsWithMetadataUri(final Context context,
-            final boolean updateNow, final String metadataUri) {
-        PrivateLog.log("Update for metadata URI " + DebugLogUtils.s(metadataUri));
+    private static void updateClientsWithMetadataUri(
+            final Context context, final String metadataUri) {
+        Log.i(TAG, "updateClientsWithMetadataUri() : MetadataUri = " + metadataUri);
         // Adding a disambiguator to circumvent a bug in older versions of DownloadManager.
         // DownloadManager also stupidly cuts the extension to replace with its own that it
         // gets from the content-type. We need to circumvent this.
@@ -228,60 +231,57 @@ public final class UpdateHandler {
         DebugLogUtils.l("Request =", metadataRequest);
 
         final Resources res = context.getResources();
-        // By default, download over roaming is allowed and all network types are allowed too.
-        if (!updateNow) {
-            final boolean allowedOverMetered = res.getBoolean(R.bool.allow_over_metered);
-            // If we don't have to update NOW, then only do it over non-metered connections.
-            if (DownloadManagerCompatUtils.hasSetAllowedOverMetered()) {
-                DownloadManagerCompatUtils.setAllowedOverMetered(metadataRequest,
-                        allowedOverMetered);
-            } else if (!allowedOverMetered) {
-                metadataRequest.setAllowedNetworkTypes(Request.NETWORK_WIFI);
-            }
-            metadataRequest.setAllowedOverRoaming(res.getBoolean(R.bool.allow_over_roaming));
-        }
-        final boolean notificationVisible = updateNow
-                ? res.getBoolean(R.bool.display_notification_for_user_requested_update)
-                : res.getBoolean(R.bool.display_notification_for_auto_update);
-
+        metadataRequest.setAllowedNetworkTypes(Request.NETWORK_WIFI | Request.NETWORK_MOBILE);
         metadataRequest.setTitle(res.getString(R.string.download_description));
-        metadataRequest.setNotificationVisibility(notificationVisible
-                ? Request.VISIBILITY_VISIBLE : Request.VISIBILITY_HIDDEN);
+        // Do not show the notification when downloading the metadata.
+        metadataRequest.setNotificationVisibility(Request.VISIBILITY_HIDDEN);
         metadataRequest.setVisibleInDownloadsUi(
                 res.getBoolean(R.bool.metadata_downloads_visible_in_download_UI));
 
         final DownloadManagerWrapper manager = new DownloadManagerWrapper(context);
-        cancelUpdateWithDownloadManager(context, metadataUri, manager);
+        if (maybeCancelUpdateAndReturnIfStillRunning(context, metadataUri, manager,
+                DictionaryService.NO_CANCEL_DOWNLOAD_PERIOD_MILLIS)) {
+            // We already have a recent download in progress. Don't register a new download.
+            return;
+        }
         final long downloadId;
         synchronized (sSharedIdProtector) {
             downloadId = manager.enqueue(metadataRequest);
             DebugLogUtils.l("Metadata download requested with id", downloadId);
-            // If there is already a download in progress, it's been there for a while and
+            // If there is still a download in progress, it's been there for a while and
             // there is probably something wrong with download manager. It's best to just
             // overwrite the id and request it again. If the old one happens to finish
             // anyway, we don't know about its ID any more, so the downloadFinished
             // method will ignore it.
             writeMetadataDownloadId(context, metadataUri, downloadId);
         }
-        PrivateLog.log("Requested download with id " + downloadId);
+        Log.i(TAG, "updateClientsWithMetadataUri() : DownloadId = " + downloadId);
     }
 
     /**
-     * Cancels downloading a file, if there is one for this URI.
+     * Cancels downloading a file if there is one for this URI and it's too long.
      *
      * If we are not currently downloading the file at this URI, this is a no-op.
      *
      * @param context the context to open the database on
      * @param metadataUri the URI to cancel
      * @param manager an wrapped instance of DownloadManager
+     * @param graceTime if there was a download started less than this many milliseconds, don't
+     *  cancel and return true
+     * @return whether the download is still active
      */
-    private static void cancelUpdateWithDownloadManager(final Context context,
-            final String metadataUri, final DownloadManagerWrapper manager) {
+    private static boolean maybeCancelUpdateAndReturnIfStillRunning(final Context context,
+            final String metadataUri, final DownloadManagerWrapper manager, final long graceTime) {
         synchronized (sSharedIdProtector) {
-            final long metadataDownloadId =
-                    MetadataDbHelper.getMetadataDownloadIdForURI(context, metadataUri);
-            if (NOT_AN_ID == metadataDownloadId) return;
-            manager.remove(metadataDownloadId);
+            final DownloadIdAndStartDate metadataDownloadIdAndStartDate =
+                    MetadataDbHelper.getMetadataDownloadIdAndStartDateForURI(context, metadataUri);
+            if (null == metadataDownloadIdAndStartDate) return false;
+            if (NOT_AN_ID == metadataDownloadIdAndStartDate.mId) return false;
+            if (metadataDownloadIdAndStartDate.mStartDate + graceTime
+                    > System.currentTimeMillis()) {
+                return true;
+            }
+            manager.remove(metadataDownloadIdAndStartDate.mId);
             writeMetadataDownloadId(context, metadataUri, NOT_AN_ID);
         }
         // Consider a cancellation as a failure. As such, inform listeners that the download
@@ -289,6 +289,7 @@ public final class UpdateHandler {
         for (UpdateEventListener listener : linkedCopyOfList(sUpdateEventListeners)) {
             listener.downloadedMetadata(false);
         }
+        return false;
     }
 
     /**
@@ -303,7 +304,7 @@ public final class UpdateHandler {
     public static void cancelUpdate(final Context context, final String clientId) {
         final DownloadManagerWrapper manager = new DownloadManagerWrapper(context);
         final String metadataUri = MetadataDbHelper.getMetadataUriAsString(context, clientId);
-        cancelUpdateWithDownloadManager(context, metadataUri, manager);
+        maybeCancelUpdateAndReturnIfStillRunning(context, metadataUri, manager, 0 /* graceTime */);
     }
 
     /**
@@ -326,11 +327,11 @@ public final class UpdateHandler {
      */
     public static long registerDownloadRequest(final DownloadManagerWrapper manager,
             final Request request, final SQLiteDatabase db, final String id, final int version) {
-        DebugLogUtils.l("RegisterDownloadRequest for word list id : ", id, ", version ", version);
+        Log.i(TAG, "registerDownloadRequest() : Id = " + id + " : Version = " + version);
         final long downloadId;
         synchronized (sSharedIdProtector) {
             downloadId = manager.enqueue(request);
-            DebugLogUtils.l("Download requested with id", downloadId);
+            Log.i(TAG, "registerDownloadRequest() : DownloadId = " + downloadId);
             MetadataDbHelper.markEntryAsDownloading(db, id, version, downloadId);
         }
         return downloadId;
@@ -387,7 +388,7 @@ public final class UpdateHandler {
             // If any of these is metadata, we should update the DB
             boolean hasMetadata = false;
             for (DownloadRecord record : downloadRecords) {
-                if (null == record.mAttributes) {
+                if (record.isMetadata()) {
                     hasMetadata = true;
                     break;
                 }
@@ -415,8 +416,7 @@ public final class UpdateHandler {
     /* package */ static void downloadFinished(final Context context, final Intent intent) {
         // Get and check the ID of the file that was downloaded
         final long fileId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, NOT_AN_ID);
-        PrivateLog.log("Download finished with id " + fileId);
-        DebugLogUtils.l("DownloadFinished with id", fileId);
+        Log.i(TAG, "downloadFinished() : DownloadId = " + fileId);
         if (NOT_AN_ID == fileId) return; // Spurious wake-up: ignore
 
         final DownloadManagerWrapper manager = new DownloadManagerWrapper(context);
@@ -438,11 +438,15 @@ public final class UpdateHandler {
             try {
                 if (downloadInfo.wasSuccessful()) {
                     downloadSuccessful = handleDownloadedFile(context, record, manager, fileId);
+                    Log.i(TAG, "downloadFinished() : Success = " + downloadSuccessful);
                 }
             } finally {
+                final String resultMessage = downloadSuccessful ? "Success" : "Failure";
                 if (record.isMetadata()) {
+                    Log.i(TAG, "downloadFinished() : Metadata " + resultMessage);
                     publishUpdateMetadataCompleted(context, downloadSuccessful);
                 } else {
+                    Log.i(TAG, "downloadFinished() : WordList " + resultMessage);
                     final SQLiteDatabase db = MetadataDbHelper.getDb(context, record.mClientId);
                     publishUpdateWordListCompleted(context, downloadSuccessful, fileId,
                             db, record.mAttributes, record.mClientId);
@@ -565,6 +569,8 @@ public final class UpdateHandler {
      * Warn Android Keyboard that the state of dictionaries changed and it should refresh its data.
      */
     private static void signalNewDictionaryState(final Context context) {
+        // TODO: Also provide the locale of the updated dictionary so that the LatinIme
+        // does not have to reset if it is a different locale.
         final Intent newDictBroadcast =
                 new Intent(DictionaryPackConstants.NEW_DICTIONARY_INTENT_ACTION);
         context.sendBroadcast(newDictBroadcast);
@@ -579,7 +585,7 @@ public final class UpdateHandler {
      * @throws BadFormatException if the metadata is not in a known format.
      * @throws IOException if the downloaded file can't be read from the disk
      */
-    private static void handleMetadata(final Context context, final InputStream stream,
+    public static void handleMetadata(final Context context, final InputStream stream,
             final String clientId) throws IOException, BadFormatException {
         DebugLogUtils.l("Entering handleMetadata");
         final List<WordListMetadata> newMetadata;
@@ -718,7 +724,7 @@ public final class UpdateHandler {
             throws IOException {
         DebugLogUtils.l("Entering openTempFileOutput");
         final File dir = context.getFilesDir();
-        final File f = File.createTempFile(locale + "___", DICT_FILE_SUFFIX, dir);
+        final File f = File.createTempFile(locale + TEMP_DICT_FILE_SUB, DICT_FILE_SUFFIX, dir);
         DebugLogUtils.l("File name is", f.getName());
         return f.getName();
     }
@@ -737,19 +743,22 @@ public final class UpdateHandler {
      * @return an ordered list of runnables to be called to upgrade.
      */
     private static ActionBatch compareMetadataForUpgrade(final Context context,
-            final String clientId, List<WordListMetadata> from, List<WordListMetadata> to) {
+            final String clientId, @Nullable final List<WordListMetadata> from,
+            @Nullable final List<WordListMetadata> to) {
         final ActionBatch actions = new ActionBatch();
         // Upgrade existing word lists
         DebugLogUtils.l("Comparing dictionaries");
         final Set<String> wordListIds = new TreeSet<>();
         // TODO: Can these be null?
-        if (null == from) from = new ArrayList<>();
-        if (null == to) to = new ArrayList<>();
-        for (WordListMetadata wlData : from) wordListIds.add(wlData.mId);
-        for (WordListMetadata wlData : to) wordListIds.add(wlData.mId);
+        final List<WordListMetadata> fromList = (from == null) ? new ArrayList<WordListMetadata>()
+                : from;
+        final List<WordListMetadata> toList = (to == null) ? new ArrayList<WordListMetadata>()
+                : to;
+        for (WordListMetadata wlData : fromList) wordListIds.add(wlData.mId);
+        for (WordListMetadata wlData : toList) wordListIds.add(wlData.mId);
         for (String id : wordListIds) {
-            final WordListMetadata currentInfo = MetadataHandler.findWordListById(from, id);
-            final WordListMetadata metadataInfo = MetadataHandler.findWordListById(to, id);
+            final WordListMetadata currentInfo = MetadataHandler.findWordListById(fromList, id);
+            final WordListMetadata metadataInfo = MetadataHandler.findWordListById(toList, id);
             // TODO: Remove the following unnecessary check, since we are now doing the filtering
             // inside findWordListById.
             final WordListMetadata newInfo = null == metadataInfo
@@ -784,6 +793,10 @@ public final class UpdateHandler {
             } else {
                 final SQLiteDatabase db = MetadataDbHelper.getDb(context, clientId);
                 if (newInfo.mVersion == currentInfo.mVersion) {
+                    if (TextUtils.equals(newInfo.mRemoteFilename, currentInfo.mRemoteFilename)) {
+                        // If the dictionary url hasn't changed, we should preserve the retryCount.
+                        newInfo.mRetryCount = currentInfo.mRetryCount;
+                    }
                     // If it's the same id/version, we update the DB with the new values.
                     // It doesn't matter too much if they didn't change.
                     actions.add(new ActionBatch.UpdateDataAction(clientId, newInfo));
@@ -796,7 +809,7 @@ public final class UpdateHandler {
                     actions.add(new ActionBatch.MakeAvailableAction(clientId, newInfo));
                     if (status == MetadataDbHelper.STATUS_INSTALLED
                             || status == MetadataDbHelper.STATUS_DISABLED) {
-                        actions.add(new ActionBatch.StartDownloadAction(clientId, newInfo, false));
+                        actions.add(new ActionBatch.StartDownloadAction(clientId, newInfo));
                     } else {
                         // Pass true to ForgetAction: this is indeed an update to a non-installed
                         // word list, so activate status == AVAILABLE check
@@ -855,8 +868,8 @@ public final class UpdateHandler {
         // None of those are expected to happen, but just in case...
         if (null == notificationIntent || null == notificationManager) return;
 
-        final Locale locale = LocaleUtils.constructLocaleFromString(localeString);
-        final String language = (null == locale ? "" : locale.getDisplayLanguage());
+        final String language = (null == localeString) ? ""
+                : LocaleUtils.constructLocaleFromString(localeString).getDisplayLanguage();
         final String titleFormat = context.getString(R.string.dict_available_notification_title);
         final String notificationTitle = String.format(titleFormat, language);
         final Notification.Builder builder = new Notification.Builder(context)
@@ -894,7 +907,9 @@ public final class UpdateHandler {
     // list because it may only install the latest version we know about for this specific
     // word list ID / client ID combination.
     public static void installIfNeverRequested(final Context context, final String clientId,
-            final String wordlistId, final boolean mayPrompt) {
+            final String wordlistId) {
+        Log.i(TAG, "installIfNeverRequested() : ClientId = " + clientId
+                + " : WordListId = " + wordlistId);
         final String[] idArray = wordlistId.split(DictionaryProvider.ID_CATEGORY_SEPARATOR);
         // If we have a new-format dictionary id (category:manual_id), then use the
         // specified category. Otherwise, it is a main dictionary, so force the
@@ -927,17 +942,6 @@ public final class UpdateHandler {
             return;
         }
 
-        if (mayPrompt
-                && DOWNLOAD_OVER_METERED_SETTING_UNKNOWN
-                        == getDownloadOverMeteredSetting(context)) {
-            final ConnectivityManager cm =
-                    (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            if (ConnectivityManagerCompatUtils.isActiveNetworkMetered(cm)) {
-                showDictionaryAvailableNotification(context, clientId, installCandidate);
-                return;
-            }
-        }
-
         // We decided against prompting the user for a decision. This may be because we were
         // explicitly asked not to, or because we are currently on wi-fi anyway, or because we
         // already know the answer to the question. We'll enqueue a request ; StartDownloadAction
@@ -949,19 +953,18 @@ public final class UpdateHandler {
         // change the shared preferences. So there is no way for a word list that has been
         // auto-installed once to get auto-installed again, and that's what we want.
         final ActionBatch actions = new ActionBatch();
-        actions.add(new ActionBatch.StartDownloadAction(clientId,
-                WordListMetadata.createFromContentValues(installCandidate), false));
+        WordListMetadata metadata = WordListMetadata.createFromContentValues(installCandidate);
+        actions.add(new ActionBatch.StartDownloadAction(clientId, metadata));
         final String localeString = installCandidate.getAsString(MetadataDbHelper.LOCALE_COLUMN);
         // We are in a content provider: we can't do any UI at all. We have to defer the displaying
         // itself to the service. Also, we only display this when the user does not have a
-        // dictionary for this language already: we know that from the mayPrompt argument.
-        if (mayPrompt) {
-            final Intent intent = new Intent();
-            intent.setClass(context, DictionaryService.class);
-            intent.setAction(DictionaryService.SHOW_DOWNLOAD_TOAST_INTENT_ACTION);
-            intent.putExtra(DictionaryService.LOCALE_INTENT_ARGUMENT, localeString);
-            context.startService(intent);
-        }
+        // dictionary for this language already.
+        final Intent intent = new Intent();
+        intent.setClass(context, DictionaryService.class);
+        intent.setAction(DictionaryService.SHOW_DOWNLOAD_TOAST_INTENT_ACTION);
+        intent.putExtra(DictionaryService.LOCALE_INTENT_ARGUMENT, localeString);
+        context.startService(intent);
+        Log.i(TAG, "installIfNeverRequested() : StartDownloadAction for " + metadata);
         actions.execute(context, new LogProblemReporter(TAG));
     }
 
@@ -986,17 +989,17 @@ public final class UpdateHandler {
     public static void markAsUsed(final Context context, final String clientId,
             final String wordlistId, final int version,
             final int status, final boolean allowDownloadOnMeteredData) {
-        final List<WordListMetadata> currentMetadata =
-                MetadataHandler.getCurrentMetadata(context, clientId);
-        WordListMetadata wordList = MetadataHandler.findWordListById(currentMetadata, wordlistId);
-        if (null == wordList) return;
+        final WordListMetadata wordListMetaData = MetadataHandler.getCurrentMetadataForWordList(
+                context, clientId, wordlistId, version);
+
+        if (null == wordListMetaData) return;
+
         final ActionBatch actions = new ActionBatch();
         if (MetadataDbHelper.STATUS_DISABLED == status
                 || MetadataDbHelper.STATUS_DELETING == status) {
-            actions.add(new ActionBatch.EnableAction(clientId, wordList));
+            actions.add(new ActionBatch.EnableAction(clientId, wordListMetaData));
         } else if (MetadataDbHelper.STATUS_AVAILABLE == status) {
-            actions.add(new ActionBatch.StartDownloadAction(clientId, wordList,
-                    allowDownloadOnMeteredData));
+            actions.add(new ActionBatch.StartDownloadAction(clientId, wordListMetaData));
         } else {
             Log.e(TAG, "Unexpected state of the word list for markAsUsed : " + status);
         }
@@ -1021,13 +1024,13 @@ public final class UpdateHandler {
     // markAsUsed for consistency.
     public static void markAsUnused(final Context context, final String clientId,
             final String wordlistId, final int version, final int status) {
-        final List<WordListMetadata> currentMetadata =
-                MetadataHandler.getCurrentMetadata(context, clientId);
-        final WordListMetadata wordList =
-                MetadataHandler.findWordListById(currentMetadata, wordlistId);
-        if (null == wordList) return;
+
+        final WordListMetadata wordListMetaData = MetadataHandler.getCurrentMetadataForWordList(
+                context, clientId, wordlistId, version);
+
+        if (null == wordListMetaData) return;
         final ActionBatch actions = new ActionBatch();
-        actions.add(new ActionBatch.DisableAction(clientId, wordList));
+        actions.add(new ActionBatch.DisableAction(clientId, wordListMetaData));
         actions.execute(context, new LogProblemReporter(TAG));
         signalNewDictionaryState(context);
     }
@@ -1050,14 +1053,14 @@ public final class UpdateHandler {
      */
     public static void markAsDeleting(final Context context, final String clientId,
             final String wordlistId, final int version, final int status) {
-        final List<WordListMetadata> currentMetadata =
-                MetadataHandler.getCurrentMetadata(context, clientId);
-        final WordListMetadata wordList =
-                MetadataHandler.findWordListById(currentMetadata, wordlistId);
-        if (null == wordList) return;
+
+        final WordListMetadata wordListMetaData = MetadataHandler.getCurrentMetadataForWordList(
+                context, clientId, wordlistId, version);
+
+        if (null == wordListMetaData) return;
         final ActionBatch actions = new ActionBatch();
-        actions.add(new ActionBatch.DisableAction(clientId, wordList));
-        actions.add(new ActionBatch.StartDeleteAction(clientId, wordList));
+        actions.add(new ActionBatch.DisableAction(clientId, wordListMetaData));
+        actions.add(new ActionBatch.StartDeleteAction(clientId, wordListMetaData));
         actions.execute(context, new LogProblemReporter(TAG));
         signalNewDictionaryState(context);
     }
@@ -1075,33 +1078,50 @@ public final class UpdateHandler {
      */
     public static void markAsDeleted(final Context context, final String clientId,
             final String wordlistId, final int version, final int status) {
-        final List<WordListMetadata> currentMetadata =
-                MetadataHandler.getCurrentMetadata(context, clientId);
-        final WordListMetadata wordList =
-                MetadataHandler.findWordListById(currentMetadata, wordlistId);
-        if (null == wordList) return;
+        final WordListMetadata wordListMetaData = MetadataHandler.getCurrentMetadataForWordList(
+                        context, clientId, wordlistId, version);
+
+        if (null == wordListMetaData) return;
+
         final ActionBatch actions = new ActionBatch();
-        actions.add(new ActionBatch.FinishDeleteAction(clientId, wordList));
+        actions.add(new ActionBatch.FinishDeleteAction(clientId, wordListMetaData));
         actions.execute(context, new LogProblemReporter(TAG));
         signalNewDictionaryState(context);
     }
 
     /**
-     * Marks the word list with the passed id as broken.
-     *
-     * This effectively deletes the entry from the metadata. It doesn't prevent the same
-     * word list to be downloaded again at a later time if the same or a new version is
-     * available the next time we download the metadata.
+     * Checks whether the word list should be downloaded again; in which case an download &
+     * installation attempt is made. Otherwise the word list is marked broken.
      *
      * @param context the context to open the database on.
      * @param clientId the id of the client.
-     * @param wordlistId the id of the word list to mark as broken.
-     * @param version the version of the word list to mark as deleted.
+     * @param wordlistId the id of the word list which is broken.
+     * @param version the version of the broken word list.
      */
-    public static void markAsBroken(final Context context, final String clientId,
+    public static void markAsBrokenOrRetrying(final Context context, final String clientId,
             final String wordlistId, final int version) {
-        // TODO: do this on another thread to avoid blocking the UI.
-        MetadataDbHelper.deleteEntry(MetadataDbHelper.getDb(context, clientId),
-                wordlistId, version);
+        boolean isRetryPossible = MetadataDbHelper.maybeMarkEntryAsRetrying(
+                MetadataDbHelper.getDb(context, clientId), wordlistId, version);
+
+        if (isRetryPossible) {
+            if (DEBUG) {
+                Log.d(TAG, "Attempting to download & install the wordlist again.");
+            }
+            final WordListMetadata wordListMetaData = MetadataHandler.getCurrentMetadataForWordList(
+                    context, clientId, wordlistId, version);
+            if (wordListMetaData == null) {
+                return;
+            }
+
+            final ActionBatch actions = new ActionBatch();
+            actions.add(new ActionBatch.StartDownloadAction(clientId, wordListMetaData));
+            actions.execute(context, new LogProblemReporter(TAG));
+        } else {
+            if (DEBUG) {
+                Log.d(TAG, "Retries for wordlist exhausted, deleting the wordlist from table.");
+            }
+            MetadataDbHelper.deleteEntry(MetadataDbHelper.getDb(context, clientId),
+                    wordlistId, version);
+        }
     }
 }

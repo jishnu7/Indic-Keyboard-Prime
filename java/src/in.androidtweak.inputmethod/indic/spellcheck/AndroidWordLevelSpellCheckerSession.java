@@ -28,26 +28,24 @@ import android.view.textservice.SuggestionsInfo;
 import android.view.textservice.TextInfo;
 
 import com.android.inputmethod.keyboard.Keyboard;
-import com.android.inputmethod.keyboard.ProximityInfo;
-import com.android.inputmethod.latin.PrevWordsInfo;
-
-import java.util.ArrayList;
-import java.util.Locale;
-
-import in.androidtweak.inputmethod.compat.SuggestionsInfoCompatUtils;
-import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.latin.NgramContext;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.WordComposer;
+import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.latin.common.LocaleUtils;
+import com.android.inputmethod.latin.common.StringUtils;
+import com.android.inputmethod.latin.define.DebugFlags;
 import com.android.inputmethod.latin.utils.BinaryDictionaryUtils;
-import com.android.inputmethod.latin.utils.CoordinateUtils;
-import com.android.inputmethod.latin.utils.LocaleUtils;
 import com.android.inputmethod.latin.utils.ScriptUtils;
-import com.android.inputmethod.latin.utils.StringUtils;
+import com.android.inputmethod.latin.utils.StatsUtils;
 import com.android.inputmethod.latin.utils.SuggestionResults;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public abstract class AndroidWordLevelSpellCheckerSession extends Session {
     private static final String TAG = AndroidWordLevelSpellCheckerSession.class.getSimpleName();
-    private static final boolean DBG = false;
 
     public final static String[] EMPTY_STRING_ARRAY = new String[0];
 
@@ -59,6 +57,9 @@ public abstract class AndroidWordLevelSpellCheckerSession extends Session {
     protected final SuggestionsCache mSuggestionsCache = new SuggestionsCache();
     private final ContentObserver mObserver;
 
+    private static final String quotesRegexp =
+            "(\\u0022|\\u0027|\\u0060|\\u00B4|\\u2018|\\u2018|\\u201C|\\u201D)";
+
     private static final class SuggestionsParams {
         public final String[] mSuggestions;
         public final int mFlags;
@@ -69,32 +70,26 @@ public abstract class AndroidWordLevelSpellCheckerSession extends Session {
     }
 
     protected static final class SuggestionsCache {
-        private static final char CHAR_DELIMITER = '\uFFFC';
         private static final int MAX_CACHE_SIZE = 50;
         private final LruCache<String, SuggestionsParams> mUnigramSuggestionsInfoCache =
                 new LruCache<>(MAX_CACHE_SIZE);
 
-        // TODO: Support n-gram input
-        private static String generateKey(final String query, final PrevWordsInfo prevWordsInfo) {
-            if (TextUtils.isEmpty(query) || !prevWordsInfo.isValid()) {
-                return query;
-            }
-            return query + CHAR_DELIMITER + prevWordsInfo;
+        private static String generateKey(final String query) {
+            return query + "";
         }
 
-        public SuggestionsParams getSuggestionsFromCache(String query,
-                final PrevWordsInfo prevWordsInfo) {
-            return mUnigramSuggestionsInfoCache.get(generateKey(query, prevWordsInfo));
+        public SuggestionsParams getSuggestionsFromCache(final String query) {
+            return mUnigramSuggestionsInfoCache.get(query);
         }
 
         public void putSuggestionsToCache(
-                final String query, final PrevWordsInfo prevWordsInfo,
-                final String[] suggestions, final int flags) {
+                final String query, final String[] suggestions, final int flags) {
             if (suggestions == null || TextUtils.isEmpty(query)) {
                 return;
             }
             mUnigramSuggestionsInfoCache.put(
-                    generateKey(query, prevWordsInfo), new SuggestionsParams(suggestions, flags));
+                    generateKey(query),
+                    new SuggestionsParams(suggestions, flags));
         }
 
         public void clearCache() {
@@ -118,7 +113,8 @@ public abstract class AndroidWordLevelSpellCheckerSession extends Session {
     @Override
     public void onCreate() {
         final String localeString = getLocale();
-        mLocale = LocaleUtils.constructLocaleFromString(localeString);
+        mLocale = (null == localeString) ? null
+                : LocaleUtils.constructLocaleFromString(localeString);
         mScript = ScriptUtils.getScriptFromSpellCheckerLocale(mLocale);
     }
 
@@ -224,23 +220,24 @@ public abstract class AndroidWordLevelSpellCheckerSession extends Session {
     }
 
     protected SuggestionsInfo onGetSuggestionsInternal(
-            final TextInfo textInfo, final PrevWordsInfo prevWordsInfo,
-            final int suggestionsLimit) {
+            final TextInfo textInfo, final NgramContext ngramContext, final int suggestionsLimit) {
         try {
-            final String inText = textInfo.getText();
-            final SuggestionsParams cachedSuggestionsParams =
-                    mSuggestionsCache.getSuggestionsFromCache(inText, prevWordsInfo);
-            if (cachedSuggestionsParams != null) {
-                if (DBG) {
-                    Log.d(TAG, "Cache hit: " + inText + ", " + cachedSuggestionsParams.mFlags);
-                }
-                return new SuggestionsInfo(
-                        cachedSuggestionsParams.mFlags, cachedSuggestionsParams.mSuggestions);
+            final String text = textInfo.getText().
+                    replaceAll(AndroidSpellCheckerService.APOSTROPHE,
+                            AndroidSpellCheckerService.SINGLE_QUOTE).
+                    replaceAll("^" + quotesRegexp, "").
+                    replaceAll(quotesRegexp + "$", "");
+
+            if (!mService.hasMainDictionaryForLocale(mLocale)) {
+                return AndroidSpellCheckerService.getNotInDictEmptySuggestions(
+                        false /* reportAsTypo */);
             }
-            final int checkability = getCheckabilityInScript(inText, mScript);
+
+            // Handle special patterns like email, URI, telephone number.
+            final int checkability = getCheckabilityInScript(text, mScript);
             if (CHECKABILITY_CHECKABLE != checkability) {
                 if (CHECKABILITY_CONTAINS_PERIOD == checkability) {
-                    final String[] splitText = inText.split(Constants.REGEXP_PERIOD);
+                    final String[] splitText = text.split(Constants.REGEXP_PERIOD);
                     boolean allWordsAreValid = true;
                     for (final String word : splitText) {
                         if (!mService.isValidWord(mLocale, word)) {
@@ -255,80 +252,83 @@ public abstract class AndroidWordLevelSpellCheckerSession extends Session {
                                         TextUtils.join(Constants.STRING_SPACE, splitText) });
                     }
                 }
-                return mService.isValidWord(mLocale, inText) ?
+                return mService.isValidWord(mLocale, text) ?
                         AndroidSpellCheckerService.getInDictEmptySuggestions() :
                         AndroidSpellCheckerService.getNotInDictEmptySuggestions(
                                 CHECKABILITY_CONTAINS_PERIOD == checkability /* reportAsTypo */);
             }
-            final String text = inText.replaceAll(
-                    AndroidSpellCheckerService.APOSTROPHE, AndroidSpellCheckerService.SINGLE_QUOTE);
+
+            // Handle normal words.
             final int capitalizeType = StringUtils.getCapitalizationType(text);
-            boolean isInDict = true;
-            if (!mService.hasMainDictionaryForLocale(mLocale)) {
+
+            if (isInDictForAnyCapitalization(text, capitalizeType)) {
+                if (DebugFlags.DEBUG_ENABLED) {
+                    Log.i(TAG, "onGetSuggestionsInternal() : [" + text + "] is a valid word");
+                }
+                return AndroidSpellCheckerService.getInDictEmptySuggestions();
+            }
+            if (DebugFlags.DEBUG_ENABLED) {
+                Log.i(TAG, "onGetSuggestionsInternal() : [" + text + "] is NOT a valid word");
+            }
+
+            final Keyboard keyboard = mService.getKeyboardForLocale(mLocale);
+            if (null == keyboard) {
+                Log.w(TAG, "onGetSuggestionsInternal() : No keyboard for locale: " + mLocale);
+                // If there is no keyboard for this locale, don't do any spell-checking.
                 return AndroidSpellCheckerService.getNotInDictEmptySuggestions(
                         false /* reportAsTypo */);
             }
-            final Keyboard keyboard = mService.getKeyboardForLocale(mLocale);
+
             final WordComposer composer = new WordComposer();
             final int[] codePoints = StringUtils.toCodePointArray(text);
             final int[] coordinates;
-            final ProximityInfo proximityInfo;
-            if (null == keyboard) {
-                coordinates = CoordinateUtils.newCoordinateArray(codePoints.length,
-                        Constants.NOT_A_COORDINATE, Constants.NOT_A_COORDINATE);
-                proximityInfo = null;
-            } else {
-                coordinates = keyboard.getCoordinates(codePoints);
-                proximityInfo = keyboard.getProximityInfo();
-            }
+            coordinates = keyboard.getCoordinates(codePoints);
             composer.setComposingWord(codePoints, coordinates);
             // TODO: Don't gather suggestions if the limit is <= 0 unless necessary
             final SuggestionResults suggestionResults = mService.getSuggestionResults(
-                    mLocale, composer, prevWordsInfo, proximityInfo);
+                    mLocale, composer.getComposedDataSnapshot(), ngramContext, keyboard);
             final Result result = getResult(capitalizeType, mLocale, suggestionsLimit,
                     mService.getRecommendedThreshold(), text, suggestionResults);
-            isInDict = isInDictForAnyCapitalization(text, capitalizeType);
-            if (DBG) {
-                Log.i(TAG, "Spell checking results for " + text + " with suggestion limit "
-                        + suggestionsLimit);
-                Log.i(TAG, "IsInDict = " + isInDict);
-                Log.i(TAG, "LooksLikeTypo = " + (!isInDict));
-                Log.i(TAG, "HasRecommendedSuggestions = " + result.mHasRecommendedSuggestions);
-                if (null != result.mSuggestions) {
+            if (DebugFlags.DEBUG_ENABLED) {
+                if (result.mSuggestions != null && result.mSuggestions.length > 0) {
+                    final StringBuilder builder = new StringBuilder();
                     for (String suggestion : result.mSuggestions) {
-                        Log.i(TAG, suggestion);
+                        builder.append(" [");
+                        builder.append(suggestion);
+                        builder.append("]");
                     }
+                    Log.i(TAG, "onGetSuggestionsInternal() : Suggestions =" + builder);
                 }
             }
+            // Handle word not in dictionary.
+            // This is called only once per unique word, so entering multiple
+            // instances of the same word does not result in more than one call
+            // to this method.
+            // Also, upon changing the orientation of the device, this is called
+            // again for every unique invalid word in the text box.
+            StatsUtils.onInvalidWordIdentification(text);
 
             final int flags =
-                    (isInDict ? SuggestionsInfo.RESULT_ATTR_IN_THE_DICTIONARY
-                            : SuggestionsInfo.RESULT_ATTR_LOOKS_LIKE_TYPO)
+                    SuggestionsInfo.RESULT_ATTR_LOOKS_LIKE_TYPO
                     | (result.mHasRecommendedSuggestions
                             ? SuggestionsInfoCompatUtils
                                     .getValueOf_RESULT_ATTR_HAS_RECOMMENDED_SUGGESTIONS()
                             : 0);
             final SuggestionsInfo retval = new SuggestionsInfo(flags, result.mSuggestions);
-            mSuggestionsCache.putSuggestionsToCache(text, prevWordsInfo, result.mSuggestions,
-                    flags);
+            mSuggestionsCache.putSuggestionsToCache(text, result.mSuggestions, flags);
             return retval;
         } catch (RuntimeException e) {
             // Don't kill the keyboard if there is a bug in the spell checker
-            if (DBG) {
-                throw e;
-            } else {
-                Log.e(TAG, "Exception while spellcheking", e);
-                return AndroidSpellCheckerService.getNotInDictEmptySuggestions(
-                        false /* reportAsTypo */);
-            }
+            Log.e(TAG, "Exception while spellchecking", e);
+            return AndroidSpellCheckerService.getNotInDictEmptySuggestions(
+                    false /* reportAsTypo */);
         }
     }
 
     private static final class Result {
         public final String[] mSuggestions;
         public final boolean mHasRecommendedSuggestions;
-        public Result(final String[] gatheredSuggestions,
-                final boolean hasRecommendedSuggestions) {
+        public Result(final String[] gatheredSuggestions, final boolean hasRecommendedSuggestions) {
             mSuggestions = gatheredSuggestions;
             mHasRecommendedSuggestions = hasRecommendedSuggestions;
         }
@@ -340,11 +340,6 @@ public abstract class AndroidWordLevelSpellCheckerSession extends Session {
         if (suggestionResults.isEmpty() || suggestionsLimit <= 0) {
             return new Result(null /* gatheredSuggestions */,
                     false /* hasRecommendedSuggestions */);
-        }
-        if (DBG) {
-            for (final SuggestedWordInfo suggestedWordInfo : suggestionResults) {
-                Log.i(TAG, "" + suggestedWordInfo.mScore + " " + suggestedWordInfo.mWord);
-            }
         }
         final ArrayList<String> suggestions = new ArrayList<>();
         for (final SuggestedWordInfo suggestedWordInfo : suggestionResults) {
@@ -362,21 +357,16 @@ public abstract class AndroidWordLevelSpellCheckerSession extends Session {
         StringUtils.removeDupes(suggestions);
         // This returns a String[], while toArray() returns an Object[] which cannot be cast
         // into a String[].
+        final List<String> gatheredSuggestionsList =
+                suggestions.subList(0, Math.min(suggestions.size(), suggestionsLimit));
         final String[] gatheredSuggestions =
-                suggestions.subList(0, Math.min(suggestions.size(), suggestionsLimit))
-                        .toArray(EMPTY_STRING_ARRAY);
+                gatheredSuggestionsList.toArray(new String[gatheredSuggestionsList.size()]);
 
         final int bestScore = suggestionResults.first().mScore;
         final String bestSuggestion = suggestions.get(0);
         final float normalizedScore = BinaryDictionaryUtils.calcNormalizedScore(
-                originalText, bestSuggestion.toString(), bestScore);
+                originalText, bestSuggestion, bestScore);
         final boolean hasRecommendedSuggestions = (normalizedScore > recommendedThreshold);
-        if (DBG) {
-            Log.i(TAG, "Best suggestion : " + bestSuggestion + ", score " + bestScore);
-            Log.i(TAG, "Normalized score = " + normalizedScore
-                    + " (threshold " + recommendedThreshold
-                    + ") => hasRecommendedSuggestions = " + hasRecommendedSuggestions);
-        }
         return new Result(gatheredSuggestions, hasRecommendedSuggestions);
     }
 
@@ -388,8 +378,7 @@ public abstract class AndroidWordLevelSpellCheckerSession extends Session {
      * That's what the following method does.
      */
     @Override
-    public SuggestionsInfo onGetSuggestions(final TextInfo textInfo,
-            final int suggestionsLimit) {
+    public SuggestionsInfo onGetSuggestions(final TextInfo textInfo, final int suggestionsLimit) {
         long ident = Binder.clearCallingIdentity();
         try {
             return onGetSuggestionsInternal(textInfo, suggestionsLimit);

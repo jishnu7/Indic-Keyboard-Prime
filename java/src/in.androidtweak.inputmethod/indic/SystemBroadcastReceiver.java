@@ -16,18 +16,26 @@
 
 package in.androidtweak.inputmethod.indic;
 
+import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Process;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 
+import com.android.inputmethod.dictionarypack.DictionaryPackConstants;
+import com.android.inputmethod.dictionarypack.DownloadManagerWrapper;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
-import in.androidtweak.inputmethod.indic.setup.LauncherIconVisibilityManager;
-
-import in.androidtweak.inputmethod.compat.IntentCompatUtils;
+import com.android.inputmethod.latin.settings.Settings;
+import com.android.inputmethod.latin.setup.SetupActivity;
 import com.android.inputmethod.latin.utils.UncachedInputMethodManagerUtils;
 
 /**
@@ -51,10 +59,6 @@ import com.android.inputmethod.latin.utils.UncachedInputMethodManagerUtils;
  * receiver and it checks whether the setup wizard's icon should be appeared or not on the launcher
  * depending on which partition this IME is installed.
  *
- * When a multiuser account has been created, {@link Intent#ACTION_USER_INITIALIZE} is received
- * by this receiver and it checks the whether the setup wizard's icon should be appeared or not on
- * the launcher depending on which partition this IME is installed.
- *
  * When the system locale has been changed, {@link Intent#ACTION_LOCALE_CHANGED} is received by
  * this receiver and the {@link KeyboardLayoutSet}'s cache is cleared.
  */
@@ -70,26 +74,30 @@ public final class SystemBroadcastReceiver extends BroadcastReceiver {
             // subtypes when the package is replaced.
             RichInputMethodManager.init(context);
             final RichInputMethodManager richImm = RichInputMethodManager.getInstance();
-            final InputMethodSubtype[] additionalSubtypes = richImm.getAdditionalSubtypes(context);
+            final InputMethodSubtype[] additionalSubtypes = richImm.getAdditionalSubtypes();
             richImm.setAdditionalInputMethodSubtypes(additionalSubtypes);
-            LauncherIconVisibilityManager.updateSetupWizardIconVisibility(context);
+            toggleAppIcon(context);
+
+            // Remove all the previously scheduled downloads. This will also makes sure
+            // that any erroneously stuck downloads will get cleared. (b/21797386)
+            removeOldDownloads(context);
+            // b/21797386
+            // downloadLatestDictionaries(context);
         } else if (Intent.ACTION_BOOT_COMPLETED.equals(intentAction)) {
             Log.i(TAG, "Boot has been completed");
-            LauncherIconVisibilityManager.updateSetupWizardIconVisibility(context);
-        } else if (IntentCompatUtils.is_ACTION_USER_INITIALIZE(intentAction)) {
-            Log.i(TAG, "User initialize");
-            LauncherIconVisibilityManager.updateSetupWizardIconVisibility(context);
+            toggleAppIcon(context);
         } else if (Intent.ACTION_LOCALE_CHANGED.equals(intentAction)) {
             Log.i(TAG, "System locale changed");
             KeyboardLayoutSet.onSystemLocaleChanged();
         }
 
         // The process that hosts this broadcast receiver is invoked and remains alive even after
-        // 1) the package has been re-installed, 2) the device has just booted,
+        // 1) the package has been re-installed,
+        // 2) the device has just booted,
         // 3) a new user has been created.
         // There is no good reason to keep the process alive if this IME isn't a current IME.
-        final InputMethodManager imm =
-                (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        final InputMethodManager imm = (InputMethodManager)
+                context.getSystemService(Context.INPUT_METHOD_SERVICE);
         // Called to check whether this IME has been triggered by the current user or not
         final boolean isInputMethodManagerValidForUserOfThisProcess =
                 !imm.getInputMethodList().isEmpty();
@@ -100,5 +108,52 @@ public final class SystemBroadcastReceiver extends BroadcastReceiver {
             Log.i(TAG, "Killing my process: pid=" + myPid);
             Process.killProcess(myPid);
         }
+    }
+
+    private void removeOldDownloads(Context context) {
+        try {
+            Log.i(TAG, "Removing the old downloads in progress of the previous keyboard version.");
+            final DownloadManagerWrapper downloadManagerWrapper = new DownloadManagerWrapper(
+                    context);
+            final DownloadManager.Query q = new DownloadManager.Query();
+            // Query all the download statuses except the succeeded ones.
+            q.setFilterByStatus(DownloadManager.STATUS_FAILED
+                    | DownloadManager.STATUS_PAUSED
+                    | DownloadManager.STATUS_PENDING
+                    | DownloadManager.STATUS_RUNNING);
+            final Cursor c = downloadManagerWrapper.query(q);
+            if (c != null) {
+                for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+                    final long downloadId = c
+                            .getLong(c.getColumnIndex(DownloadManager.COLUMN_ID));
+                    downloadManagerWrapper.remove(downloadId);
+                    Log.i(TAG, "Removed the download with Id: " + downloadId);
+                }
+                c.close();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Exception while removing old downloads.");
+        }
+    }
+
+    private void downloadLatestDictionaries(Context context) {
+        final Intent updateIntent = new Intent(
+                DictionaryPackConstants.INIT_AND_UPDATE_NOW_INTENT_ACTION);
+        context.sendBroadcast(updateIntent);
+    }
+
+    public static void toggleAppIcon(final Context context) {
+        final int appInfoFlags = context.getApplicationInfo().flags;
+        final boolean isSystemApp = (appInfoFlags & ApplicationInfo.FLAG_SYSTEM) > 0;
+        if (Log.isLoggable(TAG, Log.INFO)) {
+            Log.i(TAG, "toggleAppIcon() : FLAG_SYSTEM = " + isSystemApp);
+        }
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        context.getPackageManager().setComponentEnabledSetting(
+                new ComponentName(context, SetupActivity.class),
+                Settings.readShowSetupWizardIcon(prefs, context)
+                        ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                        : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
     }
 }

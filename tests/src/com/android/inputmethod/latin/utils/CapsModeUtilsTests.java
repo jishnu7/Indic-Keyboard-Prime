@@ -21,8 +21,8 @@ import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.text.TextUtils;
 
-import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
-import com.android.inputmethod.latin.utils.LocaleUtils;
+import com.android.inputmethod.latin.common.LocaleUtils;
+import com.android.inputmethod.latin.settings.SpacingAndPunctuations;
 
 import java.util.Locale;
 
@@ -124,5 +124,29 @@ public class CapsModeUtilsTests extends AndroidTestCase {
         allPathsForCaps("Word. ", c | w, sp, false);
         // Armenian period : capitalize if MODE_SENTENCES
         allPathsForCaps("Word\u0589 ", c | w | s, sp, false);
+
+        // Test for sentence terminators
+        sp = job.runInLocale(res, Locale.ENGLISH);
+        allPathsForCaps("Word? ", c | w | s, sp, false);
+        allPathsForCaps("Word?", c | w | s, sp, true);
+        allPathsForCaps("Word?", c, sp, false);
+        allPathsForCaps("Word! ", c | w | s, sp, false);
+        allPathsForCaps("Word!", c | w | s, sp, true);
+        allPathsForCaps("Word!", c, sp, false);
+        allPathsForCaps("Word; ", c | w, sp, false);
+        allPathsForCaps("Word;", c | w, sp, true);
+        allPathsForCaps("Word;", c, sp, false);
+        // Test for sentence terminators in Greek
+        sp = job.runInLocale(res, LocaleUtils.constructLocaleFromString("el"));
+        allPathsForCaps("Word? ", c | w | s, sp, false);
+        allPathsForCaps("Word?", c | w | s, sp, true);
+        allPathsForCaps("Word?", c, sp, false);
+        allPathsForCaps("Word! ", c | w | s, sp, false);
+        allPathsForCaps("Word!", c | w | s, sp, true);
+        allPathsForCaps("Word!", c, sp, false);
+        // In Greek ";" is the question mark and it terminates the sentence
+        allPathsForCaps("Word; ", c | w | s, sp, false);
+        allPathsForCaps("Word;", c | w | s, sp, true);
+        allPathsForCaps("Word;", c, sp, false);
     }
 }

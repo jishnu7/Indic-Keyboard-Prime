@@ -46,7 +46,7 @@ import java.util.ArrayList;
 
 import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
 import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
-import in.androidtweak.inputmethod.indic.Constants;
+import in.androidtweak.inputmethod.indic.common.Constants;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.SuggestedWords;
 import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
@@ -59,7 +59,6 @@ import com.android.inputmethod.latin.utils.ImportantNoticeUtils;
 public final class SuggestionStripView extends RelativeLayout implements OnClickListener,
         OnLongClickListener {
     public interface Listener {
-        public void addWordToUserDictionary(String word);
         public void showImportantNoticeContents();
         public void pickSuggestionManually(SuggestedWordInfo word);
         public void onCodeInput(int primaryCode, int x, int y, boolean isKeyRepeat);
@@ -70,7 +69,6 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
 
     private final ViewGroup mSuggestionsStrip;
     private final ImageButton mVoiceKey;
-    private final ViewGroup mAddToDictionaryStrip;
     private final View mImportantNoticeStrip;
     MainKeyboardView mMainKeyboardView;
 
@@ -83,7 +81,7 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
     private final ArrayList<View> mDividerViews = new ArrayList<>();
 
     Listener mListener;
-    private SuggestedWords mSuggestedWords = SuggestedWords.EMPTY;
+    private SuggestedWords mSuggestedWords = SuggestedWords.getEmptyInstance();
     private int mStartIndexOfMoreSuggestions;
 
     private final SuggestionStripLayoutHelper mLayoutHelper;
@@ -92,15 +90,12 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
     private static class StripVisibilityGroup {
         private final View mSuggestionStripView;
         private final View mSuggestionsStrip;
-        private final View mAddToDictionaryStrip;
         private final View mImportantNoticeStrip;
 
         public StripVisibilityGroup(final View suggestionStripView,
-                final ViewGroup suggestionsStrip, final ViewGroup addToDictionaryStrip,
-                final View importantNoticeStrip) {
+                final ViewGroup suggestionsStrip, final View importantNoticeStrip) {
             mSuggestionStripView = suggestionStripView;
             mSuggestionsStrip = suggestionsStrip;
-            mAddToDictionaryStrip = addToDictionaryStrip;
             mImportantNoticeStrip = importantNoticeStrip;
             showSuggestionsStrip();
         }
@@ -110,30 +105,21 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
                     : ViewCompat.LAYOUT_DIRECTION_LTR;
             ViewCompat.setLayoutDirection(mSuggestionStripView, layoutDirection);
             ViewCompat.setLayoutDirection(mSuggestionsStrip, layoutDirection);
-            ViewCompat.setLayoutDirection(mAddToDictionaryStrip, layoutDirection);
             ViewCompat.setLayoutDirection(mImportantNoticeStrip, layoutDirection);
         }
 
         public void showSuggestionsStrip() {
             mSuggestionsStrip.setVisibility(VISIBLE);
-            mAddToDictionaryStrip.setVisibility(INVISIBLE);
-            mImportantNoticeStrip.setVisibility(INVISIBLE);
-        }
-
-        public void showAddToDictionaryStrip() {
-            mSuggestionsStrip.setVisibility(INVISIBLE);
-            mAddToDictionaryStrip.setVisibility(VISIBLE);
             mImportantNoticeStrip.setVisibility(INVISIBLE);
         }
 
         public void showImportantNoticeStrip() {
             mSuggestionsStrip.setVisibility(INVISIBLE);
-            mAddToDictionaryStrip.setVisibility(INVISIBLE);
             mImportantNoticeStrip.setVisibility(VISIBLE);
         }
 
-        public boolean isShowingAddToDictionaryStrip() {
-            return mAddToDictionaryStrip.getVisibility() == VISIBLE;
+        public boolean isShowingImportantNoticeStrip() {
+            return mImportantNoticeStrip.getVisibility() == VISIBLE;
         }
     }
 
@@ -155,13 +141,13 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
 
         mSuggestionsStrip = (ViewGroup)findViewById(R.id.suggestions_strip);
         mVoiceKey = (ImageButton)findViewById(R.id.suggestions_strip_voice_key);
-        mAddToDictionaryStrip = (ViewGroup)findViewById(R.id.add_to_dictionary_strip);
         mImportantNoticeStrip = findViewById(R.id.important_notice_strip);
         mStripVisibilityGroup = new StripVisibilityGroup(this, mSuggestionsStrip,
-                mAddToDictionaryStrip, mImportantNoticeStrip);
+                mImportantNoticeStrip);
 
         for (int pos = 0; pos < SuggestedWords.MAX_SUGGESTIONS; pos++) {
             final TextView word = new TextView(context, null, R.attr.suggestionWordStyle);
+            word.setContentDescription(getResources().getString(R.string.spoken_empty_suggestion));
             word.setOnClickListener(this);
             word.setOnLongClickListener(this);
             mWordViews.add(word);
@@ -216,7 +202,7 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
         mStripVisibilityGroup.setLayoutDirection(isRtlLanguage);
         mSuggestedWords = suggestedWords;
         mStartIndexOfMoreSuggestions = mLayoutHelper.layoutAndReturnStartIndexOfMoreSuggestions(
-                mSuggestedWords, mSuggestionsStrip, this);
+                getContext(), mSuggestedWords, mSuggestionsStrip, this);
         mStripVisibilityGroup.showSuggestionsStrip();
     }
 
@@ -224,38 +210,18 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
         mLayoutHelper.setMoreSuggestionsHeight(remainingHeight);
     }
 
-    public boolean isShowingAddToDictionaryHint() {
-        return mStripVisibilityGroup.isShowingAddToDictionaryStrip();
-    }
-
-    public void showAddToDictionaryHint(final String word) {
-        mLayoutHelper.layoutAddToDictionaryHint(word, mAddToDictionaryStrip);
-        // {@link TextView#setTag()} is used to hold the word to be added to dictionary. The word
-        // will be extracted at {@link #onClick(View)}.
-        mAddToDictionaryStrip.setTag(word);
-        mAddToDictionaryStrip.setOnClickListener(this);
-        mStripVisibilityGroup.showAddToDictionaryStrip();
-    }
-
-    public boolean dismissAddToDictionaryHint() {
-        if (isShowingAddToDictionaryHint()) {
-            clear();
-            return true;
-        }
-        return false;
-    }
-
     // This method checks if we should show the important notice (checks on permanent storage if
     // it has been shown once already or not, and if in the setup wizard). If applicable, it shows
     // the notice. In all cases, it returns true if it was shown, false otherwise.
     public boolean maybeShowImportantNoticeTitle() {
-        if (!ImportantNoticeUtils.shouldShowImportantNotice(getContext())) {
+        final SettingsValues currentSettingsValues = Settings.getInstance().getCurrent();
+        if (!ImportantNoticeUtils.shouldShowImportantNotice(getContext(), currentSettingsValues)) {
             return false;
         }
         if (getWidth() <= 0) {
             return false;
         }
-        final String importantNoticeTitle = ImportantNoticeUtils.getNextImportantNoticeTitle(
+        final String importantNoticeTitle = ImportantNoticeUtils.getSuggestContactsNoticeTitle(
                 getContext());
         if (TextUtils.isEmpty(importantNoticeTitle)) {
             return false;
@@ -341,12 +307,6 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
         if (mSuggestedWords.size() <= mStartIndexOfMoreSuggestions) {
             return false;
         }
-        // Dismiss another {@link MoreKeysPanel} that may be being showed, for example
-        // {@link MoreKeysKeyboardView}.
-        mMainKeyboardView.onDismissMoreKeysPanel();
-        // Dismiss all key previews and sliding key input preview that may be being showed.
-        mMainKeyboardView.dismissAllKeyPreviews();
-        mMainKeyboardView.dismissSlidingKeyInputPreview();
         final int stripWidth = getWidth();
         final View container = mMoreSuggestionsContainer;
         final int maxWidth = stripWidth - container.getPaddingLeft() - container.getPaddingRight();
@@ -394,10 +354,17 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
 
     @Override
     public boolean onInterceptTouchEvent(final MotionEvent me) {
+        if (mStripVisibilityGroup.isShowingImportantNoticeStrip()) {
+            return false;
+        }
+        // Detecting sliding up finger to show {@link MoreSuggestionsView}.
         if (!mMoreSuggestionsView.isShowingInParent()) {
             mLastX = (int)me.getX();
             mLastY = (int)me.getY();
             return mMoreSuggestionsSlidingDetector.onTouchEvent(me);
+        }
+        if (mMoreSuggestionsView.isInModalMode()) {
+            return false;
         }
 
         final int action = me.getAction();
@@ -417,7 +384,7 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
 
         if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP) {
             // Decided to be in the modal input mode.
-            mMoreSuggestionsView.adjustVerticalCorrectionForModalMode();
+            mMoreSuggestionsView.setModalMode();
         }
         return false;
     }
@@ -430,6 +397,11 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
 
     @Override
     public boolean onTouchEvent(final MotionEvent me) {
+        if (!mMoreSuggestionsView.isShowingInParent()) {
+            // Ignore any touch event while more suggestions panel hasn't been shown.
+            // Detecting sliding up is done at {@link #onInterceptTouchEvent}.
+            return true;
+        }
         // In the sliding input mode. {@link MotionEvent} should be forwarded to
         // {@link MoreSuggestionsView}.
         final int index = me.getActionIndex();
@@ -485,15 +457,8 @@ public final class SuggestionStripView extends RelativeLayout implements OnClick
                     false /* isKeyRepeat */);
             return;
         }
-        final Object tag = view.getTag();
-        // {@link String} tag is set at {@link #showAddToDictionaryHint(String,CharSequence)}.
-        if (tag instanceof String) {
-            final String wordToSave = (String)tag;
-            mListener.addWordToUserDictionary(wordToSave);
-            clear();
-            return;
-        }
 
+        final Object tag = view.getTag();
         // {@link Integer} tag is set at
         // {@link SuggestionStripLayoutHelper#setupWordViewsTextAndColor(SuggestedWords,int)} and
         // {@link SuggestionStripLayoutHelper#layoutPunctuationSuggestions(SuggestedWords,ViewGroup}

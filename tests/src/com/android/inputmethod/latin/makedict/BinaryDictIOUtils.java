@@ -16,8 +16,8 @@
 
 package com.android.inputmethod.latin.makedict;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.annotations.UsedForTesting;
+import com.android.inputmethod.latin.define.DecoderSpecificConstants;
 import com.android.inputmethod.latin.makedict.DictDecoder.DictionaryBufferFactory;
 
 import java.io.File;
@@ -43,22 +43,12 @@ public final class BinaryDictIOUtils {
      */
     public static DictDecoder getDictDecoder(final File dictFile, final long offset,
             final long length, final int bufferType) {
-        if (dictFile.isDirectory()) {
-            return new Ver4DictDecoder(dictFile, bufferType);
-        } else if (dictFile.isFile()) {
-            return new Ver2DictDecoder(dictFile, offset, length, bufferType);
-        }
-        return null;
+        return new Ver4DictDecoder(dictFile);
     }
 
     public static DictDecoder getDictDecoder(final File dictFile, final long offset,
             final long length, final DictionaryBufferFactory factory) {
-        if (dictFile.isDirectory()) {
-            return new Ver4DictDecoder(dictFile, factory);
-        } else if (dictFile.isFile()) {
-            return new Ver2DictDecoder(dictFile, offset, length, factory);
-        }
-        return null;
+        return new Ver4DictDecoder(dictFile);
     }
 
     public static DictDecoder getDictDecoder(final File dictFile, final long offset,
@@ -183,7 +173,7 @@ public final class BinaryDictIOUtils {
         dictDecoder.readHeader();
         int wordPos = 0;
         final int wordLen = word.codePointCount(0, word.length());
-        for (int depth = 0; depth < Constants.DICTIONARY_MAX_WORD_LENGTH; ++depth) {
+        for (int depth = 0; depth < DecoderSpecificConstants.DICTIONARY_MAX_WORD_LENGTH; ++depth) {
             if (wordPos >= wordLen) return FormatSpec.NOT_VALID_WORD;
 
             do {
@@ -206,11 +196,7 @@ public final class BinaryDictIOUtils {
                     if (same) {
                         // found the PtNode matches the word.
                         if (wordPos + currentInfo.mCharacters.length == wordLen) {
-                            if (!currentInfo.isTerminal()) {
-                                return FormatSpec.NOT_VALID_WORD;
-                            } else {
-                                return ptNodePos;
-                            }
+                            return currentInfo.isTerminal() ? ptNodePos : FormatSpec.NOT_VALID_WORD;
                         }
                         wordPos += currentInfo.mCharacters.length;
                         if (currentInfo.mChildrenAddress == FormatSpec.NO_CHILDREN_ADDRESS) {

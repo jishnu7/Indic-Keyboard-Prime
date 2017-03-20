@@ -19,8 +19,8 @@ package com.android.inputmethod.keyboard.layout.tests;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.inputmethod.keyboard.layout.Hindi;
-import com.android.inputmethod.keyboard.layout.Hindi.HindiCustomizer;
 import com.android.inputmethod.keyboard.layout.LayoutBase;
+import com.android.inputmethod.keyboard.layout.customizer.HindiCustomizer;
 
 import java.util.Locale;
 

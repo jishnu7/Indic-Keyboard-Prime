@@ -16,23 +16,28 @@
 
 package com.android.inputmethod.latin.utils;
 
-import static com.android.inputmethod.latin.utils.ImportantNoticeUtils.KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE;
-import static com.android.inputmethod.latin.utils.ImportantNoticeUtils.KEY_IMPORTANT_NOTICE_VERSION;
+import static com.android.inputmethod.latin.utils.ImportantNoticeUtils.KEY_TIMESTAMP_OF_CONTACTS_NOTICE;
+import static org.mockito.Mockito.when;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+import android.test.suitebuilder.annotation.MediumTest;
 import android.text.TextUtils;
+
+import com.android.inputmethod.latin.settings.SettingsValues;
+
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.concurrent.TimeUnit;
 
-@SmallTest
+@MediumTest
 public class ImportantNoticeUtilsTests extends AndroidTestCase {
-    // This should be aligned with R.integer.config_important_notice_version.
-    private static final int CURRENT_IMPORTANT_NOTICE_VERSION = 1;
 
     private ImportantNoticePreferences mImportantNoticePreferences;
+
+    @Mock private SettingsValues mMockSettingsValues;
 
     private static class ImportantNoticePreferences {
         private final SharedPreferences mPref;
@@ -79,26 +84,25 @@ public class ImportantNoticeUtilsTests extends AndroidTestCase {
         }
 
         public void save() {
-            mVersion = getInt(KEY_IMPORTANT_NOTICE_VERSION);
-            mLastTime = getLong(KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE);
+            mLastTime = getLong(KEY_TIMESTAMP_OF_CONTACTS_NOTICE);
         }
 
         public void restore() {
-            putInt(KEY_IMPORTANT_NOTICE_VERSION, mVersion);
-            putLong(KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE, mLastTime);
+            putLong(KEY_TIMESTAMP_OF_CONTACTS_NOTICE, mLastTime);
         }
 
         public void clear() {
-            removePreference(KEY_IMPORTANT_NOTICE_VERSION);
-            removePreference(KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE);
+            removePreference(KEY_TIMESTAMP_OF_CONTACTS_NOTICE);
         }
     }
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        MockitoAnnotations.initMocks(this);
         mImportantNoticePreferences = new ImportantNoticePreferences(getContext());
         mImportantNoticePreferences.save();
+        when(mMockSettingsValues.isPersonalizationEnabled()).thenReturn(true);
     }
 
     @Override
@@ -107,116 +111,17 @@ public class ImportantNoticeUtilsTests extends AndroidTestCase {
         mImportantNoticePreferences.restore();
     }
 
-    public void testCurrentVersion() {
-        assertEquals("Current version", CURRENT_IMPORTANT_NOTICE_VERSION,
-                ImportantNoticeUtils.getCurrentImportantNoticeVersion(getContext()));
-    }
-
-    public void testUpdateVersion() {
+    public void testPersonalizationSetting() {
         mImportantNoticePreferences.clear();
 
-        assertEquals("Current boolean before update", true,
-                ImportantNoticeUtils.shouldShowImportantNotice(getContext()));
-        assertEquals("Last version before update", 0,
-                ImportantNoticeUtils.getLastImportantNoticeVersion(getContext()));
-        assertEquals("Next version before update ", 1,
-                ImportantNoticeUtils.getNextImportantNoticeVersion(getContext()));
-        assertEquals("Current title before update", false, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeTitle(getContext())));
-        assertEquals("Current contents before update", false, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeContents(getContext())));
+        // Personalization enabled.
+        when(mMockSettingsValues.isPersonalizationEnabled()).thenReturn(true);
+        assertEquals("Current boolean with personalization enabled", true,
+                ImportantNoticeUtils.shouldShowImportantNotice(getContext(), mMockSettingsValues));
 
-        ImportantNoticeUtils.updateLastImportantNoticeVersion(getContext());
-
-        assertEquals("Current boolean after update", false,
-                ImportantNoticeUtils.shouldShowImportantNotice(getContext()));
-        assertEquals("Last version after update", 1,
-                ImportantNoticeUtils.getLastImportantNoticeVersion(getContext()));
-        assertEquals("Next version after update", 2,
-                ImportantNoticeUtils.getNextImportantNoticeVersion(getContext()));
-        assertEquals("Current title after update", true, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeTitle(getContext())));
-        assertEquals("Current contents after update", true, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeContents(getContext())));
-    }
-
-    private static void sleep(final long millseconds) {
-        try { Thread.sleep(millseconds); } catch (final Exception e) { /* ignore */ }
-    }
-
-    public void testTimeout() {
-        final long lastTime = System.currentTimeMillis()
-                - ImportantNoticeUtils.TIMEOUT_OF_IMPORTANT_NOTICE
-                + TimeUnit.MILLISECONDS.toMillis(1000);
-        mImportantNoticePreferences.clear();
-        assertEquals("Before set last time", null,
-                mImportantNoticePreferences.getLong(KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE));
-        assertEquals("Set last time", false,
-                ImportantNoticeUtils.hasTimeoutPassed(getContext(), lastTime));
-        assertEquals("After set last time", (Long)lastTime,
-                mImportantNoticePreferences.getLong(KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE));
-
-        // Call {@link ImportantNoticeUtils#shouldShowImportantNotice(Context)} before timeout.
-        assertEquals("Current boolean before timeout 1", true,
-                ImportantNoticeUtils.shouldShowImportantNotice(getContext()));
-        assertEquals("Last version before timeout 1", 0,
-                ImportantNoticeUtils.getLastImportantNoticeVersion(getContext()));
-        assertEquals("Next version before timeout 1", 1,
-                ImportantNoticeUtils.getNextImportantNoticeVersion(getContext()));
-        assertEquals("Last time before timeout 1", (Long)lastTime,
-                mImportantNoticePreferences.getLong(KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE));
-        assertEquals("Current title before timeout 1", false, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeTitle(getContext())));
-        assertEquals("Current contents before timeout 1", false, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeContents(getContext())));
-
-        sleep(TimeUnit.MILLISECONDS.toMillis(600));
-
-        // Call {@link ImportantNoticeUtils#shouldShowImportantNotice(Context)} before timeout
-        // again.
-        assertEquals("Current boolean before timeout 2", true,
-                ImportantNoticeUtils.shouldShowImportantNotice(getContext()));
-        assertEquals("Last version before timeout 2", 0,
-                ImportantNoticeUtils.getLastImportantNoticeVersion(getContext()));
-        assertEquals("Next version before timeout 2", 1,
-                ImportantNoticeUtils.getNextImportantNoticeVersion(getContext()));
-        assertEquals("Last time before timeout 2", (Long)lastTime,
-                mImportantNoticePreferences.getLong(KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE));
-        assertEquals("Current title before timeout 2", false, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeTitle(getContext())));
-        assertEquals("Current contents before timeout 2", false, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeContents(getContext())));
-
-        sleep(TimeUnit.MILLISECONDS.toMillis(600));
-
-        // Call {@link ImportantNoticeUtils#shouldShowImportantNotice(Context)} after timeout.
-        assertEquals("Current boolean after timeout 1", false,
-                ImportantNoticeUtils.shouldShowImportantNotice(getContext()));
-        assertEquals("Last version after timeout 1", 1,
-                ImportantNoticeUtils.getLastImportantNoticeVersion(getContext()));
-        assertEquals("Next version after timeout 1", 2,
-                ImportantNoticeUtils.getNextImportantNoticeVersion(getContext()));
-        assertEquals("Last time aflter timeout 1", null,
-                mImportantNoticePreferences.getLong(KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE));
-        assertEquals("Current title after timeout 1", true, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeTitle(getContext())));
-        assertEquals("Current contents after timeout 1", true, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeContents(getContext())));
-
-        sleep(TimeUnit.MILLISECONDS.toMillis(600));
-
-        // Call {@link ImportantNoticeUtils#shouldShowImportantNotice(Context)} after timeout again.
-        assertEquals("Current boolean after timeout 2", false,
-                ImportantNoticeUtils.shouldShowImportantNotice(getContext()));
-        assertEquals("Last version after timeout 2", 1,
-                ImportantNoticeUtils.getLastImportantNoticeVersion(getContext()));
-        assertEquals("Next version after timeout 2", 2,
-                ImportantNoticeUtils.getNextImportantNoticeVersion(getContext()));
-        assertEquals("Last time aflter timeout 2", null,
-                mImportantNoticePreferences.getLong(KEY_TIMESTAMP_OF_FIRST_IMPORTANT_NOTICE));
-        assertEquals("Current title after timeout 2", true, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeTitle(getContext())));
-        assertEquals("Current contents after timeout 2", true, TextUtils.isEmpty(
-                ImportantNoticeUtils.getNextImportantNoticeContents(getContext())));
+        // Personalization disabled.
+        when(mMockSettingsValues.isPersonalizationEnabled()).thenReturn(false);
+        assertEquals("Current boolean with personalization disabled", false,
+                ImportantNoticeUtils.shouldShowImportantNotice(getContext(), mMockSettingsValues));
     }
 }

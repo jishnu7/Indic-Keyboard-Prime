@@ -160,6 +160,19 @@ public class UserDictionarySettings extends ListFragment {
                 UserDictionarySettingsUtils.getLocaleDisplayName(getActivity(), mLocale));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ListAdapter adapter = getListView().getAdapter();
+        if (adapter != null && adapter instanceof MyAdapter) {
+            // The list view is forced refreshed here. This allows the changes done 
+            // in UserDictionaryAddWordFragment (update/delete/insert) to be seen when 
+            // user goes back to this view. 
+            MyAdapter listAdapter = (MyAdapter) adapter;
+            listAdapter.notifyDataSetChanged();
+        }
+    }
+
     @SuppressWarnings("deprecation")
     private Cursor createCursor(final String locale) {
         // Locale can be any of:
@@ -177,17 +190,16 @@ public class UserDictionarySettings extends ListFragment {
             return getActivity().managedQuery(UserDictionary.Words.CONTENT_URI, QUERY_PROJECTION,
                     QUERY_SELECTION_ALL_LOCALES, null,
                     "UPPER(" + UserDictionary.Words.WORD + ")");
-        } else {
-            final String queryLocale = null != locale ? locale : Locale.getDefault().toString();
-            return getActivity().managedQuery(UserDictionary.Words.CONTENT_URI, QUERY_PROJECTION,
-                    QUERY_SELECTION, new String[] { queryLocale },
-                    "UPPER(" + UserDictionary.Words.WORD + ")");
         }
+        final String queryLocale = null != locale ? locale : Locale.getDefault().toString();
+        return getActivity().managedQuery(UserDictionary.Words.CONTENT_URI, QUERY_PROJECTION,
+                QUERY_SELECTION, new String[] { queryLocale },
+                "UPPER(" + UserDictionary.Words.WORD + ")");
     }
 
     private ListAdapter createAdapter() {
         return new MyAdapter(getActivity(), R.layout.user_dictionary_item, mCursor,
-                ADAPTER_FROM, ADAPTER_TO, this);
+                ADAPTER_FROM, ADAPTER_TO);
     }
 
     @Override
@@ -283,13 +295,12 @@ public class UserDictionarySettings extends ListFragment {
     }
 
     private static class MyAdapter extends SimpleCursorAdapter implements SectionIndexer {
-
         private AlphabetIndexer mIndexer;
 
         private ViewBinder mViewBinder = new ViewBinder() {
 
             @Override
-            public boolean setViewValue(View v, Cursor c, int columnIndex) {
+            public boolean setViewValue(final View v, final Cursor c, final int columnIndex) {
                 if (!IS_SHORTCUT_API_SUPPORTED) {
                     // just let SimpleCursorAdapter set the view values
                     return false;
@@ -310,10 +321,9 @@ public class UserDictionarySettings extends ListFragment {
             }
         };
 
-        @SuppressWarnings("deprecation")
-        public MyAdapter(Context context, int layout, Cursor c, String[] from, int[] to,
-                UserDictionarySettings settings) {
-            super(context, layout, c, from, to);
+        public MyAdapter(final Context context, final int layout, final Cursor c,
+                final String[] from, final int[] to) {
+            super(context, layout, c, from, to, 0 /* flags */);
 
             if (null != c) {
                 final String alphabet = context.getString(R.string.user_dict_fast_scroll_alphabet);
@@ -324,12 +334,12 @@ public class UserDictionarySettings extends ListFragment {
         }
 
         @Override
-        public int getPositionForSection(int section) {
+        public int getPositionForSection(final int section) {
             return null == mIndexer ? 0 : mIndexer.getPositionForSection(section);
         }
 
         @Override
-        public int getSectionForPosition(int position) {
+        public int getSectionForPosition(final int position) {
             return null == mIndexer ? 0 : mIndexer.getSectionForPosition(position);
         }
 
@@ -339,3 +349,4 @@ public class UserDictionarySettings extends ListFragment {
         }
     }
 }
+

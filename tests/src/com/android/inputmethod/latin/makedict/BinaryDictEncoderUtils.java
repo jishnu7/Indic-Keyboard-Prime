@@ -16,9 +16,7 @@
 
 package com.android.inputmethod.latin.makedict;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.latin.makedict.BinaryDictDecoderUtils.CharEncoding;
-import com.android.inputmethod.latin.makedict.BinaryDictDecoderUtils.DictBuffer;
 import com.android.inputmethod.latin.makedict.FormatSpec.FormatOptions;
 import com.android.inputmethod.latin.makedict.FusionDictionary.PtNode;
 import com.android.inputmethod.latin.makedict.FusionDictionary.PtNodeArray;
@@ -27,6 +25,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 /**
  * Encodes binary files for a FusionDictionary.
@@ -59,8 +59,9 @@ public class BinaryDictEncoderUtils {
      * @param characters the character array
      * @return the size of the char array, including the terminator if any
      */
-    static int getPtNodeCharactersSize(final int[] characters) {
-        int size = CharEncoding.getCharArraySize(characters);
+    static int getPtNodeCharactersSize(final int[] characters,
+            final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
+        int size = CharEncoding.getCharArraySize(characters, codePointToOneByteCodeMap);
         if (characters.length > 1) size += FormatSpec.PTNODE_TERMINATOR_SIZE;
         return size;
     }
@@ -74,8 +75,9 @@ public class BinaryDictEncoderUtils {
      * @param ptNode the PtNode
      * @return the size of the char array, including the terminator if any
      */
-    private static int getPtNodeCharactersSize(final PtNode ptNode) {
-        return getPtNodeCharactersSize(ptNode.mChars);
+    private static int getPtNodeCharactersSize(final PtNode ptNode,
+            final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
+        return getPtNodeCharactersSize(ptNode.mChars, codePointToOneByteCodeMap);
     }
 
     /**
@@ -88,49 +90,19 @@ public class BinaryDictEncoderUtils {
     }
 
     /**
-     * Compute the size of a shortcut in bytes.
-     */
-    private static int getShortcutSize(final WeightedString shortcut) {
-        int size = FormatSpec.PTNODE_ATTRIBUTE_FLAGS_SIZE;
-        final String word = shortcut.mWord;
-        final int length = word.length();
-        for (int i = 0; i < length; i = word.offsetByCodePoints(i, 1)) {
-            final int codePoint = word.codePointAt(i);
-            size += CharEncoding.getCharSize(codePoint);
-        }
-        size += FormatSpec.PTNODE_TERMINATOR_SIZE;
-        return size;
-    }
-
-    /**
-     * Compute the size of a shortcut list in bytes.
-     *
-     * This is known in advance and does not change according to position in the file
-     * like address lists do.
-     */
-    static int getShortcutListSize(final ArrayList<WeightedString> shortcutList) {
-        if (null == shortcutList || shortcutList.isEmpty()) return 0;
-        int size = FormatSpec.PTNODE_SHORTCUT_LIST_SIZE_SIZE;
-        for (final WeightedString shortcut : shortcutList) {
-            size += getShortcutSize(shortcut);
-        }
-        return size;
-    }
-
-    /**
      * Compute the maximum size of a PtNode, assuming 3-byte addresses for everything.
      *
      * @param ptNode the PtNode to compute the size of.
      * @return the maximum size of the PtNode.
      */
-    private static int getPtNodeMaximumSize(final PtNode ptNode) {
-        int size = getNodeHeaderSize(ptNode);
+    private static int getPtNodeMaximumSize(final PtNode ptNode,
+            final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
+        int size = getNodeHeaderSize(ptNode, codePointToOneByteCodeMap);
         if (ptNode.isTerminal()) {
             // If terminal, one byte for the frequency.
             size += FormatSpec.PTNODE_FREQUENCY_SIZE;
         }
         size += FormatSpec.PTNODE_MAX_ADDRESS_SIZE; // For children address
-        size += getShortcutListSize(ptNode.mShortcutTargets);
         if (null != ptNode.mBigrams) {
             size += (FormatSpec.PTNODE_ATTRIBUTE_FLAGS_SIZE
                     + FormatSpec.PTNODE_ATTRIBUTE_MAX_ADDRESS_SIZE)
@@ -146,10 +118,11 @@ public class BinaryDictEncoderUtils {
      *
      * @param ptNodeArray the node array to compute the maximum size of.
      */
-    private static void calculatePtNodeArrayMaximumSize(final PtNodeArray ptNodeArray) {
+    private static void calculatePtNodeArrayMaximumSize(final PtNodeArray ptNodeArray,
+            final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
         int size = getPtNodeCountSize(ptNodeArray);
         for (PtNode node : ptNodeArray.mData) {
-            final int nodeSize = getPtNodeMaximumSize(node);
+            final int nodeSize = getPtNodeMaximumSize(node, codePointToOneByteCodeMap);
             node.mCachedSize = nodeSize;
             size += nodeSize;
         }
@@ -161,8 +134,10 @@ public class BinaryDictEncoderUtils {
      *
      * @param ptNode the PtNode of which to compute the size of the header
      */
-    private static int getNodeHeaderSize(final PtNode ptNode) {
-        return FormatSpec.PTNODE_FLAGS_SIZE + getPtNodeCharactersSize(ptNode);
+    private static int getNodeHeaderSize(final PtNode ptNode,
+            final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
+        return FormatSpec.PTNODE_FLAGS_SIZE + getPtNodeCharactersSize(ptNode,
+                codePointToOneByteCodeMap);
     }
 
     /**
@@ -188,8 +163,9 @@ public class BinaryDictEncoderUtils {
         }
     }
 
-    static int writeUIntToBuffer(final byte[] buffer, int position, final int value,
+    static int writeUIntToBuffer(final byte[] buffer, final int fromPosition, final int value,
             final int size) {
+        int position = fromPosition;
         switch(size) {
             case 4:
                 buffer[position++] = (byte) ((value >> 24) & 0xFF);
@@ -223,27 +199,6 @@ public class BinaryDictEncoderUtils {
                 /* fall through */
             case 1:
                 stream.write(value & 0xFF);
-                break;
-            default:
-                /* nop */
-        }
-    }
-
-    @UsedForTesting
-    static void writeUIntToDictBuffer(final DictBuffer dictBuffer, final int value,
-            final int size) {
-        switch(size) {
-            case 4:
-                dictBuffer.put((byte) ((value >> 24) & 0xFF));
-                /* fall through */
-            case 3:
-                dictBuffer.put((byte) ((value >> 16) & 0xFF));
-                /* fall through */
-            case 2:
-                dictBuffer.put((byte) ((value >> 8) & 0xFF));
-                /* fall through */
-            case 1:
-                dictBuffer.put((byte) (value & 0xFF));
                 break;
             default:
                 /* nop */
@@ -313,11 +268,9 @@ public class BinaryDictEncoderUtils {
             return targetNodeArray.mCachedAddressAfterUpdate
                     - (currentNodeArray.mCachedAddressAfterUpdate
                             + offsetFromStartOfCurrentNodeArray);
-        } else {
-            return targetNodeArray.mCachedAddressBeforeUpdate
-                    - (currentNodeArray.mCachedAddressBeforeUpdate
-                            + offsetFromStartOfCurrentNodeArray);
         }
+        return targetNodeArray.mCachedAddressBeforeUpdate
+                - (currentNodeArray.mCachedAddressBeforeUpdate + offsetFromStartOfCurrentNodeArray);
     }
 
     /**
@@ -345,9 +298,8 @@ public class BinaryDictEncoderUtils {
             final int newOffsetBasePoint = currentNodeArray.mCachedAddressAfterUpdate
                     + offsetFromStartOfCurrentNodeArray;
             return targetPtNode.mCachedAddressAfterUpdate - newOffsetBasePoint;
-        } else {
-            return targetPtNode.mCachedAddressBeforeUpdate - oldOffsetBasePoint;
         }
+        return targetPtNode.mCachedAddressBeforeUpdate - oldOffsetBasePoint;
     }
 
     /**
@@ -365,7 +317,8 @@ public class BinaryDictEncoderUtils {
      * @return false if none of the cached addresses inside the node array changed, true otherwise.
      */
     private static boolean computeActualPtNodeArraySize(final PtNodeArray ptNodeArray,
-            final FusionDictionary dict) {
+            final FusionDictionary dict,
+            final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
         boolean changed = false;
         int size = getPtNodeCountSize(ptNodeArray);
         for (PtNode ptNode : ptNodeArray.mData) {
@@ -373,7 +326,7 @@ public class BinaryDictEncoderUtils {
             if (ptNode.mCachedAddressAfterUpdate != ptNode.mCachedAddressBeforeUpdate) {
                 changed = true;
             }
-            int nodeSize = getNodeHeaderSize(ptNode);
+            int nodeSize = getNodeHeaderSize(ptNode, codePointToOneByteCodeMap);
             if (ptNode.isTerminal()) {
                 nodeSize += FormatSpec.PTNODE_FREQUENCY_SIZE;
             }
@@ -381,7 +334,6 @@ public class BinaryDictEncoderUtils {
                 nodeSize += getByteSize(getOffsetToTargetNodeArrayDuringUpdate(ptNodeArray,
                         nodeSize + size, ptNode.mChildren));
             }
-            nodeSize += getShortcutListSize(ptNode.mShortcutTargets);
             if (null != ptNode.mBigrams) {
                 for (WeightedString bigram : ptNode.mBigrams) {
                     final int offset = getOffsetToTargetPtNodeDuringUpdate(ptNodeArray,
@@ -452,10 +404,11 @@ public class BinaryDictEncoderUtils {
      * @return the same array it was passed. The nodes have been updated for address and size.
      */
     /* package */ static ArrayList<PtNodeArray> computeAddresses(final FusionDictionary dict,
-            final ArrayList<PtNodeArray> flatNodes) {
+            final ArrayList<PtNodeArray> flatNodes,
+            final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
         // First get the worst possible sizes and offsets
         for (final PtNodeArray n : flatNodes) {
-            calculatePtNodeArrayMaximumSize(n);
+            calculatePtNodeArrayMaximumSize(n, codePointToOneByteCodeMap);
         }
         final int offset = initializePtNodeArraysCachedAddresses(flatNodes);
 
@@ -470,7 +423,8 @@ public class BinaryDictEncoderUtils {
             for (final PtNodeArray ptNodeArray : flatNodes) {
                 ptNodeArray.mCachedAddressAfterUpdate = ptNodeArrayStartOffset;
                 final int oldNodeArraySize = ptNodeArray.mCachedSize;
-                final boolean changed = computeActualPtNodeArraySize(ptNodeArray, dict);
+                final boolean changed = computeActualPtNodeArraySize(ptNodeArray, dict,
+                        codePointToOneByteCodeMap);
                 final int newNodeArraySize = ptNodeArray.mCachedSize;
                 if (oldNodeArraySize < newNodeArraySize) {
                     throw new RuntimeException("Increased size ?!");
@@ -521,12 +475,13 @@ public class BinaryDictEncoderUtils {
      * Helper method to write a children position to a file.
      *
      * @param buffer the buffer to write to.
-     * @param index the index in the buffer to write the address to.
+     * @param fromIndex the index in the buffer to write the address to.
      * @param position the position to write.
      * @return the size in bytes the address actually took.
      */
-    /* package */ static int writeChildrenPosition(final byte[] buffer, int index,
+    /* package */ static int writeChildrenPosition(final byte[] buffer, final int fromIndex,
             final int position) {
+        int index = fromIndex;
         switch (getByteSize(position)) {
         case 1:
             buffer[index++] = (byte)position;
@@ -548,42 +503,19 @@ public class BinaryDictEncoderUtils {
     }
 
     /**
-     * Helper method to write a signed children position to a file.
-     *
-     * @param buffer the buffer to write to.
-     * @param index the index in the buffer to write the address to.
-     * @param position the position to write.
-     * @return the size in bytes the address actually took.
-     */
-    /* package */ static int writeSignedChildrenPosition(final byte[] buffer, int index,
-            final int position) {
-        if (!BinaryDictIOUtils.hasChildrenAddress(position)) {
-            buffer[index] = buffer[index + 1] = buffer[index + 2] = 0;
-        } else {
-            final int absPosition = Math.abs(position);
-            buffer[index++] =
-                    (byte)((position < 0 ? FormatSpec.MSB8 : 0) | (0xFF & (absPosition >> 16)));
-            buffer[index++] = (byte)(0xFF & (absPosition >> 8));
-            buffer[index++] = (byte)(0xFF & absPosition);
-        }
-        return 3;
-    }
-
-    /**
      * Makes the flag value for a PtNode.
      *
      * @param hasMultipleChars whether the PtNode has multiple chars.
      * @param isTerminal whether the PtNode is terminal.
      * @param childrenAddressSize the size of a children address.
-     * @param hasShortcuts whether the PtNode has shortcuts.
      * @param hasBigrams whether the PtNode has bigrams.
      * @param isNotAWord whether the PtNode is not a word.
-     * @param isBlackListEntry whether the PtNode is a blacklist entry.
+     * @param isPossiblyOffensive whether the PtNode is a possibly offensive entry.
      * @return the flags
      */
     static int makePtNodeFlags(final boolean hasMultipleChars, final boolean isTerminal,
-            final int childrenAddressSize, final boolean hasShortcuts, final boolean hasBigrams,
-            final boolean isNotAWord, final boolean isBlackListEntry) {
+            final int childrenAddressSize, final boolean hasBigrams,
+            final boolean isNotAWord, final boolean isPossiblyOffensive) {
         byte flags = 0;
         if (hasMultipleChars) flags |= FormatSpec.FLAG_HAS_MULTIPLE_CHARS;
         if (isTerminal) flags |= FormatSpec.FLAG_IS_TERMINAL;
@@ -603,19 +535,17 @@ public class BinaryDictEncoderUtils {
             default:
                 throw new RuntimeException("Node with a strange address");
         }
-        if (hasShortcuts) flags |= FormatSpec.FLAG_HAS_SHORTCUT_TARGETS;
         if (hasBigrams) flags |= FormatSpec.FLAG_HAS_BIGRAMS;
         if (isNotAWord) flags |= FormatSpec.FLAG_IS_NOT_A_WORD;
-        if (isBlackListEntry) flags |= FormatSpec.FLAG_IS_BLACKLISTED;
+        if (isPossiblyOffensive) flags |= FormatSpec.FLAG_IS_POSSIBLY_OFFENSIVE;
         return flags;
     }
 
     /* package */ static byte makePtNodeFlags(final PtNode node, final int childrenOffset) {
         return (byte) makePtNodeFlags(node.mChars.length > 1, node.isTerminal(),
                 getByteSize(childrenOffset),
-                node.mShortcutTargets != null && !node.mShortcutTargets.isEmpty(),
                 node.mBigrams != null && !node.mBigrams.isEmpty(),
-                node.mIsNotAWord, node.mIsBlacklistEntry);
+                node.mIsNotAWord, node.mIsPossiblyOffensive);
     }
 
     /**
@@ -628,8 +558,8 @@ public class BinaryDictEncoderUtils {
      * @param word the second bigram, for debugging purposes
      * @return the flags
      */
-    /* package */ static final int makeBigramFlags(final boolean more, final int offset,
-            int bigramFrequency, final int unigramFrequency, final String word) {
+    /* package */ static int makeBigramFlags(final boolean more, final int offset,
+            final int bigramFrequency, final int unigramFrequency, final String word) {
         int bigramFlags = (more ? FormatSpec.FLAG_BIGRAM_SHORTCUT_ATTR_HAS_NEXT : 0)
                 + (offset < 0 ? FormatSpec.FLAG_BIGRAM_ATTR_OFFSET_NEGATIVE : 0);
         switch (getByteSize(offset)) {
@@ -645,13 +575,16 @@ public class BinaryDictEncoderUtils {
         default:
             throw new RuntimeException("Strange offset size");
         }
+        final int frequency;
         if (unigramFrequency > bigramFrequency) {
             MakedictLog.e("Unigram freq is superior to bigram freq for \"" + word
                     + "\". Bigram freq is " + bigramFrequency + ", unigram freq for "
                     + word + " is " + unigramFrequency);
-            bigramFrequency = unigramFrequency;
+            frequency = unigramFrequency;
+        } else {
+            frequency = bigramFrequency;
         }
-        bigramFlags += getBigramFrequencyDiff(unigramFrequency, bigramFrequency)
+        bigramFlags += getBigramFrequencyDiff(unigramFrequency, frequency)
                 & FormatSpec.FLAG_BIGRAM_SHORTCUT_ATTR_FREQUENCY;
         return bigramFlags;
     }
@@ -694,21 +627,10 @@ public class BinaryDictEncoderUtils {
         return discretizedFrequency > 0 ? discretizedFrequency : 0;
     }
 
-    /**
-     * Makes the flag value for a shortcut.
-     *
-     * @param more whether there are more attributes after this one.
-     * @param frequency the frequency of the attribute, 0..15
-     * @return the flags
-     */
-    static final int makeShortcutFlags(final boolean more, final int frequency) {
-        return (more ? FormatSpec.FLAG_BIGRAM_SHORTCUT_ATTR_HAS_NEXT : 0)
-                + (frequency & FormatSpec.FLAG_BIGRAM_SHORTCUT_ATTR_FREQUENCY);
-    }
-
-    /* package */ static final int getChildrenPosition(final PtNode ptNode) {
+    /* package */ static int getChildrenPosition(final PtNode ptNode,
+            final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
         int positionOfChildrenPosField = ptNode.mCachedAddressAfterUpdate
-                + getNodeHeaderSize(ptNode);
+                + getNodeHeaderSize(ptNode, codePointToOneByteCodeMap);
         if (ptNode.isTerminal()) {
             // A terminal node has the frequency.
             // If positionOfChildrenPosField is incorrect, we may crash when jumping to the children
@@ -725,19 +647,16 @@ public class BinaryDictEncoderUtils {
      * @param dict the dictionary the node array is a part of (for relative offsets).
      * @param dictEncoder the dictionary encoder.
      * @param ptNodeArray the node array to write.
+     * @param codePointToOneByteCodeMap the map to convert the code points.
      */
-    @SuppressWarnings("unused")
     /* package */ static void writePlacedPtNodeArray(final FusionDictionary dict,
-            final DictEncoder dictEncoder, final PtNodeArray ptNodeArray) {
+            final DictEncoder dictEncoder, final PtNodeArray ptNodeArray,
+            final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
         // TODO: Make the code in common with BinaryDictIOUtils#writePtNode
         dictEncoder.setPosition(ptNodeArray.mCachedAddressAfterUpdate);
 
         final int ptNodeCount = ptNodeArray.mData.size();
         dictEncoder.writePtNodeCount(ptNodeCount);
-        final int parentPosition =
-                (ptNodeArray.mCachedParentAddress == FormatSpec.NO_PARENT_ADDRESS)
-                ? FormatSpec.NO_PARENT_ADDRESS
-                : ptNodeArray.mCachedParentAddress + ptNodeArray.mCachedAddressAfterUpdate;
         for (int i = 0; i < ptNodeCount; ++i) {
             final PtNode ptNode = ptNodeArray.mData.get(i);
             if (dictEncoder.getPosition() != ptNode.mCachedAddressAfterUpdate) {
@@ -751,7 +670,7 @@ public class BinaryDictEncoderUtils {
                         + FormatSpec.MAX_TERMINAL_FREQUENCY
                         + " : " + ptNode.mProbabilityInfo.toString());
             }
-            dictEncoder.writePtNode(ptNode, dict);
+            dictEncoder.writePtNode(ptNode, dict, codePointToOneByteCodeMap);
         }
         if (dictEncoder.getPosition() != ptNodeArray.mCachedAddressAfterUpdate
                 + ptNodeArray.mCachedSize) {
@@ -817,18 +736,26 @@ public class BinaryDictEncoderUtils {
      * @param destination the stream to write the file header to.
      * @param dict the dictionary to write.
      * @param formatOptions file format options.
+     * @param codePointOccurrenceArray code points ordered by occurrence count.
      * @return the size of the header.
      */
     /* package */ static int writeDictionaryHeader(final OutputStream destination,
-            final FusionDictionary dict, final FormatOptions formatOptions)
+            final FusionDictionary dict, final FormatOptions formatOptions,
+            final ArrayList<Entry<Integer, Integer>> codePointOccurrenceArray)
                     throws IOException, UnsupportedFormatException {
         final int version = formatOptions.mVersion;
-        if (version < FormatSpec.MINIMUM_SUPPORTED_VERSION
-                || version > FormatSpec.MAXIMUM_SUPPORTED_VERSION) {
+        if ((version >= FormatSpec.MINIMUM_SUPPORTED_STATIC_VERSION &&
+                version <= FormatSpec.MAXIMUM_SUPPORTED_STATIC_VERSION) || (
+                version >= FormatSpec.MINIMUM_SUPPORTED_DYNAMIC_VERSION &&
+                version <= FormatSpec.MAXIMUM_SUPPORTED_DYNAMIC_VERSION)) {
+            // Dictionary is valid
+        } else {
             throw new UnsupportedFormatException("Requested file format version " + version
-                    + ", but this implementation only supports versions "
-                    + FormatSpec.MINIMUM_SUPPORTED_VERSION + " through "
-                    + FormatSpec.MAXIMUM_SUPPORTED_VERSION);
+                    + ", but this implementation only supports static versions "
+                    + FormatSpec.MINIMUM_SUPPORTED_STATIC_VERSION + " through "
+                    + FormatSpec.MAXIMUM_SUPPORTED_STATIC_VERSION + " and dynamic versions "
+                    + FormatSpec.MINIMUM_SUPPORTED_DYNAMIC_VERSION + " through "
+                    + FormatSpec.MAXIMUM_SUPPORTED_DYNAMIC_VERSION);
         }
 
         ByteArrayOutputStream headerBuffer = new ByteArrayOutputStream(256);
@@ -856,8 +783,15 @@ public class BinaryDictEncoderUtils {
         // Write out the options.
         for (final String key : dict.mOptions.mAttributes.keySet()) {
             final String value = dict.mOptions.mAttributes.get(key);
-            CharEncoding.writeString(headerBuffer, key);
-            CharEncoding.writeString(headerBuffer, value);
+            CharEncoding.writeString(headerBuffer, key, null);
+            CharEncoding.writeString(headerBuffer, value, null);
+        }
+        // Write out the codePointTable if there is codePointOccurrenceArray.
+        if (codePointOccurrenceArray != null) {
+            final String codePointTableString =
+                    encodeCodePointTable(codePointOccurrenceArray);
+            CharEncoding.writeString(headerBuffer, DictionaryHeader.CODE_POINT_TABLE_KEY, null);
+            CharEncoding.writeString(headerBuffer, codePointTableString, null);
         }
         final int size = headerBuffer.size();
         final byte[] bytes = headerBuffer.toByteArray();
@@ -870,5 +804,36 @@ public class BinaryDictEncoderUtils {
 
         headerBuffer.close();
         return size;
+    }
+
+    static final class CodePointTable {
+        final HashMap<Integer, Integer> mCodePointToOneByteCodeMap;
+        final ArrayList<Entry<Integer, Integer>> mCodePointOccurrenceArray;
+
+        // Let code point table empty for version 200 dictionary which used in test
+        CodePointTable() {
+            mCodePointToOneByteCodeMap = null;
+            mCodePointOccurrenceArray = null;
+        }
+
+        CodePointTable(final HashMap<Integer, Integer> codePointToOneByteCodeMap,
+                final ArrayList<Entry<Integer, Integer>> codePointOccurrenceArray) {
+            mCodePointToOneByteCodeMap = codePointToOneByteCodeMap;
+            mCodePointOccurrenceArray = codePointOccurrenceArray;
+        }
+    }
+
+    private static String encodeCodePointTable(
+            final ArrayList<Entry<Integer, Integer>> codePointOccurrenceArray) {
+        final StringBuilder codePointTableString = new StringBuilder();
+        int currentCodePointTableIndex = FormatSpec.MINIMAL_ONE_BYTE_CHARACTER_VALUE;
+        for (final Entry<Integer, Integer> entry : codePointOccurrenceArray) {
+            // Native reads the table as a string
+            codePointTableString.appendCodePoint(entry.getKey());
+            if (FormatSpec.MAXIMAL_ONE_BYTE_CHARACTER_VALUE < ++currentCodePointTableIndex) {
+                break;
+            }
+        }
+        return codePointTableString.toString();
     }
 }

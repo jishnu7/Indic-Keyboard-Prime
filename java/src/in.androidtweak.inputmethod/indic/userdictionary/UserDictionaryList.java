@@ -34,6 +34,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TreeSet;
 
+import javax.annotation.Nullable;
+
 import in.androidtweak.inputmethod.indic.R;
 import com.android.inputmethod.latin.utils.LocaleUtils;
 
@@ -47,12 +49,12 @@ public class UserDictionaryList extends PreferenceFragment {
             "android.settings.USER_DICTIONARY_SETTINGS";
 
     @Override
-    public void onCreate(Bundle icicle) {
+    public void onCreate(final Bundle icicle) {
         super.onCreate(icicle);
         setPreferenceScreen(getPreferenceManager().createPreferenceScreen(getActivity()));
     }
 
-    public static TreeSet<String> getUserDictionaryLocalesSet(Activity activity) {
+    public static TreeSet<String> getUserDictionaryLocalesSet(final Activity activity) {
         final Cursor cursor = activity.getContentResolver().query(UserDictionary.Words.CONTENT_URI,
                 new String[] { UserDictionary.Words.LOCALE },
                 null, null, null);
@@ -108,7 +110,7 @@ public class UserDictionaryList extends PreferenceFragment {
      * Creates the entries that allow the user to go into the user dictionary for each locale.
      * @param userDictGroup The group to put the settings in.
      */
-    protected void createUserDictSettings(PreferenceGroup userDictGroup) {
+    protected void createUserDictSettings(final PreferenceGroup userDictGroup) {
         final Activity activity = getActivity();
         userDictGroup.removeAll();
         final TreeSet<String> localeSet =
@@ -121,31 +123,33 @@ public class UserDictionaryList extends PreferenceFragment {
         }
 
         if (localeSet.isEmpty()) {
-            userDictGroup.addPreference(createUserDictionaryPreference(null, activity));
+            userDictGroup.addPreference(createUserDictionaryPreference(null));
         } else {
             for (String locale : localeSet) {
-                userDictGroup.addPreference(createUserDictionaryPreference(locale, activity));
+                userDictGroup.addPreference(createUserDictionaryPreference(locale));
             }
         }
     }
 
     /**
      * Create a single User Dictionary Preference object, with its parameters set.
-     * @param locale The locale for which this user dictionary is for.
+     * @param localeString The locale for which this user dictionary is for.
      * @return The corresponding preference.
      */
-    protected Preference createUserDictionaryPreference(String locale, Activity activity) {
+    protected Preference createUserDictionaryPreference(@Nullable final String localeString) {
         final Preference newPref = new Preference(getActivity());
         final Intent intent = new Intent(USER_DICTIONARY_SETTINGS_INTENT_ACTION);
-        if (null == locale) {
+        if (null == localeString) {
             newPref.setTitle(Locale.getDefault().getDisplayName());
         } else {
-            if ("".equals(locale))
+            if (localeString.isEmpty()) {
                 newPref.setTitle(getString(R.string.user_dict_settings_all_languages));
-            else
-                newPref.setTitle(LocaleUtils.constructLocaleFromString(locale).getDisplayName());
-            intent.putExtra("locale", locale);
-            newPref.getExtras().putString("locale", locale);
+            } else {
+                newPref.setTitle(
+                        LocaleUtils.constructLocaleFromString(localeString).getDisplayName());
+            }
+            intent.putExtra("locale", localeString);
+            newPref.getExtras().putString("locale", localeString);
         }
         newPref.setIntent(intent);
         newPref.setFragment(UserDictionarySettings.class.getName());
@@ -158,3 +162,4 @@ public class UserDictionaryList extends PreferenceFragment {
         createUserDictSettings(getPreferenceScreen());
     }
 }
+

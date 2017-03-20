@@ -17,17 +17,14 @@
 package com.android.inputmethod.latin.utils;
 
 import in.androidtweak.inputmethod.dictionarypack.DictionarySettingsFragment;
-
-import java.util.HashSet;
-
 import in.androidtweak.inputmethod.indic.about.AboutPreferences;
+import com.android.inputmethod.latin.settings.AccountsSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.AdvancedSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.AppearanceSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.CorrectionSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.CustomInputStyleSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.DebugSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.GestureSettingsFragment;
-import in.androidtweak.inputmethod.indic.settings.MultiLingualSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.PreferencesSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.SettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.ThemeSettingsFragment;
@@ -37,15 +34,18 @@ import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryList;
 import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryLocalePicker;
 import in.androidtweak.inputmethod.indic.userdictionary.UserDictionarySettings;
 
+import java.util.HashSet;
+
+
 public class FragmentUtils {
     private static final HashSet<String> sLatinImeFragments = new HashSet<>();
     static {
         sLatinImeFragments.add(DictionarySettingsFragment.class.getName());
         sLatinImeFragments.add(AboutPreferences.class.getName());
         sLatinImeFragments.add(PreferencesSettingsFragment.class.getName());
+        sLatinImeFragments.add(AccountsSettingsFragment.class.getName());
         sLatinImeFragments.add(AppearanceSettingsFragment.class.getName());
         sLatinImeFragments.add(ThemeSettingsFragment.class.getName());
-        sLatinImeFragments.add(MultiLingualSettingsFragment.class.getName());
         sLatinImeFragments.add(CustomInputStyleSettingsFragment.class.getName());
         sLatinImeFragments.add(GestureSettingsFragment.class.getName());
         sLatinImeFragments.add(CorrectionSettingsFragment.class.getName());

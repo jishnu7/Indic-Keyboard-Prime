@@ -16,9 +16,9 @@
 
 package com.android.inputmethod.latin.makedict;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.latin.BinaryDictionary;
-import com.android.inputmethod.latin.utils.FileUtils;
+import com.android.inputmethod.latin.common.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,12 +33,7 @@ public class Ver4DictDecoder extends AbstractDictDecoder {
     final File mDictDirectory;
 
     @UsedForTesting
-    /* package */ Ver4DictDecoder(final File dictDirectory, final int factoryFlag) {
-        this(dictDirectory, null /* factory */);
-    }
-
-    @UsedForTesting
-    /* package */ Ver4DictDecoder(final File dictDirectory, final DictionaryBufferFactory factory) {
+    /* package */ Ver4DictDecoder(final File dictDirectory) {
         mDictDirectory = dictDirectory;
 
     }
@@ -88,21 +83,18 @@ public class Ver4DictDecoder extends AbstractDictDecoder {
 
         // Insert unigrams into the fusion dictionary.
         for (final WordProperty wordProperty : wordProperties) {
-            if (wordProperty.mIsBlacklistEntry) {
-                fusionDict.addBlacklistEntry(wordProperty.mWord, wordProperty.mShortcutTargets,
-                        wordProperty.mIsNotAWord);
-            } else {
-                fusionDict.add(wordProperty.mWord, wordProperty.mProbabilityInfo,
-                        wordProperty.mShortcutTargets, wordProperty.mIsNotAWord);
-            }
+            fusionDict.add(wordProperty.mWord, wordProperty.mProbabilityInfo,
+                    wordProperty.mIsNotAWord,
+                    wordProperty.mIsPossiblyOffensive);
         }
         // Insert bigrams into the fusion dictionary.
+        // TODO: Support ngrams.
         for (final WordProperty wordProperty : wordProperties) {
-            if (wordProperty.mBigrams == null) {
+            if (!wordProperty.mHasNgrams) {
                 continue;
             }
             final String word0 = wordProperty.mWord;
-            for (final WeightedString bigram : wordProperty.mBigrams) {
+            for (final WeightedString bigram : wordProperty.getBigrams()) {
                 fusionDict.setBigram(word0, bigram.mWord, bigram.mProbabilityInfo);
             }
         }

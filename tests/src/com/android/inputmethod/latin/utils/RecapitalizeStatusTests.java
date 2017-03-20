@@ -19,7 +19,7 @@ package com.android.inputmethod.latin.utils;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.latin.common.Constants;
 
 import java.util.Locale;
 

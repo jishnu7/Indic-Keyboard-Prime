@@ -16,9 +16,10 @@
 
 package com.android.inputmethod.keyboard.layout;
 
+import com.android.inputmethod.keyboard.layout.customizer.LayoutCustomizer;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKeyboardBuilder;
-import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.latin.common.Constants;
 
 import java.util.Locale;
 
@@ -28,15 +29,15 @@ import java.util.Locale;
 public final class Malayalam extends LayoutBase {
     private static final String LAYOUT_NAME = "malayalam";
 
-    public Malayalam(final LayoutCustomizer customizer) {
-        super(customizer, Symbols.class, SymbolsShifted.class);
+    public Malayalam(final Locale locale) {
+        super(new MalayalamCustomizer(locale), Symbols.class, SymbolsShifted.class);
     }
 
     @Override
     public String getName() { return LAYOUT_NAME; }
 
-    public static class MalayalamCustomizer extends LayoutCustomizer {
-        public MalayalamCustomizer(final Locale locale) { super(locale); }
+    private static class MalayalamCustomizer extends LayoutCustomizer {
+        MalayalamCustomizer(final Locale locale) { super(locale); }
 
         @Override
         public ExpectedKey getAlphabetKey() { return MALAYALAM_ALPHABET_KEY; }

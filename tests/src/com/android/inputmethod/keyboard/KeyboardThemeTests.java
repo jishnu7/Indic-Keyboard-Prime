@@ -16,17 +16,19 @@
 
 package com.android.inputmethod.keyboard;
 
-import static in.androidtweak.inputmethod.compat.BuildCompatUtils.VERSION_CODES_LXX;
 import static com.android.inputmethod.keyboard.KeyboardTheme.THEME_ID_ICS;
 import static com.android.inputmethod.keyboard.KeyboardTheme.THEME_ID_KLP;
 import static com.android.inputmethod.keyboard.KeyboardTheme.THEME_ID_LXX_DARK;
 import static com.android.inputmethod.keyboard.KeyboardTheme.THEME_ID_LXX_LIGHT;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.preference.PreferenceManager;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import java.util.Arrays;
 
 @SmallTest
 public class KeyboardThemeTests extends AndroidTestCase {
@@ -77,7 +79,9 @@ public class KeyboardThemeTests extends AndroidTestCase {
     }
 
     private void assertKeyboardTheme(final int sdkVersion, final int expectedThemeId) {
-        assertEquals(expectedThemeId, KeyboardTheme.getKeyboardTheme(mPrefs, sdkVersion).mThemeId);
+        final KeyboardTheme actualTheme = KeyboardTheme.getKeyboardTheme(
+                mPrefs, sdkVersion, KeyboardTheme.KEYBOARD_THEMES);
+        assertEquals(expectedThemeId, actualTheme.mThemeId);
     }
 
     /*
@@ -127,7 +131,7 @@ public class KeyboardThemeTests extends AndroidTestCase {
     }
 
     public void testKeyboardThemePreferenceOnLxx() {
-        assertKeyboardThemePreferenceOnLxx(VERSION_CODES_LXX);
+        assertKeyboardThemePreferenceOnLxx(Build.VERSION_CODES.LOLLIPOP);
     }
 
     /*
@@ -139,8 +143,8 @@ public class KeyboardThemeTests extends AndroidTestCase {
         final String oldPrefKey = KeyboardTheme.KLP_KEYBOARD_THEME_KEY;
         setKeyboardThemePreference(oldPrefKey, previousThemeId);
 
-        final KeyboardTheme defaultTheme =
-                KeyboardTheme.getDefaultKeyboardTheme(mPrefs, sdkVersion);
+        final KeyboardTheme defaultTheme = KeyboardTheme.getDefaultKeyboardTheme(
+                mPrefs, sdkVersion, KeyboardTheme.KEYBOARD_THEMES);
 
         assertNotNull(defaultTheme);
         assertEquals(expectedThemeId, defaultTheme.mThemeId);
@@ -180,7 +184,7 @@ public class KeyboardThemeTests extends AndroidTestCase {
     }
 
     public void testDefaultKeyboardThemeOnLxx() {
-        assertDefaultKeyboardThemeOnLxx(VERSION_CODES_LXX);
+        assertDefaultKeyboardThemeOnLxx(Build.VERSION_CODES.LOLLIPOP);
     }
 
     /*
@@ -194,7 +198,8 @@ public class KeyboardThemeTests extends AndroidTestCase {
         // Clean up new keyboard theme preference to simulate "upgrade to LXX keyboard".
         setKeyboardThemePreference(KeyboardTheme.LXX_KEYBOARD_THEME_KEY, THEME_ID_NULL);
 
-        final KeyboardTheme theme = KeyboardTheme.getKeyboardTheme(mPrefs, sdkVersion);
+        final KeyboardTheme theme = KeyboardTheme.getKeyboardTheme(
+                mPrefs, sdkVersion, KeyboardTheme.KEYBOARD_THEMES);
 
         assertNotNull(theme);
         assertEquals(expectedThemeId, theme.mThemeId);
@@ -246,7 +251,7 @@ public class KeyboardThemeTests extends AndroidTestCase {
 
     // Upgrading keyboard on L.
     public void testUpgradeKeyboardToLxxOnLxx() {
-        assertUpgradeKeyboardToLxxOnLxx(VERSION_CODES_LXX);
+        assertUpgradeKeyboardToLxxOnLxx(Build.VERSION_CODES.LOLLIPOP);
     }
 
     /*
@@ -299,7 +304,7 @@ public class KeyboardThemeTests extends AndroidTestCase {
 
     private void assertUpgradePlatformToLxxFrom(final int oldSdkVersion) {
         // Forced to switch to LXX theme.
-        final int newSdkVersion = VERSION_CODES_LXX;
+        final int newSdkVersion = Build.VERSION_CODES.LOLLIPOP;
         assertUpgradePlatformFromTo(
                 oldSdkVersion, newSdkVersion, THEME_ID_NULL, THEME_ID_LXX_LIGHT);
         assertUpgradePlatformFromTo(
@@ -324,8 +329,8 @@ public class KeyboardThemeTests extends AndroidTestCase {
 
     // Update platform from L to L.
     public void testUpgradePlatformToLxxFromLxx() {
-        final int oldSdkVersion = VERSION_CODES_LXX;
-        final int newSdkVersion = VERSION_CODES_LXX;
+        final int oldSdkVersion = Build.VERSION_CODES.LOLLIPOP;
+        final int newSdkVersion = Build.VERSION_CODES.LOLLIPOP;
         assertUpgradePlatformFromTo(
                 oldSdkVersion, newSdkVersion, THEME_ID_NULL, THEME_ID_LXX_LIGHT);
         assertUpgradePlatformFromTo(
@@ -340,5 +345,87 @@ public class KeyboardThemeTests extends AndroidTestCase {
                 oldSdkVersion, newSdkVersion, THEME_ID_UNKNOWN, THEME_ID_LXX_LIGHT);
         assertUpgradePlatformFromTo(
                 oldSdkVersion, newSdkVersion, THEME_ID_ILLEGAL, THEME_ID_LXX_LIGHT);
+    }
+
+    /*
+     * Test that KeyboardTheme array should be sorted by descending order of
+     * {@link KeyboardTheme#mMinApiVersion}.
+     */
+    private static void assertSortedKeyboardThemeArray(final KeyboardTheme[] array) {
+        assertNotNull(array);
+        final int length = array.length;
+        assertTrue("array length=" + length, length > 0);
+        for (int index = 0; index < length - 1; index++) {
+            final KeyboardTheme theme = array[index];
+            final KeyboardTheme nextTheme = array[index + 1];
+            assertTrue("sorted MinApiVersion: "
+                    + theme.mThemeName + ": minApiVersion=" + theme.mMinApiVersion,
+                    theme.mMinApiVersion >= nextTheme.mMinApiVersion);
+        }
+    }
+
+    public void testSortedKeyboardTheme() {
+        assertSortedKeyboardThemeArray(KeyboardTheme.KEYBOARD_THEMES);
+    }
+
+    public void testSortedAvailableKeyboardTheme() {
+        assertSortedKeyboardThemeArray(KeyboardTheme.getAvailableThemeArray(getContext()));
+    }
+
+    /*
+     * Test for missing selected theme.
+     */
+    private static KeyboardTheme[] LIMITED_THEMES = {
+        KeyboardTheme.searchKeyboardThemeById(THEME_ID_ICS, KeyboardTheme.KEYBOARD_THEMES),
+        KeyboardTheme.searchKeyboardThemeById(THEME_ID_KLP, KeyboardTheme.KEYBOARD_THEMES)
+    };
+    static {
+        Arrays.sort(LIMITED_THEMES);
+        assertSortedKeyboardThemeArray(LIMITED_THEMES);
+    }
+
+    public void testMissingSelectedThemeIcs() {
+        // Clean up preferences.
+        setKeyboardThemePreference(KeyboardTheme.KLP_KEYBOARD_THEME_KEY, THEME_ID_NULL);
+        setKeyboardThemePreference(KeyboardTheme.LXX_KEYBOARD_THEME_KEY, THEME_ID_NULL);
+
+        final int sdkVersion = VERSION_CODES.ICE_CREAM_SANDWICH;
+        final String oldPrefKey = KeyboardTheme.getPreferenceKey(sdkVersion);
+        setKeyboardThemePreference(oldPrefKey, THEME_ID_LXX_LIGHT);
+
+        final KeyboardTheme actualTheme = KeyboardTheme.getKeyboardTheme(
+                mPrefs, sdkVersion, LIMITED_THEMES);
+        // LXX_LIGHT is missing, fall-back to KLP.
+        assertEquals(THEME_ID_KLP, actualTheme.mThemeId);
+    }
+
+    public void testMissingSelectedThemeKlp() {
+        // Clean up preferences.
+        setKeyboardThemePreference(KeyboardTheme.KLP_KEYBOARD_THEME_KEY, THEME_ID_NULL);
+        setKeyboardThemePreference(KeyboardTheme.LXX_KEYBOARD_THEME_KEY, THEME_ID_NULL);
+
+        final int sdkVersion = VERSION_CODES.KITKAT;
+        final String oldPrefKey = KeyboardTheme.getPreferenceKey(sdkVersion);
+        setKeyboardThemePreference(oldPrefKey, THEME_ID_LXX_LIGHT);
+
+        final KeyboardTheme actualTheme = KeyboardTheme.getKeyboardTheme(
+                mPrefs, sdkVersion, LIMITED_THEMES);
+        // LXX_LIGHT is missing, fall-back to KLP.
+        assertEquals(THEME_ID_KLP, actualTheme.mThemeId);
+    }
+
+    public void testMissingSelectedThemeLxx() {
+        // Clean up preferences.
+        setKeyboardThemePreference(KeyboardTheme.KLP_KEYBOARD_THEME_KEY, THEME_ID_NULL);
+        setKeyboardThemePreference(KeyboardTheme.LXX_KEYBOARD_THEME_KEY, THEME_ID_NULL);
+
+        final int sdkVersion = Build.VERSION_CODES.LOLLIPOP;
+        final String oldPrefKey = KeyboardTheme.getPreferenceKey(sdkVersion);
+        setKeyboardThemePreference(oldPrefKey, THEME_ID_LXX_DARK);
+
+        final KeyboardTheme actualTheme = KeyboardTheme.getKeyboardTheme(
+                mPrefs, sdkVersion, LIMITED_THEMES);
+        // LXX_DARK is missing, fall-back to KLP.
+        assertEquals(THEME_ID_KLP, actualTheme.mThemeId);
     }
 }

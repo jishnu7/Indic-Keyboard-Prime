@@ -16,18 +16,16 @@
 
 package in.androidtweak.inputmethod.indic;
 
+import static in.androidtweak.inputmethod.indic.common.Constants.ImeOption.NO_FLOATING_GESTURE_PREVIEW;
+import static in.androidtweak.inputmethod.indic.common.Constants.ImeOption.NO_MICROPHONE;
+import static in.androidtweak.inputmethod.indic.common.Constants.ImeOption.NO_MICROPHONE_COMPAT;
+
 import android.text.InputType;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
+import com.android.inputmethod.latin.common.StringUtils;
 import com.android.inputmethod.latin.utils.InputTypeUtils;
-import com.android.inputmethod.latin.utils.StringUtils;
-
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE;
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_MICROPHONE_COMPAT;
 
 /**
  * Class to hold attributes of the input field.
@@ -42,6 +40,12 @@ public final class InputAttributes {
     final public boolean mApplicationSpecifiedCompletionOn;
     final public boolean mShouldInsertSpacesAutomatically;
     final public boolean mShouldShowVoiceInputKey;
+    /**
+     * Whether the floating gesture preview should be disabled. If true, this should override the
+     * corresponding keyboard settings preference, always suppressing the floating preview text.
+     * {@link com.android.inputmethod.latin.settings.SettingsValues#mGestureFloatingPreviewTextEnabled}
+     */
+    final public boolean mDisableGestureFloatingPreviewText;
     final public boolean mIsGeneralTextInput;
     final private int mInputType;
     final private EditorInfo mEditorInfo;
@@ -77,6 +81,7 @@ public final class InputAttributes {
             mApplicationSpecifiedCompletionOn = false;
             mShouldInsertSpacesAutomatically = false;
             mShouldShowVoiceInputKey = false;
+            mDisableGestureFloatingPreviewText = false;
             mIsGeneralTextInput = false;
             return;
         }
@@ -108,6 +113,9 @@ public final class InputAttributes {
                 || InputType.TYPE_TEXT_VARIATION_URI == variation
                 || hasNoMicrophoneKeyOption();
         mShouldShowVoiceInputKey = !noMicrophone;
+
+        mDisableGestureFloatingPreviewText = InputAttributes.inPrivateImeOptions(
+                mPackageNameForPrivateImeOptions, NO_FLOATING_GESTURE_PREVIEW, editorInfo);
 
         // If it's a browser edit field and auto correct is not ON explicitly, then
         // disable auto correction, but keep suggestions on.

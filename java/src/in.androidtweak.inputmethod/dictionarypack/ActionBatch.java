@@ -30,8 +30,10 @@ import java.util.Queue;
 
 import in.androidtweak.inputmethod.compat.DownloadManagerCompatUtils;
 import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.common.LocaleUtils;
 import com.android.inputmethod.latin.utils.ApplicationUtils;
 import com.android.inputmethod.latin.utils.DebugLogUtils;
+import com.android.inputmethod.latin.BinaryDictionaryFileDumper;
 
 /**
  * Object representing an upgrade from one state to another.
@@ -84,7 +86,7 @@ public final class ActionBatch {
          * Execute this action NOW.
          * @param context the context to get system services, resources, databases
          */
-        public void execute(final Context context);
+        void execute(final Context context);
     }
 
     /**
@@ -96,13 +98,10 @@ public final class ActionBatch {
         private final String mClientId;
         // The data to download. May not be null.
         final WordListMetadata mWordList;
-        final boolean mForceStartNow;
-        public StartDownloadAction(final String clientId,
-                final WordListMetadata wordList, final boolean forceStartNow) {
+        public StartDownloadAction(final String clientId, final WordListMetadata wordList) {
             DebugLogUtils.l("New download action for client ", clientId, " : ", wordList);
             mClientId = clientId;
             mWordList = wordList;
-            mForceStartNow = forceStartNow;
         }
 
         @Override
@@ -120,9 +119,10 @@ public final class ActionBatch {
             if (MetadataDbHelper.STATUS_DOWNLOADING == status) {
                 // The word list is still downloading. Cancel the download and revert the
                 // word list status to "available".
-                 manager.remove(values.getAsLong(MetadataDbHelper.PENDINGID_COLUMN));
+                manager.remove(values.getAsLong(MetadataDbHelper.PENDINGID_COLUMN));
                 MetadataDbHelper.markEntryAsAvailable(db, mWordList.mId, mWordList.mVersion);
-            } else if (MetadataDbHelper.STATUS_AVAILABLE != status) {
+            } else if (MetadataDbHelper.STATUS_AVAILABLE != status
+                    && MetadataDbHelper.STATUS_RETRYING != status) {
                 // Should never happen
                 Log.e(TAG, "Unexpected state of the word list '" + mWordList.mId + "' : " + status
                         + " for an upgrade action. Fall back to download.");
@@ -140,37 +140,16 @@ public final class ActionBatch {
             final Request request = new Request(uri);
 
             final Resources res = context.getResources();
-            if (!mForceStartNow) {
-                if (DownloadManagerCompatUtils.hasSetAllowedOverMetered()) {
-                    final boolean allowOverMetered;
-                    switch (UpdateHandler.getDownloadOverMeteredSetting(context)) {
-                    case UpdateHandler.DOWNLOAD_OVER_METERED_DISALLOWED:
-                        // User said no: don't allow.
-                        allowOverMetered = false;
-                        break;
-                    case UpdateHandler.DOWNLOAD_OVER_METERED_ALLOWED:
-                        // User said yes: allow.
-                        allowOverMetered = true;
-                        break;
-                    default: // UpdateHandler.DOWNLOAD_OVER_METERED_SETTING_UNKNOWN
-                        // Don't know: use the default value from configuration.
-                        allowOverMetered = res.getBoolean(R.bool.allow_over_metered);
-                    }
-                    DownloadManagerCompatUtils.setAllowedOverMetered(request, allowOverMetered);
-                } else {
-                    request.setAllowedNetworkTypes(Request.NETWORK_WIFI);
-                }
-                request.setAllowedOverRoaming(res.getBoolean(R.bool.allow_over_roaming));
-            } // if mForceStartNow, then allow all network types and roaming, which is the default.
+            request.setAllowedNetworkTypes(Request.NETWORK_WIFI | Request.NETWORK_MOBILE);
             request.setTitle(mWordList.mDescription);
-            request.setNotificationVisibility(
-                    res.getBoolean(R.bool.display_notification_for_auto_update)
-                            ? Request.VISIBILITY_VISIBLE : Request.VISIBILITY_HIDDEN);
+            request.setNotificationVisibility(Request.VISIBILITY_HIDDEN);
             request.setVisibleInDownloadsUi(
                     res.getBoolean(R.bool.dict_downloads_visible_in_download_UI));
 
             final long downloadId = UpdateHandler.registerDownloadRequest(manager, request, db,
                     mWordList.mId, mWordList.mVersion);
+            Log.i(TAG, String.format("Starting the dictionary download with version:"
+                            + " %d and Url: %s", mWordList.mVersion, uri));
             DebugLogUtils.l("Starting download of", uri, "with id", downloadId);
             PrivateLog.log("Starting download of " + uri + ", id : " + downloadId);
         }
@@ -207,9 +186,17 @@ public final class ActionBatch {
                         + " for an InstallAfterDownload action. Bailing out.");
                 return;
             }
+
             DebugLogUtils.l("Setting word list as installed");
             final SQLiteDatabase db = MetadataDbHelper.getDb(context, mClientId);
             MetadataDbHelper.markEntryAsFinishedDownloadingAndInstalled(db, mWordListValues);
+
+            // Install the downloaded file by un-compressing and moving it to the staging
+            // directory. Ideally, we should do this before updating the DB, but the
+            // installDictToStagingFromContentProvider() relies on the db being updated.
+            final String localeString = mWordListValues.getAsString(MetadataDbHelper.LOCALE_COLUMN);
+            BinaryDictionaryFileDumper.installDictToStagingFromContentProvider(
+                    LocaleUtils.constructLocaleFromString(localeString), context, false);
         }
     }
 
@@ -325,8 +312,8 @@ public final class ActionBatch {
                     mWordList.mId, mWordList.mLocale, mWordList.mDescription,
                     null == mWordList.mLocalFilename ? "" : mWordList.mLocalFilename,
                     mWordList.mRemoteFilename, mWordList.mLastUpdate, mWordList.mRawChecksum,
-                    mWordList.mChecksum, mWordList.mFileSize, mWordList.mVersion,
-                    mWordList.mFormatVersion);
+                    mWordList.mChecksum, mWordList.mRetryCount, mWordList.mFileSize,
+                    mWordList.mVersion, mWordList.mFormatVersion);
             PrivateLog.log("Insert 'available' record for " + mWordList.mDescription
                     + " and locale " + mWordList.mLocale);
             db.insert(MetadataDbHelper.METADATA_TABLE_NAME, null, values);
@@ -374,9 +361,10 @@ public final class ActionBatch {
             final ContentValues values = MetadataDbHelper.makeContentValues(0,
                     MetadataDbHelper.TYPE_BULK, MetadataDbHelper.STATUS_INSTALLED,
                     mWordList.mId, mWordList.mLocale, mWordList.mDescription,
-                    "", mWordList.mRemoteFilename, mWordList.mLastUpdate, mWordList.mRawChecksum,
-                    mWordList.mChecksum, mWordList.mFileSize, mWordList.mVersion,
-                    mWordList.mFormatVersion);
+                    TextUtils.isEmpty(mWordList.mLocalFilename) ? "" : mWordList.mLocalFilename,
+                    mWordList.mRemoteFilename, mWordList.mLastUpdate,
+                    mWordList.mRawChecksum, mWordList.mChecksum, mWordList.mRetryCount,
+                    mWordList.mFileSize, mWordList.mVersion, mWordList.mFormatVersion);
             PrivateLog.log("Insert 'preinstalled' record for " + mWordList.mDescription
                     + " and locale " + mWordList.mLocale);
             db.insert(MetadataDbHelper.METADATA_TABLE_NAME, null, values);
@@ -417,8 +405,8 @@ public final class ActionBatch {
                     mWordList.mId, mWordList.mLocale, mWordList.mDescription,
                     oldValues.getAsString(MetadataDbHelper.LOCAL_FILENAME_COLUMN),
                     mWordList.mRemoteFilename, mWordList.mLastUpdate, mWordList.mRawChecksum,
-                    mWordList.mChecksum, mWordList.mFileSize, mWordList.mVersion,
-                    mWordList.mFormatVersion);
+                    mWordList.mChecksum, mWordList.mRetryCount, mWordList.mFileSize,
+                    mWordList.mVersion, mWordList.mFormatVersion);
             PrivateLog.log("Updating record for " + mWordList.mDescription
                     + " and locale " + mWordList.mLocale);
             db.update(MetadataDbHelper.METADATA_TABLE_NAME, values,

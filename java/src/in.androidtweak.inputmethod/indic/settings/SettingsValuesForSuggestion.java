@@ -18,13 +18,8 @@ package in.androidtweak.inputmethod.indic.settings;
 
 public class SettingsValuesForSuggestion {
     public final boolean mBlockPotentiallyOffensive;
-    public final boolean mSpaceAwareGestureEnabled;
-    public final int[] mAdditionalFeaturesSettingValues;
 
-    public SettingsValuesForSuggestion(final boolean blockPotentiallyOffensive,
-            final boolean spaceAwareGestureEnabled, final int[] additionalFeaturesSettingValues) {
+    public SettingsValuesForSuggestion(final boolean blockPotentiallyOffensive) {
         mBlockPotentiallyOffensive = blockPotentiallyOffensive;
-        mSpaceAwareGestureEnabled = spaceAwareGestureEnabled;
-        mAdditionalFeaturesSettingValues = additionalFeaturesSettingValues;
     }
 }

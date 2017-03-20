@@ -16,8 +16,8 @@
 
 package com.android.inputmethod.keyboard.internal;
 
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.InputPointers;
+import in.androidtweak.inputmethod.indic.common.Constants;
+import in.androidtweak.inputmethod.indic.common.InputPointers;
 
 /**
  * This class arbitrates batch input.

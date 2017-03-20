@@ -19,13 +19,16 @@ package in.androidtweak.inputmethod.indic;
 import android.text.TextUtils;
 import android.view.inputmethod.CompletionInfo;
 
+import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import com.android.inputmethod.latin.common.StringUtils;
+import in.androidtweak.inputmethod.indic.define.DebugFlags;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import com.android.inputmethod.latin.utils.StringUtils;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class SuggestedWords {
     public static final int INDEX_OF_TYPED_WORD = 0;
@@ -45,11 +48,14 @@ public class SuggestedWords {
     public static final int MAX_SUGGESTIONS = 18;
 
     private static final ArrayList<SuggestedWordInfo> EMPTY_WORD_INFO_LIST = new ArrayList<>(0);
-    public static final SuggestedWords EMPTY = new SuggestedWords(
-            EMPTY_WORD_INFO_LIST, null /* rawSuggestions */, false /* typedWordValid */,
-            false /* willAutoCorrect */, false /* isObsoleteSuggestions */, INPUT_STYLE_NONE);
+    @Nonnull
+    private static final SuggestedWords EMPTY = new SuggestedWords(
+            EMPTY_WORD_INFO_LIST, null /* rawSuggestions */, null /* typedWord */,
+            false /* typedWordValid */, false /* willAutoCorrect */,
+            false /* isObsoleteSuggestions */, INPUT_STYLE_NONE, NOT_A_SEQUENCE_NUMBER);
 
-    public final String mTypedWord;
+    @Nullable
+    public final SuggestedWordInfo mTypedWordInfo;
     public final boolean mTypedWordValid;
     // Note: this INCLUDES cases where the word will auto-correct to itself. A good definition
     // of what this flag means would be "the top suggestion is strong enough to auto-correct",
@@ -60,35 +66,14 @@ public class SuggestedWords {
     // INPUT_STYLE_* constants above.
     public final int mInputStyle;
     public final int mSequenceNumber; // Sequence number for auto-commit.
+    @Nonnull
     protected final ArrayList<SuggestedWordInfo> mSuggestedWordInfoList;
+    @Nullable
     public final ArrayList<SuggestedWordInfo> mRawSuggestions;
 
-    public SuggestedWords(final ArrayList<SuggestedWordInfo> suggestedWordInfoList,
-            final ArrayList<SuggestedWordInfo> rawSuggestions,
-            final boolean typedWordValid,
-            final boolean willAutoCorrect,
-            final boolean isObsoleteSuggestions,
-            final int inputStyle) {
-        this(suggestedWordInfoList, rawSuggestions, typedWordValid, willAutoCorrect,
-                isObsoleteSuggestions, inputStyle, NOT_A_SEQUENCE_NUMBER);
-    }
-
-    public SuggestedWords(final ArrayList<SuggestedWordInfo> suggestedWordInfoList,
-            final ArrayList<SuggestedWordInfo> rawSuggestions,
-            final boolean typedWordValid,
-            final boolean willAutoCorrect,
-            final boolean isObsoleteSuggestions,
-            final int inputStyle,
-            final int sequenceNumber) {
-        this(suggestedWordInfoList, rawSuggestions,
-                (suggestedWordInfoList.isEmpty() || isPrediction(inputStyle)) ? null
-                        : suggestedWordInfoList.get(INDEX_OF_TYPED_WORD).mWord,
-                typedWordValid, willAutoCorrect, isObsoleteSuggestions, inputStyle, sequenceNumber);
-    }
-
-    public SuggestedWords(final ArrayList<SuggestedWordInfo> suggestedWordInfoList,
-            final ArrayList<SuggestedWordInfo> rawSuggestions,
-            final String typedWord,
+    public SuggestedWords(@Nonnull final ArrayList<SuggestedWordInfo> suggestedWordInfoList,
+            @Nullable final ArrayList<SuggestedWordInfo> rawSuggestions,
+            @Nullable final SuggestedWordInfo typedWordInfo,
             final boolean typedWordValid,
             final boolean willAutoCorrect,
             final boolean isObsoleteSuggestions,
@@ -101,7 +86,7 @@ public class SuggestedWords {
         mIsObsoleteSuggestions = isObsoleteSuggestions;
         mInputStyle = inputStyle;
         mSequenceNumber = sequenceNumber;
-        mTypedWord = typedWord;
+        mTypedWordInfo = typedWordInfo;
     }
 
     public boolean isEmpty() {
@@ -110,6 +95,27 @@ public class SuggestedWords {
 
     public int size() {
         return mSuggestedWordInfoList.size();
+    }
+
+    /**
+     * Get suggested word to show as suggestions to UI.
+     *
+     * @param shouldShowLxxSuggestionUi true if showing suggestion UI introduced in LXX and later.
+     * @return the count of suggested word to show as suggestions to UI.
+     */
+    public int getWordCountToShow(final boolean shouldShowLxxSuggestionUi) {
+        if (isPrediction() || !shouldShowLxxSuggestionUi) {
+            return size();
+        }
+        return size() - /* typed word */ 1;
+    }
+
+    /**
+     * Get {@link SuggestedWordInfo} object for the typed word.
+     * @return The {@link SuggestedWordInfo} object for the typed word.
+     */
+    public SuggestedWordInfo getTypedWordInfo() {
+        return mTypedWordInfo;
     }
 
     /**
@@ -140,6 +146,15 @@ public class SuggestedWords {
      */
     public SuggestedWordInfo getInfo(final int index) {
         return mSuggestedWordInfoList.get(index);
+    }
+
+    /**
+     * Gets the suggestion index from the suggestions list.
+     * @param suggestedWordInfo The {@link SuggestedWordInfo} to find the index.
+     * @return The position of the suggestion in the suggestion list.
+     */
+    public int indexOf(SuggestedWordInfo suggestedWordInfo) {
+        return mSuggestedWordInfoList.indexOf(suggestedWordInfo);
     }
 
     public String getDebugString(final int pos) {
@@ -187,17 +202,20 @@ public class SuggestedWords {
         return result;
     }
 
+    @Nonnull
+    public static final SuggestedWords getEmptyInstance() {
+        return SuggestedWords.EMPTY;
+    }
+
     // Should get rid of the first one (what the user typed previously) from suggestions
     // and replace it with what the user currently typed.
     public static ArrayList<SuggestedWordInfo> getTypedWordAndPreviousSuggestions(
-            final String typedWord, final SuggestedWords previousSuggestions) {
+            @Nonnull final SuggestedWordInfo typedWordInfo,
+            @Nonnull final SuggestedWords previousSuggestions) {
         final ArrayList<SuggestedWordInfo> suggestionsList = new ArrayList<>();
         final HashSet<String> alreadySeen = new HashSet<>();
-        suggestionsList.add(new SuggestedWordInfo(typedWord, SuggestedWordInfo.MAX_SCORE,
-                SuggestedWordInfo.KIND_TYPED, Dictionary.DICTIONARY_USER_TYPED,
-                SuggestedWordInfo.NOT_AN_INDEX /* indexOfTouchPointOfSecondWord */,
-                SuggestedWordInfo.NOT_A_CONFIDENCE /* autoCommitFirstWordConfidence */));
-        alreadySeen.add(typedWord.toString());
+        suggestionsList.add(typedWordInfo);
+        alreadySeen.add(typedWordInfo.mWord);
         final int previousSize = previousSuggestions.size();
         for (int index = 1; index < previousSize; index++) {
             final SuggestedWordInfo prevWordInfo = previousSuggestions.getInfo(index);
@@ -217,7 +235,8 @@ public class SuggestedWords {
         return candidate.isEligibleForAutoCommit() ? candidate : null;
     }
 
-    public static final class SuggestedWordInfo {
+    // non-final for testability.
+    public static class SuggestedWordInfo {
         public static final int NOT_AN_INDEX = -1;
         public static final int NOT_A_CONFIDENCE = -1;
         public static final int MAX_SCORE = Integer.MAX_VALUE;
@@ -240,14 +259,17 @@ public class SuggestedWords {
         public static final int KIND_FLAG_POSSIBLY_OFFENSIVE = 0x80000000;
         public static final int KIND_FLAG_EXACT_MATCH = 0x40000000;
         public static final int KIND_FLAG_EXACT_MATCH_WITH_INTENTIONAL_OMISSION = 0x20000000;
+        public static final int KIND_FLAG_APPROPRIATE_FOR_AUTO_CORRECTION = 0x10000000;
 
         public final String mWord;
+        public final String mPrevWordsContext;
         // The completion info from the application. Null for suggestions that don't come from
         // the application (including keyboard-computed ones, so this is almost always null)
         public final CompletionInfo mApplicationSpecifiedCompletionInfo;
         public final int mScore;
         public final int mKindAndFlags;
         public final int mCodePointCount;
+        @Deprecated
         public final Dictionary mSourceDict;
         // For auto-commit. This keeps track of the index inside the touch coordinates array
         // passed to native code to get suggestions for a gesture that corresponds to the first
@@ -261,6 +283,7 @@ public class SuggestedWords {
         /**
          * Create a new suggested word info.
          * @param word The string to suggest.
+         * @param prevWordsContext previous words context.
          * @param score A measure of how likely this suggestion is.
          * @param kindAndFlags The kind of suggestion, as one of the above KIND_* constants with
          * flags.
@@ -268,10 +291,12 @@ public class SuggestedWords {
          * @param indexOfTouchPointOfSecondWord See mIndexOfTouchPointOfSecondWord.
          * @param autoCommitFirstWordConfidence See mAutoCommitFirstWordConfidence.
          */
-        public SuggestedWordInfo(final String word, final int score, final int kindAndFlags,
+        public SuggestedWordInfo(final String word, final String prevWordsContext,
+                final int score, final int kindAndFlags,
                 final Dictionary sourceDict, final int indexOfTouchPointOfSecondWord,
                 final int autoCommitFirstWordConfidence) {
             mWord = word;
+            mPrevWordsContext = prevWordsContext;
             mApplicationSpecifiedCompletionInfo = null;
             mScore = score;
             mKindAndFlags = kindAndFlags;
@@ -288,6 +313,7 @@ public class SuggestedWords {
          */
         public SuggestedWordInfo(final CompletionInfo applicationSpecifiedCompletion) {
             mWord = applicationSpecifiedCompletion.getText().toString();
+            mPrevWordsContext = "";
             mApplicationSpecifiedCompletionInfo = applicationSpecifiedCompletion;
             mScore = SuggestedWordInfo.MAX_SCORE;
             mKindAndFlags = SuggestedWordInfo.KIND_APP_DEFINED;
@@ -321,6 +347,10 @@ public class SuggestedWords {
             return (mKindAndFlags & KIND_FLAG_EXACT_MATCH_WITH_INTENTIONAL_OMISSION) != 0;
         }
 
+        public boolean isAprapreateForAutoCorrection() {
+            return (mKindAndFlags & KIND_FLAG_APPROPRIATE_FOR_AUTO_CORRECTION) != 0;
+        }
+
         public void setDebugString(final String str) {
             if (null == str) throw new NullPointerException("Debug info is null");
             mDebugString = str;
@@ -328,6 +358,15 @@ public class SuggestedWords {
 
         public String getDebugString() {
             return mDebugString;
+        }
+
+        public String getWord() {
+            return mWord;
+        }
+
+        @Deprecated
+        public Dictionary getSourceDictionary() {
+            return mSourceDict;
         }
 
         public int codePointAt(int i) {
@@ -338,43 +377,49 @@ public class SuggestedWords {
         public String toString() {
             if (TextUtils.isEmpty(mDebugString)) {
                 return mWord;
-            } else {
-                return mWord + " (" + mDebugString + ")";
             }
+            return mWord + " (" + mDebugString + ")";
         }
 
-        // This will always remove the higher index if a duplicate is found.
-        public static boolean removeDups(final String typedWord,
-                ArrayList<SuggestedWordInfo> candidates) {
+        /**
+         * This will always remove the higher index if a duplicate is found.
+         *
+         * @return position of typed word in the candidate list
+         */
+        public static int removeDups(
+                @Nullable final String typedWord,
+                @Nonnull final ArrayList<SuggestedWordInfo> candidates) {
             if (candidates.isEmpty()) {
-                return false;
+                return -1;
             }
-            final boolean didRemoveTypedWord;
+            int firstOccurrenceOfWord = -1;
             if (!TextUtils.isEmpty(typedWord)) {
-                didRemoveTypedWord = removeSuggestedWordInfoFrom(typedWord, candidates,
-                        -1 /* startIndexExclusive */);
-            } else {
-                didRemoveTypedWord = false;
+                firstOccurrenceOfWord = removeSuggestedWordInfoFromList(
+                        typedWord, candidates, -1 /* startIndexExclusive */);
             }
             for (int i = 0; i < candidates.size(); ++i) {
-                removeSuggestedWordInfoFrom(candidates.get(i).mWord, candidates,
-                        i /* startIndexExclusive */);
+                removeSuggestedWordInfoFromList(
+                        candidates.get(i).mWord, candidates, i /* startIndexExclusive */);
             }
-            return didRemoveTypedWord;
+            return firstOccurrenceOfWord;
         }
 
-        private static boolean removeSuggestedWordInfoFrom(final String word,
-                final ArrayList<SuggestedWordInfo> candidates, final int startIndexExclusive) {
-            boolean didRemove = false;
+        private static int removeSuggestedWordInfoFromList(
+                @Nonnull final String word,
+                @Nonnull final ArrayList<SuggestedWordInfo> candidates,
+                final int startIndexExclusive) {
+            int firstOccurrenceOfWord = -1;
             for (int i = startIndexExclusive + 1; i < candidates.size(); ++i) {
                 final SuggestedWordInfo previous = candidates.get(i);
                 if (word.equals(previous.mWord)) {
-                    didRemove = true;
+                    if (firstOccurrenceOfWord == -1) {
+                        firstOccurrenceOfWord = i;
+                    }
                     candidates.remove(i);
                     --i;
                 }
             }
-            return didRemove;
+            return firstOccurrenceOfWord;
         }
     }
 
@@ -385,47 +430,6 @@ public class SuggestedWords {
 
     public boolean isPrediction() {
         return isPrediction(mInputStyle);
-    }
-
-    // SuggestedWords is an immutable object, as much as possible. We must not just remove
-    // words from the member ArrayList as some other parties may expect the object to never change.
-    // This is only ever called by recorrection at the moment, hence the ForRecorrection moniker.
-    public SuggestedWords getSuggestedWordsExcludingTypedWordForRecorrection() {
-        final ArrayList<SuggestedWordInfo> newSuggestions = new ArrayList<>();
-        String typedWord = null;
-        for (int i = 0; i < mSuggestedWordInfoList.size(); ++i) {
-            final SuggestedWordInfo info = mSuggestedWordInfoList.get(i);
-            if (!info.isKindOf(SuggestedWordInfo.KIND_TYPED)) {
-                newSuggestions.add(info);
-            } else {
-                assert(null == typedWord);
-                typedWord = info.mWord;
-            }
-        }
-        // We should never autocorrect, so we say the typed word is valid. Also, in this case,
-        // no auto-correction should take place hence willAutoCorrect = false.
-        return new SuggestedWords(newSuggestions, null /* rawSuggestions */, typedWord,
-                true /* typedWordValid */, false /* willAutoCorrect */, mIsObsoleteSuggestions,
-                SuggestedWords.INPUT_STYLE_RECORRECTION, NOT_A_SEQUENCE_NUMBER);
-    }
-
-    // Creates a new SuggestedWordInfo from the currently suggested words that removes all but the
-    // last word of all suggestions, separated by a space. This is necessary because when we commit
-    // a multiple-word suggestion, the IME only retains the last word as the composing word, and
-    // we should only suggest replacements for this last word.
-    // TODO: make this work with languages without spaces.
-    public SuggestedWords getSuggestedWordsForLastWordOfPhraseGesture() {
-        final ArrayList<SuggestedWordInfo> newSuggestions = new ArrayList<>();
-        for (int i = 0; i < mSuggestedWordInfoList.size(); ++i) {
-            final SuggestedWordInfo info = mSuggestedWordInfoList.get(i);
-            final int indexOfLastSpace = info.mWord.lastIndexOf(Constants.CODE_SPACE) + 1;
-            final String lastWord = info.mWord.substring(indexOfLastSpace);
-            newSuggestions.add(new SuggestedWordInfo(lastWord, info.mScore, info.mKindAndFlags,
-                    info.mSourceDict, SuggestedWordInfo.NOT_AN_INDEX,
-                    SuggestedWordInfo.NOT_A_CONFIDENCE));
-        }
-        return new SuggestedWords(newSuggestions, null /* rawSuggestions */, mTypedWordValid,
-                mWillAutoCorrect, mIsObsoleteSuggestions, INPUT_STYLE_TAIL_BATCH);
     }
 
     /**

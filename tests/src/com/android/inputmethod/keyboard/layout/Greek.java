@@ -17,9 +17,10 @@
 package com.android.inputmethod.keyboard.layout;
 
 import com.android.inputmethod.keyboard.KeyboardId;
+import com.android.inputmethod.keyboard.layout.customizer.EuroCustomizer;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKeyboardBuilder;
-import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.latin.common.Constants;
 
 import java.util.Locale;
 
@@ -29,15 +30,15 @@ import java.util.Locale;
 public final class Greek extends LayoutBase {
     private static final String LAYOUT_NAME = "greek";
 
-    public Greek(final LayoutCustomizer customizer) {
-        super(customizer, Symbols.class, SymbolsShifted.class);
+    public Greek(final Locale locale) {
+        super(new GreekCustomizer(locale), Symbols.class, SymbolsShifted.class);
     }
 
     @Override
     public String getName() { return LAYOUT_NAME; }
 
-    public static class GreekCustomizer extends EuroCustomizer {
-        public GreekCustomizer(final Locale locale) { super(locale); }
+    private static class GreekCustomizer extends EuroCustomizer {
+        GreekCustomizer(final Locale locale) { super(locale); }
 
         @Override
         public ExpectedKey getAlphabetKey() { return GREEK_ALPHABET_KEY; }

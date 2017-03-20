@@ -23,12 +23,10 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.TwoStatePreference;
-
-import in.androidtweak.inputmethod.indic.setup.LauncherIconVisibilityManager;
 
 import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
 import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.SystemBroadcastReceiver;
 import in.androidtweak.inputmethod.indic.define.ProductionFlags;
 
 /**
@@ -90,26 +88,9 @@ public final class AdvancedSettingsFragment extends SubScreenFragment {
                     Settings.readKeyPreviewPopupEnabled(prefs, res));
         }
 
-        if (!res.getBoolean(R.bool.config_setup_wizard_available)) {
-            removePreference(Settings.PREF_SHOW_SETUP_WIZARD_ICON);
-        }
-
-        if (ProductionFlags.IS_METRICS_LOGGING_SUPPORTED) {
-            final Preference enableMetricsLogging =
-                    findPreference(Settings.PREF_ENABLE_METRICS_LOGGING);
-            if (enableMetricsLogging != null) {
-                final int applicationLabelRes = context.getApplicationInfo().labelRes;
-                final String applicationName = res.getString(applicationLabelRes);
-                final String enableMetricsLoggingTitle = res.getString(
-                        R.string.enable_metrics_logging, applicationName);
-                enableMetricsLogging.setTitle(enableMetricsLoggingTitle);
-            }
-        } else {
-            removePreference(Settings.PREF_ENABLE_METRICS_LOGGING);
-        }
-
         setupKeypressVibrationDurationSettings();
         setupKeypressSoundVolumeSettings();
+        setupKeyLongpressTimeoutSettings();
         refreshEnablingsOfKeypressSoundAndVibrationSettings();
     }
 
@@ -117,11 +98,6 @@ public final class AdvancedSettingsFragment extends SubScreenFragment {
     public void onResume() {
         super.onResume();
         final SharedPreferences prefs = getPreferenceManager().getSharedPreferences();
-        final TwoStatePreference showSetupWizardIcon =
-                (TwoStatePreference)findPreference(Settings.PREF_SHOW_SETUP_WIZARD_ICON);
-        if (showSetupWizardIcon != null) {
-            showSetupWizardIcon.setChecked(Settings.readShowSetupWizardIcon(prefs, getActivity()));
-        }
         updateListPreferenceSummaryToCurrentValue(Settings.PREF_KEY_PREVIEW_POPUP_DISMISS_DELAY);
     }
 
@@ -132,7 +108,7 @@ public final class AdvancedSettingsFragment extends SubScreenFragment {
             setPreferenceEnabled(Settings.PREF_KEY_PREVIEW_POPUP_DISMISS_DELAY,
                     Settings.readKeyPreviewPopupEnabled(prefs, res));
         } else if (key.equals(Settings.PREF_SHOW_SETUP_WIZARD_ICON)) {
-            LauncherIconVisibilityManager.updateSetupWizardIconVisibility(getActivity());
+            SystemBroadcastReceiver.toggleAppIcon(getActivity());
         }
         updateListPreferenceSummaryToCurrentValue(Settings.PREF_KEY_PREVIEW_POPUP_DISMISS_DELAY);
         refreshEnablingsOfKeypressSoundAndVibrationSettings();
@@ -244,6 +220,45 @@ public final class AdvancedSettingsFragment extends SubScreenFragment {
                 am.playSoundEffect(
                         AudioManager.FX_KEYPRESS_STANDARD, getValueFromPercentage(value));
             }
+        });
+    }
+
+    private void setupKeyLongpressTimeoutSettings() {
+        final SharedPreferences prefs = getSharedPreferences();
+        final Resources res = getResources();
+        final SeekBarDialogPreference pref = (SeekBarDialogPreference)findPreference(
+                Settings.PREF_KEY_LONGPRESS_TIMEOUT);
+        if (pref == null) {
+            return;
+        }
+        pref.setInterface(new SeekBarDialogPreference.ValueProxy() {
+            @Override
+            public void writeValue(final int value, final String key) {
+                prefs.edit().putInt(key, value).apply();
+            }
+
+            @Override
+            public void writeDefaultValue(final String key) {
+                prefs.edit().remove(key).apply();
+            }
+
+            @Override
+            public int readValue(final String key) {
+                return Settings.readKeyLongpressTimeout(prefs, res);
+            }
+
+            @Override
+            public int readDefaultValue(final String key) {
+                return Settings.readDefaultKeyLongpressTimeout(res);
+            }
+
+            @Override
+            public String getValueText(final int value) {
+                return res.getString(R.string.abbreviation_unit_milliseconds, value);
+            }
+
+            @Override
+            public void feedbackValue(final int value) {}
         });
     }
 }

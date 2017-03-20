@@ -19,6 +19,8 @@ package com.android.inputmethod.latin;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.inputmethod.BaseInputConnection;
 
+import com.android.inputmethod.latin.common.Constants;
+
 @LargeTest
 public class InputLogicTestsLanguageWithoutSpaces extends InputTestsBase {
     public void testAutoCorrectForLanguageWithoutSpaces() {
@@ -74,7 +76,7 @@ public class InputLogicTestsLanguageWithoutSpaces extends InputTestsBase {
         mInputConnection.setSelection(CURSOR_POS, CURSOR_POS);
         mLatinIME.onUpdateSelection(typedLength, typedLength,
                 CURSOR_POS, CURSOR_POS, -1, -1);
-        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS_MILLIS);
         runMessages();
         assertEquals("start composing inside text", -1,
                 BaseInputConnection.getComposingSpanStart(mEditText.getText()));
@@ -87,11 +89,39 @@ public class InputLogicTestsLanguageWithoutSpaces extends InputTestsBase {
                 BaseInputConnection.getComposingSpanEnd(mEditText.getText()));
     }
 
+    public void testMovingCursorInsideWordAndType() {
+        final String WORD_TO_TYPE = "abcdefgh";
+        final int typedLength = WORD_TO_TYPE.length();
+        final int CURSOR_POS = 4;
+        changeKeyboardLocaleAndDictLocale("th", "en_US");
+        type(WORD_TO_TYPE);
+        mLatinIME.onUpdateSelection(0, 0, typedLength, typedLength, 0, typedLength);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS_MILLIS);
+        runMessages();
+        mInputConnection.setSelection(CURSOR_POS, CURSOR_POS);
+        mLatinIME.onUpdateSelection(typedLength, typedLength,
+                CURSOR_POS, CURSOR_POS, 0, typedLength);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS_MILLIS);
+        runMessages();
+        assertEquals("move cursor inside text", 0,
+                BaseInputConnection.getComposingSpanStart(mEditText.getText()));
+        assertEquals("move cursor inside text", typedLength,
+                BaseInputConnection.getComposingSpanEnd(mEditText.getText()));
+        type("x");
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS_MILLIS);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS_MILLIS);
+        runMessages();
+        assertEquals("start typing while cursor inside composition", CURSOR_POS,
+                BaseInputConnection.getComposingSpanStart(mEditText.getText()));
+        assertEquals("start typing while cursor inside composition", CURSOR_POS + 1,
+                BaseInputConnection.getComposingSpanEnd(mEditText.getText()));
+    }
+
     public void testPredictions() {
         final String WORD_TO_TYPE = "Barack ";
         changeKeyboardLocaleAndDictLocale("th", "en_US");
         type(WORD_TO_TYPE);
-        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS_MILLIS);
         runMessages();
         // Make sure there is no space
         assertEquals("predictions in lang without spaces", "Barack",

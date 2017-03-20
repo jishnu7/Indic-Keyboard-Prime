@@ -16,12 +16,17 @@
 
 package com.android.inputmethod.latin.makedict;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import com.android.inputmethod.annotations.UsedForTesting;
+import com.android.inputmethod.latin.makedict.UnsupportedFormatException;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.LinkedList;
+
+import javax.annotation.Nonnull;
 
 /**
  * Decodes binary files for a FusionDictionary.
@@ -109,15 +114,20 @@ public final class BinaryDictDecoderUtils {
      * A class grouping utility function for our specific character encoding.
      */
     static final class CharEncoding {
-        private static final int MINIMAL_ONE_BYTE_CHARACTER_VALUE = 0x20;
-        private static final int MAXIMAL_ONE_BYTE_CHARACTER_VALUE = 0xFF;
 
         /**
          * Helper method to find out whether this code fits on one byte
          */
-        private static boolean fitsOnOneByte(final int character) {
-            return character >= MINIMAL_ONE_BYTE_CHARACTER_VALUE
-                    && character <= MAXIMAL_ONE_BYTE_CHARACTER_VALUE;
+        private static boolean fitsOnOneByte(final int character,
+                final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
+            int codePoint = character;
+            if (codePointToOneByteCodeMap != null) {
+                if (codePointToOneByteCodeMap.containsKey(character)) {
+                    codePoint = codePointToOneByteCodeMap.get(character);
+                }
+            }
+            return codePoint >= FormatSpec.MINIMAL_ONE_BYTE_CHARACTER_VALUE
+                    && codePoint <= FormatSpec.MAXIMAL_ONE_BYTE_CHARACTER_VALUE;
         }
 
         /**
@@ -137,9 +147,10 @@ public final class BinaryDictDecoderUtils {
          * @param character the character code.
          * @return the size in binary encoded-form, either 1 or 3 bytes.
          */
-        static int getCharSize(final int character) {
+        static int getCharSize(final int character,
+                final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
             // See char encoding in FusionDictionary.java
-            if (fitsOnOneByte(character)) return 1;
+            if (fitsOnOneByte(character, codePointToOneByteCodeMap)) return 1;
             if (FormatSpec.INVALID_CHARACTER == character) return 1;
             return 3;
         }
@@ -147,9 +158,10 @@ public final class BinaryDictDecoderUtils {
         /**
          * Compute the byte size of a character array.
          */
-        static int getCharArraySize(final int[] chars) {
+        static int getCharArraySize(final int[] chars,
+                final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
             int size = 0;
-            for (int character : chars) size += getCharSize(character);
+            for (int character : chars) size += getCharSize(character, codePointToOneByteCodeMap);
             return size;
         }
 
@@ -158,12 +170,21 @@ public final class BinaryDictDecoderUtils {
          *
          * @param codePoints the code point array to write.
          * @param buffer the byte buffer to write to.
-         * @param index the index in buffer to write the character array to.
+         * @param fromIndex the index in buffer to write the character array to.
+         * @param codePointToOneByteCodeMap the map to convert the code point.
          * @return the index after the last character.
          */
-        static int writeCharArray(final int[] codePoints, final byte[] buffer, int index) {
+        static int writeCharArray(final int[] codePoints, final byte[] buffer, final int fromIndex,
+                final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
+            int index = fromIndex;
             for (int codePoint : codePoints) {
-                if (1 == getCharSize(codePoint)) {
+                if (codePointToOneByteCodeMap != null) {
+                    if (codePointToOneByteCodeMap.containsKey(codePoint)) {
+                        // Convert code points
+                        codePoint = codePointToOneByteCodeMap.get(codePoint);
+                    }
+                }
+                if (1 == getCharSize(codePoint, codePointToOneByteCodeMap)) {
                     buffer[index++] = (byte)codePoint;
                 } else {
                     buffer[index++] = (byte)(0xFF & (codePoint >> 16));
@@ -184,12 +205,19 @@ public final class BinaryDictDecoderUtils {
          * @param word the string to write.
          * @return the size written, in bytes.
          */
-        static int writeString(final byte[] buffer, final int origin, final String word) {
+        static int writeString(final byte[] buffer, final int origin, final String word,
+                final HashMap<Integer, Integer> codePointToOneByteCodeMap) {
             final int length = word.length();
             int index = origin;
             for (int i = 0; i < length; i = word.offsetByCodePoints(i, 1)) {
-                final int codePoint = word.codePointAt(i);
-                if (1 == getCharSize(codePoint)) {
+                int codePoint = word.codePointAt(i);
+                if (codePointToOneByteCodeMap != null) {
+                    if (codePointToOneByteCodeMap.containsKey(codePoint)) {
+                        // Convert code points
+                        codePoint = codePointToOneByteCodeMap.get(codePoint);
+                    }
+                }
+                if (1 == getCharSize(codePoint, codePointToOneByteCodeMap)) {
                     buffer[index++] = (byte)codePoint;
                 } else {
                     buffer[index++] = (byte)(0xFF & (codePoint >> 16));
@@ -210,12 +238,13 @@ public final class BinaryDictDecoderUtils {
          * @param word the string to write.
          * @return the size written, in bytes.
          */
-        static int writeString(final OutputStream stream, final String word) throws IOException {
+        static int writeString(final OutputStream stream, final String word,
+                final HashMap<Integer, Integer> codePointToOneByteCodeMap) throws IOException {
             final int length = word.length();
             int written = 0;
             for (int i = 0; i < length; i = word.offsetByCodePoints(i, 1)) {
                 final int codePoint = word.codePointAt(i);
-                final int charSize = getCharSize(codePoint);
+                final int charSize = getCharSize(codePoint, codePointToOneByteCodeMap);
                 if (1 == charSize) {
                     stream.write((byte) codePoint);
                 } else {
@@ -253,7 +282,7 @@ public final class BinaryDictDecoderUtils {
          */
         static int readChar(final DictBuffer dictBuffer) {
             int character = dictBuffer.readUnsignedByte();
-            if (!fitsOnOneByte(character)) {
+            if (!fitsOnOneByte(character, null)) {
                 if (FormatSpec.PTNODE_CHARACTERS_TERMINATOR == character) {
                     return FormatSpec.INVALID_CHARACTER;
                 }
@@ -271,10 +300,9 @@ public final class BinaryDictDecoderUtils {
         final int msb = dictBuffer.readUnsignedByte();
         if (FormatSpec.MAX_PTNODES_FOR_ONE_BYTE_PTNODE_COUNT >= msb) {
             return msb;
-        } else {
-            return ((FormatSpec.MAX_PTNODES_FOR_ONE_BYTE_PTNODE_COUNT & msb) << 8)
-                    + dictBuffer.readUnsignedByte();
         }
+        return ((FormatSpec.MAX_PTNODES_FOR_ONE_BYTE_PTNODE_COUNT & msb) << 8)
+                + dictBuffer.readUnsignedByte();
     }
 
     /**
@@ -335,6 +363,43 @@ public final class BinaryDictDecoderUtils {
             }
         }
         return result;
+    }
+
+    /**
+     * Helper method that brutally decodes a header from a byte array.
+     *
+     * @param headerBuffer a buffer containing the bytes of the header.
+     * @return a hashmap of the attributes stored in the header
+     */
+    @Nonnull
+    public static HashMap<String, String> decodeHeaderAttributes(@Nonnull final byte[] headerBuffer)
+            throws UnsupportedFormatException {
+        final StringBuilder sb = new StringBuilder();
+        final LinkedList<String> keyValues = new LinkedList<>();
+        int index = 0;
+        while (index < headerBuffer.length) {
+            if (headerBuffer[index] == FormatSpec.PTNODE_CHARACTERS_TERMINATOR) {
+                keyValues.add(sb.toString());
+                sb.setLength(0);
+            } else if (CharEncoding.fitsOnOneByte(headerBuffer[index] & 0xFF,
+                    null /* codePointTable */)) {
+                sb.appendCodePoint(headerBuffer[index] & 0xFF);
+            } else {
+                sb.appendCodePoint(((headerBuffer[index] & 0xFF) << 16)
+                        + ((headerBuffer[index + 1] & 0xFF) << 8)
+                        + (headerBuffer[index + 2] & 0xFF));
+                index += 2;
+            }
+            index += 1;
+        }
+        if ((keyValues.size() & 1) != 0) {
+            throw new UnsupportedFormatException("Odd number of attributes");
+        }
+        final HashMap<String, String> attributes = new HashMap<>();
+        for (int i = 0; i < keyValues.size(); i += 2) {
+            attributes.put(keyValues.get(i), keyValues.get(i + 1));
+        }
+        return attributes;
     }
 
     /**

@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package in.androidtweak.inputmethod.indic.settings;
+package com.android.inputmethod.latin.settings;
 
 import android.content.res.Resources;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.SuggestedWords;
+import com.android.inputmethod.latin.SuggestedWords;
+import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.utils.RunInLocale;
 
 import junit.framework.AssertionFailedError;
@@ -37,13 +36,11 @@ public class SpacingAndPunctuationsTests extends AndroidTestCase {
     private int mScreenMetrics;
 
     private boolean isPhone() {
-        return mScreenMetrics == Constants.SCREEN_METRICS_SMALL_PHONE
-                || mScreenMetrics == Constants.SCREEN_METRICS_LARGE_PHONE;
+        return Constants.isPhone(mScreenMetrics);
     }
 
     private boolean isTablet() {
-        return mScreenMetrics == Constants.SCREEN_METRICS_SMALL_TABLET
-                || mScreenMetrics == Constants.SCREEN_METRICS_LARGE_TABLET;
+        return Constants.isTablet(mScreenMetrics);
     }
 
     private SpacingAndPunctuations ENGLISH;
@@ -70,7 +67,7 @@ public class SpacingAndPunctuationsTests extends AndroidTestCase {
     protected void setUp() throws Exception {
         super.setUp();
 
-        mScreenMetrics = mContext.getResources().getInteger(R.integer.config_screen_metrics);
+        mScreenMetrics = Settings.readScreenMetrics(getContext().getResources());
 
         // Language only
         ENGLISH = getSpacingAndPunctuations(Locale.ENGLISH);

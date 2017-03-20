@@ -18,9 +18,9 @@ package com.android.inputmethod.keyboard.internal;
 
 import android.util.Log;
 
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.InputPointers;
-import com.android.inputmethod.latin.utils.ResizableIntArray;
+import in.androidtweak.inputmethod.indic.common.Constants;
+import in.androidtweak.inputmethod.indic.common.InputPointers;
+import com.android.inputmethod.latin.common.ResizableIntArray;
 
 /**
  * This class holds event points to recognize a gesture stroke.

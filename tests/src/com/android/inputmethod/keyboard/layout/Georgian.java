@@ -17,9 +17,10 @@
 package com.android.inputmethod.keyboard.layout;
 
 import com.android.inputmethod.keyboard.KeyboardId;
+import com.android.inputmethod.keyboard.layout.customizer.LayoutCustomizer;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKeyboardBuilder;
-import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.latin.common.Constants;
 
 import java.util.Locale;
 
@@ -29,15 +30,15 @@ import java.util.Locale;
 public final class Georgian extends LayoutBase {
     private static final String LAYOUT_NAME = "georgian";
 
-    public Georgian(final LayoutCustomizer customizer) {
-        super(customizer, Symbols.class, SymbolsShifted.class);
+    public Georgian(final Locale locale) {
+        super(new GeorgianCustomizer(locale), Symbols.class, SymbolsShifted.class);
     }
 
     @Override
     public String getName() { return LAYOUT_NAME; }
 
-    public static class GeorgianCustomizer extends LayoutCustomizer {
-        public GeorgianCustomizer(final Locale locale) { super(locale); }
+    private static class GeorgianCustomizer extends LayoutCustomizer {
+        GeorgianCustomizer(final Locale locale) { super(locale); }
 
         @Override
         public ExpectedKey getAlphabetKey() { return GEORGIAN_ALPHABET_KEY; }

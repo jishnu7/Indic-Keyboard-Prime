@@ -18,8 +18,8 @@ package com.android.inputmethod.keyboard.layout;
 
 import static com.android.inputmethod.keyboard.layout.DevanagariLetterConstants.*;
 
-import com.android.inputmethod.keyboard.layout.Hindi.HindiCustomizer;
 import com.android.inputmethod.keyboard.layout.Hindi.HindiSymbols;
+import com.android.inputmethod.keyboard.layout.customizer.HindiCustomizer;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKeyboardBuilder;
 
@@ -31,41 +31,20 @@ import java.util.Locale;
 public final class HindiCompact extends LayoutBase {
     private static final String LAYOUT_NAME = "hindi_compact";
 
-    public HindiCompact(final LayoutCustomizer customizer) {
-        super(customizer, HindiSymbols.class, SymbolsShifted.class);
+    public HindiCompact(final Locale locale) {
+        super(new HindiCompactCustomizer(locale), HindiSymbols.class, SymbolsShifted.class);
     }
 
     @Override
     public String getName() { return LAYOUT_NAME; }
 
-    public static class HindiCompactCustomizer extends HindiCustomizer {
-        public HindiCompactCustomizer(final Locale locale) { super(locale); }
+    private static class HindiCompactCustomizer extends HindiCustomizer {
+        HindiCompactCustomizer(final Locale locale) { super(locale); }
 
         @Override
         public ExpectedKey[] getLeftShiftKeys(final boolean isPhone) {
             return EMPTY_KEYS;
         }
-
-        @Override
-        public ExpectedKey[] getKeysRightToSpacebar(final boolean isPhone) {
-            // U+0964: "।" DEVANAGARI DANDA
-            final ExpectedKey periodKey = key("\u0964", getPunctuationMoreKeys(isPhone));
-            return joinKeys(periodKey);
-        }
-
-        @Override
-        public ExpectedKey[] getPunctuationMoreKeys(final boolean isPhone) {
-            return isPhone ? HINDI_PHONE_PUNCTUATION_MORE_KEYS : HINDI_TABLET_PUNCTUATION_MORE_KEYS;
-        }
-
-        // Punctuation more keys for phone form factor.
-        private static final ExpectedKey[] HINDI_PHONE_PUNCTUATION_MORE_KEYS = joinKeys(
-                ",", ".", "?", "!", "#", ")", "(", "/", ";",
-                "'", "@", ":", "-", "\"", "+", "%", "&");
-        // Punctuation more keys for tablet form factor.
-        private static final ExpectedKey[] HINDI_TABLET_PUNCTUATION_MORE_KEYS = joinKeys(
-                ",", ".", "'", "#", ")", "(", "/", ";",
-                "@", ":", "-", "\"", "+", "%", "&");
     }
 
     @Override

@@ -38,6 +38,7 @@ import java.util.HashMap;
 
 import in.androidtweak.inputmethod.indic.R;
 import com.android.inputmethod.latin.utils.DebugLogUtils;
+import in.androidtweak.inputmethod.indic.common.LocaleUtils;
 
 /**
  * Provider for dictionaries.
@@ -242,23 +243,16 @@ public final class DictionaryProvider extends ContentProvider {
                 // Fall through
             case DICTIONARY_V1_DICT_INFO:
                 final String locale = uri.getLastPathSegment();
-                // If LatinIME does not have a dictionary for this locale at all, it will
-                // send us true for this value. In this case, we may prompt the user for
-                // a decision about downloading a dictionary even over a metered connection.
-                final String mayPromptValue =
-                        uri.getQueryParameter(QUERY_PARAMETER_MAY_PROMPT_USER);
-                final boolean mayPrompt = QUERY_PARAMETER_TRUE.equals(mayPromptValue);
                 final Collection<WordListInfo> dictFiles =
-                        getDictionaryWordListsForLocale(clientId, locale, mayPrompt);
+                        getDictionaryWordListsForLocale(clientId, locale);
                 // TODO: pass clientId to the following function
                 DictionaryService.updateNowIfNotUpdatedInAVeryLongTime(getContext());
                 if (null != dictFiles && dictFiles.size() > 0) {
                     PrivateLog.log("Returned " + dictFiles.size() + " files");
                     return new ResourcePathCursor(dictFiles);
-                } else {
-                    PrivateLog.log("No dictionary files for this URL");
-                    return new ResourcePathCursor(Collections.<WordListInfo>emptyList());
                 }
+                PrivateLog.log("No dictionary files for this URL");
+                return new ResourcePathCursor(Collections.<WordListInfo>emptyList());
             // V2_METADATA and V2_DATAFILE are not supported for query()
             default:
                 return null;
@@ -319,14 +313,13 @@ public final class DictionaryProvider extends ContentProvider {
                 final AssetFileDescriptor afd = getContext().getResources().openRawResourceFd(
                         R.raw.empty);
                 return afd;
-            } else {
-                final String localFilename =
-                        wordList.getAsString(MetadataDbHelper.LOCAL_FILENAME_COLUMN);
-                final File f = getContext().getFileStreamPath(localFilename);
-                final ParcelFileDescriptor pfd =
-                        ParcelFileDescriptor.open(f, ParcelFileDescriptor.MODE_READ_ONLY);
-                return new AssetFileDescriptor(pfd, 0, pfd.getStatSize());
             }
+            final String localFilename =
+                    wordList.getAsString(MetadataDbHelper.LOCAL_FILENAME_COLUMN);
+            final File f = getContext().getFileStreamPath(localFilename);
+            final ParcelFileDescriptor pfd =
+                    ParcelFileDescriptor.open(f, ParcelFileDescriptor.MODE_READ_ONLY);
+            return new AssetFileDescriptor(pfd, 0, pfd.getStatSize());
         } catch (FileNotFoundException e) {
             // No file : fall through and return null
         }
@@ -344,11 +337,10 @@ public final class DictionaryProvider extends ContentProvider {
      *
      * @param clientId the ID of the client requesting the list
      * @param locale the locale for which we want the list, as a String
-     * @param mayPrompt true if we are allowed to prompt the user for arbitration via notification
      * @return a collection of ids. It is guaranteed to be non-null, but may be empty.
      */
     private Collection<WordListInfo> getDictionaryWordListsForLocale(final String clientId,
-            final String locale, final boolean mayPrompt) {
+            final String locale) {
         final Context context = getContext();
         final Cursor results =
                 MetadataDbHelper.queryInstalledOrDeletingOrAvailableDictionaryMetadata(context,
@@ -413,8 +405,7 @@ public final class DictionaryProvider extends ContentProvider {
                         }
                     } else if (MetadataDbHelper.STATUS_AVAILABLE == wordListStatus) {
                         // The locale is the id for the main dictionary.
-                        UpdateHandler.installIfNeverRequested(context, clientId, wordListId,
-                                mayPrompt);
+                        UpdateHandler.installIfNeverRequested(context, clientId, wordListId);
                         continue;
                     }
                     final WordListInfo currentBestMatch = dicts.get(wordListCategory);
@@ -461,30 +452,32 @@ public final class DictionaryProvider extends ContentProvider {
         final String wordlistId = uri.getLastPathSegment();
         final String clientId = getClientId(uri);
         final ContentValues wordList = getWordlistMetadataForWordlistId(clientId, wordlistId);
-        if (null == wordList) return 0;
+        if (null == wordList) {
+            return 0;
+        }
         final int status = wordList.getAsInteger(MetadataDbHelper.STATUS_COLUMN);
         final int version = wordList.getAsInteger(MetadataDbHelper.VERSION_COLUMN);
         if (MetadataDbHelper.STATUS_DELETING == status) {
             UpdateHandler.markAsDeleted(getContext(), clientId, wordlistId, version, status);
             return 1;
-        } else if (MetadataDbHelper.STATUS_INSTALLED == status) {
+        }
+        if (MetadataDbHelper.STATUS_INSTALLED == status) {
             final String result = uri.getQueryParameter(QUERY_PARAMETER_DELETE_RESULT);
             if (QUERY_PARAMETER_FAILURE.equals(result)) {
-                UpdateHandler.markAsBroken(getContext(), clientId, wordlistId, version);
+                if (DEBUG) {
+                    Log.d(TAG,
+                            "Dictionary is broken, attempting to retry download & installation.");
+                }
+                UpdateHandler.markAsBrokenOrRetrying(getContext(), clientId, wordlistId, version);
             }
             final String localFilename =
                     wordList.getAsString(MetadataDbHelper.LOCAL_FILENAME_COLUMN);
             final File f = getContext().getFileStreamPath(localFilename);
             // f.delete() returns true if the file was successfully deleted, false otherwise
-            if (f.delete()) {
-                return 1;
-            } else {
-                return 0;
-            }
-        } else {
-            Log.e(TAG, "Attempt to delete a file whose status is " + status);
-            return 0;
+            return f.delete() ? 1 : 0;
         }
+        Log.e(TAG, "Attempt to delete a file whose status is " + status);
+        return 0;
     }
 
     /**

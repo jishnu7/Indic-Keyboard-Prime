@@ -16,7 +16,7 @@
 
 package com.android.inputmethod.latin.makedict;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import com.android.inputmethod.annotations.UsedForTesting;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

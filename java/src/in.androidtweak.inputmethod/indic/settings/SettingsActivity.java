@@ -16,28 +16,44 @@
 
 package in.androidtweak.inputmethod.indic.settings;
 
+import com.android.inputmethod.latin.permissions.PermissionsManager;
+import com.android.inputmethod.latin.utils.FragmentUtils;
+import com.android.inputmethod.latin.utils.StatsUtils;
+import com.android.inputmethod.latin.utils.StatsUtilsManager;
+
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.support.v4.app.ActivityCompat;
 import android.view.MenuItem;
 
-import com.android.inputmethod.latin.utils.FragmentUtils;
-
-public final class SettingsActivity extends PreferenceActivity {
-    public static final String EXTRA_SHOW_HOME_AS_UP = "show_home_as_up";
+public final class SettingsActivity extends PreferenceActivity
+        implements ActivityCompat.OnRequestPermissionsResultCallback {
     private static final String DEFAULT_FRAGMENT = SettingsFragment.class.getName();
+
+    public static final String EXTRA_SHOW_HOME_AS_UP = "show_home_as_up";
+    public static final String EXTRA_ENTRY_KEY = "entry";
+    public static final String EXTRA_ENTRY_VALUE_LONG_PRESS_COMMA = "long_press_comma";
+    public static final String EXTRA_ENTRY_VALUE_APP_ICON = "app_icon";
+    public static final String EXTRA_ENTRY_VALUE_NOTICE_DIALOG = "important_notice";
+    public static final String EXTRA_ENTRY_VALUE_SYSTEM_SETTINGS = "system_settings";
+
     private boolean mShowHomeAsUp;
 
     @Override
     protected void onCreate(final Bundle savedState) {
         super.onCreate(savedState);
         final ActionBar actionBar = getActionBar();
+        final Intent intent = getIntent();
         if (actionBar != null) {
-            mShowHomeAsUp = getIntent().getBooleanExtra(EXTRA_SHOW_HOME_AS_UP, true);
+            mShowHomeAsUp = intent.getBooleanExtra(EXTRA_SHOW_HOME_AS_UP, true);
             actionBar.setDisplayHomeAsUpEnabled(mShowHomeAsUp);
             actionBar.setHomeButtonEnabled(mShowHomeAsUp);
         }
+        StatsUtils.onSettingsActivity(
+                intent.hasExtra(EXTRA_ENTRY_KEY) ? intent.getStringExtra(EXTRA_ENTRY_KEY)
+                        : EXTRA_ENTRY_VALUE_SYSTEM_SETTINGS);
     }
 
     @Override
@@ -63,5 +79,10 @@ public final class SettingsActivity extends PreferenceActivity {
     @Override
     public boolean isValidFragment(final String fragmentName) {
         return FragmentUtils.isValidFragment(fragmentName);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        PermissionsManager.get(this).onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

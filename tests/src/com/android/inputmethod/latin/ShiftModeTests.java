@@ -16,13 +16,11 @@
 
 package com.android.inputmethod.latin;
 
-import android.os.Build;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.text.TextUtils;
 import android.view.inputmethod.EditorInfo;
 
-import in.androidtweak.inputmethod.indic.Constants;
-import com.android.inputmethod.latin.WordComposer;
+import com.android.inputmethod.latin.common.Constants;
 
 @LargeTest
 public class ShiftModeTests extends InputTestsBase {
@@ -75,7 +73,7 @@ public class ShiftModeTests extends InputTestsBase {
             repeatKey(Constants.CODE_DELETE);
         }
         assertFalse("Caps immediately after repeating Backspace a lot", isCapsModeAutoShifted());
-        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS_MILLIS);
         runMessages();
         assertTrue("Caps after a while after repeating Backspace a lot", isCapsModeAutoShifted());
     }

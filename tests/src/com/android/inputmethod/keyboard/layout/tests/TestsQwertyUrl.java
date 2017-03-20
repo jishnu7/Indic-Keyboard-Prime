@@ -24,6 +24,7 @@ import android.view.inputmethod.InputMethodSubtype;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
 import com.android.inputmethod.keyboard.layout.LayoutBase;
 import com.android.inputmethod.keyboard.layout.Qwerty;
+import com.android.inputmethod.keyboard.layout.customizer.EnglishCustomizer;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey;
 
 import java.util.Locale;
@@ -42,32 +43,31 @@ public class TestsQwertyUrl extends LayoutTestsBase {
     @Override
     protected KeyboardLayoutSet createKeyboardLayoutSet(final InputMethodSubtype subtype,
             final EditorInfo editorInfo, final boolean voiceInputKeyEnabled,
-            final boolean languageSwitchKeyEnabled) {
+            final boolean languageSwitchKeyEnabled, final boolean splitLayoutEnabled) {
         final EditorInfo emailField = new EditorInfo();
         emailField.inputType =
                 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI;
         return super.createKeyboardLayoutSet(
-                subtype, emailField, voiceInputKeyEnabled, languageSwitchKeyEnabled);
+                subtype, emailField, voiceInputKeyEnabled, languageSwitchKeyEnabled,
+                splitLayoutEnabled);
     }
 
     private static class EnglishUrlCustomizer extends EnglishCustomizer {
-        EnglishUrlCustomizer(final Locale locale) {
-            super(locale);
-        }
+        EnglishUrlCustomizer(final Locale locale) { super(locale); }
 
         @Override
         public ExpectedKey getEnterKey(final boolean isPhone) {
-            return isPhone ? LayoutBase.ENTER_KEY : super.getEnterKey(isPhone);
+            return isPhone ? ENTER_KEY : super.getEnterKey(isPhone);
         }
 
         @Override
         public ExpectedKey getEmojiKey(final boolean isPhone) {
-            return LayoutBase.DOMAIN_KEY;
+            return DOMAIN_KEY;
         }
 
         @Override
         public ExpectedKey[] getKeysLeftToSpacebar(final boolean isPhone) {
-            return joinKeys(key("/", LayoutBase.SETTINGS_KEY));
+            return joinKeys(key("/", SETTINGS_KEY));
         }
     }
 }

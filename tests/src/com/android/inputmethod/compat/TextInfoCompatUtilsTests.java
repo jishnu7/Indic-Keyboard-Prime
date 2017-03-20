@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package in.androidtweak.inputmethod.compat;
+package com.android.inputmethod.compat;
 
 import android.graphics.Typeface;
 import android.os.Parcel;

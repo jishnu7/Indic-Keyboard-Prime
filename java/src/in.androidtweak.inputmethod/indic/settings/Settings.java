@@ -25,30 +25,28 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import in.androidtweak.inputmethod.compat.BuildCompatUtils;
+import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
+import in.androidtweak.inputmethod.indic.InputAttributes;
+import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.common.StringUtils;
+import com.android.inputmethod.latin.utils.AdditionalSubtypeUtils;
+import com.android.inputmethod.latin.utils.ResourceUtils;
+import com.android.inputmethod.latin.utils.RunInLocale;
+import com.android.inputmethod.latin.utils.StatsUtils;
+
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.locks.ReentrantLock;
 
-import in.androidtweak.inputmethod.compat.BuildCompatUtils;
-import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
-import in.androidtweak.inputmethod.indic.InputAttributes;
-import in.androidtweak.inputmethod.indic.R;
-import com.android.inputmethod.latin.utils.AdditionalSubtypeUtils;
-import com.android.inputmethod.latin.utils.ResourceUtils;
-import com.android.inputmethod.latin.utils.RunInLocale;
-import com.android.inputmethod.latin.utils.StringUtils;
+import javax.annotation.Nonnull;
 
 public final class Settings implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = Settings.class.getSimpleName();
     // Settings screens
-    public static final String SCREEN_PREFERENCES = "screen_preferences";
-    public static final String SCREEN_APPEARANCE = "screen_appearance";
+    public static final String SCREEN_ACCOUNTS = "screen_accounts";
     public static final String SCREEN_THEME = "screen_theme";
-    public static final String SCREEN_MULTILINGUAL = "screen_multilingual";
-    public static final String SCREEN_GESTURE = "screen_gesture";
-    public static final String SCREEN_CORRECTION = "screen_correction";
-    public static final String SCREEN_ADVANCED = "screen_advanced";
     public static final String SCREEN_DEBUG = "screen_debug";
     // In the same order as xml/prefs.xml
     public static final String PREF_AUTO_CAP = "auto_cap";
@@ -60,7 +58,10 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     public static final String PREF_VOICE_INPUT_KEY = "pref_voice_input_key";
     public static final String PREF_EDIT_PERSONAL_DICTIONARY = "edit_personal_dictionary";
     public static final String PREF_CONFIGURE_DICTIONARIES_KEY = "configure_dictionaries_key";
-    public static final String PREF_AUTO_CORRECTION_THRESHOLD = "auto_correction_threshold";
+    // PREF_AUTO_CORRECTION_THRESHOLD_OBSOLETE is obsolete. Use PREF_AUTO_CORRECTION instead.
+    public static final String PREF_AUTO_CORRECTION_THRESHOLD_OBSOLETE =
+            "auto_correction_threshold";
+    public static final String PREF_AUTO_CORRECTION = "pref_key_auto_correction";
     // PREF_SHOW_SUGGESTIONS_SETTING_OBSOLETE is obsolete. Use PREF_SHOW_SUGGESTIONS instead.
     public static final String PREF_SHOW_SUGGESTIONS_SETTING_OBSOLETE = "show_suggestions_setting";
     public static final String PREF_SHOW_SUGGESTIONS = "show_suggestions";
@@ -70,19 +71,16 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
             "pref_key_use_double_space_period";
     public static final String PREF_BLOCK_POTENTIALLY_OFFENSIVE =
             "pref_key_block_potentially_offensive";
-    // No multilingual options in Android L and above for now.
-    public static final boolean SHOW_MULTILINGUAL_SETTINGS =
-            BuildCompatUtils.EFFECTIVE_SDK_INT <= Build.VERSION_CODES.KITKAT;
     public static final boolean ENABLE_SHOW_LANGUAGE_SWITCH_KEY_SETTINGS =
             BuildCompatUtils.EFFECTIVE_SDK_INT <= Build.VERSION_CODES.KITKAT;
-    public static final boolean HAS_UI_TO_ACCEPT_TYPED_WORD =
-            BuildCompatUtils.EFFECTIVE_SDK_INT >= BuildCompatUtils.VERSION_CODES_LXX;
+    public static final boolean SHOULD_SHOW_LXX_SUGGESTION_UI =
+            BuildCompatUtils.EFFECTIVE_SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     public static final String PREF_SHOW_LANGUAGE_SWITCH_KEY =
             "pref_show_language_switch_key";
     public static final String PREF_INCLUDE_OTHER_IMES_IN_LANGUAGE_SWITCH_LIST =
             "pref_include_other_imes_in_language_switch_list";
-    public static final String PREF_KEYBOARD_THEME = "pref_keyboard_theme";
     public static final String PREF_CUSTOM_INPUT_STYLES = "custom_input_styles";
+    public static final String PREF_ENABLE_SPLIT_KEYBOARD = "pref_split_keyboard";
     // TODO: consolidate key preview dismiss delay with the key preview animation parameters.
     public static final String PREF_KEY_PREVIEW_POPUP_DISMISS_DELAY =
             "pref_key_preview_popup_dismiss_delay";
@@ -90,20 +88,18 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     public static final String PREF_GESTURE_INPUT = "gesture_input";
     public static final String PREF_VIBRATION_DURATION_SETTINGS =
             "pref_vibration_duration_settings";
-    public static final String PREF_KEYPRESS_SOUND_VOLUME =
-            "pref_keypress_sound_volume";
+    public static final String PREF_KEYPRESS_SOUND_VOLUME = "pref_keypress_sound_volume";
+    public static final String PREF_KEY_LONGPRESS_TIMEOUT = "pref_key_longpress_timeout";
+    public static final String PREF_ENABLE_EMOJI_ALT_PHYSICAL_KEY =
+            "pref_enable_emoji_alt_physical_key";
     public static final String PREF_GESTURE_PREVIEW_TRAIL = "pref_gesture_preview_trail";
     public static final String PREF_GESTURE_FLOATING_PREVIEW_TEXT =
             "pref_gesture_floating_preview_text";
     public static final String PREF_SHOW_SETUP_WIZARD_ICON = "pref_show_setup_wizard_icon";
-    public static final String PREF_PHRASE_GESTURE_ENABLED = "pref_gesture_space_aware";
 
-    public static final String PREF_INPUT_LANGUAGE = "input_language";
-    public static final String PREF_SELECTED_LANGUAGES = "selected_languages";
     public static final String PREF_KEY_IS_INTERNAL = "pref_key_is_internal";
 
     public static final String PREF_ENABLE_METRICS_LOGGING = "pref_enable_metrics_logging";
-
     // This preference key is deprecated. Use {@link #PREF_SHOW_LANGUAGE_SWITCH_KEY} instead.
     // This is being used only for the backward compatibility.
     private static final String PREF_SUPPRESS_LANGUAGE_SWITCH_KEY =
@@ -149,6 +145,7 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
         mRes = context.getResources();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         mPrefs.registerOnSharedPreferenceChangeListener(this);
+        upgradeAutocorrectionSettings(mPrefs, mRes);
     }
 
     public void onDestroy() {
@@ -166,13 +163,14 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
                 return;
             }
             loadSettings(mContext, mSettingsValues.mLocale, mSettingsValues.mInputAttributes);
+            StatsUtils.onLoadSettings(mSettingsValues);
         } finally {
             mSettingsValuesLock.unlock();
         }
     }
 
     public void loadSettings(final Context context, final Locale locale,
-            final InputAttributes inputAttributes) {
+            @Nonnull final InputAttributes inputAttributes) {
         mSettingsValuesLock.lock();
         mContext = context;
         try {
@@ -198,12 +196,8 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
         return mSettingsValues.mIsInternal;
     }
 
-    public boolean isWordSeparator(final int code) {
-        return mSettingsValues.isWordSeparator(code);
-    }
-
-    public boolean getBlockPotentiallyOffensive() {
-        return mSettingsValues.mBlockPotentiallyOffensive;
+    public static int readScreenMetrics(final Resources res) {
+        return res.getInteger(R.integer.config_screen_metrics);
     }
 
     // Accessed from the settings interface, hence public
@@ -220,11 +214,13 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
                 res.getBoolean(R.bool.config_default_vibration_enabled));
     }
 
-    public static boolean readAutoCorrectEnabled(final String currentAutoCorrectionSetting,
+    public static boolean readAutoCorrectEnabled(final SharedPreferences prefs,
             final Resources res) {
-        final String autoCorrectionOff = res.getString(
-                R.string.auto_correction_threshold_mode_index_off);
-        return !currentAutoCorrectionSetting.equals(autoCorrectionOff);
+        return prefs.getBoolean(PREF_AUTO_CORRECTION, true);
+    }
+
+    public static float readPlausibilityThreshold(final Resources res) {
+        return Float.parseFloat(res.getString(R.string.plausibility_threshold));
     }
 
     public static boolean readBlockPotentiallyOffensive(final SharedPreferences prefs,
@@ -241,12 +237,6 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
             final Resources res) {
         return readFromBuildConfigIfGestureInputEnabled(res)
                 && prefs.getBoolean(PREF_GESTURE_INPUT, true);
-    }
-
-    public static boolean readPhraseGestureEnabled(final SharedPreferences prefs,
-            final Resources res) {
-        return prefs.getBoolean(PREF_PHRASE_GESTURE_ENABLED,
-                res.getBoolean(R.bool.config_default_phrase_gesture_enabled));
     }
 
     public static boolean readFromBuildConfigIfToShowKeyPreviewPopupOption(final Resources res) {
@@ -314,7 +304,7 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     public static int readKeyLongpressTimeout(final SharedPreferences prefs,
             final Resources res) {
         final int milliseconds = prefs.getInt(
-                DebugSettings.PREF_KEY_LONGPRESS_TIMEOUT, UNDEFINED_PREFERENCE_VALUE_INT);
+                PREF_KEY_LONGPRESS_TIMEOUT, UNDEFINED_PREFERENCE_VALUE_INT);
         return (milliseconds != UNDEFINED_PREFERENCE_VALUE_INT) ? milliseconds
                 : readDefaultKeyLongpressTimeout(res);
     }
@@ -352,17 +342,19 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
         return (milliseconds != UNDEFINED_PREFERENCE_VALUE_INT) ? milliseconds : defaultValue;
     }
 
+    public static float readKeyboardHeight(final SharedPreferences prefs,
+            final float defaultValue) {
+        final float percentage = prefs.getFloat(
+                DebugSettings.PREF_KEYBOARD_HEIGHT_SCALE, UNDEFINED_PREFERENCE_VALUE_FLOAT);
+        return (percentage != UNDEFINED_PREFERENCE_VALUE_FLOAT) ? percentage : defaultValue;
+    }
+
     public static boolean readUseFullscreenMode(final Resources res) {
         return res.getBoolean(R.bool.config_use_fullscreen_mode);
     }
 
     public static boolean readShowSetupWizardIcon(final SharedPreferences prefs,
             final Context context) {
-        final boolean enableSetupWizardByConfig = context.getResources().getBoolean(
-                R.bool.config_setup_wizard_available);
-        if (!enableSetupWizardByConfig) {
-            return false;
-        }
         if (!prefs.contains(PREF_SHOW_SETUP_WIZARD_ICON)) {
             final ApplicationInfo appInfo = context.getApplicationInfo();
             final boolean isApplicationInSystemImage =
@@ -445,5 +437,22 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     public static int readLastShownEmojiCategoryId(
             final SharedPreferences prefs, final int defValue) {
         return prefs.getInt(PREF_LAST_SHOWN_EMOJI_CATEGORY_ID, defValue);
+    }
+
+    private void upgradeAutocorrectionSettings(final SharedPreferences prefs, final Resources res) {
+        final String thresholdSetting =
+                prefs.getString(PREF_AUTO_CORRECTION_THRESHOLD_OBSOLETE, null);
+        if (thresholdSetting != null) {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.remove(PREF_AUTO_CORRECTION_THRESHOLD_OBSOLETE);
+            final String autoCorrectionOff =
+                    res.getString(R.string.auto_correction_threshold_mode_index_off);
+            if (thresholdSetting.equals(autoCorrectionOff)) {
+                editor.putBoolean(PREF_AUTO_CORRECTION, false);
+            } else {
+                editor.putBoolean(PREF_AUTO_CORRECTION, true);
+            }
+            editor.commit();
+        }
     }
 }

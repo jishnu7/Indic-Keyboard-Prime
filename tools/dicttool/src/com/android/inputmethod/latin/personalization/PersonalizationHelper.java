@@ -16,6 +16,7 @@
 
 package in.androidtweak.inputmethod.indic.personalization;
 
+@SuppressWarnings("unused")
 public class PersonalizationHelper {
     public static void currentTimeChangedForTesting(final int currentTimestamp) {
     }

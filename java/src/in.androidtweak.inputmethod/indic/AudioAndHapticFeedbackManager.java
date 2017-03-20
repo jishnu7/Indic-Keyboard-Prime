@@ -22,6 +22,7 @@ import android.os.Vibrator;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 
+import in.androidtweak.inputmethod.indic.common.Constants;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
 
 /**

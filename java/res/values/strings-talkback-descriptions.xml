@@ -31,6 +31,9 @@
     <!-- Spoken description used during obscured (e.g. password) entry to let the user know that auto-correction will be performed when a key is pressed. -->
     <string name="spoken_auto_correct_obscured"><xliff:g id="KEY_NAME" example="Space">%1$s</xliff:g> performs auto-correction</string>
 
+    <!-- Spoken description of a suggestion when nothing is specified and the field is blank. -->
+    <string name="spoken_empty_suggestion">No suggestion</string>
+
     <!-- Spoken description for unknown keyboard keys. -->
     <string name="spoken_description_unknown">Unknown character</string>
     <!-- Spoken description for the "Shift" keyboard key when "Shift" is off. -->
@@ -139,6 +142,18 @@
     <string name="spoken_symbol_unknown">Unknown symbol</string>
     <!-- Spoken description for unknown emoji code point. -->
     <string name="spoken_emoji_unknown">Unknown emoji</string>
+    <!-- Spoken description for emoticons ":-!". -->
+    <string name="spoken_emoticon_3A_2D_21_20">Bored face</string>
+    <!-- Spoken description for emoticons ":-$". -->
+    <string name="spoken_emoticon_3A_2D_24_20">Embarrassed face</string>
+    <!-- Spoken description for emoticons "B-)". -->
+    <string name="spoken_emoticon_42_2D_29_20">Face wearing sunglasses</string>
+    <!-- Spoken description for emoticons ":O". -->
+    <string name="spoken_emoticon_3A_4F_20">Surprised face</string>
+    <!-- Spoken description for emoticons ":-*". -->
+    <string name="spoken_emoticon_3A_2D_2A_20">Kissing face</string>
+    <!-- Spoken description for emoticons ":-[". -->
+    <string name="spoken_emoticon_3A_2D_5B_20">Frowning face</string>
 
     <!-- Spoken descriptions when opening a more keys keyboard that has alternative characters. -->
     <string name="spoken_open_more_keys_keyboard">Alternative characters are available</string>

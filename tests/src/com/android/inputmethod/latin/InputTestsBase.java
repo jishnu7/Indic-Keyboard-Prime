@@ -18,6 +18,7 @@ package com.android.inputmethod.latin;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.test.ServiceTestCase;
@@ -35,13 +36,18 @@ import android.view.inputmethod.InputMethodSubtype;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
-import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
+import com.android.inputmethod.compat.InputMethodSubtypeCompatUtils;
+import com.android.inputmethod.event.Event;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.settings.DebugSettings;
-import in.androidtweak.inputmethod.indic.settings.Settings;
-import com.android.inputmethod.latin.utils.LocaleUtils;
+import com.android.inputmethod.latin.Dictionary.PhonyDictionary;
+import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
+import com.android.inputmethod.latin.common.Constants;
+import com.android.inputmethod.latin.common.InputPointers;
+import com.android.inputmethod.latin.common.LocaleUtils;
+import com.android.inputmethod.latin.common.StringUtils;
+import com.android.inputmethod.latin.settings.DebugSettings;
+import com.android.inputmethod.latin.settings.Settings;
 import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
 
 import java.util.Locale;
@@ -52,21 +58,28 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
 
     // Default value for auto-correction threshold. This is the string representation of the
     // index in the resources array of auto-correction threshold settings.
-    private static final String DEFAULT_AUTO_CORRECTION_THRESHOLD = "1";
+    private static final boolean DEFAULT_AUTO_CORRECTION = true;
 
     // The message that sets the underline is posted with a 500 ms delay
-    protected static final int DELAY_TO_WAIT_FOR_UNDERLINE = 500;
+    protected static final int DELAY_TO_WAIT_FOR_UNDERLINE_MILLIS = 500;
     // The message that sets predictions is posted with a 200 ms delay
-    protected static final int DELAY_TO_WAIT_FOR_PREDICTIONS = 200;
-    private final int TIMEOUT_TO_WAIT_FOR_LOADING_MAIN_DICTIONARY_IN_SECONDS = 60;
+    protected static final int DELAY_TO_WAIT_FOR_PREDICTIONS_MILLIS = 200;
+    // We wait for gesture computation for this delay
+    protected static final int DELAY_TO_WAIT_FOR_GESTURE_MILLIS = 200;
+    // If a dictionary takes longer to load, we could have serious problems.
+    private final int TIMEOUT_TO_WAIT_FOR_LOADING_MAIN_DICTIONARY_IN_SECONDS = 5;
+
+    // Type for a test phony dictionary
+    private static final String TYPE_TEST = "test";
+    private static final PhonyDictionary DICTIONARY_TEST = new PhonyDictionary(TYPE_TEST);
 
     protected LatinIME mLatinIME;
     protected Keyboard mKeyboard;
     protected MyEditText mEditText;
     protected View mInputView;
     protected InputConnection mInputConnection;
+    private boolean mPreviousAutoCorrectSetting;
     private boolean mPreviousBigramPredictionSettings;
-    private String mPreviousAutoCorrectSetting;
 
     // A helper class to ease span tests
     public static class SpanGetter {
@@ -94,12 +107,15 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
                 throw new RuntimeException("Expected one span, found " + spans.length);
             }
         }
+        public SuggestionSpan getSpan() {
+            return (SuggestionSpan) mSpan;
+        }
         public boolean isAutoCorrectionIndicator() {
             return (mSpan instanceof SuggestionSpan) &&
-                    0 != (SuggestionSpan.FLAG_AUTO_CORRECTION & ((SuggestionSpan)mSpan).getFlags());
+                    0 != (SuggestionSpan.FLAG_AUTO_CORRECTION & getSpan().getFlags());
         }
         public String[] getSuggestions() {
-            return ((SuggestionSpan)mSpan).getSuggestions();
+            return getSpan().getSuggestions();
         }
     }
 
@@ -140,8 +156,6 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         super(LatinIMEForTests.class);
     }
 
-    // TODO: Isn't there a way to make this generic somehow? We can take a <T> and return a <T>
-    // but we'd have to dispatch types on editor.put...() functions
     protected boolean setBooleanPreference(final String key, final boolean value,
             final boolean defaultValue) {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mLatinIME);
@@ -150,6 +164,11 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         editor.putBoolean(key, value);
         editor.apply();
         return previousSetting;
+    }
+
+    protected boolean getBooleanPreference(final String key, final boolean defaultValue) {
+        return PreferenceManager.getDefaultSharedPreferences(mLatinIME)
+                .getBoolean(key, defaultValue);
     }
 
     protected String setStringPreference(final String key, final String value,
@@ -182,13 +201,17 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
                 | InputType.TYPE_TEXT_FLAG_MULTI_LINE;
         mEditText.setInputType(inputType);
         mEditText.setEnabled(true);
+        mLastCursorPos = 0;
+        if (null == Looper.myLooper()) {
+            Looper.prepare();
+        }
         setupService();
         mLatinIME = getService();
         setDebugMode(true);
         mPreviousBigramPredictionSettings = setBooleanPreference(Settings.PREF_BIGRAM_PREDICTIONS,
                 true, true /* defaultValue */);
-        mPreviousAutoCorrectSetting = setStringPreference(Settings.PREF_AUTO_CORRECTION_THRESHOLD,
-                DEFAULT_AUTO_CORRECTION_THRESHOLD, DEFAULT_AUTO_CORRECTION_THRESHOLD);
+        mPreviousAutoCorrectSetting = setBooleanPreference(Settings.PREF_AUTO_CORRECTION,
+                DEFAULT_AUTO_CORRECTION, DEFAULT_AUTO_CORRECTION);
         mLatinIME.onCreate();
         EditorInfo ei = new EditorInfo();
         final InputConnection ic = mEditText.onCreateInputConnection(ei);
@@ -207,7 +230,7 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         // Run messages to avoid the messages enqueued by startInputView() and its friends
         // to run on a later call and ruin things. We need to wait first because some of them
         // can be posted with a delay (notably,  MSG_RESUME_SUGGESTIONS)
-        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS);
+        sleep(DELAY_TO_WAIT_FOR_PREDICTIONS_MILLIS);
         runMessages();
     }
 
@@ -219,8 +242,8 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         mLatinIME.mHandler.removeAllMessages();
         setBooleanPreference(Settings.PREF_BIGRAM_PREDICTIONS, mPreviousBigramPredictionSettings,
                 true /* defaultValue */);
-        setStringPreference(Settings.PREF_AUTO_CORRECTION_THRESHOLD, mPreviousAutoCorrectSetting,
-                DEFAULT_AUTO_CORRECTION_THRESHOLD);
+        setBooleanPreference(Settings.PREF_AUTO_CORRECTION, mPreviousAutoCorrectSetting,
+                DEFAULT_AUTO_CORRECTION);
         setDebugMode(false);
         mLatinIME.recycle();
         super.tearDown();
@@ -236,7 +259,7 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
     // Now, Looper#loop() never exits in normal operation unless the Looper#quit() method
     // is called, which has a lot of bad side effects. We can however just throw an exception
     // in the runnable which will unwind the stack and allow us to exit.
-    private final class InterruptRunMessagesException extends RuntimeException {
+    final class InterruptRunMessagesException extends RuntimeException {
         // Empty class
     }
     protected void runMessages() {
@@ -263,14 +286,16 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         // but keep them in mind if something breaks. Commenting them out as is should work.
         //mLatinIME.onPressKey(codePoint, 0 /* repeatCount */, true /* isSinglePointer */);
         final Key key = mKeyboard.getKey(codePoint);
+        final Event event;
         if (key == null) {
-            mLatinIME.onCodeInput(codePoint, Constants.NOT_A_COORDINATE, Constants.NOT_A_COORDINATE,
-                    isKeyRepeat);
+            event = Event.createSoftwareKeypressEvent(codePoint, Event.NOT_A_KEY_CODE,
+                    Constants.NOT_A_COORDINATE, Constants.NOT_A_COORDINATE, isKeyRepeat);
         } else {
             final int x = key.getX() + key.getWidth() / 2;
             final int y = key.getY() + key.getHeight() / 2;
-            mLatinIME.onCodeInput(codePoint, x, y, isKeyRepeat);
+            event = LatinIME.createSoftwareKeypressEvent(codePoint, x, y, isKeyRepeat);
         }
+        mLatinIME.onEvent(event);
         // Also see the comment at the top of this function about onReleaseKey
         //mLatinIME.onReleaseKey(codePoint, false /* withSliding */);
     }
@@ -287,6 +312,46 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         for (int i = 0; i < stringToType.length(); i = stringToType.offsetByCodePoints(i, 1)) {
             type(stringToType.codePointAt(i));
         }
+    }
+
+    protected Point getXY(final int codePoint) {
+        final Key key = mKeyboard.getKey(codePoint);
+        if (key == null) {
+            throw new RuntimeException("Code point not on the keyboard");
+        }
+        return new Point(key.getX() + key.getWidth() / 2, key.getY() + key.getHeight() / 2);
+    }
+
+    protected void gesture(final String stringToGesture) {
+        if (StringUtils.codePointCount(stringToGesture) < 2) {
+            throw new RuntimeException("Can't gesture strings less than 2 chars long");
+        }
+
+        mLatinIME.onStartBatchInput();
+        final int startCodePoint = stringToGesture.codePointAt(0);
+        Point oldPoint = getXY(startCodePoint);
+        int timestamp = 0; // In milliseconds since the start of the gesture
+        final InputPointers pointers = new InputPointers(Constants.DEFAULT_GESTURE_POINTS_CAPACITY);
+        pointers.addPointer(oldPoint.x, oldPoint.y, 0 /* pointerId */, timestamp);
+
+        for (int i = Character.charCount(startCodePoint); i < stringToGesture.length();
+                i = stringToGesture.offsetByCodePoints(i, 1)) {
+            final Point newPoint = getXY(stringToGesture.codePointAt(i));
+            // Arbitrarily 0.5s between letters and 0.1 between events. Refine this later if needed.
+            final int STEPS = 5;
+            for (int j = 0; j < STEPS; ++j) {
+                timestamp += 100;
+                pointers.addPointer(oldPoint.x + ((newPoint.x - oldPoint.x) * j) / STEPS,
+                        oldPoint.y + ((newPoint.y - oldPoint.y) * j) / STEPS,
+                        0 /* pointerId */, timestamp);
+            }
+            oldPoint.x = newPoint.x;
+            oldPoint.y = newPoint.y;
+            mLatinIME.onUpdateBatchInput(pointers);
+        }
+        mLatinIME.onEndBatchInput(pointers);
+        sleep(DELAY_TO_WAIT_FOR_GESTURE_MILLIS);
+        runMessages();
     }
 
     protected void waitForDictionariesToBeLoaded() {
@@ -329,7 +394,7 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
                 false /* isAuxiliary */,
                 false /* overridesImplicitlyEnabledSubtype */,
                 0 /* id */);
-        SubtypeSwitcher.getInstance().forceSubtype(subtype);
+        RichInputMethodManager.forceSubtype(subtype);
         mLatinIME.onCurrentInputMethodSubtypeChanged(subtype);
         runMessages();
         mKeyboard = mLatinIME.mKeyboardSwitcher.getKeyboard();
@@ -346,8 +411,9 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
     }
 
     protected void pickSuggestionManually(final String suggestion) {
-        mLatinIME.pickSuggestionManually(new SuggestedWordInfo(suggestion, 1,
-                SuggestedWordInfo.KIND_CORRECTION, null /* sourceDict */,
+        mLatinIME.pickSuggestionManually(new SuggestedWordInfo(suggestion,
+                "" /* prevWordsContext */, 1 /* score */,
+                SuggestedWordInfo.KIND_CORRECTION, DICTIONARY_TEST,
                 SuggestedWordInfo.NOT_AN_INDEX /* indexOfTouchPointOfSecondWord */,
                 SuggestedWordInfo.NOT_A_CONFIDENCE /* autoCommitFirstWordConfidence */));
     }
@@ -357,5 +423,41 @@ public class InputTestsBase extends ServiceTestCase<LatinIMEForTests> {
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException e) {}
+    }
+
+    // Some helper methods to manage the mock cursor position
+    // DO NOT CALL LatinIME#onUpdateSelection IF YOU WANT TO USE THOSE
+    int mLastCursorPos = 0;
+    /**
+     * Move the cached cursor position to the passed position and send onUpdateSelection to LatinIME
+     */
+    protected int sendUpdateForCursorMoveTo(final int position) {
+        mInputConnection.setSelection(position, position);
+        mLatinIME.onUpdateSelection(mLastCursorPos, mLastCursorPos, position, position, -1, -1);
+        mLastCursorPos = position;
+        return position;
+    }
+
+    /**
+     * Move the cached cursor position by the passed amount and send onUpdateSelection to LatinIME
+     */
+    protected int sendUpdateForCursorMoveBy(final int offset) {
+        final int lastPos = mEditText.getText().length();
+        final int requestedPosition = mLastCursorPos + offset;
+        if (requestedPosition < 0) {
+            return sendUpdateForCursorMoveTo(0);
+        } else if (requestedPosition > lastPos) {
+            return sendUpdateForCursorMoveTo(lastPos);
+        } else {
+            return sendUpdateForCursorMoveTo(requestedPosition);
+        }
+    }
+
+    /**
+     * Move the cached cursor position to the end of the line and send onUpdateSelection to LatinIME
+     */
+    protected int sendUpdateForCursorMoveToEndOfLine() {
+        final int lastPos = mEditText.getText().length();
+        return sendUpdateForCursorMoveTo(lastPos);
     }
 }

@@ -23,13 +23,13 @@
         android:title="@string/settings_screen_preferences"
         android:key="screen_preferences" />
     <PreferenceScreen
+        android:fragment="in.androidtweak.inputmethod.indic.settings.AccountsSettingsFragment"
+        android:title="@string/settings_screen_accounts"
+        android:key="screen_accounts" />
+    <PreferenceScreen
         android:fragment="in.androidtweak.inputmethod.indic.settings.AppearanceSettingsFragment"
         android:title="@string/settings_screen_appearance"
         android:key="screen_appearance" />
-    <PreferenceScreen
-        android:fragment="in.androidtweak.inputmethod.indic.settings.MultiLingualSettingsFragment"
-        android:title="@string/settings_screen_multilingual"
-        android:key="screen_multilingual" />
     <PreferenceScreen
         android:fragment="in.androidtweak.inputmethod.indic.settings.GestureSettingsFragment"
         android:title="@string/settings_screen_gesture"

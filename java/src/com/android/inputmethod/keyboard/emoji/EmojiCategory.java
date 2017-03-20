@@ -28,6 +28,8 @@ import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.settings.Settings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,8 +40,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import in.androidtweak.inputmethod.compat.BuildCompatUtils;
 import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.settings.Settings;
 
 final class EmojiCategory {
     private final String TAG = EmojiCategory.class.getSimpleName();
@@ -148,7 +148,7 @@ final class EmojiCategory {
         mShownCategories.add(properties);
     }
 
-    public String getCategoryName(final int categoryId, final int categoryPageId) {
+    public static String getCategoryName(final int categoryId, final int categoryPageId) {
         return sCategoryName[categoryId] + "-" + categoryPageId;
     }
 
@@ -272,7 +272,7 @@ final class EmojiCategory {
     }
 
     private static final Long getCategoryKeyboardMapKey(final int categoryId, final int id) {
-        return (((long) categoryId) << Constants.MAX_INT_BIT_COUNT) | id;
+        return (((long) categoryId) << Integer.SIZE) | id;
     }
 
     public DynamicGridKeyboard getKeyboard(final int categoryId, final int id) {

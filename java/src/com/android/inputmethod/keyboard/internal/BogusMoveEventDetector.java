@@ -20,8 +20,8 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-import in.androidtweak.inputmethod.indic.Constants;
 import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.common.Constants;
 import in.androidtweak.inputmethod.indic.define.DebugFlags;
 
 // This hack is applied to certain classes of tablets.

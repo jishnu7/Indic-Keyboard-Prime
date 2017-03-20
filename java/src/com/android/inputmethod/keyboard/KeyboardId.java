@@ -19,14 +19,13 @@ package com.android.inputmethod.keyboard;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodSubtype;
 
 import java.util.Arrays;
 import java.util.Locale;
 
 import in.androidtweak.inputmethod.compat.EditorInfoCompatUtils;
+import com.android.inputmethod.latin.RichInputMethodSubtype;
 import com.android.inputmethod.latin.utils.InputTypeUtils;
-import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
 
 import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET;
 
@@ -62,8 +61,7 @@ public final class KeyboardId {
     public static final int ELEMENT_EMOJI_CATEGORY5 = 15;
     public static final int ELEMENT_EMOJI_CATEGORY6 = 16;
 
-    public final InputMethodSubtype mSubtype;
-    public final Locale mLocale;
+    public final RichInputMethodSubtype mSubtype;
     public final int mWidth;
     public final int mHeight;
     public final int mMode;
@@ -73,12 +71,12 @@ public final class KeyboardId {
     public final boolean mLanguageSwitchKeyEnabled;
     public final String mCustomActionLabel;
     public final boolean mHasShortcutKey;
+    public final boolean mIsSplitLayout;
 
     private final int mHashCode;
 
     public KeyboardId(final int elementId, final KeyboardLayoutSet.Params params) {
         mSubtype = params.mSubtype;
-        mLocale = SubtypeLocaleUtils.getSubtypeLocale(mSubtype);
         mWidth = params.mKeyboardWidth;
         mHeight = params.mKeyboardHeight;
         mMode = params.mMode;
@@ -89,6 +87,7 @@ public final class KeyboardId {
         mCustomActionLabel = (mEditorInfo.actionLabel != null)
                 ? mEditorInfo.actionLabel.toString() : null;
         mHasShortcutKey = params.mVoiceInputKeyEnabled;
+        mIsSplitLayout = params.mIsSplitLayoutEnabled;
 
         mHashCode = computeHashCode(this);
     }
@@ -108,7 +107,8 @@ public final class KeyboardId {
                 id.mCustomActionLabel,
                 id.navigateNext(),
                 id.navigatePrevious(),
-                id.mSubtype
+                id.mSubtype,
+                id.mIsSplitLayout
         });
     }
 
@@ -128,7 +128,8 @@ public final class KeyboardId {
                 && TextUtils.equals(other.mCustomActionLabel, mCustomActionLabel)
                 && other.navigateNext() == navigateNext()
                 && other.navigatePrevious() == navigatePrevious()
-                && other.mSubtype.equals(mSubtype);
+                && other.mSubtype.equals(mSubtype)
+                && other.mIsSplitLayout == mIsSplitLayout;
     }
 
     private static boolean isAlphabetKeyboard(final int elementId) {
@@ -163,6 +164,10 @@ public final class KeyboardId {
         return InputTypeUtils.getImeOptionsActionIdFromEditorInfo(mEditorInfo);
     }
 
+    public Locale getLocale() {
+        return mSubtype.getLocale();
+    }
+
     @Override
     public boolean equals(final Object other) {
         return other instanceof KeyboardId && equals((KeyboardId) other);
@@ -175,9 +180,10 @@ public final class KeyboardId {
 
     @Override
     public String toString() {
-        return String.format(Locale.ROOT, "[%s %s:%s %dx%d %s %s%s%s%s%s%s%s%s]",
+        return String.format(Locale.ROOT, "[%s %s:%s %dx%d %s %s%s%s%s%s%s%s%s%s]",
                 elementIdToName(mElementId),
-                mLocale, mSubtype.getExtraValueOf(KEYBOARD_LAYOUT_SET),
+                mSubtype.getLocale(),
+                mSubtype.getExtraValueOf(KEYBOARD_LAYOUT_SET),
                 mWidth, mHeight,
                 modeName(mMode),
                 actionName(imeAction()),
@@ -187,7 +193,8 @@ public final class KeyboardId {
                 (passwordInput() ? " passwordInput" : ""),
                 (mHasShortcutKey ? " hasShortcutKey" : ""),
                 (mLanguageSwitchKeyEnabled ? " languageSwitchKeyEnabled" : ""),
-                (isMultiLine() ? " isMultiLine" : "")
+                (isMultiLine() ? " isMultiLine" : ""),
+                (mIsSplitLayout ? " isSplitLayout" : "")
         );
     }
 

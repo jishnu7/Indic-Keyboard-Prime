@@ -24,9 +24,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Locale;
+import com.android.inputmethod.annotations.ExternallyReferenced;
+
+import javax.annotation.Nullable;
 
 import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.common.LocaleUtils;
 
 /**
  * This implements the dialog for asking the user whether it's okay to download dictionaries over
@@ -52,26 +55,33 @@ public final class DownloadOverMeteredDialog extends Activity {
         setTexts(localeString, size);
     }
 
-    private void setTexts(final String localeString, final long size) {
+    private void setTexts(@Nullable final String localeString, final long size) {
         final String promptFormat = getString(R.string.should_download_over_metered_prompt);
         final String allowButtonFormat = getString(R.string.download_over_metered);
-        final Locale locale = LocaleUtils.constructLocaleFromString(localeString);
-        final String language = (null == locale ? "" : locale.getDisplayLanguage());
+        final String language = (null == localeString) ? ""
+                : LocaleUtils.constructLocaleFromString(localeString).getDisplayLanguage();
         final TextView prompt = (TextView)findViewById(R.id.download_over_metered_prompt);
         prompt.setText(Html.fromHtml(String.format(promptFormat, language)));
         final Button allowButton = (Button)findViewById(R.id.allow_button);
         allowButton.setText(String.format(allowButtonFormat, ((float)size)/(1024*1024)));
     }
 
+    // This method is externally referenced from layout/download_over_metered.xml using onClick
+    // attribute of Button.
+    @ExternallyReferenced
+    @SuppressWarnings("unused")
     public void onClickDeny(final View v) {
         UpdateHandler.setDownloadOverMeteredSetting(this, false);
         finish();
     }
 
+    // This method is externally referenced from layout/download_over_metered.xml using onClick
+    // attribute of Button.
+    @ExternallyReferenced
+    @SuppressWarnings("unused")
     public void onClickAllow(final View v) {
         UpdateHandler.setDownloadOverMeteredSetting(this, true);
-        UpdateHandler.installIfNeverRequested(this, mClientId, mWordListToDownload,
-                false /* mayPrompt */);
+        UpdateHandler.installIfNeverRequested(this, mClientId, mWordListToDownload);
         finish();
     }
 }

@@ -25,8 +25,9 @@ import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet;
 import com.android.inputmethod.keyboard.layout.Dvorak;
 import com.android.inputmethod.keyboard.layout.LayoutBase;
+import com.android.inputmethod.keyboard.layout.customizer.DvorakCustomizer.EnglishDvorakCustomizer;
+import com.android.inputmethod.keyboard.layout.customizer.LayoutCustomizer;
 import com.android.inputmethod.keyboard.layout.expected.ExpectedKey;
-import com.android.inputmethod.keyboard.layout.tests.TestsEnglishDvorak.EnglishDvorakCustomizer;
 
 import java.util.Locale;
 
@@ -44,40 +45,37 @@ public class TestsDvorakUrl extends LayoutTestsBase {
     @Override
     protected KeyboardLayoutSet createKeyboardLayoutSet(final InputMethodSubtype subtype,
             final EditorInfo editorInfo, final boolean voiceInputKeyEnabled,
-            final boolean languageSwitchKeyEnabled) {
+            final boolean languageSwitchKeyEnabled, final boolean splitLayoutEnabled) {
         final EditorInfo emailField = new EditorInfo();
         emailField.inputType =
                 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI;
         return super.createKeyboardLayoutSet(
-                subtype, emailField, voiceInputKeyEnabled, languageSwitchKeyEnabled);
+                subtype, emailField, voiceInputKeyEnabled, languageSwitchKeyEnabled,
+                splitLayoutEnabled);
     }
 
     private static class DvorakUrlCustomizer extends EnglishDvorakCustomizer {
-        DvorakUrlCustomizer(final Locale locale) {
-            super(locale);
-        }
+        DvorakUrlCustomizer(final Locale locale) { super(locale); }
 
         @Override
         public ExpectedKey getEnterKey(final boolean isPhone) {
-            return isPhone ? LayoutBase.ENTER_KEY : super.getEnterKey(isPhone);
+            return isPhone ? ENTER_KEY : super.getEnterKey(isPhone);
         }
 
         @Override
         public ExpectedKey getEmojiKey(final boolean isPhone) {
-            return LayoutBase.DOMAIN_KEY;
+            return DOMAIN_KEY;
         }
 
         @Override
         public ExpectedKey[] getKeysLeftToSpacebar(final boolean isPhone) {
             return isPhone ? super.getKeysLeftToSpacebar(isPhone)
-                    : joinKeys(key("/", LayoutBase.SETTINGS_KEY));
+                    : joinKeys(key("/", SETTINGS_KEY));
         }
     }
 
     private static class DvorakEmail extends Dvorak {
-        public DvorakEmail(final LayoutCustomizer customizer) {
-            super(customizer);
-        }
+        DvorakEmail(final LayoutCustomizer customizer) { super(customizer); }
 
         @Override
         protected ExpectedKey getRow1_1Key(final boolean isPhone, final int elementId) {

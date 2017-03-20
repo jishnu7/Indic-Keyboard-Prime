@@ -20,7 +20,8 @@ import android.content.res.Resources;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
+import com.android.inputmethod.latin.common.LocaleUtils;
+import com.android.inputmethod.latin.settings.SpacingAndPunctuations;
 
 import java.util.Locale;
 
@@ -43,5 +44,22 @@ public class DictionaryInfoUtilsTests extends AndroidTestCase {
         assertFalse(DictionaryInfoUtils.looksValidForDictionaryInsertion("akeo  raeoch oerch .",
                 sp));
         assertFalse(DictionaryInfoUtils.looksValidForDictionaryInsertion("!!!", sp));
+    }
+
+    public void testGetMainDictId() {
+        assertEquals("main:en",
+                DictionaryInfoUtils.getMainDictId(LocaleUtils.constructLocaleFromString("en")));
+        assertEquals("main:en_us",
+                DictionaryInfoUtils.getMainDictId(LocaleUtils.constructLocaleFromString("en_US")));
+        assertEquals("main:en_gb",
+                DictionaryInfoUtils.getMainDictId(LocaleUtils.constructLocaleFromString("en_GB")));
+
+        assertEquals("main:es",
+                DictionaryInfoUtils.getMainDictId(LocaleUtils.constructLocaleFromString("es")));
+        assertEquals("main:es_us",
+                DictionaryInfoUtils.getMainDictId(LocaleUtils.constructLocaleFromString("es_US")));
+
+        assertEquals("main:en_us_posix", DictionaryInfoUtils.getMainDictId(
+                        LocaleUtils.constructLocaleFromString("en_US_POSIX")));
     }
 }

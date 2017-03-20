@@ -19,18 +19,14 @@ package in.androidtweak.inputmethod.indic;
 import android.content.ContentProviderClient;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
-import android.content.res.Resources;
 import android.util.Log;
 
-import com.android.inputmethod.latin.ReadOnlyBinaryDictionary;
+import com.android.inputmethod.latin.utils.DictionaryInfoUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Locale;
-
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.utils.DictionaryInfoUtils;
 
 /**
  * Factory for dictionary instances.
@@ -45,25 +41,24 @@ public final class DictionaryFactory {
      * locale. If none is found, it falls back to the built-in dictionary - if any.
      * @param context application context for reading resources
      * @param locale the locale for which to create the dictionary
-     * @param useFullEditDistance whether to use the full edit distance in suggestions
      * @return an initialized instance of DictionaryCollection
      */
     public static DictionaryCollection createMainDictionaryFromManager(final Context context,
-            final Locale locale, final boolean useFullEditDistance) {
+            final Locale locale) {
         if (null == locale) {
             Log.e(TAG, "No locale defined for dictionary");
-            return new DictionaryCollection(Dictionary.TYPE_MAIN,
+            return new DictionaryCollection(Dictionary.TYPE_MAIN, locale,
                     createReadOnlyBinaryDictionary(context, locale));
         }
 
         final LinkedList<Dictionary> dictList = new LinkedList<>();
         final ArrayList<AssetFileAddress> assetFileList =
-                BinaryDictionaryGetter.getDictionaryFiles(locale, context);
+                BinaryDictionaryGetter.getDictionaryFiles(locale, context, true);
         if (null != assetFileList) {
             for (final AssetFileAddress f : assetFileList) {
                 final ReadOnlyBinaryDictionary readOnlyBinaryDictionary =
                         new ReadOnlyBinaryDictionary(f.mFilename, f.mOffset, f.mLength,
-                                useFullEditDistance, locale, Dictionary.TYPE_MAIN);
+                                false /* useFullEditDistance */, locale, Dictionary.TYPE_MAIN);
                 if (readOnlyBinaryDictionary.isValidDictionary()) {
                     dictList.add(readOnlyBinaryDictionary);
                 } else {
@@ -77,7 +72,7 @@ public final class DictionaryFactory {
         // If the list is empty, that means we should not use any dictionary (for example, the user
         // explicitly disabled the main dictionary), so the following is okay. dictList is never
         // null, but if for some reason it is, DictionaryCollection handles it gracefully.
-        return new DictionaryCollection(Dictionary.TYPE_MAIN, dictList);
+        return new DictionaryCollection(Dictionary.TYPE_MAIN, locale, dictList);
     }
 
     /**
@@ -85,7 +80,7 @@ public final class DictionaryFactory {
      * @param context The context to contact the dictionary provider, if possible.
      * @param f A file address to the dictionary to kill.
      */
-    private static void killDictionary(final Context context, final AssetFileAddress f) {
+    public static void killDictionary(final Context context, final AssetFileAddress f) {
         if (f.pointsToPhysicalFile()) {
             f.deleteUnderlyingFile();
             // Warn the dictionary provider if the dictionary came from there.
@@ -103,40 +98,24 @@ public final class DictionaryFactory {
             }
             final String wordlistId =
                     DictionaryInfoUtils.getWordListIdFromFileName(new File(f.mFilename).getName());
-            if (null != wordlistId) {
-                // TODO: this is a reasonable last resort, but it is suboptimal.
-                // The following will remove the entry for this dictionary with the dictionary
-                // provider. When the metadata is downloaded again, we will try downloading it
-                // again.
-                // However, in the practice that will mean the user will find themselves without
-                // the new dictionary. That's fine for languages where it's included in the APK,
-                // but for other languages it will leave the user without a dictionary at all until
-                // the next update, which may be a few days away.
-                // Ideally, we would trigger a new download right away, and use increasing retry
-                // delays for this particular id/version combination.
-                // Then again, this is expected to only ever happen in case of human mistake. If
-                // the wrong file is on the server, the following is still doing the right thing.
-                // If it's a file left over from the last version however, it's not great.
-                BinaryDictionaryFileDumper.reportBrokenFileToDictionaryProvider(
-                        providerClient,
-                        context.getString(R.string.dictionary_pack_client_id),
-                        wordlistId);
-            }
+            // TODO: this is a reasonable last resort, but it is suboptimal.
+            // The following will remove the entry for this dictionary with the dictionary
+            // provider. When the metadata is downloaded again, we will try downloading it
+            // again.
+            // However, in the practice that will mean the user will find themselves without
+            // the new dictionary. That's fine for languages where it's included in the APK,
+            // but for other languages it will leave the user without a dictionary at all until
+            // the next update, which may be a few days away.
+            // Ideally, we would trigger a new download right away, and use increasing retry
+            // delays for this particular id/version combination.
+            // Then again, this is expected to only ever happen in case of human mistake. If
+            // the wrong file is on the server, the following is still doing the right thing.
+            // If it's a file left over from the last version however, it's not great.
+            BinaryDictionaryFileDumper.reportBrokenFileToDictionaryProvider(
+                    providerClient,
+                    context.getString(R.string.dictionary_pack_client_id),
+                    wordlistId);
         }
-    }
-
-    /**
-     * Initializes a main dictionary collection from a dictionary pack, with default flags.
-     *
-     * This searches for a content provider providing a dictionary pack for the specified
-     * locale. If none is found, it falls back to the built-in dictionary, if any.
-     * @param context application context for reading resources
-     * @param locale the locale for which to create the dictionary
-     * @return an initialized instance of DictionaryCollection
-     */
-    public static DictionaryCollection createMainDictionaryFromManager(final Context context,
-            final Locale locale) {
-        return createMainDictionaryFromManager(context, locale, false /* useFullEditDistance */);
     }
 
     /**
@@ -145,7 +124,7 @@ public final class DictionaryFactory {
      * @param locale the locale to use for the resource
      * @return an initialized instance of ReadOnlyBinaryDictionary
      */
-    protected static ReadOnlyBinaryDictionary createReadOnlyBinaryDictionary(final Context context,
+    private static ReadOnlyBinaryDictionary createReadOnlyBinaryDictionary(final Context context,
             final Locale locale) {
         AssetFileDescriptor afd = null;
         try {
@@ -178,37 +157,5 @@ public final class DictionaryFactory {
                 }
             }
         }
-    }
-
-    /**
-     * Create a dictionary from passed data. This is intended for unit tests only.
-     * @param dictionaryList the list of files to read, with their offsets and lengths
-     * @param useFullEditDistance whether to use the full edit distance in suggestions
-     * @return the created dictionary, or null.
-     */
-    @UsedForTesting
-    public static Dictionary createDictionaryForTest(final AssetFileAddress[] dictionaryList,
-            final boolean useFullEditDistance, Locale locale) {
-        final DictionaryCollection dictionaryCollection =
-                new DictionaryCollection(Dictionary.TYPE_MAIN);
-        for (final AssetFileAddress address : dictionaryList) {
-            final ReadOnlyBinaryDictionary readOnlyBinaryDictionary = new ReadOnlyBinaryDictionary(
-                    address.mFilename, address.mOffset, address.mLength, useFullEditDistance,
-                    locale, Dictionary.TYPE_MAIN);
-            dictionaryCollection.addDictionary(readOnlyBinaryDictionary);
-        }
-        return dictionaryCollection;
-    }
-
-    /**
-     * Find out whether a dictionary is available for this locale.
-     * @param context the context on which to check resources.
-     * @param locale the locale to check for.
-     * @return whether a (non-placeholder) dictionary is available or not.
-     */
-    public static boolean isDictionaryAvailable(Context context, Locale locale) {
-        final Resources res = context.getResources();
-        return 0 != DictionaryInfoUtils.getMainDictionaryResourceIdIfAvailableForLocale(
-                res, locale);
     }
 }

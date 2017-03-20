@@ -21,32 +21,36 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
-
-import java.util.Arrays;
-import java.util.Locale;
 
 import in.androidtweak.inputmethod.compat.AppWorkaroundsUtils;
 import in.androidtweak.inputmethod.indic.InputAttributes;
 import in.androidtweak.inputmethod.indic.R;
 import in.androidtweak.inputmethod.indic.RichInputMethodManager;
-import in.androidtweak.inputmethod.indic.SubtypeSwitcher;
 import com.android.inputmethod.latin.utils.AsyncResultHolder;
 import com.android.inputmethod.latin.utils.ResourceUtils;
 import com.android.inputmethod.latin.utils.TargetPackageInfoGetterTask;
 
+import java.util.Arrays;
+import java.util.Locale;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 /**
  * When you call the constructor of this class, you may want to change the current system locale by
  * using {@link com.android.inputmethod.latin.utils.RunInLocale}.
  */
-public final class SettingsValues {
+// Non-final for testing via mock library.
+public class SettingsValues {
     private static final String TAG = SettingsValues.class.getSimpleName();
     // "floatMaxValue" and "floatNegativeInfinity" are special marker strings for
     // Float.NEGATIVE_INFINITE and Float.MAX_VALUE. Currently used for auto-correction settings.
     private static final String FLOAT_MAX_VALUE_MARKER_STRING = "floatMaxValue";
     private static final String FLOAT_NEGATIVE_INFINITY_MARKER_STRING = "floatNegativeInfinity";
     private static final int TIMEOUT_TO_GET_TARGET_PACKAGE = 5; // seconds
+    public static final float DEFAULT_SIZE_SCALE = 1.0f; // 100%
 
     // From resources:
     public final SpacingAndPunctuations mSpacingAndPunctuations;
@@ -74,12 +78,19 @@ public final class SettingsValues {
     public final boolean mGestureTrailEnabled;
     public final boolean mGestureFloatingPreviewTextEnabled;
     public final boolean mSlidingKeyInputPreviewEnabled;
-    public final boolean mPhraseGestureEnabled;
     public final int mKeyLongpressTimeout;
+    public final boolean mEnableEmojiAltPhysicalKey;
+    public final boolean mShowAppIcon;
+    public final boolean mIsShowAppIconSettingInPreferences;
+    public final boolean mCloudSyncEnabled;
     public final boolean mEnableMetricsLogging;
-    public final boolean mShouldShowUiToAcceptTypedWord;
+    public final boolean mShouldShowLxxSuggestionUi;
+    // Use split layout for keyboard.
+    public final boolean mIsSplitKeyboardEnabled;
+    public final int mScreenMetrics;
 
     // From the input box
+    @Nonnull
     public final InputAttributes mInputAttributes;
 
     // Deduced settings
@@ -88,20 +99,16 @@ public final class SettingsValues {
     public final int mKeyPreviewPopupDismissDelay;
     private final boolean mAutoCorrectEnabled;
     public final float mAutoCorrectionThreshold;
+    public final float mPlausibilityThreshold;
     public final boolean mAutoCorrectionEnabledPerUserSettings;
     private final boolean mSuggestionsEnabledPerUserSettings;
     private final AsyncResultHolder<AppWorkaroundsUtils> mAppWorkarounds;
 
-    // Setting values for additional features
-    public final int[] mAdditionalFeaturesSettingValues =
-            new int[AdditionalFeaturesSettingUtils.ADDITIONAL_FEATURES_SETTINGS_SIZE];
-
-    // TextDecorator
-    public final int mTextHighlightColorForAddToDictionaryIndicator;
-
     // Debug settings
     public final boolean mIsInternal;
     public final boolean mHasCustomKeyPreviewAnimationParams;
+    public final boolean mHasKeyboardResize;
+    public final float mKeyboardHeightScale;
     public final int mKeyPreviewShowUpDuration;
     public final int mKeyPreviewDismissDuration;
     public final float mKeyPreviewShowUpStartXScale;
@@ -109,8 +116,10 @@ public final class SettingsValues {
     public final float mKeyPreviewDismissEndXScale;
     public final float mKeyPreviewDismissEndYScale;
 
+    @Nullable public final String mAccount;
+
     public SettingsValues(final Context context, final SharedPreferences prefs, final Resources res,
-            final InputAttributes inputAttributes) {
+            @Nonnull final InputAttributes inputAttributes) {
         mLocale = res.getConfiguration().locale;
         // Get the resources
         mDelayInMillisecondsToUpdateOldSuggestions =
@@ -118,12 +127,7 @@ public final class SettingsValues {
         mSpacingAndPunctuations = new SpacingAndPunctuations(res);
 
         // Store the input attributes
-        if (null == inputAttributes) {
-            mInputAttributes = new InputAttributes(
-                    null, false /* isFullscreenMode */, context.getPackageName());
-        } else {
-            mInputAttributes = inputAttributes;
-        }
+        mInputAttributes = inputAttributes;
 
         // Get the settings preferences
         mAutoCap = prefs.getBoolean(Settings.PREF_AUTO_CAP, true);
@@ -134,10 +138,7 @@ public final class SettingsValues {
                 DebugSettings.PREF_SLIDING_KEY_INPUT_PREVIEW, true);
         mShowsVoiceInputKey = needsToShowVoiceInputKey(prefs, res)
                 && mInputAttributes.mShouldShowVoiceInputKey
-                && SubtypeSwitcher.getInstance().isShortcutImeEnabled();
-        final String autoCorrectionThresholdRawValue = prefs.getString(
-                Settings.PREF_AUTO_CORRECTION_THRESHOLD,
-                res.getString(R.string.auto_correction_threshold_mode_index_modest));
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
         mIncludesOtherImesInLanguageSwitchList = Settings.ENABLE_SHOW_LANGUAGE_SWITCH_KEY_SETTINGS
                 ? prefs.getBoolean(Settings.PREF_INCLUDE_OTHER_IMES_IN_LANGUAGE_SWITCH_LIST, false)
                 : true /* forcibly */;
@@ -148,35 +149,46 @@ public final class SettingsValues {
         mUseDoubleSpacePeriod = prefs.getBoolean(Settings.PREF_KEY_USE_DOUBLE_SPACE_PERIOD, true)
                 && inputAttributes.mIsGeneralTextInput;
         mBlockPotentiallyOffensive = Settings.readBlockPotentiallyOffensive(prefs, res);
-        mAutoCorrectEnabled = Settings.readAutoCorrectEnabled(autoCorrectionThresholdRawValue, res);
+        mAutoCorrectEnabled = Settings.readAutoCorrectEnabled(prefs, res);
+        final String autoCorrectionThresholdRawValue = mAutoCorrectEnabled
+                ? res.getString(R.string.auto_correction_threshold_mode_index_modest)
+                : res.getString(R.string.auto_correction_threshold_mode_index_off);
         mBigramPredictionEnabled = readBigramPredictionEnabled(prefs, res);
         mDoubleSpacePeriodTimeout = res.getInteger(R.integer.config_double_space_period_timeout);
         mHasHardwareKeyboard = Settings.readHasHardwareKeyboard(res.getConfiguration());
         mEnableMetricsLogging = prefs.getBoolean(Settings.PREF_ENABLE_METRICS_LOGGING, true);
-        mShouldShowUiToAcceptTypedWord = Settings.HAS_UI_TO_ACCEPT_TYPED_WORD
-                && prefs.getBoolean(DebugSettings.PREF_SHOW_UI_TO_ACCEPT_TYPED_WORD, true);
+        mIsSplitKeyboardEnabled = prefs.getBoolean(Settings.PREF_ENABLE_SPLIT_KEYBOARD, false);
+        mScreenMetrics = Settings.readScreenMetrics(res);
+
+        mShouldShowLxxSuggestionUi = Settings.SHOULD_SHOW_LXX_SUGGESTION_UI
+                && prefs.getBoolean(DebugSettings.PREF_SHOULD_SHOW_LXX_SUGGESTION_UI, true);
         // Compute other readable settings
         mKeyLongpressTimeout = Settings.readKeyLongpressTimeout(prefs, res);
         mKeypressVibrationDuration = Settings.readKeypressVibrationDuration(prefs, res);
         mKeypressSoundVolume = Settings.readKeypressSoundVolume(prefs, res);
         mKeyPreviewPopupDismissDelay = Settings.readKeyPreviewPopupDismissDelay(prefs, res);
+        mEnableEmojiAltPhysicalKey = prefs.getBoolean(
+                Settings.PREF_ENABLE_EMOJI_ALT_PHYSICAL_KEY, true);
+        mShowAppIcon = Settings.readShowSetupWizardIcon(prefs, context);
+        mIsShowAppIconSettingInPreferences = prefs.contains(Settings.PREF_SHOW_SETUP_WIZARD_ICON);
         mAutoCorrectionThreshold = readAutoCorrectionThreshold(res,
                 autoCorrectionThresholdRawValue);
+        mPlausibilityThreshold = Settings.readPlausibilityThreshold(res);
         mGestureInputEnabled = Settings.readGestureInputEnabled(prefs, res);
         mGestureTrailEnabled = prefs.getBoolean(Settings.PREF_GESTURE_PREVIEW_TRAIL, true);
-        mGestureFloatingPreviewTextEnabled = prefs.getBoolean(
-                Settings.PREF_GESTURE_FLOATING_PREVIEW_TEXT, true);
-        mPhraseGestureEnabled = Settings.readPhraseGestureEnabled(prefs, res);
+        mCloudSyncEnabled = prefs.getBoolean(LocalSettingsConstants.PREF_ENABLE_CLOUD_SYNC, false);
+        mAccount = prefs.getString(LocalSettingsConstants.PREF_ACCOUNT_NAME,
+                null /* default */);
+        mGestureFloatingPreviewTextEnabled = !mInputAttributes.mDisableGestureFloatingPreviewText
+                && prefs.getBoolean(Settings.PREF_GESTURE_FLOATING_PREVIEW_TEXT, true);
         mAutoCorrectionEnabledPerUserSettings = mAutoCorrectEnabled
                 && !mInputAttributes.mInputTypeNoAutoCorrect;
         mSuggestionsEnabledPerUserSettings = readSuggestionsEnabled(prefs);
-        AdditionalFeaturesSettingUtils.readAdditionalFeaturesPreferencesIntoArray(
-                prefs, mAdditionalFeaturesSettingValues);
-        mTextHighlightColorForAddToDictionaryIndicator = res.getColor(
-                R.color.text_decorator_add_to_dictionary_indicator_text_highlight_color);
         mIsInternal = Settings.isInternal(prefs);
         mHasCustomKeyPreviewAnimationParams = prefs.getBoolean(
                 DebugSettings.PREF_HAS_CUSTOM_KEY_PREVIEW_ANIMATION_PARAMS, false);
+        mHasKeyboardResize = prefs.getBoolean(DebugSettings.PREF_RESIZE_KEYBOARD, false);
+        mKeyboardHeightScale = Settings.readKeyboardHeight(prefs, DEFAULT_SIZE_SCALE);
         mKeyPreviewShowUpDuration = Settings.readKeyPreviewAnimationDuration(
                 prefs, DebugSettings.PREF_KEY_PREVIEW_SHOW_UP_DURATION,
                 res.getInteger(R.integer.config_key_preview_show_up_duration));
@@ -200,7 +212,7 @@ public final class SettingsValues {
                 prefs, DebugSettings.PREF_KEY_PREVIEW_DISMISS_END_Y_SCALE,
                 defaultKeyPreviewDismissEndScale);
         mDisplayOrientation = res.getConfiguration().orientation;
-        mAppWorkarounds = new AsyncResultHolder<>();
+        mAppWorkarounds = new AsyncResultHolder<>("AppWorkarounds");
         final PackageInfo packageInfo = TargetPackageInfoGetterTask.getCachedPackageInfo(
                 mInputAttributes.mTargetApplicationPackageName);
         if (null != packageInfo) {
@@ -209,6 +221,10 @@ public final class SettingsValues {
             new TargetPackageInfoGetterTask(context, mAppWorkarounds)
                     .execute(mInputAttributes.mTargetApplicationPackageName);
         }
+    }
+
+    public boolean isMetricsLoggingEnabled() {
+        return mEnableMetricsLogging;
     }
 
     public boolean isApplicationSpecifiedCompletionsOn() {
@@ -222,6 +238,10 @@ public final class SettingsValues {
 
     public boolean isSuggestionsEnabledPerUserSettings() {
         return mSuggestionsEnabledPerUserSettings;
+    }
+
+    public boolean isPersonalizationEnabled() {
+        return mUsePersonalizedDicts;
     }
 
     public boolean isWordSeparator(final int code) {
@@ -256,9 +276,8 @@ public final class SettingsValues {
         final RichInputMethodManager imm = RichInputMethodManager.getInstance();
         if (mIncludesOtherImesInLanguageSwitchList) {
             return imm.hasMultipleEnabledIMEsOrSubtypes(false /* include aux subtypes */);
-        } else {
-            return imm.hasMultipleEnabledSubtypesInThisIme(false /* include aux subtypes */);
         }
+        return imm.hasMultipleEnabledSubtypesInThisIme(false /* include aux subtypes */);
     }
 
     public boolean isSameInputType(final EditorInfo editorInfo) {
@@ -388,8 +407,6 @@ public final class SettingsValues {
         sb.append("" + mGestureFloatingPreviewTextEnabled);
         sb.append("\n   mSlidingKeyInputPreviewEnabled = ");
         sb.append("" + mSlidingKeyInputPreviewEnabled);
-        sb.append("\n   mPhraseGestureEnabled = ");
-        sb.append("" + mPhraseGestureEnabled);
         sb.append("\n   mKeyLongpressTimeout = ");
         sb.append("" + mKeyLongpressTimeout);
         sb.append("\n   mLocale = ");
@@ -415,10 +432,6 @@ public final class SettingsValues {
         sb.append("\n   mAppWorkarounds = ");
         final AppWorkaroundsUtils awu = mAppWorkarounds.get(null, 0);
         sb.append("" + (null == awu ? "null" : awu.toString()));
-        sb.append("\n   mAdditionalFeaturesSettingValues = ");
-        sb.append("" + Arrays.toString(mAdditionalFeaturesSettingValues));
-        sb.append("\n   mTextHighlightColorForAddToDictionaryIndicator = ");
-        sb.append("" + mTextHighlightColorForAddToDictionaryIndicator);
         sb.append("\n   mIsInternal = ");
         sb.append("" + mIsInternal);
         sb.append("\n   mKeyPreviewShowUpDuration = ");

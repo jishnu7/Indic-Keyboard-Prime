@@ -20,14 +20,13 @@ import android.content.res.Resources;
 
 import com.android.inputmethod.keyboard.internal.MoreKeySpec;
 import in.androidtweak.inputmethod.indic.PunctuationSuggestions;
+import in.androidtweak.inputmethod.indic.R;
+import in.androidtweak.inputmethod.indic.common.Constants;
+import com.android.inputmethod.latin.common.StringUtils;
+import com.android.inputmethod.latin.common.StringUtils;
 
 import java.util.Arrays;
 import java.util.Locale;
-
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.R;
-import com.android.inputmethod.latin.utils.StringUtils;
 
 public final class SpacingAndPunctuations {
     private final int[] mSortedSymbolsPrecededBySpace;
@@ -37,6 +36,8 @@ public final class SpacingAndPunctuations {
     public final int[] mSortedWordSeparators;
     public final PunctuationSuggestions mSuggestPuncList;
     private final int mSentenceSeparator;
+    private final int mAbbreviationMarker;
+    private final int[] mSortedSentenceTerminators;
     public final String mSentenceSeparatorAndSpace;
     public final boolean mCurrentLanguageHasSpaces;
     public final boolean mUsesAmericanTypography;
@@ -56,7 +57,10 @@ public final class SpacingAndPunctuations {
                 res.getString(R.string.symbols_word_connectors));
         mSortedWordSeparators = StringUtils.toSortedCodePointArray(
                 res.getString(R.string.symbols_word_separators));
+        mSortedSentenceTerminators = StringUtils.toSortedCodePointArray(
+                res.getString(R.string.symbols_sentence_terminators));
         mSentenceSeparator = res.getInteger(R.integer.sentence_separator);
+        mAbbreviationMarker = res.getInteger(R.integer.abbreviation_marker);
         mSentenceSeparatorAndSpace = new String(new int[] {
                 mSentenceSeparator, Constants.CODE_SPACE }, 0, 2);
         mCurrentLanguageHasSpaces = res.getBoolean(R.bool.current_language_has_spaces);
@@ -78,8 +82,10 @@ public final class SpacingAndPunctuations {
         mSortedSymbolsClusteringTogether = model.mSortedSymbolsClusteringTogether;
         mSortedWordConnectors = model.mSortedWordConnectors;
         mSortedWordSeparators = overrideSortedWordSeparators;
+        mSortedSentenceTerminators = model.mSortedSentenceTerminators;
         mSuggestPuncList = model.mSuggestPuncList;
         mSentenceSeparator = model.mSentenceSeparator;
+        mAbbreviationMarker = model.mAbbreviationMarker;
         mSentenceSeparatorAndSpace = model.mSentenceSeparatorAndSpace;
         mCurrentLanguageHasSpaces = model.mCurrentLanguageHasSpaces;
         mUsesAmericanTypography = model.mUsesAmericanTypography;
@@ -108,6 +114,14 @@ public final class SpacingAndPunctuations {
 
     public boolean isClusteringSymbol(final int code) {
         return Arrays.binarySearch(mSortedSymbolsClusteringTogether, code) >= 0;
+    }
+
+    public boolean isSentenceTerminator(final int code) {
+        return Arrays.binarySearch(mSortedSentenceTerminators, code) >= 0;
+    }
+
+    public boolean isAbbreviationMarker(final int code) {
+        return code == mAbbreviationMarker;
     }
 
     public boolean isSentenceSeparator(final int code) {

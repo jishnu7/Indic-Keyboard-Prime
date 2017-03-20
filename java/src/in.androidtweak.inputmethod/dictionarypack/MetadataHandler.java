@@ -16,8 +16,10 @@
 
 package in.androidtweak.inputmethod.dictionarypack;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,13 +31,13 @@ import java.util.List;
  * Helper class to easy up manipulation of dictionary pack metadata.
  */
 public class MetadataHandler {
-    @SuppressWarnings("unused")
-    private static final String TAG = "DictionaryProvider:" + MetadataHandler.class.getSimpleName();
+
+    public static final String TAG = MetadataHandler.class.getSimpleName();
 
     // The canonical file name for metadata. This is not the name of a real file on the
     // device, but a symbolic name used in the database and in metadata handling. It is never
     // tested against, only used for human-readability as the file name for the metadata.
-    public final static String METADATA_FILENAME = "metadata.json";
+    public static final String METADATA_FILENAME = "metadata.json";
 
     /**
      * Reads the data from the cursor and store it in metadata objects.
@@ -55,6 +57,7 @@ public class MetadataHandler {
             final int rawChecksumIndex =
                     results.getColumnIndex(MetadataDbHelper.RAW_CHECKSUM_COLUMN);
             final int checksumIndex = results.getColumnIndex(MetadataDbHelper.CHECKSUM_COLUMN);
+            final int retryCountIndex = results.getColumnIndex(MetadataDbHelper.RETRY_COUNT_COLUMN);
             final int localFilenameIndex =
                     results.getColumnIndex(MetadataDbHelper.LOCAL_FILENAME_COLUMN);
             final int remoteFilenameIndex =
@@ -70,6 +73,7 @@ public class MetadataHandler {
                         results.getLong(fileSizeIndex),
                         results.getString(rawChecksumIndex),
                         results.getString(checksumIndex),
+                        results.getInt(retryCountIndex),
                         results.getString(localFilenameIndex),
                         results.getString(remoteFilenameIndex),
                         results.getInt(versionIndex),
@@ -99,6 +103,30 @@ public class MetadataHandler {
                 results.close();
             }
         }
+    }
+
+    /**
+     * Gets the metadata, for a specific dictionary.
+     *
+     * @param context The context to open files over.
+     * @param clientId the client id for retrieving the database. null for default (deprecated).
+     * @param wordListId the word list ID.
+     * @param version the word list version.
+     * @return the current metaData
+     */
+    public static WordListMetadata getCurrentMetadataForWordList(final Context context,
+            final String clientId, final String wordListId, final int version) {
+        final ContentValues contentValues = MetadataDbHelper.getContentValuesByWordListId(
+                MetadataDbHelper.getDb(context, clientId), wordListId, version);
+        if (contentValues == null) {
+            // TODO: Figure out why this would happen.
+            // Check if this happens when the metadata gets updated in the background.
+            Log.e(TAG, String.format( "Unable to find the current metadata for wordlist "
+                            + "(clientId=%s, wordListId=%s, version=%d) on the database",
+                    clientId, wordListId, version));
+            return null;
+        }
+        return WordListMetadata.createFromContentValues(contentValues);
     }
 
     /**

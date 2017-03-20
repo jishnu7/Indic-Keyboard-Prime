@@ -18,7 +18,7 @@ package com.android.inputmethod.keyboard.internal;
 
 import android.test.AndroidTestCase;
 
-import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.latin.common.Constants;
 
 public class KeyboardStateTestsBase extends AndroidTestCase
         implements MockKeyboardSwitcher.MockConstants {
