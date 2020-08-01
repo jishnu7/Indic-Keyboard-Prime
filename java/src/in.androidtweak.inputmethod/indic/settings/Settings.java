@@ -25,10 +25,10 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import in.androidtweak.inputmethod.compat.BuildCompatUtils;
-import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
-import in.androidtweak.inputmethod.indic.InputAttributes;
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.compat.BuildCompatUtils;
+import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
+import com.android.inputmethod.latin.InputAttributes;
+import com.android.inputmethod.latin.R;
 import com.android.inputmethod.latin.common.StringUtils;
 import com.android.inputmethod.latin.utils.AdditionalSubtypeUtils;
 import com.android.inputmethod.latin.utils.ResourceUtils;
@@ -104,6 +104,10 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     // This is being used only for the backward compatibility.
     private static final String PREF_SUPPRESS_LANGUAGE_SWITCH_KEY =
             "pref_suppress_language_switch_key";
+    private static final String PREF_SHOW_EMOJI_SWITCH_KEY =
+            "pref_show_emoji_switch_key";
+    private static final String PREF_SHOW_NUMBER_ROW =
+            "pref_show_number_row";
 
     private static final String PREF_LAST_USED_PERSONALIZATION_TOKEN =
             "pref_last_used_personalization_token";
@@ -111,6 +115,9 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
             "pref_last_used_personalization_dict_wiped_time";
     private static final String PREF_CORPUS_HANDLES_FOR_PERSONALIZATION =
             "pref_corpus_handles_for_personalization";
+
+    public static final String PREF_RESIZE_KEYBOARD = "pref_resize_keyboard";
+    public static final String PREF_KEYBOARD_HEIGHT_SCALE = "pref_keyboard_height_scale";
 
     // Emoji
     public static final String PREF_EMOJI_RECENT_KEYS = "emoji_recent_keys";
@@ -272,6 +279,14 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
         return prefs.getBoolean(PREF_SHOW_LANGUAGE_SWITCH_KEY, true);
     }
 
+    public static boolean readShowsEmojiSwitchKey(final SharedPreferences prefs) {
+        return prefs.getBoolean(PREF_SHOW_EMOJI_SWITCH_KEY, false);
+    }
+
+    public static boolean readShowsNumberRow(final SharedPreferences prefs) {
+        return prefs.getBoolean(PREF_SHOW_NUMBER_ROW, false);
+    }
+
     public static String readPrefAdditionalSubtypes(final SharedPreferences prefs,
             final Resources res) {
         final String predefinedPrefSubtypes = AdditionalSubtypeUtils.createPrefSubtypes(
@@ -345,7 +360,7 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     public static float readKeyboardHeight(final SharedPreferences prefs,
             final float defaultValue) {
         final float percentage = prefs.getFloat(
-                DebugSettings.PREF_KEYBOARD_HEIGHT_SCALE, UNDEFINED_PREFERENCE_VALUE_FLOAT);
+                PREF_KEYBOARD_HEIGHT_SCALE, UNDEFINED_PREFERENCE_VALUE_FLOAT);
         return (percentage != UNDEFINED_PREFERENCE_VALUE_FLOAT) ? percentage : defaultValue;
     }
 
@@ -362,7 +377,7 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
             // Default value
             return !isApplicationInSystemImage;
         }
-        return prefs.getBoolean(PREF_SHOW_SETUP_WIZARD_ICON, false);
+        return prefs.getBoolean(PREF_SHOW_SETUP_WIZARD_ICON, true);
     }
 
     public static boolean readHasHardwareKeyboard(final Configuration conf) {

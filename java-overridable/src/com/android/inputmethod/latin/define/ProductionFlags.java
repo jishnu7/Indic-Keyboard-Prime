@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package in.androidtweak.inputmethod.indic.define;
+package com.android.inputmethod.latin.define;
 
 public final class ProductionFlags {
     private ProductionFlags() {

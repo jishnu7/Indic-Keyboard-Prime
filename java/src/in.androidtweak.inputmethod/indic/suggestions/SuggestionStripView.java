@@ -38,23 +38,22 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.inputmethod.accessibility.AccessibilityUtils;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.MainKeyboardView;
 import com.android.inputmethod.keyboard.MoreKeysPanel;
-
-import java.util.ArrayList;
-
-import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
-import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
-import in.androidtweak.inputmethod.indic.common.Constants;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.SuggestedWords;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
+import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
+import com.android.inputmethod.latin.R;
+import com.android.inputmethod.latin.SuggestedWords;
+import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
+import com.android.inputmethod.latin.common.Constants;
+import com.android.inputmethod.latin.define.DebugFlags;
 import in.androidtweak.inputmethod.indic.settings.Settings;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
 import in.androidtweak.inputmethod.indic.suggestions.MoreSuggestionsView.MoreSuggestionsListener;
 import com.android.inputmethod.latin.utils.ImportantNoticeUtils;
+
+import java.util.ArrayList;
 
 public final class SuggestionStripView extends RelativeLayout implements OnClickListener,
         OnLongClickListener {

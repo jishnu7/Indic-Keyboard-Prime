@@ -21,6 +21,14 @@
 <merge xmlns:latin="http://schemas.android.com/apk/res-auto">
     <include latin:keyboardLayout="@xml/key_styles_common" />
     <include latin:keyboardLayout="@xml/key_styles_currency" />
+    <switch>
+      <case latin:numberRowEnabled="true">
+        <Row latin:keyWidth="10%p">
+          <include
+            latin:keyboardLayout="@xml/rowkeys_symbols1" />
+        </Row>
+      </case>
+    </switch>
     <Row
         latin:keyWidth="9.091%p"
         latin:keyLabelFlags="fontNormal"
@@ -40,7 +48,8 @@
         <Key
             latin:keyStyle="shiftKeyStyle"
             latin:keyWidth="10.8%p" />
-        <include latin:keyboardLayout="@xml/rowkeys_nepali_traditional3" />
+        <include latin:keyboardLayout="@xml/rowkeys_nepali_traditional3_left6" />
+        <include latin:keyboardLayout="@xml/rowkeys_nepali_traditional3_right3" />
         <Key
             latin:keyStyle="deleteKeyStyle"
             latin:keyWidth="fillRight" />

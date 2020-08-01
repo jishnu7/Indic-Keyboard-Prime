@@ -16,6 +16,8 @@
 
 package in.androidtweak.inputmethod.indic.userdictionary;
 
+import com.android.inputmethod.latin.R;
+
 import android.app.ListFragment;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -39,8 +41,6 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import java.util.Locale;
-
-import in.androidtweak.inputmethod.indic.R;
 
 // Caveat: This class is basically taken from
 // packages/apps/Settings/src/com/android/settings/inputmethod/UserDictionarySettings.java

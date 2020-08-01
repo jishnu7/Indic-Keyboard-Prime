@@ -22,12 +22,10 @@ import android.content.res.Resources;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.ListPreference;
-import android.preference.Preference;
 
-import in.androidtweak.inputmethod.indic.AudioAndHapticFeedbackManager;
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
+import com.android.inputmethod.latin.R;
 import com.android.inputmethod.latin.SystemBroadcastReceiver;
-import in.androidtweak.inputmethod.indic.define.ProductionFlags;
 
 /**
  * "Advanced" settings sub screen.

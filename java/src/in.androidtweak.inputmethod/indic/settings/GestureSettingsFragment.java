@@ -18,7 +18,7 @@ package in.androidtweak.inputmethod.indic.settings;
 
 import android.os.Bundle;
 
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.R;
 
 /**
  * "Gesture typing preferences" settings sub screen.

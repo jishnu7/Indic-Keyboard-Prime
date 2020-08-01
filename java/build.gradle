@@ -1,66 +1,92 @@
 project.ext.set("archivesBaseName", "IndicKeyboard");
 
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
 buildscript {
     repositories {
-        mavenCentral()
+        google()
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.1+'
+        classpath 'com.android.tools.build:gradle:4.0.1'
     }
 }
+
 apply plugin: 'com.android.application'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    compile 'com.android.support:support-v4:22.1.0'
-    compile 'com.google.code.findbugs:jsr305:3.0.0'
-    compile fileTree(dir: 'libs', include: '*.jar')
-    compile project(':ime')
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation project(':ime')
 }
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 28
+    buildToolsVersion '29.0.2'
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 22
+        applicationId "in.androidtweak.inputmethod.indic"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 48
+        versionName "3.1"
     }
+
+    splits {
+      abi {
+        enable true
+        universalApk false
+        include "armeabi-v7a", "arm64-v8a"
+        exclude "x86", "x86_64"
+      }
+    }
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['../java-overridable/src', 'src']
+            java.srcDirs = ['../java-overridable/src', 'src', '../common/src', '../inputmethodcommon/java']
+            jniLibs.srcDirs = ['jniLibs']
             resources.srcDirs = ['src']
             aidl.srcDirs = ['src']
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
-        aaptOptions {
-            noCompress ".dict"
-        }
-
-        instrumentTest.setRoot('tests')
+        androidTest.setRoot('tests')
     }
+
+    aaptOptions {
+        noCompress ".dict"
+    }
+
     signingConfigs {
         release {
-            storeFile file(System.console().readLine("\n\$ Enter keystore path: "))
-            storePassword System.console().readLine("\n\$ Enter keystore password: ")
-            keyAlias System.console().readLine("\n\$ Enter key alias: ")
-            keyPassword System.console().readLine("\n\$ Enter key password: ")
+            storeFile file(String.valueOf(System.getenv("INDIC_KEYSTORE")))
+            storePassword System.getenv("INDIC_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("INDIC_KEY_ALIAS")
+            keyPassword System.getenv("INDIC_KEY_PASSWORD")
         }
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFile getDefaultProguardFile('proguard-android.txt')
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             signingConfig signingConfigs.release
         }
     }
+
     lintOptions {
         checkReleaseBuilds false
+    }
+
+    android.applicationVariants.all { variant ->
+      variant.outputs.eachWithIndex { output, outputIndex ->
+        output.versionCodeOverride = variant.versionCode - outputIndex
+      }
     }
 }

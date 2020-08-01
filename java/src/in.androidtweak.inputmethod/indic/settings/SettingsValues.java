@@ -25,10 +25,10 @@ import android.os.Build;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
-import in.androidtweak.inputmethod.compat.AppWorkaroundsUtils;
-import in.androidtweak.inputmethod.indic.InputAttributes;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.RichInputMethodManager;
+import com.android.inputmethod.compat.AppWorkaroundsUtils;
+import com.android.inputmethod.latin.InputAttributes;
+import com.android.inputmethod.latin.R;
+import com.android.inputmethod.latin.RichInputMethodManager;
 import com.android.inputmethod.latin.utils.AsyncResultHolder;
 import com.android.inputmethod.latin.utils.ResourceUtils;
 import com.android.inputmethod.latin.utils.TargetPackageInfoGetterTask;
@@ -38,6 +38,7 @@ import java.util.Locale;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
 /**
  * When you call the constructor of this class, you may want to change the current system locale by
  * using {@link com.android.inputmethod.latin.utils.RunInLocale}.
@@ -68,6 +69,8 @@ public class SettingsValues {
     public final boolean mShowsVoiceInputKey;
     public final boolean mIncludesOtherImesInLanguageSwitchList;
     public final boolean mShowsLanguageSwitchKey;
+    public final boolean mShowsEmojiSwitchKey;
+    public final boolean mShowsNumberRow;
     public final boolean mUseContactsDict;
     public final boolean mUsePersonalizedDicts;
     public final boolean mUseDoubleSpacePeriod;
@@ -144,6 +147,8 @@ public class SettingsValues {
                 : true /* forcibly */;
         mShowsLanguageSwitchKey = Settings.ENABLE_SHOW_LANGUAGE_SWITCH_KEY_SETTINGS
                 ? Settings.readShowsLanguageSwitchKey(prefs) : true /* forcibly */;
+        mShowsEmojiSwitchKey = Settings.readShowsEmojiSwitchKey(prefs);
+        mShowsNumberRow = Settings.readShowsNumberRow(prefs);
         mUseContactsDict = prefs.getBoolean(Settings.PREF_KEY_USE_CONTACTS_DICT, true);
         mUsePersonalizedDicts = prefs.getBoolean(Settings.PREF_KEY_USE_PERSONALIZED_DICTS, true);
         mUseDoubleSpacePeriod = prefs.getBoolean(Settings.PREF_KEY_USE_DOUBLE_SPACE_PERIOD, true)
@@ -183,11 +188,12 @@ public class SettingsValues {
                 && prefs.getBoolean(Settings.PREF_GESTURE_FLOATING_PREVIEW_TEXT, true);
         mAutoCorrectionEnabledPerUserSettings = mAutoCorrectEnabled
                 && !mInputAttributes.mInputTypeNoAutoCorrect;
-        mSuggestionsEnabledPerUserSettings = readSuggestionsEnabled(prefs);
+        mSuggestionsEnabledPerUserSettings = !mInputAttributes.mNoLearning
+                && readSuggestionsEnabled(prefs);
         mIsInternal = Settings.isInternal(prefs);
         mHasCustomKeyPreviewAnimationParams = prefs.getBoolean(
                 DebugSettings.PREF_HAS_CUSTOM_KEY_PREVIEW_ANIMATION_PARAMS, false);
-        mHasKeyboardResize = prefs.getBoolean(DebugSettings.PREF_RESIZE_KEYBOARD, false);
+        mHasKeyboardResize = prefs.getBoolean(Settings.PREF_RESIZE_KEYBOARD, false);
         mKeyboardHeightScale = Settings.readKeyboardHeight(prefs, DEFAULT_SIZE_SCALE);
         mKeyPreviewShowUpDuration = Settings.readKeyPreviewAnimationDuration(
                 prefs, DebugSettings.PREF_KEY_PREVIEW_SHOW_UP_DURATION,
@@ -278,6 +284,14 @@ public class SettingsValues {
             return imm.hasMultipleEnabledIMEsOrSubtypes(false /* include aux subtypes */);
         }
         return imm.hasMultipleEnabledSubtypesInThisIme(false /* include aux subtypes */);
+    }
+
+    public boolean isEmojiSwitchKeyEnabled() {
+        return mShowsEmojiSwitchKey;
+    }
+
+    public boolean isNumberRowEnabled() {
+        return mShowsNumberRow;
     }
 
     public boolean isSameInputType(final EditorInfo editorInfo) {

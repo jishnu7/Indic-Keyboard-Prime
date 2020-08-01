@@ -18,8 +18,8 @@ package com.android.inputmethod.keyboard.internal;
 
 import android.util.Log;
 
-import in.androidtweak.inputmethod.indic.common.Constants;
-import in.androidtweak.inputmethod.indic.common.InputPointers;
+import com.android.inputmethod.latin.common.Constants;
+import com.android.inputmethod.latin.common.InputPointers;
 import com.android.inputmethod.latin.common.ResizableIntArray;
 
 /**

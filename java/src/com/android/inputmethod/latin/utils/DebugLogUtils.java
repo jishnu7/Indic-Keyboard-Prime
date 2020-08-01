@@ -18,7 +18,7 @@ package com.android.inputmethod.latin.utils;
 
 import android.util.Log;
 
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
+import com.android.inputmethod.latin.define.DebugFlags;
 
 /**
  * A class for logging and debugging utility methods.

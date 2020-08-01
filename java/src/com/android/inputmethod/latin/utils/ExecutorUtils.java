@@ -17,15 +17,14 @@
 package com.android.inputmethod.latin.utils;
 
 import android.util.Log;
+
+import com.android.inputmethod.annotations.UsedForTesting;
+
 import java.lang.Thread.UncaughtExceptionHandler;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
-
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
 
 /**
  * Utilities to manage executors.

@@ -23,8 +23,7 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 
 import com.android.inputmethod.keyboard.KeyboardTheme;
-
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.R;
 import in.androidtweak.inputmethod.indic.settings.RadioButtonPreference.OnRadioButtonClickedListener;
 
 /**

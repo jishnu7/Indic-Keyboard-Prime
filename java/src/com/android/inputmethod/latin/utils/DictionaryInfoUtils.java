@@ -26,9 +26,8 @@ import android.view.inputmethod.InputMethodSubtype;
 
 import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.dictionarypack.UpdateHandler;
-import in.androidtweak.inputmethod.indic.AssetFileAddress;
-import in.androidtweak.inputmethod.indic.BinaryDictionaryGetter;
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.AssetFileAddress;
+import com.android.inputmethod.latin.BinaryDictionaryGetter;
 import com.android.inputmethod.latin.RichInputMethodManager;
 import com.android.inputmethod.latin.common.FileUtils;
 import com.android.inputmethod.latin.common.LocaleUtils;
@@ -45,16 +44,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 
 /**
  * This class encapsulates the logic for the Latin-IME side of dictionary information management.
  */
 public class DictionaryInfoUtils {
     private static final String TAG = DictionaryInfoUtils.class.getSimpleName();
-    public static final String RESOURCE_PACKAGE_NAME = R.class.getPackage().getName();
+    public static final String RESOURCE_PACKAGE_NAME = "in.androidtweak.inputmethod.indic";
     private static final String DEFAULT_MAIN_DICT = "main";
     private static final String MAIN_DICT_PREFIX = "main_";
     private static final String DECODER_DICT_SUFFIX = DecoderSpecificConstants.DECODER_DICT_SUFFIX;

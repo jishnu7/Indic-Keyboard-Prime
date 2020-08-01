@@ -22,9 +22,6 @@ import com.android.inputmethod.latin.define.DecoderSpecificConstants;
 import java.util.Date;
 import java.util.HashMap;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.Constants;
-
 /**
  * Dictionary File Format Specification.
  */

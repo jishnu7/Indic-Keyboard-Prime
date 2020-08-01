@@ -14,7 +14,7 @@
  * the License.
  */
 
-package in.androidtweak.inputmethod.dictionarypack;
+package com.android.inputmethod.dictionarypack;
 
 import android.content.Context;
 

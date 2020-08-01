@@ -27,11 +27,9 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-import in.androidtweak.inputmethod.compat.TextViewCompatUtils;
-import in.androidtweak.inputmethod.compat.ViewCompatUtils;
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.compat.TextViewCompatUtils;
+import com.android.inputmethod.compat.ViewCompatUtils;
+import com.android.inputmethod.latin.R;
 import in.androidtweak.inputmethod.indic.settings.SettingsActivity;
 import com.android.inputmethod.latin.utils.LeakGuardHandlerWrapper;
 import com.android.inputmethod.latin.utils.UncachedInputMethodManagerUtils;
@@ -43,10 +41,6 @@ import javax.annotation.Nonnull;
 // TODO: Use Fragment to implement welcome screen and setup steps.
 public final class SetupWizardActivity extends Activity implements View.OnClickListener {
     static final String TAG = SetupWizardActivity.class.getSimpleName();
-
-    // For debugging purpose.
-    private static final boolean FORCE_TO_SHOW_WELCOME_SCREEN = false;
-    private static final boolean ENABLE_WELCOME_VIDEO = true;
 
     private InputMethodManager mImm;
 
@@ -290,17 +284,14 @@ public final class SetupWizardActivity extends Activity implements View.OnClickL
         if (stepNumber == STEP_1) {
             return STEP_WELCOME;
         }
-        if (stepNumber == STEP_4) {
-            return STEP_LAUNCHING_IME_SETTINGS;
+        if (stepNumber == STEP_2) {
+            return stepNumber;
         }
-        return stepNumber;
+        return STEP_LAUNCHING_IME_SETTINGS;
     }
 
     private int determineSetupStepNumber() {
         mHandler.cancelPollingImeSettings();
-        if (FORCE_TO_SHOW_WELCOME_SCREEN) {
-            return STEP_1;
-        }
         if (!UncachedInputMethodManagerUtils.isThisImeEnabled(this, mImm)) {
             return STEP_1;
         }

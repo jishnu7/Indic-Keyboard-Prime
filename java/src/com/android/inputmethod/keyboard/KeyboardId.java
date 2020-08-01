@@ -16,18 +16,18 @@
 
 package com.android.inputmethod.keyboard;
 
+import static com.android.inputmethod.latin.common.Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET;
+
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.inputmethod.EditorInfo;
 
-import java.util.Arrays;
-import java.util.Locale;
-
-import in.androidtweak.inputmethod.compat.EditorInfoCompatUtils;
+import com.android.inputmethod.compat.EditorInfoCompatUtils;
 import com.android.inputmethod.latin.RichInputMethodSubtype;
 import com.android.inputmethod.latin.utils.InputTypeUtils;
 
-import static in.androidtweak.inputmethod.indic.Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET;
+import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * Unique identifier for each keyboard type.
@@ -79,6 +79,8 @@ public final class KeyboardId {
     public final EditorInfo mEditorInfo;
     public final boolean mClobberSettingsKey;
     public final boolean mLanguageSwitchKeyEnabled;
+    public final boolean mEmojiSwitchKeyEnabled;
+    public final boolean mNumberRowEnabled;
     public final String mCustomActionLabel;
     public final boolean mHasShortcutKey;
     public final boolean mIsSplitLayout;
@@ -94,6 +96,8 @@ public final class KeyboardId {
         mEditorInfo = params.mEditorInfo;
         mClobberSettingsKey = params.mNoSettingsKey;
         mLanguageSwitchKeyEnabled = params.mLanguageSwitchKeyEnabled;
+        mEmojiSwitchKeyEnabled = params.mEmojiSwitchKeyEnabled;
+        mNumberRowEnabled = params.mNumberRowEnabled;
         mCustomActionLabel = (mEditorInfo.actionLabel != null)
                 ? mEditorInfo.actionLabel.toString() : null;
         mHasShortcutKey = params.mVoiceInputKeyEnabled;
@@ -112,6 +116,8 @@ public final class KeyboardId {
                 id.mClobberSettingsKey,
                 id.mHasShortcutKey,
                 id.mLanguageSwitchKeyEnabled,
+                id.mEmojiSwitchKeyEnabled,
+                id.mNumberRowEnabled,
                 id.isMultiLine(),
                 id.imeAction(),
                 id.mCustomActionLabel,
@@ -133,6 +139,8 @@ public final class KeyboardId {
                 && other.mClobberSettingsKey == mClobberSettingsKey
                 && other.mHasShortcutKey == mHasShortcutKey
                 && other.mLanguageSwitchKeyEnabled == mLanguageSwitchKeyEnabled
+                && other.mEmojiSwitchKeyEnabled == mEmojiSwitchKeyEnabled
+                && other.mNumberRowEnabled == mNumberRowEnabled
                 && other.isMultiLine() == isMultiLine()
                 && other.imeAction() == imeAction()
                 && TextUtils.equals(other.mCustomActionLabel, mCustomActionLabel)
@@ -203,6 +211,8 @@ public final class KeyboardId {
                 (passwordInput() ? " passwordInput" : ""),
                 (mHasShortcutKey ? " hasShortcutKey" : ""),
                 (mLanguageSwitchKeyEnabled ? " languageSwitchKeyEnabled" : ""),
+                (mEmojiSwitchKeyEnabled ? " emojiSwitchKeyEnabled" : ""),
+                (mNumberRowEnabled ? " numberRowEnabled" : ""),
                 (isMultiLine() ? " isMultiLine" : ""),
                 (mIsSplitLayout ? " isSplitLayout" : "")
         );

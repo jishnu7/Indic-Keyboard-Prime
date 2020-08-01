@@ -19,14 +19,13 @@ package com.android.inputmethod.latin.utils;
 import android.text.InputType;
 import android.text.TextUtils;
 
+import com.android.inputmethod.latin.WordComposer;
+import com.android.inputmethod.latin.common.Constants;
+import com.android.inputmethod.latin.common.StringUtils;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
+
 import java.util.ArrayList;
 import java.util.Locale;
-
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.WordComposer;
-import in.android.inputmethod.indic.common.Constants;
-import in.android.inputmethod.indic.common.StringUtils;
-import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 public final class CapsModeUtils {
     private CapsModeUtils() {

@@ -27,13 +27,15 @@
         android:title="@string/settings_screen_accounts"
         android:key="screen_accounts" />
     <PreferenceScreen
-        android:fragment="in.androidtweak.inputmethod.indic.settings.AppearanceSettingsFragment"
-        android:title="@string/settings_screen_appearance"
-        android:key="screen_appearance" />
+        android:fragment="in.androidtweak.inputmethod.indic.settings.ThemeSettingsFragment"
+        android:key="screen_theme"
+        android:title="@string/settings_screen_theme" />
+    <!--
     <PreferenceScreen
         android:fragment="in.androidtweak.inputmethod.indic.settings.GestureSettingsFragment"
         android:title="@string/settings_screen_gesture"
         android:key="screen_gesture" />
+    -->
     <PreferenceScreen
         android:fragment="in.androidtweak.inputmethod.indic.settings.CorrectionSettingsFragment"
         android:title="@string/settings_screen_correction"

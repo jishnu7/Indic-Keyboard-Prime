@@ -16,23 +16,12 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         coreApp="true"
-        package="in.androidtweak.inputmethod.indic"
-        android:versionCode="26"
-        android:versionName="2.0.2">
+        package="com.android.inputmethod.latin">
 
-    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
-
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.READ_SYNC_STATS" />
     <uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
 
     <!-- A signature-protected permission to ask AOSP Keyboard to close the software keyboard.
@@ -49,18 +38,20 @@
                  .setPackage("com.android.inputmethod.latin"));
          }
          </pre> -->
+    <!--
     <permission android:name="com.android.inputmethod.latin.HIDE_SOFT_INPUT"
                 android:protectionLevel="signature" />
+    -->
 
     <application android:label="@string/english_ime_name"
-            android:icon="@drawable/ic_launcher_keyboard"
-            android:supportsRtl="true"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
             android:allowBackup="true"
             android:defaultToDeviceProtectedStorage="true"
             android:directBootAware="true">
 
         <!-- Services -->
-        <service android:name="LatinIME"
+        <service android:name="in.androidtweak.inputmethod.indic.LatinIME"
                 android:label="@string/english_ime_name"
                 android:permission="android.permission.BIND_INPUT_METHOD">
             <intent-filter>
@@ -69,7 +60,7 @@
             <meta-data android:name="android.view.im" android:resource="@xml/method" />
         </service>
 
-        <service android:name=".spellcheck.AndroidSpellCheckerService"
+        <service android:name="in.androidtweak.inputmethod.indic.spellcheck.AndroidSpellCheckerService"
                  android:label="@string/spell_checker_service_name"
                  android:permission="android.permission.BIND_TEXT_SERVICE">
             <intent-filter>
@@ -84,10 +75,11 @@
         </service>
 
         <!-- Activities -->
-        <activity android:name=".setup.SetupActivity"
+        <activity android:name="in.androidtweak.inputmethod.indic.setup.SetupActivity"
                 android:theme="@style/platformActivityTheme"
                 android:label="@string/english_ime_name"
-                android:icon="@drawable/ic_launcher_keyboard"
+                android:icon="@mipmap/ic_launcher"
+                android:roundIcon="@mipmap/ic_launcher_round"
                 android:launchMode="singleTask"
                 android:noHistory="true">
             <intent-filter>
@@ -103,7 +95,7 @@
             android:taskAffinity="" >
         </activity>
 
-        <activity android:name=".setup.SetupWizardActivity"
+        <activity android:name="in.androidtweak.inputmethod.indic.setup.SetupWizardActivity"
                 android:theme="@style/platformActivityTheme"
                 android:label="@string/english_ime_name"
                 android:clearTaskOnLaunch="true">
@@ -112,7 +104,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".settings.SettingsActivity"
+        <activity android:name="in.androidtweak.inputmethod.indic.settings.SettingsActivity"
                 android:theme="@style/platformSettingsTheme"
                 android:label="@string/english_ime_settings">
             <intent-filter>
@@ -120,7 +112,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".spellcheck.SpellCheckerSettingsActivity"
+        <activity android:name="in.androidtweak.inputmethod.indic.spellcheck.SpellCheckerSettingsActivity"
                   android:theme="@style/platformSettingsTheme"
                   android:label="@string/android_spell_checker_settings">
             <intent-filter>
@@ -146,7 +138,7 @@
         </activity>
 
         <!-- Unexported activity used for tests. -->
-        <activity android:name=".settings.TestFragmentActivity"
+        <activity android:name="in.androidtweak.inputmethod.indic.settings.TestFragmentActivity"
                 android:exported="false" />
 
         <!-- Broadcast receivers -->
@@ -159,13 +151,13 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name="DictionaryPackInstallBroadcastReceiver" android:exported="false">
+        <receiver android:name="in.androidtweak.inputmethod.indic.DictionaryPackInstallBroadcastReceiver" android:exported="false">
             <intent-filter>
-                <action android:name="in.androidtweak.inputmethod.dictionarypack.aosp.UNKNOWN_CLIENT" />
+                <action android:name="com.android.inputmethod.dictionarypack.aosp.UNKNOWN_CLIENT" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name="in.androidtweak.inputmethod.dictionarypack.EventHandler">
+        <receiver android:name="com.android.inputmethod.dictionarypack.EventHandler">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
@@ -182,7 +174,7 @@
         </receiver>
 
         <!-- Content providers -->
-        <provider android:name="in.androidtweak.inputmethod.dictionarypack.DictionaryProvider"
+        <provider android:name="com.android.inputmethod.dictionarypack.DictionaryProvider"
                 android:grantUriPermissions="true"
                 android:exported="false"
                 android:authorities="@string/authority"

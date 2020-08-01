@@ -16,9 +16,9 @@
 
 package in.androidtweak.inputmethod.indic;
 
-import static in.androidtweak.inputmethod.indic.common.Constants.ImeOption.FORCE_ASCII;
-import static in.androidtweak.inputmethod.indic.common.Constants.ImeOption.NO_MICROPHONE;
-import static in.androidtweak.inputmethod.indic.common.Constants.ImeOption.NO_MICROPHONE_COMPAT;
+import static com.android.inputmethod.latin.common.Constants.ImeOption.FORCE_ASCII;
+import static com.android.inputmethod.latin.common.Constants.ImeOption.NO_MICROPHONE;
+import static com.android.inputmethod.latin.common.Constants.ImeOption.NO_MICROPHONE_COMPAT;
 
 import android.Manifest.permission;
 import android.app.AlertDialog;
@@ -53,31 +53,40 @@ import android.view.inputmethod.CompletionInfo;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.accessibility.AccessibilityUtils;
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
+import com.android.inputmethod.accessibility.AccessibilityUtils;
+import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.compat.BuildCompatUtils;
 import com.android.inputmethod.compat.EditorInfoCompatUtils;
-import in.androidtweak.inputmethod.compat.InputMethodServiceCompatUtils;
-import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
+import com.android.inputmethod.compat.InputMethodServiceCompatUtils;
 import com.android.inputmethod.compat.ViewOutlineProviderCompatUtils;
 import com.android.inputmethod.compat.ViewOutlineProviderCompatUtils.InsetsUpdater;
-import in.androidtweak.inputmethod.dictionarypack.DictionaryPackConstants;
-import in.androidtweak.inputmethod.event.Event;
-import in.androidtweak.inputmethod.event.HardwareEventDecoder;
-import in.androidtweak.inputmethod.event.HardwareKeyboardEventDecoder;
-import in.androidtweak.inputmethod.event.InputTransaction;
+import com.android.inputmethod.dictionarypack.DictionaryPackConstants;
+import com.android.inputmethod.event.Event;
+import com.android.inputmethod.event.HardwareEventDecoder;
+import com.android.inputmethod.event.HardwareKeyboardEventDecoder;
+import com.android.inputmethod.event.InputTransaction;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardActionListener;
 import com.android.inputmethod.keyboard.KeyboardId;
 import com.android.inputmethod.keyboard.KeyboardSwitcher;
 import com.android.inputmethod.keyboard.MainKeyboardView;
-import in.androidtweak.inputmethod.indic.Suggest.OnGetSuggestedWordsCallback;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import com.android.inputmethod.latin.AudioAndHapticFeedbackManager;
+import com.android.inputmethod.latin.DictionaryDumpBroadcastReceiver;
+import com.android.inputmethod.latin.DictionaryFacilitator;
+import com.android.inputmethod.latin.DictionaryFacilitatorProvider;
+import com.android.inputmethod.latin.InputAttributes;
+import com.android.inputmethod.latin.LastComposedWord;
+import com.android.inputmethod.latin.R;
+import com.android.inputmethod.latin.RichInputMethodManager;
+import com.android.inputmethod.latin.Suggest;
+import com.android.inputmethod.latin.Suggest.OnGetSuggestedWordsCallback;
+import com.android.inputmethod.latin.SuggestedWords;
+import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
 import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.common.CoordinateUtils;
 import com.android.inputmethod.latin.common.InputPointers;
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import in.androidtweak.inputmethod.indic.define.ProductionFlags;
+import com.android.inputmethod.latin.define.DebugFlags;
+import com.android.inputmethod.latin.define.ProductionFlags;
 import in.androidtweak.inputmethod.indic.inputlogic.InputLogic;
 import com.android.inputmethod.latin.permissions.PermissionsManager;
 import in.androidtweak.inputmethod.indic.personalization.PersonalizationHelper;
@@ -117,7 +126,6 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
     static final String TAG = LatinIME.class.getSimpleName();
     private static final boolean TRACE = false;
 
-    private static final int EXTENDED_TOUCHABLE_REGION_HEIGHT = 100;
     private static final int PERIOD_FOR_AUDIO_AND_HAPTIC_FEEDBACK_IN_KEY_REPEAT = 2;
     private static final int PENDING_IMS_CALLBACK_DURATION_MILLIS = 800;
     static final long DELAY_WAIT_FOR_DICTIONARY_LOAD_MILLIS = TimeUnit.SECONDS.toMillis(2);
@@ -140,6 +148,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
      * replacement or removal.
      */
     private static final String SCHEME_PACKAGE = "package";
+    private static final String TRANSLITERATION_METHOD = "TransliterationMethod";
 
     final Settings mSettings;
     private final DictionaryFacilitator mDictionaryFacilitator =
@@ -597,7 +606,6 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         AudioAndHapticFeedbackManager.init(this);
         AccessibilityUtils.init(this);
         mStatsUtilsManager.onCreate(this /* context */, mDictionaryFacilitator);
-
         checkForTransliteration();
         super.onCreate();
 
@@ -637,7 +645,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
     }
 
     private boolean checkForTransliteration() {
-        Locale locale = mSubtypeSwitcher.getCurrentSubtypeLocale();
+        Locale locale = mRichImm.getCurrentSubtypeLocale();
 
         if (!locale.getLanguage().equals("en")) {
             mInputLogic.setIndic(true);
@@ -645,11 +653,12 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
             mInputLogic.setIndic(false);
         }
 
-        InputMethodSubtype currentSubtype = mSubtypeSwitcher.getCurrentSubtype();
-        if(currentSubtype.containsExtraValueKey(Constants.Subtype.ExtraValue.TRANSLITERATION_METHOD)) {
+        InputMethodSubtype currentSubtype = mRichImm.getCurrentSubtype().getRawSubtype();
+        if(currentSubtype.containsExtraValueKey(TRANSLITERATION_METHOD)) {
             try {
-                String transliterationName = currentSubtype.getExtraValueOf(Constants.Subtype.ExtraValue.TRANSLITERATION_METHOD);
+                String transliterationName = currentSubtype.getExtraValueOf(TRANSLITERATION_METHOD);
                 mInputLogic.enableTransliteration(transliterationName, getApplicationContext());
+                Log.d("IndicKeyboard", "-------------transliteration enabled-----------");
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -657,6 +666,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
             }
         }
         mInputLogic.disableTransliteration();
+        Log.d("IndicKeyboard", "-------------transliteration disabled----------------");
         return false;
     }
 
@@ -863,9 +873,9 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
         InputMethodSubtype oldSubtype = mRichImm.getCurrentSubtype().getRawSubtype();
         StatsUtils.onSubtypeChanged(oldSubtype, subtype);
         mRichImm.onSubtypeChanged(subtype);
-        checkForTransliteration();
         mInputLogic.onSubtypeChanged(SubtypeLocaleUtils.getCombiningRulesExtraValue(subtype),
                 mSettings.getCurrent());
+        checkForTransliteration();
         loadKeyboard();
     }
 
@@ -1238,9 +1248,7 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
             final int touchLeft = 0;
             final int touchTop = mKeyboardSwitcher.isShowingMoreKeysPanel() ? 0 : visibleTopY;
             final int touchRight = visibleKeyboardView.getWidth();
-            final int touchBottom = inputHeight
-                    // Extend touchable region below the keyboard.
-                    + EXTENDED_TOUCHABLE_REGION_HEIGHT;
+            final int touchBottom = inputHeight;
             outInsets.touchableInsets = InputMethodService.Insets.TOUCHABLE_INSETS_REGION;
             outInsets.touchableRegion.set(touchLeft, touchTop, touchRight, touchBottom);
         }
@@ -1398,10 +1406,11 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
     // TODO: Revise the language switch key behavior to make it much smarter and more reasonable.
     public void switchToNextSubtype() {
         final IBinder token = getWindow().getWindow().getAttributes().token;
-        if (shouldSwitchToOtherInputMethods()) {
-            mRichImm.switchToNextInputMethod(token, false /* onlyCurrentIme */);
-            return;
-        }
+        // Temporary fix for samsung devices. They are always returning true.
+        //if (shouldSwitchToOtherInputMethods()) {
+        //    mRichImm.switchToNextInputMethod(token, false /* onlyCurrentIme */);
+        //    return;
+        //}
         mSubtypeState.switchSubtype(token, mRichImm);
     }
 
@@ -1971,6 +1980,18 @@ public class LatinIME extends InputMethodService implements KeyboardActionListen
             return fallbackValue;
         }
         return mRichImm.shouldOfferSwitchingToNextInputMethod(token, fallbackValue);
+    }
+
+    public boolean shouldShowEmojiSwitchKey() {
+        final boolean value = mSettings.getCurrent().isEmojiSwitchKeyEnabled();
+
+        return value;
+    }
+
+    public boolean shouldShowNumberRow() {
+        final boolean value = mSettings.getCurrent().isNumberRowEnabled();
+
+        return value;
     }
 
     private void setNavigationBarVisibility(final boolean visible) {

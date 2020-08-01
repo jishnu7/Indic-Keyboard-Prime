@@ -24,7 +24,6 @@ import com.android.inputmethod.latin.BinaryDictionary;
 import com.android.inputmethod.latin.Dictionary;
 import com.android.inputmethod.latin.ExpandableBinaryDictionary;
 import com.android.inputmethod.latin.NgramContext;
-import com.android.inputmethod.latin.define.DecoderSpecificConstants;
 import com.android.inputmethod.latin.define.ProductionFlags;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
 
@@ -34,12 +33,6 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.Constants;
-import in.androidtweak.inputmethod.indic.Dictionary;
-import in.androidtweak.inputmethod.indic.ExpandableBinaryDictionary;
-import com.android.inputmethod.latin.utils.DistracterFilter;
 
 /**
  * Locally gathers statistics about the words user types and various other signals like

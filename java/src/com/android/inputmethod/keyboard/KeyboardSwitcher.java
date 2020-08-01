@@ -24,24 +24,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 
+import com.android.inputmethod.compat.InputMethodServiceCompatUtils;
+import com.android.inputmethod.event.Event;
 import com.android.inputmethod.keyboard.KeyboardLayoutSet.KeyboardLayoutSetException;
 import com.android.inputmethod.keyboard.emoji.EmojiPalettesView;
 import com.android.inputmethod.keyboard.internal.KeyboardState;
 import com.android.inputmethod.keyboard.internal.KeyboardTextsSet;
-
-import in.androidtweak.inputmethod.event.Event;
-import in.androidtweak.inputmethod.compat.InputMethodServiceCompatUtils;
-import in.androidtweak.inputmethod.indic.InputView;
+import com.android.inputmethod.latin.InputView;
 import in.androidtweak.inputmethod.indic.LatinIME;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.RichInputMethodManager;
-import in.androidtweak.inputmethod.indic.WordComposer;
-import in.androidtweak.inputmethod.indic.define.ProductionFlags;
+import com.android.inputmethod.latin.R;
+import com.android.inputmethod.latin.RichInputMethodManager;
+import com.android.inputmethod.latin.WordComposer;
+import com.android.inputmethod.latin.define.ProductionFlags;
 import in.androidtweak.inputmethod.indic.settings.Settings;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
-import in.androidtweak.inputmethod.indic.utils.CapsModeUtils;
-import in.androidtweak.inputmethod.indic.utils.LanguageOnSpacebarUtils;
-import in.androidtweak.inputmethod.indic.utils.RecapitalizeStatus;
+import com.android.inputmethod.latin.utils.CapsModeUtils;
+import com.android.inputmethod.latin.utils.LanguageOnSpacebarUtils;
+import com.android.inputmethod.latin.utils.RecapitalizeStatus;
 import com.android.inputmethod.latin.utils.ResourceUtils;
 import com.android.inputmethod.latin.utils.ScriptUtils;
 
@@ -119,6 +118,8 @@ public final class KeyboardSwitcher implements KeyboardState.SwitchActions {
         builder.setSubtype(mRichImm.getCurrentSubtype());
         builder.setVoiceInputKeyEnabled(settingsValues.mShowsVoiceInputKey);
         builder.setLanguageSwitchKeyEnabled(mLatinIME.shouldShowLanguageSwitchKey());
+        builder.setEmojiSwitchKeyEnabled(mLatinIME.shouldShowEmojiSwitchKey());
+        builder.setNumberRowEnabled(mLatinIME.shouldShowNumberRow());
         builder.setSplitLayoutEnabledByUser(ProductionFlags.IS_SPLIT_KEYBOARD_SUPPORTED
                 && settingsValues.mIsSplitKeyboardEnabled);
         mKeyboardLayoutSet = builder.build();

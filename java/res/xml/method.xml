@@ -19,7 +19,8 @@
 
 <input-method xmlns:android="http://schemas.android.com/apk/res/android"
         android:settingsActivity="in.androidtweak.inputmethod.indic.settings.SettingsActivity"
-        android:isDefault="@bool/im_is_default">
+        android:isDefault="@bool/im_is_default"
+        android:supportsSwitchingToNextInputMethod="true">
 
     <!-- English -->
     <subtype android:icon="@drawable/ic_ime_switcher_dark"
@@ -106,6 +107,11 @@
             android:imeSubtypeLocale="hi_IN"
             android:imeSubtypeMode="keyboard"
             android:imeSubtypeExtraValue="KeyboardLayoutSet=hindi_inscript,EmojiCapable" />
+    <subtype android:icon="@drawable/ic_ime_switcher_dark"
+            android:label="@string/keyboard_name_hi_soni"
+            android:imeSubtypeLocale="hi_IN"
+            android:imeSubtypeMode="keyboard"
+            android:imeSubtypeExtraValue="KeyboardLayoutSet=qwerty,TransliterationMethod=hi-soni" />
     <subtype android:icon="@drawable/ic_ime_switcher_dark"
             android:label="@string/keyboard_name_hi_transliteration"
             android:imeSubtypeLocale="hi_IN"
@@ -278,7 +284,17 @@
             android:imeSubtypeLocale="sat_IN"
             android:imeSubtypeMode="keyboard"
             android:imeSubtypeExtraValue="KeyboardLayoutSet=santali_inscript,EmojiCapable" />
-
+    <subtype android:icon="@drawable/ic_ime_switcher_dark"
+            android:label="@string/keyboard_name_sat_olck"
+            android:imeSubtypeLocale="sat_IN"
+            android:imeSubtypeMode="keyboard"
+            android:imeSubtypeExtraValue="KeyboardLayoutSet=santali_olck,EmojiCapable" />
+    <subtype android:icon="@drawable/ic_ime_switcher_dark"
+            android:label="@string/keyboard_name_sat_olck_compact"
+            android:imeSubtypeLocale="sat_IN"
+            android:imeSubtypeMode="keyboard"
+            android:imeSubtypeExtraValue="KeyboardLayoutSet=santali_olck_compact,EmojiCapable" />
+    
     <!-- Sinhalese -->
     <subtype android:icon="@drawable/ic_ime_switcher_dark"
             android:label="@string/keyboard_name_si_singlish"

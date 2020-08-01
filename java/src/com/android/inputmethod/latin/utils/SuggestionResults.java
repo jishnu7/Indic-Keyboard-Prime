@@ -16,13 +16,13 @@
 
 package com.android.inputmethod.latin.utils;
 
+import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
+import com.android.inputmethod.latin.define.ProductionFlags;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.TreeSet;
-
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
-import in.androidtweak.inputmethod.indic.define.ProductionFlags;
 
 /**
  * A TreeSet of SuggestedWordInfo that is bounded in size and throws everything that's smaller

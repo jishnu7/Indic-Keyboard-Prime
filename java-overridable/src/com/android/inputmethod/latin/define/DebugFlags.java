@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package in.androidtweak.inputmethod.indic.define;
+package com.android.inputmethod.latin.define;
 
 import android.content.SharedPreferences;
 

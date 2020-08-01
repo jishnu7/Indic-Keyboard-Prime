@@ -16,9 +16,9 @@
 
 package com.android.inputmethod.latin.utils;
 
-import in.androidtweak.inputmethod.dictionarypack.DictionarySettingsFragment;
-import in.androidtweak.inputmethod.indic.about.AboutPreferences;
-import com.android.inputmethod.latin.settings.AccountsSettingsFragment;
+import com.android.inputmethod.dictionarypack.DictionarySettingsFragment;
+import com.android.inputmethod.latin.about.AboutPreferences;
+import in.androidtweak.inputmethod.indic.settings.AccountsSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.AdvancedSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.AppearanceSettingsFragment;
 import in.androidtweak.inputmethod.indic.settings.CorrectionSettingsFragment;
@@ -35,7 +35,6 @@ import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryLocalePick
 import in.androidtweak.inputmethod.indic.userdictionary.UserDictionarySettings;
 
 import java.util.HashSet;
-
 
 public class FragmentUtils {
     private static final HashSet<String> sLatinImeFragments = new HashSet<>();

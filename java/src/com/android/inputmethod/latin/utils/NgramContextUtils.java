@@ -18,7 +18,7 @@ package com.android.inputmethod.latin.utils;
 
 import com.android.inputmethod.latin.NgramContext;
 import com.android.inputmethod.latin.NgramContext.WordInfo;
-import in.androidtweak.inputmethod.indic.define.DecoderSpecificConstants;
+import com.android.inputmethod.latin.define.DecoderSpecificConstants;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 
 import java.util.Arrays;

@@ -33,9 +33,6 @@ import com.android.inputmethod.latin.utils.SpannableStringUtils;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import in.androidtweak.inputmethod.compat.TextInfoCompatUtils;
-import com.android.inputmethod.latin.utils.StringUtils;
-
 public final class AndroidSpellCheckerSession extends AndroidWordLevelSpellCheckerSession {
     private static final String TAG = AndroidSpellCheckerSession.class.getSimpleName();
     private static final boolean DBG = false;

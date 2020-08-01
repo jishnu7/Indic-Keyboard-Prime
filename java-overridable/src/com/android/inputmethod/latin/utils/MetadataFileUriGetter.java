@@ -16,7 +16,7 @@
 
 package com.android.inputmethod.latin.utils;
 
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.R;
 
 import android.content.Context;
 

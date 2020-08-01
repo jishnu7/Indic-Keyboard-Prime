@@ -16,6 +16,7 @@
 
 package com.android.inputmethod.latin.utils;
 
+import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.latin.BinaryDictionary;
 import com.android.inputmethod.latin.common.StringUtils;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
@@ -27,9 +28,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.personalization.PersonalizationHelper;
 
 public final class BinaryDictionaryUtils {
     private static final String TAG = BinaryDictionaryUtils.class.getSimpleName();

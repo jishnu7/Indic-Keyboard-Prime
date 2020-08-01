@@ -16,12 +16,11 @@
 
 package com.android.inputmethod.latin.makedict;
 
+import com.android.inputmethod.annotations.UsedForTesting;
 import com.android.inputmethod.latin.BinaryDictionary;
+import com.android.inputmethod.latin.utils.CombinedFormatUtils;
 
 import java.util.Arrays;
-
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import com.android.inputmethod.latin.utils.CombinedFormatUtils;
 
 public final class ProbabilityInfo {
     public final int mProbability;

@@ -18,12 +18,10 @@ package com.android.inputmethod.latin.utils;
 
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.indic.DictionaryFacilitator;
-import in.androidtweak.inputmethod.indic.RichInputMethodManager;
-import in.androidtweak.inputmethod.indic.SuggestedWords;
+import com.android.inputmethod.latin.DictionaryFacilitator;
+import com.android.inputmethod.latin.RichInputMethodManager;
+import com.android.inputmethod.latin.SuggestedWords;
 import in.androidtweak.inputmethod.indic.settings.SettingsValues;
-
-import javax.annotation.Nullable;
 
 @SuppressWarnings("unused")
 public final class StatsUtils {

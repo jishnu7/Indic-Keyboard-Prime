@@ -22,7 +22,7 @@ import android.util.SparseIntArray;
 import com.android.inputmethod.compat.CharacterCompat;
 import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.latin.common.CollectionUtils;
-import in.androidtweak.inputmethod.indic.common.Constants;
+import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.common.StringUtils;
 
 import java.util.ArrayList;

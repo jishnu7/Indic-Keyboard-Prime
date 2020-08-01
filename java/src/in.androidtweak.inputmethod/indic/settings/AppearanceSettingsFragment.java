@@ -19,7 +19,7 @@ package in.androidtweak.inputmethod.indic.settings;
 import android.os.Bundle;
 
 import com.android.inputmethod.latin.R;
-import in.androidtweak.inputmethod.indic.common.Constants;
+import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.define.ProductionFlags;
 
 /**
@@ -39,8 +39,6 @@ public final class AppearanceSettingsFragment extends SubScreenFragment {
     @Override
     public void onResume() {
         super.onResume();
-        CustomInputStyleSettingsFragment.updateCustomInputStylesSummary(
-                findPreference(Settings.PREF_CUSTOM_INPUT_STYLES));
         ThemeSettingsFragment.updateKeyboardThemeSummary(findPreference(Settings.SCREEN_THEME));
     }
 }

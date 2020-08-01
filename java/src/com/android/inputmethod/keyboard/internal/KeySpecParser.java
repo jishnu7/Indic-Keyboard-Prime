@@ -16,15 +16,14 @@
 
 package com.android.inputmethod.keyboard.internal;
 
-import static in.androidtweak.inputmethod.indic.common.Constants.CODE_OUTPUT_TEXT;
-import static in.androidtweak.inputmethod.indic.common.Constants.CODE_UNSPECIFIED;
+import static com.android.inputmethod.latin.common.Constants.CODE_OUTPUT_TEXT;
+import static com.android.inputmethod.latin.common.Constants.CODE_UNSPECIFIED;
 
-import in.androidtweak.inputmethod.indic.common.Constants;
+import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.common.StringUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 
 /**
  * The string parser of the key specification.

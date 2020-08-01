@@ -23,13 +23,13 @@ import android.view.textservice.SentenceSuggestionsInfo;
 import android.view.textservice.SuggestionsInfo;
 import android.view.textservice.TextInfo;
 
-import java.util.ArrayList;
-import java.util.Locale;
-
-import in.androidtweak.inputmethod.compat.TextInfoCompatUtils;
-import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.compat.TextInfoCompatUtils;
+import com.android.inputmethod.latin.common.Constants;
 import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
 import com.android.inputmethod.latin.utils.RunInLocale;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * This code is mostly lifted directly from android.service.textservice.SpellCheckerService in

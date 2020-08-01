@@ -21,11 +21,11 @@ import android.util.Log;
 import android.util.SparseArray;
 
 import com.android.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
 import com.android.inputmethod.latin.common.ComposedData;
-import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.common.FileUtils;
-import in.androidtweak.inputmethod.indic.InputPointers;
+import com.android.inputmethod.latin.common.InputPointers;
 import com.android.inputmethod.latin.common.StringUtils;
 import com.android.inputmethod.latin.makedict.DictionaryHeader;
 import com.android.inputmethod.latin.makedict.FormatSpec;

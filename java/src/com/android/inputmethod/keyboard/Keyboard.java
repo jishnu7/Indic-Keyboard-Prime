@@ -21,15 +21,15 @@ import android.util.SparseArray;
 import com.android.inputmethod.keyboard.internal.KeyVisualAttributes;
 import com.android.inputmethod.keyboard.internal.KeyboardIconsSet;
 import com.android.inputmethod.keyboard.internal.KeyboardParams;
+import com.android.inputmethod.latin.common.Constants;
+import com.android.inputmethod.latin.common.CoordinateUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import in.androidtweak.inputmethod.indic.common.Constants;
-import com.android.inputmethod.latin.utils.CoordinateUtils;
 
 /**
  * Loads an XML description of a keyboard and stores the attributes of the keys. A keyboard

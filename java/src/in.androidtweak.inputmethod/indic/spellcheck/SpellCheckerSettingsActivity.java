@@ -26,8 +26,6 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.support.v4.app.ActivityCompat;
 
-import com.android.inputmethod.latin.utils.FragmentUtils;
-
 /**
  * Spell checker preference screen.
  */

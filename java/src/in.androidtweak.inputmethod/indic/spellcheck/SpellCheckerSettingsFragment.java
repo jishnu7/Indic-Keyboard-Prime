@@ -23,10 +23,10 @@ import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.text.TextUtils;
 
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.R;
 import com.android.inputmethod.latin.permissions.PermissionsManager;
 import com.android.inputmethod.latin.permissions.PermissionsUtil;
-import com.android.inputmethod.latin.settings.SubScreenFragment;
+import in.androidtweak.inputmethod.indic.settings.SubScreenFragment;
 import in.androidtweak.inputmethod.indic.settings.TwoStatePreferenceHelper;
 import com.android.inputmethod.latin.utils.ApplicationUtils;
 

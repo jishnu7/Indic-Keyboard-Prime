@@ -31,7 +31,7 @@
         android:key="pref_keypress_sound_volume"
         android:title="@string/prefs_keypress_sound_volume_settings"
         latin:maxValue="100" /> <!-- percent -->
-    <com.android.inputmethod.latin.settings.SeekBarDialogPreference
+    <in.androidtweak.inputmethod.indic.settings.SeekBarDialogPreference
         android:key="pref_key_longpress_timeout"
         android:title="@string/prefs_key_longpress_timeout_settings"
         latin:minValue="@integer/config_min_longpress_timeout"
@@ -47,6 +47,7 @@
         android:key="pref_show_setup_wizard_icon"
         android:title="@string/show_setup_wizard_icon"
         android:summary="@string/show_setup_wizard_icon_summary"
+        android:defaultValue="true"
         android:persistent="true" />
     <PreferenceScreen
         android:fragment="in.androidtweak.inputmethod.indic.settings.DebugSettingsFragment"

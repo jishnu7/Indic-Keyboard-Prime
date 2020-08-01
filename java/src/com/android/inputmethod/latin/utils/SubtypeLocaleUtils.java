@@ -26,7 +26,7 @@ import android.os.Build;
 import android.util.Log;
 import android.view.inputmethod.InputMethodSubtype;
 
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.R;
 import com.android.inputmethod.latin.common.LocaleUtils;
 import com.android.inputmethod.latin.common.StringUtils;
 
@@ -44,10 +44,10 @@ public final class SubtypeLocaleUtils {
     static final String TAG = SubtypeLocaleUtils.class.getSimpleName();
 
     // This reference class {@link R} must be located in the same package as LatinIME.java.
-    private static final String RESOURCE_PACKAGE_NAME = R.class.getPackage().getName();
+    private static final String RESOURCE_PACKAGE_NAME = "in.androidtweak.inputmethod.indic";
 
     // Special language code to represent "no language".
-    public static final String NO_LANGUAGE = "en_US";
+    public static final String NO_LANGUAGE = "zz";
     public static final String QWERTY = "qwerty";
     public static final String EMOJI = "emoji";
     public static final int UNKNOWN_KEYBOARD_LAYOUT = R.string.subtype_generic;

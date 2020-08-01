@@ -22,65 +22,34 @@
     xmlns:latin="http://schemas.android.com/apk/res-auto"
 >
     <switch>
+        <!-- im mode already has emoji key in place of enter -->
+        <case latin:mode="im" latin:languageSwitchKeyEnabled="true">
+            <Key latin:keyStyle="languageSwitchKeyStyle" />
+        </case>
+
+        <case latin:emojiSwitchKeyEnabled="true">
+            <Key latin:keyStyle="emojiKeyStyle" />
+        </case>
+
+        <case latin:languageSwitchKeyEnabled="true">
+            <Key latin:keyStyle="languageSwitchKeyStyle" />
+        </case>
+    </switch>
+
+    <switch>
         <!-- for transliteration -->
-        <case
-            latin:languageCode="be|gu|hi|ml|or|ta|te"
-            latin:languageSwitchKeyEnabled="true"
-            latin:keyboardLayoutSet="qwerty" >
-            <Key
-                latin:keyStyle="languageSwitchKeyStyle" />
-            <Key
-                latin:keyStyle="spaceKeyStyle"
-                latin:keyWidth="30%p" />
-            <Key
-                latin:keyStyle="zwnjKeyStyle" />
+        <case latin:languageCode="be|gu|hi|kn|ml|ne|or|ta|te">
+          <Key
+              latin:keyStyle="spaceKeyStyle"
+              latin:keyWidth="30%p" />
+          <Key
+              latin:keyStyle="zwnjKeyStyle" />
         </case>
-        <case
-            latin:languageCode="ml|hi|as|kn|te"
-            latin:languageSwitchKeyEnabled="false"
-            latin:keyboardLayoutSet="qwerty" >
-            <Key
-                latin:keyStyle="spaceKeyStyle"
-                latin:keyWidth="40%p" />
-            <Key
-                latin:keyStyle="zwnjKeyStyle" />
-        </case>
-        <case
-            latin:keyboardLayoutSet="bengali_akkhor|farsi|kannada|nepali_romanized|nepali_traditional|telugu"
-            latin:languageSwitchKeyEnabled="true"
-        >
-            <Key
-                latin:keyStyle="languageSwitchKeyStyle" />
-            <Key
-                latin:keyStyle="spaceKeyStyle"
-                latin:keyWidth="30%p" />
-            <Key
-                latin:keyStyle="zwnjKeyStyle" />
-        </case>
-        <case
-            latin:keyboardLayoutSet="bengali_akkhor|farsi|kannada|nepali_romanized|nepali_traditional|telugu"
-            latin:languageSwitchKeyEnabled="false"
-        >
-            <Key
-                latin:keyStyle="spaceKeyStyle"
-                latin:keyWidth="40%p" />
-            <Key
-                latin:keyStyle="zwnjKeyStyle" />
-        </case>
-        <case
-            latin:languageSwitchKeyEnabled="true"
-        >
-            <Key
-                latin:keyStyle="languageSwitchKeyStyle" />
-            <Key
-                latin:keyStyle="spaceKeyStyle"
-                latin:keyWidth="40%p" />
-        </case>
-        <!-- languageSwitchKeyEnabled="false" -->
+
         <default>
-            <Key
-                latin:keyStyle="spaceKeyStyle"
-                latin:keyWidth="50%p" />
+          <Key
+            latin:keyStyle="spaceKeyStyle"
+            latin:keyWidth="40%p" />
         </default>
     </switch>
 </merge>

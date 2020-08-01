@@ -24,10 +24,9 @@ import com.android.inputmethod.keyboard.Key;
 import com.android.inputmethod.keyboard.Keyboard;
 import com.android.inputmethod.keyboard.KeyboardActionListener;
 import com.android.inputmethod.keyboard.MoreKeysKeyboardView;
-
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.SuggestedWords;
-import in.androidtweak.inputmethod.indic.SuggestedWords.SuggestedWordInfo;
+import com.android.inputmethod.latin.R;
+import com.android.inputmethod.latin.SuggestedWords;
+import com.android.inputmethod.latin.SuggestedWords.SuggestedWordInfo;
 import in.androidtweak.inputmethod.indic.suggestions.MoreSuggestions.MoreSuggestionKey;
 
 /**

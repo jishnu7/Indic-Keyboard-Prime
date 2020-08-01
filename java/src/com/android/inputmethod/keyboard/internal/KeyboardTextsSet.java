@@ -20,8 +20,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.common.Constants;
+import com.android.inputmethod.annotations.UsedForTesting;
+import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.utils.RunInLocale;
 import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
 

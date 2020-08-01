@@ -34,10 +34,11 @@ import android.view.View;
 
 import com.android.inputmethod.keyboard.internal.KeyDrawParams;
 import com.android.inputmethod.keyboard.internal.KeyVisualAttributes;
-
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.Constants;
+import com.android.inputmethod.latin.R;
+import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.utils.TypefaceUtils;
+
+import java.util.HashSet;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

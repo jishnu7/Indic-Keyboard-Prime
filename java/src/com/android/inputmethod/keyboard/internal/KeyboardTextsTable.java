@@ -105,116 +105,116 @@ public final class KeyboardTextsTable {
         /*  19:11 */ "keyspec_symbols_9",
         /*  20:11 */ "keyspec_symbols_0",
         /*  21:11 */ "keylabel_to_symbol",
-        /*  22: 2 */ "morekeys_a",
-        /*  23: 2 */ "morekeys_e",
-        /*  24: 2 */ "morekeys_i",
-        /*  25: 2 */ "morekeys_o",
-        /*  26: 2 */ "morekeys_u",
-        /*  27: 2 */ "morekeys_s",
-        /*  28: 2 */ "morekeys_n",
-        /*  29: 2 */ "morekeys_c",
-        /*  30: 1 */ "morekeys_y",
-        /*  31: 1 */ "morekeys_d",
-        /*  32: 1 */ "morekeys_r",
-        /*  33: 1 */ "morekeys_t",
-        /*  34: 1 */ "morekeys_z",
-        /*  35: 1 */ "morekeys_k",
-        /*  36: 1 */ "morekeys_l",
-        /*  37: 1 */ "morekeys_g",
-        /*  38: 1 */ "morekeys_h",
-        /*  39: 1 */ "morekeys_j",
-        /*  40: 1 */ "morekeys_w",
-        /*  41: 0 */ "morekeys_v",
-        /*  42: 0 */ "morekeys_q",
-        /*  43: 0 */ "morekeys_x",
-        /*  44: 0 */ "keyspec_q",
-        /*  45: 0 */ "keyspec_w",
-        /*  46: 0 */ "keyspec_y",
-        /*  47: 0 */ "keyspec_x",
-        /*  48: 0 */ "keyspec_nordic_row1_11",
-        /*  49: 0 */ "keyspec_nordic_row2_10",
-        /*  50: 0 */ "keyspec_nordic_row2_11",
-        /*  51: 0 */ "morekeys_nordic_row2_10",
-        /*  52: 0 */ "morekeys_nordic_row2_11",
-        /*  53: 0 */ "keyspec_east_slavic_row1_9",
-        /*  54: 0 */ "keyspec_east_slavic_row2_2",
-        /*  55: 0 */ "keyspec_east_slavic_row2_11",
-        /*  56: 0 */ "keyspec_east_slavic_row3_5",
-        /*  57: 0 */ "morekeys_east_slavic_row2_2",
-        /*  58: 0 */ "morekeys_east_slavic_row2_11",
-        /*  59: 0 */ "morekeys_cyrillic_u",
-        /*  60: 0 */ "morekeys_cyrillic_ka",
-        /*  61: 0 */ "morekeys_cyrillic_en",
-        /*  62: 0 */ "morekeys_cyrillic_ghe",
-        /*  63: 0 */ "morekeys_cyrillic_a",
-        /*  64: 0 */ "morekeys_cyrillic_o",
-        /*  65: 0 */ "morekeys_cyrillic_i",
-        /*  66: 0 */ "morekeys_cyrillic_ie",
-        /*  67: 0 */ "morekeys_cyrillic_soft_sign",
-        /*  68: 0 */ "keyspec_south_slavic_row1_6",
-        /*  69: 0 */ "keyspec_south_slavic_row2_11",
-        /*  70: 0 */ "keyspec_south_slavic_row3_1",
-        /*  71: 0 */ "keyspec_south_slavic_row3_8",
-        /*  72: 0 */ "keyspec_swiss_row1_11",
-        /*  73: 0 */ "keyspec_swiss_row2_10",
-        /*  74: 0 */ "keyspec_swiss_row2_11",
-        /*  75: 0 */ "morekeys_swiss_row1_11",
-        /*  76: 0 */ "morekeys_swiss_row2_10",
-        /*  77: 0 */ "morekeys_swiss_row2_11",
-        /*  78: 0 */ "single_quotes",
-        /*  79: 0 */ "double_quotes",
-        /*  80: 0 */ "single_angle_quotes",
-        /*  81: 0 */ "double_angle_quotes",
-        /*  82: 0 */ "morekeys_currency_dollar",
-        /*  83: 0 */ "keylabel_for_currency",
-        /*  84: 0 */ "morekeys_currency_generic",
-        /*  85: 0 */ "morekeys_punctuation",
-        /*  86: 0 */ "morekeys_tablet_punctuation",
-        /*  87: 0 */ "keyspec_spanish_row2_10",
-        /*  88: 0 */ "morekeys_star",
-        /*  89: 0 */ "morekeys_bullet",
-        /*  90: 0 */ "morekeys_plus",
-        /*  91: 0 */ "morekeys_left_parenthesis",
-        /*  92: 0 */ "morekeys_right_parenthesis",
-        /*  93: 0 */ "morekeys_less_than",
-        /*  94: 0 */ "morekeys_greater_than",
-        /*  95: 0 */ "morekeys_arabic_diacritics",
-        /*  96: 0 */ "morekeys_symbols_1",
-        /*  97: 0 */ "morekeys_symbols_2",
-        /*  98: 0 */ "morekeys_symbols_3",
-        /*  99: 0 */ "morekeys_symbols_4",
-        /* 100: 0 */ "morekeys_symbols_5",
-        /* 101: 0 */ "morekeys_symbols_6",
-        /* 102: 0 */ "morekeys_symbols_7",
-        /* 103: 0 */ "morekeys_symbols_8",
-        /* 104: 0 */ "morekeys_symbols_9",
-        /* 105: 0 */ "morekeys_symbols_0",
-        /* 106: 0 */ "keyspec_left_parenthesis",
-        /* 107: 0 */ "keyspec_right_parenthesis",
-        /* 108: 0 */ "keyspec_left_square_bracket",
-        /* 109: 0 */ "keyspec_right_square_bracket",
-        /* 110: 0 */ "keyspec_left_curly_bracket",
-        /* 111: 0 */ "keyspec_right_curly_bracket",
-        /* 112: 0 */ "keyspec_less_than",
-        /* 113: 0 */ "keyspec_greater_than",
-        /* 114: 0 */ "keyspec_less_than_equal",
-        /* 115: 0 */ "keyspec_greater_than_equal",
-        /* 116: 0 */ "keyspec_left_double_angle_quote",
-        /* 117: 0 */ "keyspec_right_double_angle_quote",
-        /* 118: 0 */ "keyspec_left_single_angle_quote",
-        /* 119: 0 */ "keyspec_right_single_angle_quote",
-        /* 120: 0 */ "keyspec_comma",
-        /* 121: 0 */ "keyspec_tablet_comma",
-        /* 122: 0 */ "keyhintlabel_tablet_comma",
-        /* 123: 0 */ "morekeys_tablet_comma",
-        /* 124: 0 */ "keyspec_period",
-        /* 125: 0 */ "keyhintlabel_period",
-        /* 126: 0 */ "morekeys_period",
-        /* 127: 0 */ "keyspec_tablet_period",
-        /* 128: 0 */ "keyhintlabel_tablet_period",
-        /* 129: 0 */ "morekeys_tablet_period",
-        /* 130: 0 */ "keyspec_symbols_question",
-        /* 131: 0 */ "keyspec_symbols_semicolon",
+        /*  22: 3 */ "keyspec_comma",
+        /*  23: 2 */ "morekeys_a",
+        /*  24: 2 */ "morekeys_e",
+        /*  25: 2 */ "morekeys_i",
+        /*  26: 2 */ "morekeys_o",
+        /*  27: 2 */ "morekeys_u",
+        /*  28: 2 */ "morekeys_s",
+        /*  29: 2 */ "morekeys_n",
+        /*  30: 2 */ "morekeys_c",
+        /*  31: 2 */ "morekeys_currency_dollar",
+        /*  32: 2 */ "keyspec_symbols_semicolon",
+        /*  33: 1 */ "morekeys_y",
+        /*  34: 1 */ "morekeys_d",
+        /*  35: 1 */ "morekeys_r",
+        /*  36: 1 */ "morekeys_t",
+        /*  37: 1 */ "morekeys_z",
+        /*  38: 1 */ "morekeys_k",
+        /*  39: 1 */ "morekeys_l",
+        /*  40: 1 */ "morekeys_g",
+        /*  41: 1 */ "morekeys_h",
+        /*  42: 1 */ "morekeys_j",
+        /*  43: 1 */ "morekeys_w",
+        /*  44: 0 */ "morekeys_v",
+        /*  45: 0 */ "morekeys_q",
+        /*  46: 0 */ "morekeys_x",
+        /*  47: 0 */ "keyspec_q",
+        /*  48: 0 */ "keyspec_w",
+        /*  49: 0 */ "keyspec_y",
+        /*  50: 0 */ "keyspec_x",
+        /*  51: 0 */ "keyspec_nordic_row1_11",
+        /*  52: 0 */ "keyspec_nordic_row2_10",
+        /*  53: 0 */ "keyspec_nordic_row2_11",
+        /*  54: 0 */ "morekeys_nordic_row2_10",
+        /*  55: 0 */ "morekeys_nordic_row2_11",
+        /*  56: 0 */ "keyspec_east_slavic_row1_9",
+        /*  57: 0 */ "keyspec_east_slavic_row2_2",
+        /*  58: 0 */ "keyspec_east_slavic_row2_11",
+        /*  59: 0 */ "keyspec_east_slavic_row3_5",
+        /*  60: 0 */ "morekeys_east_slavic_row2_2",
+        /*  61: 0 */ "morekeys_east_slavic_row2_11",
+        /*  62: 0 */ "morekeys_cyrillic_u",
+        /*  63: 0 */ "morekeys_cyrillic_ka",
+        /*  64: 0 */ "morekeys_cyrillic_en",
+        /*  65: 0 */ "morekeys_cyrillic_ghe",
+        /*  66: 0 */ "morekeys_cyrillic_a",
+        /*  67: 0 */ "morekeys_cyrillic_o",
+        /*  68: 0 */ "morekeys_cyrillic_i",
+        /*  69: 0 */ "morekeys_cyrillic_ie",
+        /*  70: 0 */ "morekeys_cyrillic_soft_sign",
+        /*  71: 0 */ "keyspec_south_slavic_row1_6",
+        /*  72: 0 */ "keyspec_south_slavic_row2_11",
+        /*  73: 0 */ "keyspec_south_slavic_row3_1",
+        /*  74: 0 */ "keyspec_south_slavic_row3_8",
+        /*  75: 0 */ "keyspec_swiss_row1_11",
+        /*  76: 0 */ "keyspec_swiss_row2_10",
+        /*  77: 0 */ "keyspec_swiss_row2_11",
+        /*  78: 0 */ "morekeys_swiss_row1_11",
+        /*  79: 0 */ "morekeys_swiss_row2_10",
+        /*  80: 0 */ "morekeys_swiss_row2_11",
+        /*  81: 0 */ "single_quotes",
+        /*  82: 0 */ "double_quotes",
+        /*  83: 0 */ "single_angle_quotes",
+        /*  84: 0 */ "double_angle_quotes",
+        /*  85: 0 */ "keyspec_currency",
+        /*  86: 0 */ "morekeys_currency_generic",
+        /*  87: 0 */ "morekeys_punctuation",
+        /*  88: 0 */ "morekeys_tablet_punctuation",
+        /*  89: 0 */ "keyspec_spanish_row2_10",
+        /*  90: 0 */ "morekeys_star",
+        /*  91: 0 */ "morekeys_bullet",
+        /*  92: 0 */ "morekeys_plus",
+        /*  93: 0 */ "morekeys_left_parenthesis",
+        /*  94: 0 */ "morekeys_right_parenthesis",
+        /*  95: 0 */ "morekeys_less_than",
+        /*  96: 0 */ "morekeys_greater_than",
+        /*  97: 0 */ "morekeys_arabic_diacritics",
+        /*  98: 0 */ "morekeys_symbols_1",
+        /*  99: 0 */ "morekeys_symbols_2",
+        /* 100: 0 */ "morekeys_symbols_3",
+        /* 101: 0 */ "morekeys_symbols_4",
+        /* 102: 0 */ "morekeys_symbols_5",
+        /* 103: 0 */ "morekeys_symbols_6",
+        /* 104: 0 */ "morekeys_symbols_7",
+        /* 105: 0 */ "morekeys_symbols_8",
+        /* 106: 0 */ "morekeys_symbols_9",
+        /* 107: 0 */ "morekeys_symbols_0",
+        /* 108: 0 */ "keyspec_left_parenthesis",
+        /* 109: 0 */ "keyspec_right_parenthesis",
+        /* 110: 0 */ "keyspec_left_square_bracket",
+        /* 111: 0 */ "keyspec_right_square_bracket",
+        /* 112: 0 */ "keyspec_left_curly_bracket",
+        /* 113: 0 */ "keyspec_right_curly_bracket",
+        /* 114: 0 */ "keyspec_less_than",
+        /* 115: 0 */ "keyspec_greater_than",
+        /* 116: 0 */ "keyspec_less_than_equal",
+        /* 117: 0 */ "keyspec_greater_than_equal",
+        /* 118: 0 */ "keyspec_left_double_angle_quote",
+        /* 119: 0 */ "keyspec_right_double_angle_quote",
+        /* 120: 0 */ "keyspec_left_single_angle_quote",
+        /* 121: 0 */ "keyspec_right_single_angle_quote",
+        /* 122: 0 */ "keyspec_tablet_comma",
+        /* 123: 0 */ "keyhintlabel_tablet_comma",
+        /* 124: 0 */ "morekeys_tablet_comma",
+        /* 125: 0 */ "keyspec_period",
+        /* 126: 0 */ "keyhintlabel_period",
+        /* 127: 0 */ "morekeys_period",
+        /* 128: 0 */ "keyspec_tablet_period",
+        /* 129: 0 */ "keyhintlabel_tablet_period",
+        /* 130: 0 */ "morekeys_tablet_period",
+        /* 131: 0 */ "keyspec_symbols_question",
         /* 132: 0 */ "keyspec_symbols_percent",
         /* 133: 0 */ "morekeys_exclamation",
         /* 134: 0 */ "morekeys_question",
@@ -251,6 +251,14 @@ public final class KeyboardTextsTable {
         /* 165: 0 */ "morekeys_double_quote",
         /* 166: 0 */ "morekeys_tablet_double_quote",
         /* 167: 0 */ "keyspec_emoji_action_key",
+        /* 168: 0 */ "label_go_key",
+        /* 169: 0 */ "label_send_key",
+        /* 170: 0 */ "label_next_key",
+        /* 171: 0 */ "label_done_key",
+        /* 172: 0 */ "label_search_key",
+        /* 173: 0 */ "label_previous_key",
+        /* 174: 0 */ "label_pause_key",
+        /* 175: 0 */ "label_wait_key",
     };
 
     private static final String EMPTY = "";
@@ -274,9 +282,22 @@ public final class KeyboardTextsTable {
         /* keyspec_symbols_0 */ "0",
         // Label for "switch to symbols" key.
         /* keylabel_to_symbol */ "?123",
+        // Comma key
+        /* keyspec_comma */ ",",
         /* morekeys_a ~ */
+        EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
+        /* ~ morekeys_c */
+        // $ - I'm making ₹ as default
+        // U+00A2: "¢" CENT SIGN
+        // U+00A3: "£" POUND SIGN
+        // U+20AC: "€" EURO SIGN
+        // U+00A5: "¥" YEN SIGN
+        // U+20B1: "₱" PESO SIGN
+        /* morekeys_currency_dollar */ "$,\u00A2,\u00A3,\u20AC,\u00A5,\u20B1",
+        /* keyspec_symbols_semicolon */ ";",
+        /* morekeys_y ~ */
         EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
-        EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
+        EMPTY,
         /* ~ morekeys_x */
         /* keyspec_q */ "q",
         /* keyspec_w */ "w",
@@ -291,14 +312,7 @@ public final class KeyboardTextsTable {
         /* double_quotes */ "!text/double_lqm_rqm",
         /* single_angle_quotes */ "!text/single_laqm_raqm",
         /* double_angle_quotes */ "!text/double_laqm_raqm",
-        // $ - I'm making ₹ as default
-        // U+00A2: "¢" CENT SIGN
-        // U+00A3: "£" POUND SIGN
-        // U+20AC: "€" EURO SIGN
-        // U+00A5: "¥" YEN SIGN
-        // U+20B1: "₱" PESO SIGN
-        /* morekeys_currency_dollar */ "$,\u00A2,\u00A3,\u20AC,\u00A5,\u20B1",
-        /* keylabel_for_currency */ "$",
+        /* keyspec_currency */ "\u20B9",
         /* morekeys_currency_generic */ "$,\u00A2,\u20AC,\u00A3,\u00A5,\u20B1",
         /* morekeys_punctuation */ "!autoColumnOrder!8,\\,,?,!,#,!text/keyspec_right_parenthesis,!text/keyspec_left_parenthesis,/,;,',@,:,-,\",+,\\%,&",
         /* morekeys_tablet_punctuation */ "!autoColumnOrder!7,\\,,',#,!text/keyspec_right_parenthesis,!text/keyspec_left_parenthesis,/,;,@,:,-,\",+,\\%,&",
@@ -368,8 +382,6 @@ public final class KeyboardTextsTable {
         /* keyspec_right_double_angle_quote */ "\u00BB",
         /* keyspec_left_single_angle_quote */ "\u2039",
         /* keyspec_right_single_angle_quote */ "\u203A",
-        // Comma key
-        /* keyspec_comma */ ",",
         /* keyspec_tablet_comma */ ",",
         /* keyhintlabel_tablet_comma */ EMPTY,
         /* morekeys_tablet_comma */ EMPTY,
@@ -381,7 +393,6 @@ public final class KeyboardTextsTable {
         /* keyhintlabel_tablet_period */ EMPTY,
         /* morekeys_tablet_period */ "!text/morekeys_tablet_punctuation",
         /* keyspec_symbols_question */ "?",
-        /* keyspec_symbols_semicolon */ ";",
         /* keyspec_symbols_percent */ "%",
         // U+00A1: "¡" INVERTED EXCLAMATION MARK
         /* morekeys_exclamation */ "\u00A1",
@@ -449,6 +460,14 @@ public final class KeyboardTextsTable {
         /* morekeys_double_quote */ "!fixedColumnOrder!5,!text/double_quotes,!text/double_angle_quotes",
         /* morekeys_tablet_double_quote */ "!fixedColumnOrder!6,!text/double_quotes,!text/single_quotes,!text/double_angle_quotes,!text/single_angle_quotes",
         /* keyspec_emoji_action_key */ "!icon/emoji_action_key|!code/key_emoji",
+        /* label_go_key */ "!string/label_go_key",
+        /* label_send_key */ "!string/label_send_key",
+        /* label_next_key */ "!string/label_next_key",
+        /* label_done_key */ "!string/label_done_key",
+        /* label_search_key */ "!string/label_search_key",
+        /* label_previous_key */ "!string/label_previous_key",
+        /* label_pause_key */ "!string/label_pause_key",
+        /* label_wait_key */ "!string/label_wait_key",
     };
 
     /* Locale as_IN: Assamese (India) */
@@ -475,6 +494,12 @@ public final class KeyboardTextsTable {
         /* keyspec_symbols_9 */ "\u09EF",
         /* keyspec_symbols_0 */ "\u09E6",
         /* keylabel_to_symbol */ "\u09E7\u09E8\u09E9",
+        /* keyspec_comma */ "\u09CD",
+        /* morekeys_a ~ */
+        null, null, null, null, null, null, null, null,
+        /* ~ morekeys_c */
+        /* morekeys_currency_dollar */ "\u09F3",
+        /* keyspec_symbols_semicolon */ "\u0983",
     };
 
     /* Locale bn_IN: Bengali (India) */
@@ -501,14 +526,20 @@ public final class KeyboardTextsTable {
         /* keyspec_symbols_9 */ "\u09EF",
         /* keyspec_symbols_0 */ "\u09E6",
         /* keylabel_to_symbol */ "\u09E7\u09E8\u09E9",
+        /* keyspec_comma */ "\u09CD",
+        /* morekeys_a ~ */
+        null, null, null, null, null, null, null, null,
+        /* ~ morekeys_c */
+        /* morekeys_currency_dollar */ "\u09F3",
+        /* keyspec_symbols_semicolon */ "\u0983",
     };
 
     /* Locale en: English */
     private static final String[] TEXTS_en = {
         /* keylabel_to_alpha ~ */
         null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-        null, null, null, null, null, null, null,
-        /* ~ keylabel_to_symbol */
+        null, null, null, null, null, null, null, null,
+        /* ~ keyspec_comma */
         // U+00E0: "à" LATIN SMALL LETTER A WITH GRAVE
         // U+00E1: "á" LATIN SMALL LETTER A WITH ACUTE
         // U+00E2: "â" LATIN SMALL LETTER A WITH CIRCUMFLEX
@@ -778,6 +809,7 @@ public final class KeyboardTextsTable {
         /* keyspec_symbols_9 */ "\u0B6F",
         /* keyspec_symbols_0 */ "\u0B66",
         /* keylabel_to_symbol */ "\u0B67\u0B68\u0B69",
+        /* keyspec_comma */ "\u0B3C",
     };
 
     /* Locale pa_IN: Panjabi (India) */
@@ -872,8 +904,8 @@ public final class KeyboardTextsTable {
     private static final String[] TEXTS_zz = {
         /* keylabel_to_alpha ~ */
         null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-        null, null, null, null, null, null, null,
-        /* ~ keylabel_to_symbol */
+        null, null, null, null, null, null, null, null,
+        /* ~ keyspec_comma */
         // U+00E0: "à" LATIN SMALL LETTER A WITH GRAVE
         // U+00E1: "á" LATIN SMALL LETTER A WITH ACUTE
         // U+00E2: "â" LATIN SMALL LETTER A WITH CIRCUMFLEX
@@ -950,6 +982,8 @@ public final class KeyboardTextsTable {
         // U+010B: "ċ" LATIN SMALL LETTER C WITH DOT ABOVE
         // U+010D: "č" LATIN SMALL LETTER C WITH CARON
         /* morekeys_c */ "\u00E7,\u0107,\u0109,\u010B,\u010D",
+        /* morekeys_currency_dollar */ null,
+        /* keyspec_symbols_semicolon */ null,
         // U+00FD: "ý" LATIN SMALL LETTER Y WITH ACUTE
         // U+0177: "ŷ" LATIN SMALL LETTER Y WITH CIRCUMFLEX
         // U+00FF: "ÿ" LATIN SMALL LETTER Y WITH DIAERESIS
@@ -996,21 +1030,21 @@ public final class KeyboardTextsTable {
 
     private static final Object[] LOCALES_AND_TEXTS = {
     // "locale", TEXT_ARRAY,  /* numberOfNonNullText/lengthOf_TEXT_ARRAY localeName */
-        "DEFAULT", TEXTS_DEFAULT, /* 168/168 DEFAULT */
-        "as_IN"  , TEXTS_as_IN, /*  22/ 22 Assamese (India) */
-        "bn_IN"  , TEXTS_bn_IN, /*  22/ 22 Bengali (India) */
-        "en"     , TEXTS_en,    /*   8/ 30 English */
+        "DEFAULT", TEXTS_DEFAULT, /* 176/176 DEFAULT */
+        "as_IN"  , TEXTS_as_IN, /*  25/ 33 Assamese (India) */
+        "bn_IN"  , TEXTS_bn_IN, /*  25/ 33 Bengali (India) */
+        "en"     , TEXTS_en,    /*   8/ 31 English */
         "hi_IN"  , TEXTS_hi_IN, /*  22/ 22 Hindi (India) */
         "kn_IN"  , TEXTS_kn_IN, /*  22/ 22 Kannada (India) */
         "ml_IN"  , TEXTS_ml_IN, /*  11/ 11 Malayalam (India) */
         "mr_IN"  , TEXTS_mr_IN, /*  22/ 22 Marathi (India) */
         "my"     , TEXTS_my,    /*  22/ 22 Burmese */
         "ne_NP"  , TEXTS_ne_NP, /*  22/ 22 Nepali (Nepal) */
-        "or_IN"  , TEXTS_or_IN, /*  22/ 22 Oriya (India) */
+        "or_IN"  , TEXTS_or_IN, /*  23/ 23 Oriya (India) */
         "pa_IN"  , TEXTS_pa_IN, /*  22/ 22 Panjabi (India) */
         "ta_IN"  , TEXTS_ta_IN, /*  22/ 22 Tamil (India) */
         "te_IN"  , TEXTS_te_IN, /*  22/ 22 Telugu (India) */
-        "zz"     , TEXTS_zz,    /*  19/ 41 Alphabet */
+        "zz"     , TEXTS_zz,    /*  19/ 44 Alphabet */
     };
 
     static {

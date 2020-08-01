@@ -16,10 +16,11 @@
 
 package com.android.inputmethod.latin;
 
-import in.androidtweak.inputmethod.indic.Constants;
-import com.android.inputmethod.indic.define.DecoderSpecificConstants;
-import com.android.inputmethod.indic.common.NativeSuggestOptions;
+import com.android.inputmethod.latin.common.NativeSuggestOptions;
+import com.android.inputmethod.latin.define.DecoderSpecificConstants;
 import com.android.inputmethod.latin.utils.JniUtils;
+
+import java.util.Locale;
 
 public final class DicTraverseSession {
     static {

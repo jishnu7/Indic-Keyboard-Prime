@@ -29,8 +29,7 @@ import android.preference.Preference;
 import android.preference.SwitchPreference;
 import android.text.TextUtils;
 
-import in.androidtweak.inputmethod.dictionarypack.DictionarySettingsActivity;
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.R;
 import com.android.inputmethod.latin.permissions.PermissionsManager;
 import com.android.inputmethod.latin.permissions.PermissionsUtil;
 import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryList;
@@ -70,13 +69,8 @@ public final class CorrectionSettingsFragment extends SubScreenFragment
         final Context context = getActivity();
         final PackageManager pm = context.getPackageManager();
 
-<<<<<<< HEAD:java/src/in.androidtweak.inputmethod/indic/settings/CorrectionSettingsFragment.java
-        ensureConsistencyOfAutoCorrectionSettings();
-
         /*
          * IndicKeyboard: We are not yet supporting dictionary download.
-=======
->>>>>>> android-6.0.0_r1:java/src/com/android/inputmethod/latin/settings/CorrectionSettingsFragment.java
         final Preference dictionaryLink = findPreference(Settings.PREF_CONFIGURE_DICTIONARIES_KEY);
         final Intent intent = dictionaryLink.getIntent();
         intent.setClassName(context.getPackageName(), DictionarySettingsActivity.class.getName());

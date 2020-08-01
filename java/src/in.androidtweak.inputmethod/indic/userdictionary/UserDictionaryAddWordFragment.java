@@ -16,6 +16,10 @@
 
 package in.androidtweak.inputmethod.indic.userdictionary;
 
+import com.android.inputmethod.latin.R;
+import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryAddWordContents.LocaleRenderer;
+import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryLocalePicker.LocationChangedListener;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -31,10 +35,6 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.Locale;
-
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryAddWordContents.LocaleRenderer;
-import in.androidtweak.inputmethod.indic.userdictionary.UserDictionaryLocalePicker.LocationChangedListener;
 
 // Caveat: This class is basically taken from
 // packages/apps/Settings/src/com/android/settings/inputmethod/UserDictionaryAddWordFragment.java

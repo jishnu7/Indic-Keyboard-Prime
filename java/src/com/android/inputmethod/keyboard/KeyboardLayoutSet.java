@@ -16,6 +16,9 @@
 
 package com.android.inputmethod.keyboard;
 
+import static com.android.inputmethod.latin.common.Constants.ImeOption.FORCE_ASCII;
+import static com.android.inputmethod.latin.common.Constants.ImeOption.NO_SETTINGS_KEY;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -27,9 +30,20 @@ import android.util.Xml;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodSubtype;
 
+import com.android.inputmethod.compat.EditorInfoCompatUtils;
+import com.android.inputmethod.compat.InputMethodSubtypeCompatUtils;
+import com.android.inputmethod.compat.UserManagerCompatUtils;
 import com.android.inputmethod.keyboard.internal.KeyboardBuilder;
 import com.android.inputmethod.keyboard.internal.KeyboardParams;
 import com.android.inputmethod.keyboard.internal.UniqueKeysCache;
+import com.android.inputmethod.latin.InputAttributes;
+import com.android.inputmethod.latin.R;
+import com.android.inputmethod.latin.RichInputMethodSubtype;
+import com.android.inputmethod.latin.define.DebugFlags;
+import com.android.inputmethod.latin.utils.InputTypeUtils;
+import com.android.inputmethod.latin.utils.ScriptUtils;
+import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
+import com.android.inputmethod.latin.utils.XmlParseUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -37,24 +51,9 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import com.android.inputmethod.latin.RichInputMethodSubtype;
-import in.androidtweak.inputmethod.compat.EditorInfoCompatUtils;
-import in.androidtweak.inputmethod.compat.InputMethodSubtypeCompatUtils;
-import in.androidtweak.inputmethod.compat.UserManagerCompatUtils;
-import in.androidtweak.inputmethod.indic.InputAttributes;
-import in.androidtweak.inputmethod.indic.R;
-import in.androidtweak.inputmethod.indic.SubtypeSwitcher;
-import in.androidtweak.inputmethod.indic.define.DebugFlags;
-import com.android.inputmethod.latin.utils.InputTypeUtils;
-import com.android.inputmethod.latin.utils.ScriptUtils;
-import com.android.inputmethod.latin.utils.SubtypeLocaleUtils;
-import com.android.inputmethod.latin.utils.XmlParseUtils;
-
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.FORCE_ASCII;
-import static in.androidtweak.inputmethod.indic.Constants.ImeOption.NO_SETTINGS_KEY;
 
 /**
  * This class represents a set of keyboard layouts. Each of them represents a different keyboard
@@ -120,6 +119,8 @@ public final class KeyboardLayoutSet {
         boolean mVoiceInputKeyEnabled;
         boolean mNoSettingsKey;
         boolean mLanguageSwitchKeyEnabled;
+        boolean mEmojiSwitchKeyEnabled;
+        boolean mNumberRowEnabled;
         RichInputMethodSubtype mSubtype;
         boolean mIsSpellChecker;
         int mKeyboardWidth;
@@ -325,6 +326,16 @@ public final class KeyboardLayoutSet {
 
         public Builder setLanguageSwitchKeyEnabled(final boolean enabled) {
             mParams.mLanguageSwitchKeyEnabled = enabled;
+            return this;
+        }
+
+        public Builder setEmojiSwitchKeyEnabled(final boolean enabled) {
+            mParams.mEmojiSwitchKeyEnabled = enabled;
+            return this;
+        }
+
+        public Builder setNumberRowEnabled(final boolean enabled) {
+            mParams.mNumberRowEnabled = enabled;
             return this;
         }
 

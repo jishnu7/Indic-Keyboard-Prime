@@ -20,11 +20,11 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 
-import in.androidtweak.inputmethod.compat.LooperCompatUtils;
+import com.android.inputmethod.compat.LooperCompatUtils;
 import in.androidtweak.inputmethod.indic.LatinIME;
-import in.androidtweak.inputmethod.indic.SuggestedWords;
-import in.androidtweak.inputmethod.indic.Suggest.OnGetSuggestedWordsCallback;
-import in.androidtweak.inputmethod.indic.common.InputPointers;
+import com.android.inputmethod.latin.SuggestedWords;
+import com.android.inputmethod.latin.Suggest.OnGetSuggestedWordsCallback;
+import com.android.inputmethod.latin.common.InputPointers;
 
 /**
  * A helper to manage deferred tasks for the input logic.

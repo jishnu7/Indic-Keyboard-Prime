@@ -17,11 +17,32 @@
 ** limitations under the License.
 */
 -->
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include layout="@layout/setup_welcome_title" />
+            <include layout="@layout/setup_welcome_video" />
+        </LinearLayout>
+    </ScrollView>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <include layout="@layout/setup_welcome_title" />
-    <include layout="@layout/setup_welcome_video" />
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/setup_background"
+        android:layout_alignParentBottom="true">
+
+        <in.androidtweak.inputmethod.indic.setup.SetupStartIndicatorView
+            android:layout_width="match_parent"
+            android:paddingBottom="10dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

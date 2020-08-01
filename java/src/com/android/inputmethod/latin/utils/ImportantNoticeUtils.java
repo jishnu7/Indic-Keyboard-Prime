@@ -25,13 +25,11 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.R;
+import com.android.inputmethod.latin.R;
 import com.android.inputmethod.latin.permissions.PermissionsUtil;
-import com.android.inputmethod.latin.settings.SettingsValues;
+import in.androidtweak.inputmethod.indic.settings.SettingsValues;
 
 import java.util.concurrent.TimeUnit;
-
 
 public final class ImportantNoticeUtils {
     private static final String TAG = ImportantNoticeUtils.class.getSimpleName();
