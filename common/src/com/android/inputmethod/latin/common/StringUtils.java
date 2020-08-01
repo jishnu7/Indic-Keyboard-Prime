@@ -16,8 +16,7 @@
 
 package com.android.inputmethod.latin.common;
 
-import android.text.Spanned;
-import android.text.TextUtils;
+import com.android.inputmethod.annotations.UsedForTesting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,11 +24,6 @@ import java.util.Locale;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import in.androidtweak.inputmethod.annotations.UsedForTesting;
-import in.androidtweak.inputmethod.indic.Constants;
-
-import static in.androidtweak.inputmethod.indic.Constants.CODE_UNSPECIFIED;
 
 public final class StringUtils {
     public static final int CAPITALIZE_NONE = 0;  // No caps, or mixed case

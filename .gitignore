@@ -24,13 +24,25 @@ native/obj
 native/libs
 
 build/
-gradle/
 .idea/
-.gradle/
-gradlew
-gradlew.bat
 *.swp
 java.iml
 *~
 
 temp/
+
+*.DS_Store
+*.patch
+*.diff
+
+
+# Gradle
+.gradle
+**/build/
+!src/**/build/
+# Ignore Gradle GUI config
+gradle-app.setting
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+# Cache of project
+.gradletasknamecache

@@ -1,13 +1,13 @@
 # Keep classes and methods that have the @UsedForTesting annotation
--keep @in.androidtweak.inputmethod.annotations.UsedForTesting class *
+-keep @com.android.inputmethod.annotations.UsedForTesting class *
 -keepclassmembers class * {
-    @in.androidtweak.inputmethod.annotations.UsedForTesting *;
+    @com.android.inputmethod.annotations.UsedForTesting *;
 }
 
 # Keep classes and methods that have the @ExternallyReferenced annotation
--keep @in.androidtweak.inputmethod.annotations.ExternallyReferenced class *
+-keep @com.android.inputmethod.annotations.ExternallyReferenced class *
 -keepclassmembers class * {
-    @in.androidtweak.inputmethod.annotations.ExternallyReferenced *;
+    @com.android.inputmethod.annotations.ExternallyReferenced *;
 }
 
 # Keep native methods
@@ -17,8 +17,8 @@
 
 # Keep classes that are used as a parameter type of methods that are also marked as keep
 # to preserve changing those methods' signature.
--keep class in.androidtweak.inputmethod.indic.AssetFileAddress
--keep class in.androidtweak.inputmethod.indic.Dictionary
+-keep class com.android.inputmethod.latin.AssetFileAddress
+-keep class com.android.inputmethod.latin.Dictionary
 -keep class com.android.inputmethod.latin.NgramContext
 -keep class com.android.inputmethod.latin.makedict.ProbabilityInfo
 -keep class com.android.inputmethod.latin.utils.LanguageModelParam
