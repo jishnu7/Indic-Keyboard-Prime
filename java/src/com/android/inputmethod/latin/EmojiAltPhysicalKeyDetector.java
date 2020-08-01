@@ -16,92 +16,192 @@
 
 package com.android.inputmethod.latin;
 
+import android.content.res.Resources;
 import android.util.Log;
+import android.util.Pair;
 import android.view.KeyEvent;
 
 import com.android.inputmethod.keyboard.KeyboardSwitcher;
 import com.android.inputmethod.latin.settings.Settings;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.annotation.Nonnull;
 
 /**
  * A class for detecting Emoji-Alt physical key.
  */
 final class EmojiAltPhysicalKeyDetector {
     private static final String TAG = "EmojiAltPhysicalKeyDetector";
+    private static final boolean DEBUG = false;
 
-    private final RichInputConnection mRichInputConnection;
+    private List<EmojiHotKeys> mHotKeysList;
 
-    // True if the Alt key has been used as a modifier. In this case the Alt key up isn't
-    // recognized as an emoji key.
-    private boolean mAltHasBeenUsedAsAModifier;
+    private static class HotKeySet extends HashSet<Pair<Integer, Integer>> { };
 
-    public EmojiAltPhysicalKeyDetector(final RichInputConnection richInputConnection) {
-        mRichInputConnection = richInputConnection;
+    private abstract class EmojiHotKeys {
+        private final String mName;
+        private final HotKeySet mKeySet;
+
+        boolean mCanFire;
+        int mMetaState;
+
+        public EmojiHotKeys(final String name, HotKeySet keySet) {
+            mName = name;
+            mKeySet = keySet;
+            mCanFire = false;
+        }
+
+        public void onKeyDown(@Nonnull final KeyEvent keyEvent) {
+            if (DEBUG) {
+                Log.d(TAG, "EmojiHotKeys.onKeyDown() - " + mName + " - considering " + keyEvent);
+            }
+
+            final Pair<Integer, Integer> key =
+                    Pair.create(keyEvent.getKeyCode(), keyEvent.getMetaState());
+            if (mKeySet.contains(key)) {
+                if (DEBUG) {
+                   Log.d(TAG, "EmojiHotKeys.onKeyDown() - " + mName + " - enabling action");
+                }
+                mCanFire = true;
+                mMetaState = keyEvent.getMetaState();
+            } else if (mCanFire) {
+                if (DEBUG) {
+                   Log.d(TAG, "EmojiHotKeys.onKeyDown() - " + mName + " - disabling action");
+                }
+                mCanFire = false;
+            }
+        }
+
+        public void onKeyUp(@Nonnull final KeyEvent keyEvent) {
+            if (DEBUG) {
+                Log.d(TAG, "EmojiHotKeys.onKeyUp() - " + mName + " - considering " + keyEvent);
+            }
+
+            final int keyCode = keyEvent.getKeyCode();
+            int metaState = keyEvent.getMetaState();
+            if (KeyEvent.isModifierKey(keyCode)) {
+                 // Try restoring meta stat in case the released key was a modifier.
+                 // I am sure one can come up with scenarios to break this, but it
+                 // seems to work well in practice.
+                 metaState |= mMetaState;
+            }
+
+            final Pair<Integer, Integer> key = Pair.create(keyCode, metaState);
+            if (mKeySet.contains(key)) {
+                if (mCanFire) {
+                    if (!keyEvent.isCanceled()) {
+                        if (DEBUG) {
+                            Log.d(TAG, "EmojiHotKeys.onKeyUp() - " + mName + " - firing action");
+                        }
+                        action();
+                    } else {
+                        // This key up event was a part of key combinations and
+                        // should be ignored.
+                        if (DEBUG) {
+                            Log.d(TAG, "EmojiHotKeys.onKeyUp() - " + mName + " - canceled, ignoring action");
+                        }
+                    }
+                    mCanFire = false;
+                }
+            }
+
+            if (mCanFire) {
+                if (DEBUG) {
+                    Log.d(TAG, "EmojiHotKeys.onKeyUp() - " + mName + " - disabling action");
+                }
+                mCanFire = false;
+            }
+        }
+
+        protected abstract void action();
     }
 
-    /**
-     * Record a down key event.
-     * @param keyEvent a down key event.
-     */
-    public void onKeyDown(final KeyEvent keyEvent) {
-        if (isAltKey(keyEvent)) {
-            mAltHasBeenUsedAsAModifier = false;
+    public EmojiAltPhysicalKeyDetector(@Nonnull final Resources resources) {
+        mHotKeysList = new ArrayList<EmojiHotKeys>();
+
+        final HotKeySet emojiSwitchSet = parseHotKeys(
+                resources, R.array.keyboard_switcher_emoji);
+        final EmojiHotKeys emojiHotKeys = new EmojiHotKeys("emoji", emojiSwitchSet) {
+            @Override
+            protected void action() {
+                final KeyboardSwitcher switcher = KeyboardSwitcher.getInstance();
+                switcher.onToggleKeyboard(KeyboardSwitcher.KeyboardSwitchState.EMOJI);
+            }
+        };
+        mHotKeysList.add(emojiHotKeys);
+
+        final HotKeySet symbolsSwitchSet = parseHotKeys(
+                resources, R.array.keyboard_switcher_symbols_shifted);
+        final EmojiHotKeys symbolsHotKeys = new EmojiHotKeys("symbols", symbolsSwitchSet) {
+            @Override
+            protected void action() {
+                final KeyboardSwitcher switcher = KeyboardSwitcher.getInstance();
+                switcher.onToggleKeyboard(KeyboardSwitcher.KeyboardSwitchState.SYMBOLS_SHIFTED);
+            }
+        };
+        mHotKeysList.add(symbolsHotKeys);
+    }
+
+    public void onKeyDown(@Nonnull final KeyEvent keyEvent) {
+        if (DEBUG) {
+            Log.d(TAG, "onKeyDown(): " + keyEvent);
         }
-        if (containsAltModifier(keyEvent)) {
-            mAltHasBeenUsedAsAModifier = true;
+
+        if (shouldProcessEvent(keyEvent)) {
+            for (EmojiHotKeys hotKeys : mHotKeysList) {
+                hotKeys.onKeyDown(keyEvent);
+            }
         }
     }
 
-    /**
-     * Determine whether an up key event is a special key up or not.
-     * @param keyEvent an up key event.
-     */
-    public void onKeyUp(final KeyEvent keyEvent) {
-        if (keyEvent.isCanceled()) {
-            // This key up event was a part of key combinations and should be ignored.
-            return;
+    public void onKeyUp(@Nonnull final KeyEvent keyEvent) {
+        if (DEBUG) {
+            Log.d(TAG, "onKeyUp(): " + keyEvent);
         }
-        if (!isAltKey(keyEvent)) {
-            mAltHasBeenUsedAsAModifier |= containsAltModifier(keyEvent);
-            return;
+
+        if (shouldProcessEvent(keyEvent)) {
+            for (EmojiHotKeys hotKeys : mHotKeysList) {
+                hotKeys.onKeyUp(keyEvent);
+            }
         }
-        if (containsAltModifier(keyEvent)) {
-            mAltHasBeenUsedAsAModifier = true;
-            return;
-        }
+    }
+
+    private static boolean shouldProcessEvent(@Nonnull final KeyEvent keyEvent) {
         if (!Settings.getInstance().getCurrent().mEnableEmojiAltPhysicalKey) {
-            return;
+            // The feature is disabled.
+            if (DEBUG) {
+                Log.d(TAG, "shouldProcessEvent(): Disabled");
+            }
+            return false;
         }
-        if (mAltHasBeenUsedAsAModifier) {
-            return;
-        }
-        if (!mRichInputConnection.isConnected()) {
-            Log.w(TAG, "onKeyUp() : No connection to text view");
-            return;
-        }
-        onEmojiAltKeyDetected();
+
+        return true;
     }
 
-    private static void onEmojiAltKeyDetected() {
-        KeyboardSwitcher.getInstance().onToggleEmojiKeyboard();
-    }
-
-    private static boolean isAltKey(final KeyEvent keyEvent) {
-        final int keyCode = keyEvent.getKeyCode();
-        return keyCode == KeyEvent.KEYCODE_ALT_LEFT || keyCode == KeyEvent.KEYCODE_ALT_RIGHT;
-    }
-
-    private static boolean containsAltModifier(final KeyEvent keyEvent) {
-        final int metaState = keyEvent.getMetaState();
-        // TODO: Support multiple keyboards. Take device id into account.
-        switch (keyEvent.getKeyCode()) {
-        case KeyEvent.KEYCODE_ALT_LEFT:
-            // Return true if Left-Alt is pressed with Right-Alt pressed.
-            return (metaState & KeyEvent.META_ALT_RIGHT_ON) != 0;
-        case KeyEvent.KEYCODE_ALT_RIGHT:
-            // Return true if Right-Alt is pressed with Left-Alt pressed.
-            return (metaState & KeyEvent.META_ALT_LEFT_ON) != 0;
-        default:
-            return (metaState & (KeyEvent.META_ALT_LEFT_ON | KeyEvent.META_ALT_RIGHT_ON)) != 0;
+    private static HotKeySet parseHotKeys(
+            @Nonnull final Resources resources, final int resourceId) {
+        final HotKeySet keySet = new HotKeySet();
+        final String name = resources.getResourceEntryName(resourceId);
+        final String[] values = resources.getStringArray(resourceId);
+        for (int i = 0; values != null && i < values.length; i++) {
+            String[] valuePair = values[i].split(",");
+            if (valuePair.length != 2) {
+                Log.w(TAG, "Expected 2 integers in " + name + "[" + i + "] : " + values[i]);
+            }
+            try {
+                final Integer keyCode = Integer.parseInt(valuePair[0]);
+                final Integer metaState = Integer.parseInt(valuePair[1]);
+                final Pair<Integer, Integer> key = Pair.create(
+                        keyCode, KeyEvent.normalizeMetaState(metaState));
+                keySet.add(key);
+            } catch (NumberFormatException e) {
+                Log.w(TAG, "Failed to parse " + name + "[" + i + "] : " + values[i], e);
+            }
         }
+        return keySet;
     }
 }
