@@ -82,4 +82,6 @@ Kannada Anysoft keyboard layout was funded via [Bounty Source](https://www.bount
 
 Thanks [Chakravarthy Ashok](https://plus.google.com/115394773447303504309) for the help on Telugu KaChaTaThaPa layout
 
-Many keyboard layouts were adapted from the jquery.ime project of Wikimedia Foundation. They were contributed by volunteers.
+Some icons from from FontAwesome, they are in [Creative Commons Attribution 4.0 International license](https://fontawesome.com/license)
+
+Also thank [LineageOS](https://review.lineageos.org/c/LineageOS/android_packages_inputmethods_LatinIME/) and [Openboard](https://github.com/dslul/openboard/), some changes are taken/adopted from these keyboards
