@@ -31,7 +31,7 @@ You can [get it from Google Play.](https://play.google.com/store/apps/details?id
 - Sinhala Keyboard / Sinhalese (සිංහල) Transliteration
 - Tamil Keyboard (தமிழ்) - Tamil-99, Inscript, Phonetic, Compact, Transliteration
 - Telugu Keyboard (తెలుగు) - Phonetic, Inscript, Transliteration, KaChaTaThaPa, Compact
-- Urdu Keyboard (اردو) - Transliteration
+- Urdu Keyboard (اردو) - Navees, Transliteration
 
 ## License
 
