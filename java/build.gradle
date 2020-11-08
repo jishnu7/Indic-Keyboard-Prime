@@ -39,9 +39,9 @@ android {
     defaultConfig {
         applicationId "in.androidtweak.inputmethod.indic"
         minSdkVersion 14
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 35
-        versionName '3.2'
+        versionName "3.3-beta1"
     }
 
     splits {
