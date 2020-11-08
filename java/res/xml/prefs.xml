@@ -19,17 +19,13 @@
     xmlns:latin="http://schemas.android.com/apk/res-auto"
     android:key="english_ime_settings">
     <PreferenceScreen
-        android:fragment="in.androidtweak.inputmethod.indic.settings.PreferencesSettingsFragment"
-        android:title="@string/settings_screen_preferences"
-        android:key="screen_preferences" />
-    <PreferenceScreen
-        android:fragment="in.androidtweak.inputmethod.indic.settings.AccountsSettingsFragment"
-        android:title="@string/settings_screen_accounts"
-        android:key="screen_accounts" />
-    <PreferenceScreen
         android:fragment="in.androidtweak.inputmethod.indic.settings.ThemeSettingsFragment"
         android:key="screen_theme"
         android:title="@string/settings_screen_theme" />
+    <PreferenceScreen
+        android:fragment="in.androidtweak.inputmethod.indic.settings.PreferencesSettingsFragment"
+        android:title="@string/settings_screen_preferences"
+        android:key="screen_preferences" />
     <PreferenceScreen
         android:fragment="in.androidtweak.inputmethod.indic.settings.GestureSettingsFragment"
         android:title="@string/settings_screen_gesture"
