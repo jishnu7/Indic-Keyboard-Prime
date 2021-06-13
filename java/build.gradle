@@ -42,7 +42,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 30
         versionCode 35
-        versionName "3.3-beta1"
+        versionName "3.3"
     }
 
     splits {
