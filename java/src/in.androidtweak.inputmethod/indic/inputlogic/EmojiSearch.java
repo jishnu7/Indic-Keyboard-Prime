@@ -4,7 +4,7 @@
  * Licensed under the Apache License, Version 2.0
  */
 
-package org.smc.inputmethod.indic.inputlogic;
+package in.androidtweak.inputmethod.indic.inputlogic;
 
 import android.content.Context;
 import android.util.Log;

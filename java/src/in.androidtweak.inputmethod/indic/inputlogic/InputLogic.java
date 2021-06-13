@@ -56,11 +56,11 @@ import com.android.inputmethod.latin.utils.StatsUtils;
 import com.android.inputmethod.latin.utils.TextRange;
 
 import org.smc.ime.InputMethod;
-import org.smc.inputmethod.indic.LatinIME;
-import org.smc.inputmethod.indic.settings.SettingsValues;
-import org.smc.inputmethod.indic.settings.SettingsValuesForSuggestion;
-import org.smc.inputmethod.indic.settings.SpacingAndPunctuations;
-import org.smc.inputmethod.indic.suggestions.SuggestionStripViewAccessor;
+import in.androidtweak.inputmethod.indic.LatinIME;
+import in.androidtweak.inputmethod.indic.settings.SettingsValues;
+import in.androidtweak.inputmethod.indic.settings.SettingsValuesForSuggestion;
+import in.androidtweak.inputmethod.indic.settings.SpacingAndPunctuations;
+import in.androidtweak.inputmethod.indic.suggestions.SuggestionStripViewAccessor;
 import com.android.inputmethod.latin.utils.ScriptUtils;
 
 import java.util.ArrayList;

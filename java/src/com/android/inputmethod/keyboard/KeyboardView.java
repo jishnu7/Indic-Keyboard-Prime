@@ -38,7 +38,7 @@ import com.android.inputmethod.latin.R;
 import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.utils.TypefaceUtils;
 
-import org.smc.inputmethod.indic.settings.Settings;
+import in.androidtweak.inputmethod.indic.settings.Settings;
 
 import java.util.HashSet;
 

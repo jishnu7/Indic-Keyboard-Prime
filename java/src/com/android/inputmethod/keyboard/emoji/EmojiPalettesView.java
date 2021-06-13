@@ -57,7 +57,7 @@ import com.android.inputmethod.latin.RichInputMethodSubtype;
 import com.android.inputmethod.latin.common.Constants;
 import com.android.inputmethod.latin.utils.ResourceUtils;
 
-import org.smc.inputmethod.indic.inputlogic.EmojiSearch;
+import in.androidtweak.inputmethod.indic.inputlogic.EmojiSearch;
 
 /**
  * View class to implement Emoji palettes.
