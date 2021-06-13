@@ -41,7 +41,7 @@ android {
         applicationId "in.androidtweak.inputmethod.indic"
         minSdkVersion 14
         targetSdkVersion 30
-        versionCode 35
+        versionCode 40
         versionName "3.3"
     }
 
